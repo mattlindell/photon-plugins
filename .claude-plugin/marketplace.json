@@ -1,0 +1,27 @@
+{
+  "name": "photon-plugins",
+  "owner": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com",
+    "url": "https://github.com/misterphoton"
+  },
+  "metadata": {
+    "description": "Claude Code plugins for a variety of projects and tasks",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "php-development",
+      "source": "./plugins/php-development",
+      "description": "Comprehensive PHP development covering WordPress, Laravel, Sage/Roots, WooCommerce, as well as CodeIgniter 3 legacy maintenance",
+      "version": "1.0.0",
+      "license": "MIT",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/misterphoton/photon-plugins",
+      "category": "languages"
+    }
+  ]
+}
