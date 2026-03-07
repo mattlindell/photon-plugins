@@ -13,7 +13,7 @@ A Claude Code plugin marketplace for PHP development workflows.
 ### 1. Add the marketplace
 
 ```bash
-/plugin marketplace add MisterPhoton/photon-plugins
+/plugin marketplace add mattlindell/photon-plugins
 ```
 
 This makes all plugins available for installation but does not load anything into your context.

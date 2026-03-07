@@ -1,0 +1,9 @@
+{
+  "name": "technical-director",
+  "version": "1.0.0",
+  "description": "Observable subagent direction with structured contracts, verification loops, and deviation tracking",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  }
+}

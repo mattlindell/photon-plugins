@@ -1,0 +1,15 @@
+# Technical Director - Deviation Log
+#
+# This file tracks deviations from expected subagent behavior.
+# Each deviation is analyzed and used to refine prompts.
+#
+# Schema:
+#   id: auto-increment integer
+#   timestamp: ISO 8601 UTC
+#   expected: what should have happened
+#   actual: what did happen
+#   root_cause: misinterpretation | schema_violation | unsupported_claim | blocked | low_confidence
+#   fix: exact change to prevent recurrence
+#
+# Entries are appended automatically by the verify-output hook.
+# Review periodically to improve the executor prompt.

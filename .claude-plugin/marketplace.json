@@ -3,7 +3,7 @@
   "owner": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com",
-    "url": "https://github.com/misterphoton"
+    "url": "https://github.com/mattlindell"
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
@@ -15,13 +15,24 @@
       "source": "./plugins/php-development",
       "description": "Comprehensive PHP development covering WordPress, Laravel, Sage/Roots, WooCommerce, as well as CodeIgniter 3 legacy maintenance",
       "version": "1.0.0",
-      "license": "MIT",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
       },
-      "homepage": "https://github.com/misterphoton/photon-plugins",
+      "homepage": "https://github.com/mattlindell/photon-plugins",
       "category": "languages"
+    },
+    {
+      "name": "technical-director",
+      "source": "./plugins/technical-director",
+      "description": "Observable subagent direction with structured contracts, verification loops, and deviation tracking",
+      "version": "1.0.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
     }
   ]
 }
