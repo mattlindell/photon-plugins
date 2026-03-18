@@ -578,7 +578,7 @@ class FeatureFlagServiceProvider extends ServiceProvider
 
 Sage's template resolution:
 
-```
+```text
 WordPress requests "single-product" template
   -> Sage maps to resources/views/single-product.blade.php
   -> Falls back to resources/views/single.blade.php

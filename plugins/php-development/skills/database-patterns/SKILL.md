@@ -35,6 +35,7 @@ Query and optimization patterns for Eloquent ORM (Laravel/Sage), WordPress datab
 ## Quick Start
 
 **Eloquent -- fix N+1:**
+
 ```php
 // Before: N+1 queries (100 posts = 101 queries)
 $posts = Post::all();
@@ -50,6 +51,7 @@ foreach ($posts as $post) {
 ```
 
 **WordPress -- safe raw query:**
+
 ```php
 global $wpdb;
 
@@ -61,6 +63,7 @@ $wpdb->get_results(
 ```
 
 **CI3 -- safe query:**
+
 ```php
 // NEVER: $this->db->query("SELECT * FROM users WHERE id = $id");
 // ALWAYS:
@@ -76,6 +79,7 @@ $this->db->get_where('users', ['id' => $id]);
 Eloquent lazy-loads relationships by default -- one additional query per iteration.
 
 **BAD -- N+1 queries:**
+
 ```php
 $posts = Post::all();
 foreach ($posts as $post) {
@@ -84,6 +88,7 @@ foreach ($posts as $post) {
 ```
 
 **GOOD -- eager loading (2 queries total):**
+
 ```php
 $posts = Post::with('author')->get();
 foreach ($posts as $post) {
@@ -92,11 +97,13 @@ foreach ($posts as $post) {
 ```
 
 **Nested eager loading:**
+
 ```php
 $posts = Post::with(['author.profile', 'comments.user'])->get();
 ```
 
 **Constrained eager loading:**
+
 ```php
 $posts = Post::with([
     'comments' => function ($query) {
@@ -106,6 +113,7 @@ $posts = Post::with([
 ```
 
 Enable `preventLazyLoading()` in development to catch N+1 early:
+
 ```php
 // app/Providers/AppServiceProvider.php
 public function boot(): void
@@ -121,6 +129,7 @@ public function boot(): void
 Scopes encapsulate reusable query constraints.
 
 **Local scope:**
+
 ```php
 class Post extends Model
 {
@@ -142,6 +151,7 @@ $posts = Post::published()->byAuthor(42)->paginate(15);
 ```
 
 **Global scope:**
+
 ```php
 class ActiveScope implements Scope
 {
@@ -173,11 +183,11 @@ Order::where('created_at', '>=', now()->subMonth())
     });
 ```
 
-| Method | Memory | Use When |
-|---|---|---|
-| `chunk()` | Fixed (batch size) | Processing in batches, sending notifications |
-| `chunkById()` | Fixed (batch size) | Updating/deleting rows during iteration |
-| `lazy()` | Minimal (one row) | Streaming, exports, pipelines |
+| Method        | Memory             | Use When                                     |
+| ------------- | ------------------ | -------------------------------------------- |
+| `chunk()`     | Fixed (batch size) | Processing in batches, sending notifications |
+| `chunkById()` | Fixed (batch size) | Updating/deleting rows during iteration      |
+| `lazy()`      | Minimal (one row)  | Streaming, exports, pipelines                |
 
 ---
 
@@ -274,6 +284,7 @@ return new class extends Migration
 ```
 
 Migration best practices:
+
 - Always implement `down()`. If truly irreversible, throw an exception.
 - One logical change per migration.
 - Add indexes at creation time. Every `foreignId` gets an index from `constrained()`.
@@ -329,6 +340,7 @@ if ($query->have_posts()) {
 ```
 
 Nested meta queries (OR inside AND) are supported:
+
 ```php
 'meta_query' => [
     'relation' => 'AND',
@@ -350,6 +362,7 @@ Nested meta queries (OR inside AND) are supported:
 Use `$wpdb` with `prepare()` for custom tables, complex JOINs, and aggregates.
 
 **SELECT:**
+
 ```php
 global $wpdb;
 
@@ -371,6 +384,7 @@ $count = $wpdb->get_var(
 ```
 
 **INSERT:**
+
 ```php
 global $wpdb;
 
@@ -390,12 +404,12 @@ $new_id = $wpdb->insert_id;
 
 **Format placeholders:**
 
-| Placeholder | Type | Example |
-|---|---|---|
-| `%d` | Integer | `42` |
-| `%f` | Float | `3.14` |
-| `%s` | String | `'hello'` (auto-escaped and quoted) |
-| `%i` | Identifier | Table/column names (WP 6.2+) |
+| Placeholder | Type       | Example                             |
+| ----------- | ---------- | ----------------------------------- |
+| `%d`        | Integer    | `42`                                |
+| `%f`        | Float      | `3.14`                              |
+| `%s`        | String     | `'hello'` (auto-escaped and quoted) |
+| `%i`        | Identifier | Table/column names (WP 6.2+)        |
 
 ---
 
@@ -439,6 +453,7 @@ function myplugin_create_tables(): void {
 ```
 
 **Version tracking for schema updates:**
+
 ```php
 function myplugin_maybe_update_db(): void {
     $installed_version = get_option('myplugin_db_version', '0');
@@ -456,16 +471,16 @@ add_action('plugins_loaded', 'myplugin_maybe_update_db');
 
 ### 11. Post Meta vs Custom Tables: Decision Framework
 
-| Criteria | Post Meta | Custom Table |
-|---|---|---|
-| Setup effort | Zero | Must create table, manage schema |
-| Query simplicity | `get_post_meta()`, `meta_query` | Custom `$wpdb` queries |
-| Plugin compatibility | Full (ACF, CMB2, REST API) | Must build integrations |
-| Performance at scale | Degrades with row count | Scales with proper indexes |
-| Complex queries | Slow (EAV joins) | Fast (native SQL) |
-| Data integrity | No constraints | Foreign keys, unique, NOT NULL |
-| Aggregation | Very slow | Native SQL performance |
-| Best for | <10k posts, display-only, plugin compat | High volume, frequent queries, relational data |
+| Criteria             | Post Meta                               | Custom Table                                   |
+| -------------------- | --------------------------------------- | ---------------------------------------------- |
+| Setup effort         | Zero                                    | Must create table, manage schema               |
+| Query simplicity     | `get_post_meta()`, `meta_query`         | Custom `$wpdb` queries                         |
+| Plugin compatibility | Full (ACF, CMB2, REST API)              | Must build integrations                        |
+| Performance at scale | Degrades with row count                 | Scales with proper indexes                     |
+| Complex queries      | Slow (EAV joins)                        | Fast (native SQL)                              |
+| Data integrity       | No constraints                          | Foreign keys, unique, NOT NULL                 |
+| Aggregation          | Very slow                               | Native SQL performance                         |
+| Best for             | <10k posts, display-only, plugin compat | High volume, frequent queries, relational data |
 
 **Hybrid approach:** Store the most-queried value as post meta for `WP_Query` compatibility, and store detailed data in a custom table with the post ID as a foreign key.
 
@@ -578,6 +593,7 @@ class User_model extends CI_Model
 ```
 
 For raw SQL, always use query bindings:
+
 ```php
 // NEVER: $this->db->query("SELECT * FROM users WHERE email = '$email'");
 // ALWAYS:

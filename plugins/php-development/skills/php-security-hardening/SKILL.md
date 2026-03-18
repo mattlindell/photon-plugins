@@ -54,6 +54,7 @@ These patterns apply to all PHP applications regardless of framework.
 ### Pattern 1: SQL Injection Prevention
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 $username = $_GET['username'];
 $result = $pdo->query("SELECT * FROM users WHERE username = '$username'");
@@ -61,6 +62,7 @@ $result = $pdo->query("SELECT * FROM users WHERE username = '$username'");
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Prepared statement with parameter binding
 $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
@@ -86,6 +88,7 @@ $pdo = new PDO($dsn, $user, $pass, [
 ### Pattern 2: Password Storage
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // Plaintext, MD5, SHA1, or salted MD5 -- all inadequate
 $hash = md5($_POST['password']);
@@ -94,6 +97,7 @@ if ($storedHash == md5($inputPassword)) { /* login */ }
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Hash with password_hash() -- bcrypt by default, auto-generates salt
 $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -116,6 +120,7 @@ if ($storedHash && password_verify($_POST['password'], $storedHash)) {
 ### Pattern 3: CSRF Protection
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No CSRF token -- any external site can forge this request
 if ($_POST['confirm'] === 'yes') {
@@ -124,6 +129,7 @@ if ($_POST['confirm'] === 'yes') {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Generate and store a CSRF token in the session
 function generateCsrfToken(): string {
@@ -153,6 +159,7 @@ unset($_SESSION['csrf_token']);
 ### Pattern 4: File Upload Validation
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No type validation, original filename, no size limit, web-accessible directory
 $destination = '/var/www/uploads/' . $_FILES['avatar']['name'];
@@ -160,6 +167,7 @@ move_uploaded_file($_FILES['avatar']['tmp_name'], $destination);
 ```
 
 **Secure (DO THIS):**
+
 ```php
 function handleFileUpload(array $file, string $uploadDir): string {
     if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -189,6 +197,7 @@ $filename = handleFileUpload($_FILES['avatar'], '/var/www/storage/uploads/');
 ### Pattern 5: Cross-Site Scripting (XSS) Prevention
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 echo "<h1>Welcome, " . $_GET['name'] . "</h1>";
 echo '<input type="text" value="' . $userInput . '">';
@@ -196,6 +205,7 @@ echo '<a href="' . $userUrl . '">Click here</a>';
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // HTML body context
 echo '<h1>Welcome, ' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</h1>';
@@ -226,12 +236,14 @@ function e(string $value): string {
 ### Pattern 6: Security Headers
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No security headers -- browser defaults leave users exposed to
 // clickjacking, MIME sniffing, downgrade attacks, and inline script injection
 ```
 
 **Secure (DO THIS):**
+
 ```php
 function setSecurityHeaders(): void {
     header('X-Frame-Options: SAMEORIGIN');
@@ -253,6 +265,7 @@ WordPress-specific patterns using the functions and APIs provided by WordPress c
 ### Pattern 7: Nonce Verification
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No nonce -- any external site can forge this request
 add_action('admin_post_delete_item', function () {
@@ -263,6 +276,7 @@ add_action('admin_post_delete_item', function () {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // In the form
 function render_delete_form(int $item_id): void { ?>
@@ -300,6 +314,7 @@ add_action('wp_ajax_my_ajax_action', function () {
 ### Pattern 8: Capability Checks
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // 'read' capability -- any logged-in user can access admin settings
 add_menu_page('Settings', 'My Plugin', 'read', 'my-plugin-settings', 'render_settings_page');
@@ -309,6 +324,7 @@ add_action('admin_post_save_settings', function () {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Require 'manage_options' capability for the menu
 add_action('admin_menu', function () {
@@ -337,6 +353,7 @@ if (!current_user_can('edit_post', $post_id)) {
 ### Pattern 9: Output Escaping
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 echo '<h2>' . $post_title . '</h2>';
 echo '<a href="' . $url . '">Visit site</a>';
@@ -344,6 +361,7 @@ echo '<input type="text" value="' . $option_value . '">';
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // HTML body -- esc_html()
 echo '<h2>' . esc_html($post_title) . '</h2>';
@@ -370,6 +388,7 @@ echo '<textarea>' . esc_textarea($saved_content) . '</textarea>';
 ### Pattern 10: Database Query Safety
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 global $wpdb;
 $results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}orders WHERE user_id = " . $_GET['user_id']);
@@ -377,6 +396,7 @@ $wpdb->query("DELETE FROM {$wpdb->prefix}logs WHERE id = " . $_POST['log_id']);
 ```
 
 **Secure (DO THIS):**
+
 ```php
 global $wpdb;
 
@@ -413,6 +433,7 @@ $wpdb->insert(
 ### Pattern 11: REST Endpoint Security
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No permission_callback -- accessible to anyone, triggers _doing_it_wrong in WP 5.5+
 register_rest_route('my-plugin/v1', '/users/(?P<id>\d+)', [
@@ -425,6 +446,7 @@ register_rest_route('my-plugin/v1', '/users/(?P<id>\d+)', [
 ```
 
 **Secure (DO THIS):**
+
 ```php
 register_rest_route('my-plugin/v1', '/users/(?P<id>\d+)', [
     'methods'             => 'DELETE',
@@ -468,6 +490,7 @@ Laravel-specific security patterns using the framework's built-in tools.
 ### Pattern 12: Mass Assignment Protection
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 class User extends Model { }  // No $fillable -- all attributes mass-assignable
 
@@ -477,6 +500,7 @@ public function store(Request $request) {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 class User extends Model {
     protected $fillable = ['name', 'email', 'password'];
@@ -504,6 +528,7 @@ public function promoteToAdmin(User $user): void {
 ### Pattern 13: Authentication Middleware
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No middleware -- anyone can access; or manual auth()->check() in every method
 Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -511,6 +536,7 @@ Route::get('/admin/users', [AdminController::class, 'users']);
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Authenticated routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -544,6 +570,7 @@ Route::middleware('auth:sanctum')->group(function () {
 ### Pattern 14: Form Request Validation
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 public function store(Request $request) {
     $post = Post::create([
@@ -555,6 +582,7 @@ public function store(Request $request) {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 class StorePostRequest extends FormRequest {
     public function authorize(): bool {
@@ -587,6 +615,7 @@ public function store(StorePostRequest $request) {
 ### Pattern 15: Rate Limiting
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // No rate limiting on login, API, or password reset endpoints
 Route::post('/login', [AuthController::class, 'login']);
@@ -594,6 +623,7 @@ Route::post('/api/search', [SearchController::class, 'query']);
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // Define rate limiters in AppServiceProvider boot()
 RateLimiter::for('login', function (Request $request) {
@@ -629,6 +659,7 @@ Patterns for hardening CodeIgniter 3 applications that are still in production.
 ### Pattern 16: Query Safety
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 class User_model extends CI_Model {
     public function get_user($username) {
@@ -646,6 +677,7 @@ class User_model extends CI_Model {
 ```
 
 **Secure (DO THIS):**
+
 ```php
 class User_model extends CI_Model {
     // Query bindings -- CI3's parameterized query mechanism
@@ -680,6 +712,7 @@ class User_model extends CI_Model {
 ### Pattern 17: Session Hardening
 
 **Vulnerable (DO NOT DO THIS):**
+
 ```php
 // application/config/config.php -- insecure defaults
 $config['sess_save_path']       = NULL;    // Shared /tmp
@@ -690,6 +723,7 @@ $config['cookie_samesite']      = '';      // No SameSite
 ```
 
 **Secure (DO THIS):**
+
 ```php
 // application/config/config.php -- hardened
 $config['sess_driver']          = 'database';
@@ -729,32 +763,39 @@ class Auth extends CI_Controller {
 ## Best Practices Summary
 
 ### Input Handling
+
 - Validate and sanitize all input at the application boundary
 - Use framework sanitization: `sanitize_text_field()` (WP), `$request->validated()` (Laravel), `$this->input->post()` (CI3)
 - Never trust client-supplied data: form fields, query params, headers, cookies, files, API bodies
 
 ### Output Escaping
+
 - Escape at the point of output, not input
 - WP: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses()`
 - Laravel: Blade `{{ }}` auto-escapes; `{!! !!}` only for trusted HTML
 - CI3: `html_escape()` or `htmlspecialchars()`
 
 ### Database Queries
+
 - Never concatenate user input into SQL
 - PHP: PDO prepared statements; WP: `$wpdb->prepare()`; Laravel: Eloquent/Query Builder; CI3: query bindings or Active Record
 
 ### Authentication and Authorization
+
 - Check both identity and permission on every request
 - WP: `wp_verify_nonce()` + `current_user_can()`; Laravel: `auth` middleware + Policies; CI3: session auth + role checks
 
 ### CSRF and Session Security
+
 - Use framework CSRF on all state-changing requests
 - WP: `wp_nonce_field()`/`wp_verify_nonce()`; Laravel: `@csrf`; CI3: `$config['csrf_protection'] = TRUE`
 - Regenerate session IDs after login
 
 ### Security Headers
+
 - Set CSP, HSTS, X-Frame-Options, X-Content-Type-Options on every response
 
 ### Dependency Management
+
 - Run `composer audit` regularly
 - Keep frameworks updated; pin versions in production via `composer.lock`

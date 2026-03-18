@@ -591,7 +591,7 @@ foreach ( $orders as $order ) {
 
 WooCommerce looks for overrides in `yourtheme/woocommerce/`. Copy the original from `woocommerce/templates/` and modify:
 
-```
+```text
 yourtheme/
   woocommerce/
     single-product/price.php
@@ -652,22 +652,26 @@ Template resolution order: theme `woocommerce/` directory, then plugin filter vi
 **WooCommerce Guard**: Check `class_exists( 'WooCommerce' )` in every class that uses WC functions. Fatal errors occur when WooCommerce is deactivated without this guard.
 
 **HPOS Migration**:
+
 - Use `$order->update_meta_data()` / `$order->get_meta()` instead of `update_post_meta()` / `get_post_meta()` for order data.
 - Use `wc_get_orders()` instead of `WP_Query` with `post_type => 'shop_order'`.
 - Always call `$order->save()` after `update_meta_data()` or `delete_meta_data()`.
 - Declare HPOS compatibility in the main plugin file (see Quick Start).
 
 **Checkout Field Validation**:
+
 - Validate in `woocommerce_checkout_process` before save, not after.
 - Use `wc_add_notice( $message, 'error' )` to surface validation errors.
 - Always `sanitize_text_field( wp_unslash( $_POST['field'] ) )` before processing.
 
 **Cart Fee Timing**:
+
 - `woocommerce_cart_calculate_fees` can fire multiple times per page load.
 - Guard with `if ( is_admin() && ! defined( 'DOING_AJAX' ) ) { return; }`.
 - Use `$cart->add_fee()` rather than modifying totals directly.
 
 **Payment Gateway Requirements**:
+
 - `process_payment()` must return `['result' => 'success', 'redirect' => $url]`.
 - Call `$order->payment_complete( $transaction_id )` on success.
 - Call `WC()->cart->empty_cart()` after successful payment.
@@ -678,22 +682,22 @@ Template resolution order: theme `woocommerce/` directory, then plugin filter vi
 
 ## Hook Quick Reference
 
-| Hook | Type | Purpose |
-|---|---|---|
-| `woocommerce_after_order_notes` | Action | Add custom checkout fields |
-| `woocommerce_checkout_process` | Action | Validate fields before order creation |
-| `woocommerce_checkout_update_order_meta` | Action | Save custom field data to order meta |
-| `woocommerce_checkout_fields` | Filter | Modify, reorder, or remove checkout fields |
-| `woocommerce_order_status_completed` | Action | Order marked completed |
-| `woocommerce_order_status_{from}_to_{to}` | Action | Specific status transition |
-| `woocommerce_payment_complete` | Action | Payment processed successfully |
-| `woocommerce_admin_order_data_after_billing_address` | Action | Admin order screen, after billing |
-| `woocommerce_email_after_order_table` | Action | Order emails, after items table |
-| `woocommerce_cart_calculate_fees` | Action | Add fees or discounts to cart |
-| `woocommerce_before_calculate_totals` | Action | Modify prices before totals |
-| `woocommerce_product_options_general_product_data` | Action | General tab in product editor |
-| `woocommerce_process_product_meta` | Action | Save custom product fields |
-| `product_type_selector` | Filter | Add custom product type to dropdown |
-| `woocommerce_payment_gateways` | Filter | Register a payment gateway class |
-| `woocommerce_update_options_payment_gateways_{id}` | Action | Save gateway admin settings |
-| `woocommerce_api_{slug}` | Action | Handle incoming webhook/IPN |
+| Hook                                                 | Type   | Purpose                                    |
+| ---------------------------------------------------- | ------ | ------------------------------------------ |
+| `woocommerce_after_order_notes`                      | Action | Add custom checkout fields                 |
+| `woocommerce_checkout_process`                       | Action | Validate fields before order creation      |
+| `woocommerce_checkout_update_order_meta`             | Action | Save custom field data to order meta       |
+| `woocommerce_checkout_fields`                        | Filter | Modify, reorder, or remove checkout fields |
+| `woocommerce_order_status_completed`                 | Action | Order marked completed                     |
+| `woocommerce_order_status_{from}_to_{to}`            | Action | Specific status transition                 |
+| `woocommerce_payment_complete`                       | Action | Payment processed successfully             |
+| `woocommerce_admin_order_data_after_billing_address` | Action | Admin order screen, after billing          |
+| `woocommerce_email_after_order_table`                | Action | Order emails, after items table            |
+| `woocommerce_cart_calculate_fees`                    | Action | Add fees or discounts to cart              |
+| `woocommerce_before_calculate_totals`                | Action | Modify prices before totals                |
+| `woocommerce_product_options_general_product_data`   | Action | General tab in product editor              |
+| `woocommerce_process_product_meta`                   | Action | Save custom product fields                 |
+| `product_type_selector`                              | Filter | Add custom product type to dropdown        |
+| `woocommerce_payment_gateways`                       | Filter | Register a payment gateway class           |
+| `woocommerce_update_options_payment_gateways_{id}`   | Action | Save gateway admin settings                |
+| `woocommerce_api_{slug}`                             | Action | Handle incoming webhook/IPN                |

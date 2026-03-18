@@ -48,7 +48,7 @@ composer create-project roots/sage <theme-name>
 
 Explain what this generates:
 
-```
+```text
 <theme-name>/
 ├── app/
 │   ├── Providers/            # Acorn service providers

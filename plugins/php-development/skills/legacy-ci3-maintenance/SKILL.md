@@ -23,6 +23,7 @@ Do not overinvest. Every change should either fix a bug, close a security hole, 
 CodeIgniter 3 follows a straightforward MVC pattern. Controllers handle HTTP, models handle data, views handle output. CI3 uses a "superobject" — `$this` inside controllers/models gives access to all loaded libraries, helpers, and the database via a shared instance. There is no dependency injection container; everything hangs off `$this`.
 
 Key directories:
+
 - `application/controllers/` — request handlers
 - `application/models/` — database interaction
 - `application/views/` — output templates

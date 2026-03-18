@@ -29,7 +29,7 @@ Derive these values from the answers:
 
 ### 2. Generate the Directory Structure
 
-```
+```text
 plugin-slug/
 ├── plugin-slug.php
 ├── composer.json
@@ -57,7 +57,7 @@ plugin-slug/
 
 If REST API endpoints are requested, add:
 
-```
+```text
 ├── src/
 │   └── Api/
 │       └── RestController.php
@@ -65,7 +65,7 @@ If REST API endpoints are requested, add:
 
 If Gutenberg blocks are requested, add:
 
-```
+```text
 ├── src/
 │   └── Blocks/
 │       ├── BlockRegistrar.php
@@ -1191,7 +1191,7 @@ npm install @wordpress/scripts @wordpress/blocks @wordpress/block-editor @wordpr
 
 Then provide this summary:
 
-```
+```text
 Plugin scaffolded successfully.
 
 Directory:   plugin-slug/

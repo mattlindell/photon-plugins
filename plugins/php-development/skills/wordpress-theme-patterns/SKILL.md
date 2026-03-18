@@ -81,7 +81,7 @@ WordPress uses the template hierarchy to determine which theme template file to 
 
 ### Single Posts and Pages
 
-```
+```text
 Single Post:
   single-{post_type}-{slug}.php
   single-{post_type}.php
@@ -109,7 +109,7 @@ Attachment:
 
 ### Archives
 
-```
+```text
 Category:
   category-{slug}.php
   category-{id}.php
@@ -146,7 +146,7 @@ Author:
 
 ### Special Templates
 
-```
+```text
 Front Page:     front-page.php > home.php > index.php
 Blog/Home:      home.php > index.php
 Search:         search.php > index.php
@@ -157,7 +157,7 @@ Search:         search.php > index.php
 
 Block themes follow the same hierarchy but use HTML files in the `templates/` directory instead of PHP files. Template parts live in `parts/`:
 
-```
+```text
 templates/
   single-project.html      (equivalent to single-project.php)
   single.html              (equivalent to single.php)
@@ -943,21 +943,21 @@ get_footer();
 
 ## Best Practices Summary
 
-**Theme File Organization**
+### Theme File Organization
 
 - Keep `functions.php` as a routing file that includes focused files from `inc/`.
 - Group related functionality: `inc/theme-support.php`, `inc/enqueue.php`, `inc/template-tags.php`, `inc/customizer.php`.
 - Place custom page templates in `templates/` or the theme root with a `Template Name:` header comment.
 - For block themes, use `templates/` for full page templates and `parts/` for reusable template parts.
 
-**Asset Enqueuing**
+### Asset Enqueuing
 
 - Always use `wp_enqueue_style()` and `wp_enqueue_script()` -- never hardcode `<link>` or `<script>` tags in templates.
 - Use `get_template_directory_uri()` for parent theme assets and `get_stylesheet_directory_uri()` for child theme assets.
 - Version assets with the theme version constant for cache busting.
 - Use the array syntax for `wp_enqueue_script()` with `'in_footer' => true` and `'strategy' => 'defer'` for non-critical scripts.
 
-**Child Theme Development**
+### Child Theme Development
 
 - The `Template` header in `style.css` must match the parent theme's directory name exactly.
 - Enqueue child styles with the parent style handle as a dependency.
@@ -965,7 +965,7 @@ get_footer();
 - Override parent `after_setup_theme` at priority 11 or higher.
 - Use `remove_action()` / `remove_filter()` at `init` to remove parent hooks (requires matching function name, priority, and argument count).
 
-**Block Theme (FSE) Development**
+### Block Theme (FSE) Development
 
 - Define all design tokens (colors, spacing, typography) in `theme.json`, not in CSS files.
 - Set `defaultPalette` and `defaultGradients` to `false` to enforce your custom palette.
@@ -973,7 +973,7 @@ get_footer();
 - Use fluid typography with `min`/`max` values for responsive font scaling without media queries.
 - Register custom templates in the `customTemplates` array and template parts in `templateParts`.
 
-**Escaping and Sanitization in Templates**
+### Escaping and Sanitization in Templates
 
 - `esc_html()` for text content inside HTML tags.
 - `esc_attr()` for values inside HTML attributes.
@@ -981,7 +981,7 @@ get_footer();
 - `wp_kses_post()` for rich HTML that should allow post-safe tags.
 - Always sanitize Customizer settings with an appropriate `sanitize_callback`.
 
-**Performance**
+### Performance
 
 - Register only the theme supports you actually need.
 - Conditionally load scripts (e.g., `comment-reply` only when comments are open).
@@ -989,7 +989,7 @@ get_footer();
 - Use the `'strategy' => 'defer'` parameter for non-critical JavaScript.
 - Define a `content_width` global to prevent oversized embeds.
 
-**Accessibility**
+### Accessibility
 
 - Use semantic HTML elements (`<main>`, `<nav>`, `<article>`, `<aside>`, `<header>`, `<footer>`).
 - Include skip-to-content links as the first focusable element.

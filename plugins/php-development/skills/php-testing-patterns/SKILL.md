@@ -328,14 +328,14 @@ arch('domain layer does not depend on infrastructure')
 
 ### Pattern 8: Decision Guide -- Pest vs PHPUnit
 
-| Factor | PHPUnit | Pest |
-|---|---|---|
-| Team experience | Team knows PHPUnit | Open to new tools |
-| Project type | Library/framework (open source) | Application code (Laravel, WP, internal) |
-| Existing suite | Large existing PHPUnit suite | Greenfield or small suite |
-| IDE support | Full class-based refactoring | Closure-based files |
-| Architecture testing | Not built-in | Built-in `arch()` |
-| Assertion style | Explicit `$this->assert*()` | Fluent `expect()->` chains |
+| Factor               | PHPUnit                         | Pest                                     |
+| -------------------- | ------------------------------- | ---------------------------------------- |
+| Team experience      | Team knows PHPUnit              | Open to new tools                        |
+| Project type         | Library/framework (open source) | Application code (Laravel, WP, internal) |
+| Existing suite       | Large existing PHPUnit suite    | Greenfield or small suite                |
+| IDE support          | Full class-based refactoring    | Closure-based files                      |
+| Architecture testing | Not built-in                    | Built-in `arch()`                        |
+| Assertion style      | Explicit `$this->assert*()`     | Fluent `expect()->` chains               |
 
 **Rule of thumb:** Default to Pest for Laravel/Sage. Use PHPUnit directly for WP plugins extending `WP_UnitTestCase` and for open-source PHP libraries. Pest wraps PHPUnit, so both can coexist.
 

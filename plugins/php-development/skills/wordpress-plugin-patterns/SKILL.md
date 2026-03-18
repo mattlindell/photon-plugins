@@ -33,7 +33,7 @@ Production-ready patterns for WordPress plugin development. Every example is com
 
 **Directory structure:**
 
-```
+```text
 acme-plugin/
   acme-plugin.php
   composer.json
