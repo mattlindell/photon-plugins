@@ -101,7 +101,7 @@ declare(strict_types=1);
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+ exit;
 }
 
 /**
@@ -133,18 +133,18 @@ define( '{PLUGIN_PREFIX}_MIN_PHP', '8.0' );
  * Activation hook: check PHP version before allowing activation.
  */
 function {plugin_prefix}_activate(): void {
-	if ( version_compare( PHP_VERSION, {PLUGIN_PREFIX}_MIN_PHP, '<' ) ) {
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die(
-			sprintf(
-				/* translators: %s: Minimum PHP version required. */
-				esc_html__( 'This plugin requires PHP %s or higher.', '{plugin-slug}' ),
-				esc_html( {PLUGIN_PREFIX}_MIN_PHP )
-			),
-			esc_html__( 'Plugin Activation Error', '{plugin-slug}' ),
-			array( 'back_link' => true )
-		);
-	}
+ if ( version_compare( PHP_VERSION, {PLUGIN_PREFIX}_MIN_PHP, '<' ) ) {
+  deactivate_plugins( plugin_basename( __FILE__ ) );
+  wp_die(
+   sprintf(
+    /* translators: %s: Minimum PHP version required. */
+    esc_html__( 'This plugin requires PHP %s or higher.', '{plugin-slug}' ),
+    esc_html( {PLUGIN_PREFIX}_MIN_PHP )
+   ),
+   esc_html__( 'Plugin Activation Error', '{plugin-slug}' ),
+   array( 'back_link' => true )
+  );
+ }
 }
 register_activation_hook( __FILE__, '{plugin_prefix}_activate' );
 
@@ -152,8 +152,8 @@ register_activation_hook( __FILE__, '{plugin_prefix}_activate' );
  * Deactivation hook: cleanup transients and scheduled events.
  */
 function {plugin_prefix}_deactivate(): void {
-	// Flush rewrite rules on deactivation.
-	flush_rewrite_rules();
+ // Flush rewrite rules on deactivation.
+ flush_rewrite_rules();
 }
 register_deactivation_hook( __FILE__, '{plugin_prefix}_deactivate' );
 
@@ -161,14 +161,14 @@ register_deactivation_hook( __FILE__, '{plugin_prefix}_deactivate' );
  * Load Composer autoloader.
  */
 if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	add_action( 'admin_notices', function (): void {
-		$message = esc_html__(
-			'The {Plugin Name} plugin requires Composer dependencies. Please run "composer install" in the plugin directory.',
-			'{plugin-slug}'
-		);
-		printf( '<div class="notice notice-error"><p>%s</p></div>', $message );
-	} );
-	return;
+ add_action( 'admin_notices', function (): void {
+  $message = esc_html__(
+   'The {Plugin Name} plugin requires Composer dependencies. Please run "composer install" in the plugin directory.',
+   '{plugin-slug}'
+  );
+  printf( '<div class="notice notice-error"><p>%s</p></div>', $message );
+ } );
+ return;
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -177,8 +177,8 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Initialize the plugin.
  */
 function {plugin_prefix}_init(): void {
-	$plugin = new \{PluginNamespace}\Core\Plugin();
-	$plugin->run();
+ $plugin = new \{PluginNamespace}\Core\Plugin();
+ $plugin->run();
 }
 add_action( 'plugins_loaded', '{plugin_prefix}_init' );
 ```
@@ -211,58 +211,58 @@ use {PluginNamespace}\Public\Frontend;
  */
 class Plugin {
 
-	/**
-	 * Admin component.
-	 *
-	 * @var Admin
-	 */
-	private Admin $admin;
+ /**
+  * Admin component.
+  *
+  * @var Admin
+  */
+ private Admin $admin;
 
-	/**
-	 * Frontend component.
-	 *
-	 * @var Frontend
-	 */
-	private Frontend $frontend;
+ /**
+  * Frontend component.
+  *
+  * @var Frontend
+  */
+ private Frontend $frontend;
 
-	/**
-	 * Plugin constructor.
-	 */
-	public function __construct() {
-		$this->admin    = new Admin();
-		$this->frontend = new Frontend();
-	}
+ /**
+  * Plugin constructor.
+  */
+ public function __construct() {
+  $this->admin    = new Admin();
+  $this->frontend = new Frontend();
+ }
 
-	/**
-	 * Register all hooks and initialize components.
-	 *
-	 * @return void
-	 */
-	public function run(): void {
-		// Load text domain for translations.
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+ /**
+  * Register all hooks and initialize components.
+  *
+  * @return void
+  */
+ public function run(): void {
+  // Load text domain for translations.
+  add_action( 'init', array( $this, 'load_textdomain' ) );
 
-		// Register admin hooks.
-		if ( is_admin() ) {
-			$this->admin->register();
-		}
+  // Register admin hooks.
+  if ( is_admin() ) {
+   $this->admin->register();
+  }
 
-		// Register public-facing hooks.
-		$this->frontend->register();
-	}
+  // Register public-facing hooks.
+  $this->frontend->register();
+ }
 
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain(): void {
-		load_plugin_textdomain(
-			'{plugin-slug}',
-			false,
-			dirname( plugin_basename( {PLUGIN_PREFIX}_FILE ) ) . '/languages'
-		);
-	}
+ /**
+  * Load the plugin text domain for translation.
+  *
+  * @return void
+  */
+ public function load_textdomain(): void {
+  load_plugin_textdomain(
+   '{plugin-slug}',
+   false,
+   dirname( plugin_basename( {PLUGIN_PREFIX}_FILE ) ) . '/languages'
+  );
+ }
 }
 ```
 
@@ -319,182 +319,182 @@ namespace {PluginNamespace}\Admin;
  */
 class Admin {
 
-	/**
-	 * The settings option group name.
-	 *
-	 * @var string
-	 */
-	private string $option_group = '{plugin_prefix}_settings';
+ /**
+  * The settings option group name.
+  *
+  * @var string
+  */
+ private string $option_group = '{plugin_prefix}_settings';
 
-	/**
-	 * The settings option name.
-	 *
-	 * @var string
-	 */
-	private string $option_name = '{plugin_prefix}_options';
+ /**
+  * The settings option name.
+  *
+  * @var string
+  */
+ private string $option_name = '{plugin_prefix}_options';
 
-	/**
-	 * Register admin hooks.
-	 *
-	 * @return void
-	 */
-	public function register(): void {
-		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-	}
+ /**
+  * Register admin hooks.
+  *
+  * @return void
+  */
+ public function register(): void {
+  add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
+  add_action( 'admin_init', array( $this, 'register_settings' ) );
+  add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+ }
 
-	/**
-	 * Add menu pages to the WordPress admin.
-	 *
-	 * @return void
-	 */
-	public function add_admin_menu(): void {
-		add_options_page(
-			esc_html__( '{Plugin Name} Settings', '{plugin-slug}' ),
-			esc_html__( '{Plugin Name}', '{plugin-slug}' ),
-			'manage_options',
-			'{plugin-slug}',
-			array( $this, 'render_settings_page' )
-		);
-	}
+ /**
+  * Add menu pages to the WordPress admin.
+  *
+  * @return void
+  */
+ public function add_admin_menu(): void {
+  add_options_page(
+   esc_html__( '{Plugin Name} Settings', '{plugin-slug}' ),
+   esc_html__( '{Plugin Name}', '{plugin-slug}' ),
+   'manage_options',
+   '{plugin-slug}',
+   array( $this, 'render_settings_page' )
+  );
+ }
 
-	/**
-	 * Register plugin settings using the Settings API.
-	 *
-	 * @return void
-	 */
-	public function register_settings(): void {
-		register_setting(
-			$this->option_group,
-			$this->option_name,
-			array(
-				'type'              => 'array',
-				'sanitize_callback' => array( $this, 'sanitize_settings' ),
-				'default'           => $this->get_defaults(),
-			)
-		);
+ /**
+  * Register plugin settings using the Settings API.
+  *
+  * @return void
+  */
+ public function register_settings(): void {
+  register_setting(
+   $this->option_group,
+   $this->option_name,
+   array(
+    'type'              => 'array',
+    'sanitize_callback' => array( $this, 'sanitize_settings' ),
+    'default'           => $this->get_defaults(),
+   )
+  );
 
-		add_settings_section(
-			'{plugin_prefix}_general',
-			esc_html__( 'General Settings', '{plugin-slug}' ),
-			array( $this, 'render_section_description' ),
-			'{plugin-slug}'
-		);
+  add_settings_section(
+   '{plugin_prefix}_general',
+   esc_html__( 'General Settings', '{plugin-slug}' ),
+   array( $this, 'render_section_description' ),
+   '{plugin-slug}'
+  );
 
-		add_settings_field(
-			'{plugin_prefix}_example_field',
-			esc_html__( 'Example Setting', '{plugin-slug}' ),
-			array( $this, 'render_example_field' ),
-			'{plugin-slug}',
-			'{plugin_prefix}_general'
-		);
-	}
+  add_settings_field(
+   '{plugin_prefix}_example_field',
+   esc_html__( 'Example Setting', '{plugin-slug}' ),
+   array( $this, 'render_example_field' ),
+   '{plugin-slug}',
+   '{plugin_prefix}_general'
+  );
+ }
 
-	/**
-	 * Get default option values.
-	 *
-	 * @return array<string, mixed>
-	 */
-	private function get_defaults(): array {
-		return array(
-			'example_field' => '',
-		);
-	}
+ /**
+  * Get default option values.
+  *
+  * @return array<string, mixed>
+  */
+ private function get_defaults(): array {
+  return array(
+   'example_field' => '',
+  );
+ }
 
-	/**
-	 * Sanitize settings on save.
-	 *
-	 * @param array<string, mixed> $input Raw input from the settings form.
-	 * @return array<string, mixed> Sanitized values.
-	 */
-	public function sanitize_settings( array $input ): array {
-		$sanitized = array();
+ /**
+  * Sanitize settings on save.
+  *
+  * @param array<string, mixed> $input Raw input from the settings form.
+  * @return array<string, mixed> Sanitized values.
+  */
+ public function sanitize_settings( array $input ): array {
+  $sanitized = array();
 
-		$sanitized['example_field'] = isset( $input['example_field'] )
-			? sanitize_text_field( $input['example_field'] )
-			: '';
+  $sanitized['example_field'] = isset( $input['example_field'] )
+   ? sanitize_text_field( $input['example_field'] )
+   : '';
 
-		return $sanitized;
-	}
+  return $sanitized;
+ }
 
-	/**
-	 * Render the settings page.
-	 *
-	 * @return void
-	 */
-	public function render_settings_page(): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
+ /**
+  * Render the settings page.
+  *
+  * @return void
+  */
+ public function render_settings_page(): void {
+  if ( ! current_user_can( 'manage_options' ) ) {
+   return;
+  }
 
-		?>
-		<div class="wrap">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<form action="options.php" method="post">
-				<?php
-				settings_fields( $this->option_group );
-				do_settings_sections( '{plugin-slug}' );
-				submit_button();
-				?>
-			</form>
-		</div>
-		<?php
-	}
+  ?>
+  <div class="wrap">
+   <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+   <form action="options.php" method="post">
+    <?php
+    settings_fields( $this->option_group );
+    do_settings_sections( '{plugin-slug}' );
+    submit_button();
+    ?>
+   </form>
+  </div>
+  <?php
+ }
 
-	/**
-	 * Render the general section description.
-	 *
-	 * @return void
-	 */
-	public function render_section_description(): void {
-		echo '<p>' . esc_html__( 'Configure the general plugin settings below.', '{plugin-slug}' ) . '</p>';
-	}
+ /**
+  * Render the general section description.
+  *
+  * @return void
+  */
+ public function render_section_description(): void {
+  echo '<p>' . esc_html__( 'Configure the general plugin settings below.', '{plugin-slug}' ) . '</p>';
+ }
 
-	/**
-	 * Render the example settings field.
-	 *
-	 * @return void
-	 */
-	public function render_example_field(): void {
-		$options = get_option( $this->option_name, $this->get_defaults() );
-		$value   = $options['example_field'] ?? '';
+ /**
+  * Render the example settings field.
+  *
+  * @return void
+  */
+ public function render_example_field(): void {
+  $options = get_option( $this->option_name, $this->get_defaults() );
+  $value   = $options['example_field'] ?? '';
 
-		printf(
-			'<input type="text" id="%s" name="%s[example_field]" value="%s" class="regular-text" />',
-			esc_attr( '{plugin_prefix}_example_field' ),
-			esc_attr( $this->option_name ),
-			esc_attr( $value )
-		);
-	}
+  printf(
+   '<input type="text" id="%s" name="%s[example_field]" value="%s" class="regular-text" />',
+   esc_attr( '{plugin_prefix}_example_field' ),
+   esc_attr( $this->option_name ),
+   esc_attr( $value )
+  );
+ }
 
-	/**
-	 * Enqueue admin-specific styles and scripts.
-	 *
-	 * @param string $hook_suffix The current admin page hook suffix.
-	 * @return void
-	 */
-	public function enqueue_assets( string $hook_suffix ): void {
-		// Only load on this plugin's settings page.
-		if ( 'settings_page_{plugin-slug}' !== $hook_suffix ) {
-			return;
-		}
+ /**
+  * Enqueue admin-specific styles and scripts.
+  *
+  * @param string $hook_suffix The current admin page hook suffix.
+  * @return void
+  */
+ public function enqueue_assets( string $hook_suffix ): void {
+  // Only load on this plugin's settings page.
+  if ( 'settings_page_{plugin-slug}' !== $hook_suffix ) {
+   return;
+  }
 
-		wp_enqueue_style(
-			'{plugin-slug}-admin',
-			{PLUGIN_PREFIX}_URL . 'assets/css/admin.css',
-			array(),
-			{PLUGIN_PREFIX}_VERSION
-		);
+  wp_enqueue_style(
+   '{plugin-slug}-admin',
+   {PLUGIN_PREFIX}_URL . 'assets/css/admin.css',
+   array(),
+   {PLUGIN_PREFIX}_VERSION
+  );
 
-		wp_enqueue_script(
-			'{plugin-slug}-admin',
-			{PLUGIN_PREFIX}_URL . 'assets/js/admin.js',
-			array(),
-			{PLUGIN_PREFIX}_VERSION,
-			true
-		);
-	}
+  wp_enqueue_script(
+   '{plugin-slug}-admin',
+   {PLUGIN_PREFIX}_URL . 'assets/js/admin.js',
+   array(),
+   {PLUGIN_PREFIX}_VERSION,
+   true
+  );
+ }
 }
 ```
 
@@ -521,73 +521,73 @@ namespace {PluginNamespace}\Public;
  */
 class Frontend {
 
-	/**
-	 * Register public-facing hooks.
-	 *
-	 * @return void
-	 */
-	public function register(): void {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_shortcode( '{plugin_prefix}_example', array( $this, 'render_example_shortcode' ) );
-	}
+ /**
+  * Register public-facing hooks.
+  *
+  * @return void
+  */
+ public function register(): void {
+  add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+  add_shortcode( '{plugin_prefix}_example', array( $this, 'render_example_shortcode' ) );
+ }
 
-	/**
-	 * Enqueue public-facing styles and scripts.
-	 *
-	 * @return void
-	 */
-	public function enqueue_assets(): void {
-		wp_enqueue_style(
-			'{plugin-slug}-frontend',
-			{PLUGIN_PREFIX}_URL . 'assets/css/frontend.css',
-			array(),
-			{PLUGIN_PREFIX}_VERSION
-		);
+ /**
+  * Enqueue public-facing styles and scripts.
+  *
+  * @return void
+  */
+ public function enqueue_assets(): void {
+  wp_enqueue_style(
+   '{plugin-slug}-frontend',
+   {PLUGIN_PREFIX}_URL . 'assets/css/frontend.css',
+   array(),
+   {PLUGIN_PREFIX}_VERSION
+  );
 
-		wp_enqueue_script(
-			'{plugin-slug}-frontend',
-			{PLUGIN_PREFIX}_URL . 'assets/js/frontend.js',
-			array(),
-			{PLUGIN_PREFIX}_VERSION,
-			true
-		);
+  wp_enqueue_script(
+   '{plugin-slug}-frontend',
+   {PLUGIN_PREFIX}_URL . 'assets/js/frontend.js',
+   array(),
+   {PLUGIN_PREFIX}_VERSION,
+   true
+  );
 
-		wp_localize_script(
-			'{plugin-slug}-frontend',
-			'{pluginPrefix}Data',
-			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( '{plugin_prefix}_nonce' ),
-			)
-		);
-	}
+  wp_localize_script(
+   '{plugin-slug}-frontend',
+   '{pluginPrefix}Data',
+   array(
+    'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+    'nonce'   => wp_create_nonce( '{plugin_prefix}_nonce' ),
+   )
+  );
+ }
 
-	/**
-	 * Render the example shortcode.
-	 *
-	 * Usage: [{plugin_prefix}_example title="Hello"]
-	 *
-	 * @param array<string, string>|string $atts Shortcode attributes.
-	 * @return string Rendered HTML output.
-	 */
-	public function render_example_shortcode( $atts ): string {
-		$atts = shortcode_atts(
-			array(
-				'title' => esc_html__( 'Default Title', '{plugin-slug}' ),
-			),
-			$atts,
-			'{plugin_prefix}_example'
-		);
+ /**
+  * Render the example shortcode.
+  *
+  * Usage: [{plugin_prefix}_example title="Hello"]
+  *
+  * @param array<string, string>|string $atts Shortcode attributes.
+  * @return string Rendered HTML output.
+  */
+ public function render_example_shortcode( $atts ): string {
+  $atts = shortcode_atts(
+   array(
+    'title' => esc_html__( 'Default Title', '{plugin-slug}' ),
+   ),
+   $atts,
+   '{plugin_prefix}_example'
+  );
 
-		ob_start();
-		?>
-		<div class="{plugin-slug}-example">
-			<h3><?php echo esc_html( $atts['title'] ); ?></h3>
-			<p><?php esc_html_e( 'This is an example shortcode output.', '{plugin-slug}' ); ?></p>
-		</div>
-		<?php
-		return (string) ob_get_clean();
-	}
+  ob_start();
+  ?>
+  <div class="{plugin-slug}-example">
+   <h3><?php echo esc_html( $atts['title'] ); ?></h3>
+   <p><?php esc_html_e( 'This is an example shortcode output.', '{plugin-slug}' ); ?></p>
+  </div>
+  <?php
+  return (string) ob_get_clean();
+ }
 }
 ```
 
@@ -711,7 +711,7 @@ declare(strict_types=1);
 
 // Abort if not called by WordPress.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+ exit;
 }
 
 /**
@@ -729,13 +729,13 @@ delete_transient( '{plugin_prefix}_cache' );
 
 // For multisite: clean up each site's options.
 if ( is_multisite() ) {
-	$sites = get_sites( array( 'fields' => 'ids' ) );
-	foreach ( $sites as $site_id ) {
-		switch_to_blog( $site_id );
-		delete_option( '{plugin_prefix}_options' );
-		delete_transient( '{plugin_prefix}_cache' );
-		restore_current_blog();
-	}
+ $sites = get_sites( array( 'fields' => 'ids' ) );
+ foreach ( $sites as $site_id ) {
+  switch_to_blog( $site_id );
+  delete_option( '{plugin_prefix}_options' );
+  delete_transient( '{plugin_prefix}_cache' );
+  restore_current_blog();
+ }
 }
 
 // Drop custom database tables if any were created.
@@ -773,251 +773,251 @@ use WP_REST_Server;
  */
 class RestController extends WP_REST_Controller {
 
-	/**
-	 * The namespace for this controller's routes.
-	 *
-	 * @var string
-	 */
-	protected $namespace = '{plugin-slug}/v1';
+ /**
+  * The namespace for this controller's routes.
+  *
+  * @var string
+  */
+ protected $namespace = '{plugin-slug}/v1';
 
-	/**
-	 * The base for this controller's routes.
-	 *
-	 * @var string
-	 */
-	protected $rest_base = 'items';
+ /**
+  * The base for this controller's routes.
+  *
+  * @var string
+  */
+ protected $rest_base = 'items';
 
-	/**
-	 * Register REST API routes.
-	 *
-	 * @return void
-	 */
-	public function register_routes(): void {
-		register_rest_route(
-			$this->namespace,
-			'/' . $this->rest_base,
-			array(
-				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_items' ),
-					'permission_callback' => array( $this, 'get_items_permissions_check' ),
-					'args'                => $this->get_collection_params(),
-				),
-				array(
-					'methods'             => WP_REST_Server::CREATABLE,
-					'callback'            => array( $this, 'create_item' ),
-					'permission_callback' => array( $this, 'create_item_permissions_check' ),
-					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
-				),
-				'schema' => array( $this, 'get_public_item_schema' ),
-			)
-		);
+ /**
+  * Register REST API routes.
+  *
+  * @return void
+  */
+ public function register_routes(): void {
+  register_rest_route(
+   $this->namespace,
+   '/' . $this->rest_base,
+   array(
+    array(
+     'methods'             => WP_REST_Server::READABLE,
+     'callback'            => array( $this, 'get_items' ),
+     'permission_callback' => array( $this, 'get_items_permissions_check' ),
+     'args'                => $this->get_collection_params(),
+    ),
+    array(
+     'methods'             => WP_REST_Server::CREATABLE,
+     'callback'            => array( $this, 'create_item' ),
+     'permission_callback' => array( $this, 'create_item_permissions_check' ),
+     'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+    ),
+    'schema' => array( $this, 'get_public_item_schema' ),
+   )
+  );
 
-		register_rest_route(
-			$this->namespace,
-			'/' . $this->rest_base . '/(?P<id>[\d]+)',
-			array(
-				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_item' ),
-					'permission_callback' => array( $this, 'get_item_permissions_check' ),
-					'args'                => array(
-						'id' => array(
-							'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
-							'type'        => 'integer',
-							'required'    => true,
-						),
-					),
-				),
-				array(
-					'methods'             => WP_REST_Server::EDITABLE,
-					'callback'            => array( $this, 'update_item' ),
-					'permission_callback' => array( $this, 'update_item_permissions_check' ),
-					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
-				),
-				array(
-					'methods'             => WP_REST_Server::DELETABLE,
-					'callback'            => array( $this, 'delete_item' ),
-					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
-					'args'                => array(
-						'id' => array(
-							'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
-							'type'        => 'integer',
-							'required'    => true,
-						),
-					),
-				),
-				'schema' => array( $this, 'get_public_item_schema' ),
-			)
-		);
-	}
+  register_rest_route(
+   $this->namespace,
+   '/' . $this->rest_base . '/(?P<id>[\d]+)',
+   array(
+    array(
+     'methods'             => WP_REST_Server::READABLE,
+     'callback'            => array( $this, 'get_item' ),
+     'permission_callback' => array( $this, 'get_item_permissions_check' ),
+     'args'                => array(
+      'id' => array(
+       'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
+       'type'        => 'integer',
+       'required'    => true,
+      ),
+     ),
+    ),
+    array(
+     'methods'             => WP_REST_Server::EDITABLE,
+     'callback'            => array( $this, 'update_item' ),
+     'permission_callback' => array( $this, 'update_item_permissions_check' ),
+     'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+    ),
+    array(
+     'methods'             => WP_REST_Server::DELETABLE,
+     'callback'            => array( $this, 'delete_item' ),
+     'permission_callback' => array( $this, 'delete_item_permissions_check' ),
+     'args'                => array(
+      'id' => array(
+       'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
+       'type'        => 'integer',
+       'required'    => true,
+      ),
+     ),
+    ),
+    'schema' => array( $this, 'get_public_item_schema' ),
+   )
+  );
+ }
 
-	/**
-	 * Check if the user can read items.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return bool|WP_Error True if the request has read access, WP_Error otherwise.
-	 */
-	public function get_items_permissions_check( $request ): bool|WP_Error {
-		return true; // Public read access. Modify as needed.
-	}
+ /**
+  * Check if the user can read items.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return bool|WP_Error True if the request has read access, WP_Error otherwise.
+  */
+ public function get_items_permissions_check( $request ): bool|WP_Error {
+  return true; // Public read access. Modify as needed.
+ }
 
-	/**
-	 * Retrieve a collection of items.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response Response object.
-	 */
-	public function get_items( $request ): WP_REST_Response {
-		// TODO: Replace with actual data retrieval logic.
-		$items = array(
-			array(
-				'id'    => 1,
-				'title' => __( 'Example Item', '{plugin-slug}' ),
-			),
-		);
+ /**
+  * Retrieve a collection of items.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return WP_REST_Response Response object.
+  */
+ public function get_items( $request ): WP_REST_Response {
+  // TODO: Replace with actual data retrieval logic.
+  $items = array(
+   array(
+    'id'    => 1,
+    'title' => __( 'Example Item', '{plugin-slug}' ),
+   ),
+  );
 
-		return new WP_REST_Response( $items, 200 );
-	}
+  return new WP_REST_Response( $items, 200 );
+ }
 
-	/**
-	 * Check if the user can read a single item.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return bool|WP_Error True if the request has read access, WP_Error otherwise.
-	 */
-	public function get_item_permissions_check( $request ): bool|WP_Error {
-		return true; // Public read access. Modify as needed.
-	}
+ /**
+  * Check if the user can read a single item.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return bool|WP_Error True if the request has read access, WP_Error otherwise.
+  */
+ public function get_item_permissions_check( $request ): bool|WP_Error {
+  return true; // Public read access. Modify as needed.
+ }
 
-	/**
-	 * Retrieve a single item.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response|WP_Error Response object or error.
-	 */
-	public function get_item( $request ): WP_REST_Response|WP_Error {
-		$id = (int) $request->get_param( 'id' );
+ /**
+  * Retrieve a single item.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return WP_REST_Response|WP_Error Response object or error.
+  */
+ public function get_item( $request ): WP_REST_Response|WP_Error {
+  $id = (int) $request->get_param( 'id' );
 
-		// TODO: Replace with actual data retrieval logic.
-		$item = array(
-			'id'    => $id,
-			'title' => __( 'Example Item', '{plugin-slug}' ),
-		);
+  // TODO: Replace with actual data retrieval logic.
+  $item = array(
+   'id'    => $id,
+   'title' => __( 'Example Item', '{plugin-slug}' ),
+  );
 
-		return new WP_REST_Response( $item, 200 );
-	}
+  return new WP_REST_Response( $item, 200 );
+ }
 
-	/**
-	 * Check if the user can create items.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return bool|WP_Error True if the request has create access, WP_Error otherwise.
-	 */
-	public function create_item_permissions_check( $request ): bool|WP_Error {
-		return current_user_can( 'manage_options' );
-	}
+ /**
+  * Check if the user can create items.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return bool|WP_Error True if the request has create access, WP_Error otherwise.
+  */
+ public function create_item_permissions_check( $request ): bool|WP_Error {
+  return current_user_can( 'manage_options' );
+ }
 
-	/**
-	 * Create a single item.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response|WP_Error Response object or error.
-	 */
-	public function create_item( $request ): WP_REST_Response|WP_Error {
-		// TODO: Replace with actual creation logic.
-		$item = array(
-			'id'    => 2,
-			'title' => sanitize_text_field( $request->get_param( 'title' ) ?? '' ),
-		);
+ /**
+  * Create a single item.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return WP_REST_Response|WP_Error Response object or error.
+  */
+ public function create_item( $request ): WP_REST_Response|WP_Error {
+  // TODO: Replace with actual creation logic.
+  $item = array(
+   'id'    => 2,
+   'title' => sanitize_text_field( $request->get_param( 'title' ) ?? '' ),
+  );
 
-		return new WP_REST_Response( $item, 201 );
-	}
+  return new WP_REST_Response( $item, 201 );
+ }
 
-	/**
-	 * Check if the user can update items.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return bool|WP_Error True if the request has update access, WP_Error otherwise.
-	 */
-	public function update_item_permissions_check( $request ): bool|WP_Error {
-		return current_user_can( 'manage_options' );
-	}
+ /**
+  * Check if the user can update items.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return bool|WP_Error True if the request has update access, WP_Error otherwise.
+  */
+ public function update_item_permissions_check( $request ): bool|WP_Error {
+  return current_user_can( 'manage_options' );
+ }
 
-	/**
-	 * Update a single item.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response|WP_Error Response object or error.
-	 */
-	public function update_item( $request ): WP_REST_Response|WP_Error {
-		$id = (int) $request->get_param( 'id' );
+ /**
+  * Update a single item.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return WP_REST_Response|WP_Error Response object or error.
+  */
+ public function update_item( $request ): WP_REST_Response|WP_Error {
+  $id = (int) $request->get_param( 'id' );
 
-		// TODO: Replace with actual update logic.
-		$item = array(
-			'id'    => $id,
-			'title' => sanitize_text_field( $request->get_param( 'title' ) ?? '' ),
-		);
+  // TODO: Replace with actual update logic.
+  $item = array(
+   'id'    => $id,
+   'title' => sanitize_text_field( $request->get_param( 'title' ) ?? '' ),
+  );
 
-		return new WP_REST_Response( $item, 200 );
-	}
+  return new WP_REST_Response( $item, 200 );
+ }
 
-	/**
-	 * Check if the user can delete items.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return bool|WP_Error True if the request has delete access, WP_Error otherwise.
-	 */
-	public function delete_item_permissions_check( $request ): bool|WP_Error {
-		return current_user_can( 'manage_options' );
-	}
+ /**
+  * Check if the user can delete items.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return bool|WP_Error True if the request has delete access, WP_Error otherwise.
+  */
+ public function delete_item_permissions_check( $request ): bool|WP_Error {
+  return current_user_can( 'manage_options' );
+ }
 
-	/**
-	 * Delete a single item.
-	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response|WP_Error Response object or error.
-	 */
-	public function delete_item( $request ): WP_REST_Response|WP_Error {
-		$id = (int) $request->get_param( 'id' );
+ /**
+  * Delete a single item.
+  *
+  * @param WP_REST_Request $request Full details about the request.
+  * @return WP_REST_Response|WP_Error Response object or error.
+  */
+ public function delete_item( $request ): WP_REST_Response|WP_Error {
+  $id = (int) $request->get_param( 'id' );
 
-		// TODO: Replace with actual deletion logic.
+  // TODO: Replace with actual deletion logic.
 
-		return new WP_REST_Response( null, 204 );
-	}
+  return new WP_REST_Response( null, 204 );
+ }
 
-	/**
-	 * Get the item schema for responses.
-	 *
-	 * @return array<string, mixed> Item schema data.
-	 */
-	public function get_item_schema(): array {
-		if ( $this->schema ) {
-			return $this->add_additional_fields_schema( $this->schema );
-		}
+ /**
+  * Get the item schema for responses.
+  *
+  * @return array<string, mixed> Item schema data.
+  */
+ public function get_item_schema(): array {
+  if ( $this->schema ) {
+   return $this->add_additional_fields_schema( $this->schema );
+  }
 
-		$this->schema = array(
-			'$schema'    => 'http://json-schema.org/draft-04/schema#',
-			'title'      => '{plugin-slug}-item',
-			'type'       => 'object',
-			'properties' => array(
-				'id'    => array(
-					'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
-					'type'        => 'integer',
-					'context'     => array( 'view', 'edit' ),
-					'readonly'    => true,
-				),
-				'title' => array(
-					'description' => __( 'The title for the item.', '{plugin-slug}' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit' ),
-					'required'    => true,
-				),
-			),
-		);
+  $this->schema = array(
+   '$schema'    => 'http://json-schema.org/draft-04/schema#',
+   'title'      => '{plugin-slug}-item',
+   'type'       => 'object',
+   'properties' => array(
+    'id'    => array(
+     'description' => __( 'Unique identifier for the item.', '{plugin-slug}' ),
+     'type'        => 'integer',
+     'context'     => array( 'view', 'edit' ),
+     'readonly'    => true,
+    ),
+    'title' => array(
+     'description' => __( 'The title for the item.', '{plugin-slug}' ),
+     'type'        => 'string',
+     'context'     => array( 'view', 'edit' ),
+     'required'    => true,
+    ),
+   ),
+  );
 
-		return $this->add_additional_fields_schema( $this->schema );
-	}
+  return $this->add_additional_fields_schema( $this->schema );
+ }
 }
 ```
 
@@ -1044,29 +1044,29 @@ namespace {PluginNamespace}\Blocks;
  */
 class BlockRegistrar {
 
-	/**
-	 * Register all custom blocks.
-	 *
-	 * Each block is defined by a block.json file in its own subdirectory
-	 * under src/Blocks/.
-	 *
-	 * @return void
-	 */
-	public function register(): void {
-		$blocks_dir = {PLUGIN_PREFIX}_DIR . 'src/Blocks/';
+ /**
+  * Register all custom blocks.
+  *
+  * Each block is defined by a block.json file in its own subdirectory
+  * under src/Blocks/.
+  *
+  * @return void
+  */
+ public function register(): void {
+  $blocks_dir = {PLUGIN_PREFIX}_DIR . 'src/Blocks/';
 
-		// Auto-discover all block.json files in subdirectories.
-		$block_dirs = glob( $blocks_dir . '*/block.json' );
+  // Auto-discover all block.json files in subdirectories.
+  $block_dirs = glob( $blocks_dir . '*/block.json' );
 
-		if ( ! is_array( $block_dirs ) ) {
-			return;
-		}
+  if ( ! is_array( $block_dirs ) ) {
+   return;
+  }
 
-		foreach ( $block_dirs as $block_json ) {
-			$block_folder = dirname( $block_json );
-			register_block_type( $block_folder );
-		}
-	}
+  foreach ( $block_dirs as $block_json ) {
+   $block_folder = dirname( $block_json );
+   register_block_type( $block_folder );
+  }
+ }
 }
 ```
 
@@ -1122,7 +1122,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => '{plugin-s
 ?>
 
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<p><?php esc_html_e( 'Hello from the Example Block!', '{plugin-slug}' ); ?></p>
+ <p><?php esc_html_e( 'Hello from the Example Block!', '{plugin-slug}' ); ?></p>
 </div>
 ```
 

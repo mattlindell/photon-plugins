@@ -53,7 +53,7 @@ php artisan key:generate
 
 Open `.env` and configure the database connection to match the user's local environment. At minimum, confirm these values are set:
 
-```
+```text
 APP_NAME=<app-name>
 APP_URL=http://localhost:8000
 DB_CONNECTION=mysql
@@ -551,7 +551,7 @@ php artisan migrate
 
 Update `.env`:
 
-```
+```text
 QUEUE_CONNECTION=database
 ```
 
@@ -641,7 +641,7 @@ class ProcessDataJob implements ShouldQueue
 
 Update `.env` with Redis queue configuration:
 
-```
+```text
 QUEUE_CONNECTION=redis
 REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
@@ -768,7 +768,7 @@ Confirm the application loads at `http://localhost:8000`.
 
 Print a summary of what was scaffolded for the user:
 
-```
+```md
 Laravel application "<app-name>" created successfully.
 
 Structure added:

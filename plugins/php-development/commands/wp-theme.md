@@ -31,7 +31,7 @@ Use the answers to set these variables throughout all generated files:
 
 Create the theme directory with this structure. Adjust based on user answers for WooCommerce and FSE.
 
-```
+```text
 THEME_NAME/
   style.css
   functions.php
@@ -103,37 +103,37 @@ declare(strict_types=1);
 
 // Theme version.
 if ( ! defined( 'THEME_PREFIX_VERSION' ) ) {
-	define( 'THEME_PREFIX_VERSION', '1.0.0' );
+ define( 'THEME_PREFIX_VERSION', '1.0.0' );
 }
 
 // Theme directory path.
 if ( ! defined( 'THEME_PREFIX_DIR' ) ) {
-	define( 'THEME_PREFIX_DIR', get_template_directory() );
+ define( 'THEME_PREFIX_DIR', get_template_directory() );
 }
 
 // Theme directory URI.
 if ( ! defined( 'THEME_PREFIX_URI' ) ) {
-	define( 'THEME_PREFIX_URI', get_template_directory_uri() );
+ define( 'THEME_PREFIX_URI', get_template_directory_uri() );
 }
 
 // Composer autoloader.
 if ( file_exists( THEME_PREFIX_DIR . '/vendor/autoload.php' ) ) {
-	require_once THEME_PREFIX_DIR . '/vendor/autoload.php';
+ require_once THEME_PREFIX_DIR . '/vendor/autoload.php';
 }
 
 // Theme includes.
 $theme_prefix_includes = array(
-	'/inc/theme-support.php',
-	'/inc/enqueue.php',
-	'/inc/custom-post-types.php',
-	'/inc/template-tags.php',
+ '/inc/theme-support.php',
+ '/inc/enqueue.php',
+ '/inc/custom-post-types.php',
+ '/inc/template-tags.php',
 );
 
 foreach ( $theme_prefix_includes as $file ) {
-	$filepath = THEME_PREFIX_DIR . $file;
-	if ( file_exists( $filepath ) ) {
-		require_once $filepath;
-	}
+ $filepath = THEME_PREFIX_DIR . $file;
+ if ( file_exists( $filepath ) ) {
+  require_once $filepath;
+ }
 }
 ```
 
@@ -153,81 +153,81 @@ Replace `THEME_PREFIX` with the actual uppercase prefix derived from the text do
 declare(strict_types=1);
 
 if ( ! function_exists( 'THEME_PREFIX_setup' ) ) {
-	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_setup(): void {
-		// Make theme available for translation.
-		load_theme_textdomain( 'TEXT_DOMAIN', get_template_directory() . '/languages' );
+ /**
+  * Sets up theme defaults and registers support for various WordPress features.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_setup(): void {
+  // Make theme available for translation.
+  load_theme_textdomain( 'TEXT_DOMAIN', get_template_directory() . '/languages' );
 
-		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+  // Add default posts and comments RSS feed links to head.
+  add_theme_support( 'automatic-feed-links' );
 
-		// Let WordPress manage the document title.
-		add_theme_support( 'title-tag' );
+  // Let WordPress manage the document title.
+  add_theme_support( 'title-tag' );
 
-		// Enable support for Post Thumbnails on posts and pages.
-		add_theme_support( 'post-thumbnails' );
+  // Enable support for Post Thumbnails on posts and pages.
+  add_theme_support( 'post-thumbnails' );
 
-		// Register navigation menus.
-		register_nav_menus(
-			array(
-				'primary'   => esc_html__( 'Primary Menu', 'TEXT_DOMAIN' ),
-				'footer'    => esc_html__( 'Footer Menu', 'TEXT_DOMAIN' ),
-			)
-		);
+  // Register navigation menus.
+  register_nav_menus(
+   array(
+    'primary'   => esc_html__( 'Primary Menu', 'TEXT_DOMAIN' ),
+    'footer'    => esc_html__( 'Footer Menu', 'TEXT_DOMAIN' ),
+   )
+  );
 
-		// Switch default core markup to output valid HTML5.
-		add_theme_support(
-			'html5',
-			array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-				'style',
-				'script',
-			)
-		);
+  // Switch default core markup to output valid HTML5.
+  add_theme_support(
+   'html5',
+   array(
+    'search-form',
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'caption',
+    'style',
+    'script',
+   )
+  );
 
-		// Add support for core custom logo.
-		add_theme_support(
-			'custom-logo',
-			array(
-				'height'      => 250,
-				'width'       => 250,
-				'flex-width'  => true,
-				'flex-height' => true,
-			)
-		);
+  // Add support for core custom logo.
+  add_theme_support(
+   'custom-logo',
+   array(
+    'height'      => 250,
+    'width'       => 250,
+    'flex-width'  => true,
+    'flex-height' => true,
+   )
+  );
 
-		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
+  // Add support for editor styles.
+  add_theme_support( 'editor-styles' );
 
-		// Add support for responsive embeds.
-		add_theme_support( 'responsive-embeds' );
+  // Add support for responsive embeds.
+  add_theme_support( 'responsive-embeds' );
 
-		// Add support for wide and full alignment.
-		add_theme_support( 'align-wide' );
+  // Add support for wide and full alignment.
+  add_theme_support( 'align-wide' );
 
-		// Add support for custom background.
-		add_theme_support(
-			'custom-background',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		);
+  // Add support for custom background.
+  add_theme_support(
+   'custom-background',
+   array(
+    'default-color' => 'ffffff',
+    'default-image' => '',
+   )
+  );
 
-		// Add custom image sizes.
-		add_image_size( 'THEME_PREFIX-featured', 1200, 630, true );
-		add_image_size( 'THEME_PREFIX-thumbnail', 400, 300, true );
-	}
+  // Add custom image sizes.
+  add_image_size( 'THEME_PREFIX-featured', 1200, 630, true );
+  add_image_size( 'THEME_PREFIX-thumbnail', 400, 300, true );
+ }
 }
 add_action( 'after_setup_theme', 'THEME_PREFIX_setup' );
 
@@ -241,7 +241,7 @@ add_action( 'after_setup_theme', 'THEME_PREFIX_setup' );
  * @return void
  */
 function THEME_PREFIX_content_width(): void {
-	$GLOBALS['content_width'] = apply_filters( 'THEME_PREFIX_content_width', 1140 );
+ $GLOBALS['content_width'] = apply_filters( 'THEME_PREFIX_content_width', 1140 );
 }
 add_action( 'after_setup_theme', 'THEME_PREFIX_content_width', 0 );
 
@@ -253,29 +253,29 @@ add_action( 'after_setup_theme', 'THEME_PREFIX_content_width', 0 );
  * @return void
  */
 function THEME_PREFIX_widgets_init(): void {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'TEXT_DOMAIN' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'TEXT_DOMAIN' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+ register_sidebar(
+  array(
+   'name'          => esc_html__( 'Sidebar', 'TEXT_DOMAIN' ),
+   'id'            => 'sidebar-1',
+   'description'   => esc_html__( 'Add widgets here.', 'TEXT_DOMAIN' ),
+   'before_widget' => '<section id="%1$s" class="widget %2$s">',
+   'after_widget'  => '</section>',
+   'before_title'  => '<h2 class="widget-title">',
+   'after_title'   => '</h2>',
+  )
+ );
 
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Footer', 'TEXT_DOMAIN' ),
-			'id'            => 'footer-1',
-			'description'   => esc_html__( 'Add footer widgets here.', 'TEXT_DOMAIN' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+ register_sidebar(
+  array(
+   'name'          => esc_html__( 'Footer', 'TEXT_DOMAIN' ),
+   'id'            => 'footer-1',
+   'description'   => esc_html__( 'Add footer widgets here.', 'TEXT_DOMAIN' ),
+   'before_widget' => '<div id="%1$s" class="widget %2$s">',
+   'after_widget'  => '</div>',
+   'before_title'  => '<h2 class="widget-title">',
+   'after_title'   => '</h2>',
+  )
+ );
 }
 add_action( 'widgets_init', 'THEME_PREFIX_widgets_init' );
 ```
@@ -303,53 +303,53 @@ declare(strict_types=1);
  * @return void
  */
 function THEME_PREFIX_scripts(): void {
-	// Theme stylesheet.
-	wp_enqueue_style(
-		'TEXT_DOMAIN-style',
-		get_stylesheet_uri(),
-		array(),
-		THEME_PREFIX_VERSION
-	);
+ // Theme stylesheet.
+ wp_enqueue_style(
+  'TEXT_DOMAIN-style',
+  get_stylesheet_uri(),
+  array(),
+  THEME_PREFIX_VERSION
+ );
 
-	// Main stylesheet (compiled from resources/css/).
-	$css_path = get_template_directory() . '/css/app.css';
-	if ( file_exists( $css_path ) ) {
-		wp_enqueue_style(
-			'TEXT_DOMAIN-app',
-			get_template_directory_uri() . '/css/app.css',
-			array(),
-			THEME_PREFIX_VERSION
-		);
-	}
+ // Main stylesheet (compiled from resources/css/).
+ $css_path = get_template_directory() . '/css/app.css';
+ if ( file_exists( $css_path ) ) {
+  wp_enqueue_style(
+   'TEXT_DOMAIN-app',
+   get_template_directory_uri() . '/css/app.css',
+   array(),
+   THEME_PREFIX_VERSION
+  );
+ }
 
-	// Main script (compiled from resources/js/).
-	$js_path = get_template_directory() . '/js/app.js';
-	if ( file_exists( $js_path ) ) {
-		wp_enqueue_script(
-			'TEXT_DOMAIN-app',
-			get_template_directory_uri() . '/js/app.js',
-			array(),
-			THEME_PREFIX_VERSION,
-			true
-		);
-	}
+ // Main script (compiled from resources/js/).
+ $js_path = get_template_directory() . '/js/app.js';
+ if ( file_exists( $js_path ) ) {
+  wp_enqueue_script(
+   'TEXT_DOMAIN-app',
+   get_template_directory_uri() . '/js/app.js',
+   array(),
+   THEME_PREFIX_VERSION,
+   true
+  );
+ }
 
-	// Navigation script.
-	$nav_path = get_template_directory() . '/js/navigation.js';
-	if ( file_exists( $nav_path ) ) {
-		wp_enqueue_script(
-			'TEXT_DOMAIN-navigation',
-			get_template_directory_uri() . '/js/navigation.js',
-			array(),
-			THEME_PREFIX_VERSION,
-			true
-		);
-	}
+ // Navigation script.
+ $nav_path = get_template_directory() . '/js/navigation.js';
+ if ( file_exists( $nav_path ) ) {
+  wp_enqueue_script(
+   'TEXT_DOMAIN-navigation',
+   get_template_directory_uri() . '/js/navigation.js',
+   array(),
+   THEME_PREFIX_VERSION,
+   true
+  );
+ }
 
-	// Comment reply script.
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+ // Comment reply script.
+ if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+  wp_enqueue_script( 'comment-reply' );
+ }
 }
 add_action( 'wp_enqueue_scripts', 'THEME_PREFIX_scripts' );
 
@@ -361,10 +361,10 @@ add_action( 'wp_enqueue_scripts', 'THEME_PREFIX_scripts' );
  * @return void
  */
 function THEME_PREFIX_editor_styles(): void {
-	$css_path = get_template_directory() . '/css/editor-style.css';
-	if ( file_exists( $css_path ) ) {
-		add_editor_style( 'css/editor-style.css' );
-	}
+ $css_path = get_template_directory() . '/css/editor-style.css';
+ if ( file_exists( $css_path ) ) {
+  add_editor_style( 'css/editor-style.css' );
+ }
 }
 add_action( 'admin_init', 'THEME_PREFIX_editor_styles' );
 
@@ -376,15 +376,15 @@ add_action( 'admin_init', 'THEME_PREFIX_editor_styles' );
  * @return void
  */
 function THEME_PREFIX_admin_scripts(): void {
-	$css_path = get_template_directory() . '/css/admin.css';
-	if ( file_exists( $css_path ) ) {
-		wp_enqueue_style(
-			'TEXT_DOMAIN-admin',
-			get_template_directory_uri() . '/css/admin.css',
-			array(),
-			THEME_PREFIX_VERSION
-		);
-	}
+ $css_path = get_template_directory() . '/css/admin.css';
+ if ( file_exists( $css_path ) ) {
+  wp_enqueue_style(
+   'TEXT_DOMAIN-admin',
+   get_template_directory_uri() . '/css/admin.css',
+   array(),
+   THEME_PREFIX_VERSION
+  );
+ }
 }
 add_action( 'admin_enqueue_scripts', 'THEME_PREFIX_admin_scripts' );
 ```
@@ -410,56 +410,56 @@ declare(strict_types=1);
  * @return void
  */
 function THEME_PREFIX_register_post_types(): void {
-	// Example: Portfolio custom post type.
-	// Uncomment and customize the block below to register a custom post type.
+ // Example: Portfolio custom post type.
+ // Uncomment and customize the block below to register a custom post type.
 
-	/*
-	$labels = array(
-		'name'                  => _x( 'Portfolio', 'Post type general name', 'TEXT_DOMAIN' ),
-		'singular_name'         => _x( 'Portfolio Item', 'Post type singular name', 'TEXT_DOMAIN' ),
-		'menu_name'             => _x( 'Portfolio', 'Admin Menu text', 'TEXT_DOMAIN' ),
-		'name_admin_bar'        => _x( 'Portfolio Item', 'Add New on Toolbar', 'TEXT_DOMAIN' ),
-		'add_new'               => __( 'Add New', 'TEXT_DOMAIN' ),
-		'add_new_item'          => __( 'Add New Portfolio Item', 'TEXT_DOMAIN' ),
-		'new_item'              => __( 'New Portfolio Item', 'TEXT_DOMAIN' ),
-		'edit_item'             => __( 'Edit Portfolio Item', 'TEXT_DOMAIN' ),
-		'view_item'             => __( 'View Portfolio Item', 'TEXT_DOMAIN' ),
-		'all_items'             => __( 'All Portfolio Items', 'TEXT_DOMAIN' ),
-		'search_items'          => __( 'Search Portfolio Items', 'TEXT_DOMAIN' ),
-		'parent_item_colon'     => __( 'Parent Portfolio Items:', 'TEXT_DOMAIN' ),
-		'not_found'             => __( 'No portfolio items found.', 'TEXT_DOMAIN' ),
-		'not_found_in_trash'    => __( 'No portfolio items found in Trash.', 'TEXT_DOMAIN' ),
-		'featured_image'        => _x( 'Portfolio Cover Image', 'Overrides the "Featured Image" phrase', 'TEXT_DOMAIN' ),
-		'set_featured_image'    => _x( 'Set cover image', 'Overrides the "Set featured image" phrase', 'TEXT_DOMAIN' ),
-		'remove_featured_image' => _x( 'Remove cover image', 'Overrides the "Remove featured image" phrase', 'TEXT_DOMAIN' ),
-		'use_featured_image'    => _x( 'Use as cover image', 'Overrides the "Use as featured image" phrase', 'TEXT_DOMAIN' ),
-		'archives'              => _x( 'Portfolio Archives', 'The post type archive label', 'TEXT_DOMAIN' ),
-		'insert_into_item'      => _x( 'Insert into portfolio item', 'Overrides the "Insert into post" phrase', 'TEXT_DOMAIN' ),
-		'uploaded_to_this_item' => _x( 'Uploaded to this portfolio item', 'Overrides the "Uploaded to this post" phrase', 'TEXT_DOMAIN' ),
-		'filter_items_list'     => _x( 'Filter portfolio items list', 'Screen reader text', 'TEXT_DOMAIN' ),
-		'items_list_navigation' => _x( 'Portfolio items list navigation', 'Screen reader text', 'TEXT_DOMAIN' ),
-		'items_list'            => _x( 'Portfolio items list', 'Screen reader text', 'TEXT_DOMAIN' ),
-	);
+ /*
+ $labels = array(
+  'name'                  => _x( 'Portfolio', 'Post type general name', 'TEXT_DOMAIN' ),
+  'singular_name'         => _x( 'Portfolio Item', 'Post type singular name', 'TEXT_DOMAIN' ),
+  'menu_name'             => _x( 'Portfolio', 'Admin Menu text', 'TEXT_DOMAIN' ),
+  'name_admin_bar'        => _x( 'Portfolio Item', 'Add New on Toolbar', 'TEXT_DOMAIN' ),
+  'add_new'               => __( 'Add New', 'TEXT_DOMAIN' ),
+  'add_new_item'          => __( 'Add New Portfolio Item', 'TEXT_DOMAIN' ),
+  'new_item'              => __( 'New Portfolio Item', 'TEXT_DOMAIN' ),
+  'edit_item'             => __( 'Edit Portfolio Item', 'TEXT_DOMAIN' ),
+  'view_item'             => __( 'View Portfolio Item', 'TEXT_DOMAIN' ),
+  'all_items'             => __( 'All Portfolio Items', 'TEXT_DOMAIN' ),
+  'search_items'          => __( 'Search Portfolio Items', 'TEXT_DOMAIN' ),
+  'parent_item_colon'     => __( 'Parent Portfolio Items:', 'TEXT_DOMAIN' ),
+  'not_found'             => __( 'No portfolio items found.', 'TEXT_DOMAIN' ),
+  'not_found_in_trash'    => __( 'No portfolio items found in Trash.', 'TEXT_DOMAIN' ),
+  'featured_image'        => _x( 'Portfolio Cover Image', 'Overrides the "Featured Image" phrase', 'TEXT_DOMAIN' ),
+  'set_featured_image'    => _x( 'Set cover image', 'Overrides the "Set featured image" phrase', 'TEXT_DOMAIN' ),
+  'remove_featured_image' => _x( 'Remove cover image', 'Overrides the "Remove featured image" phrase', 'TEXT_DOMAIN' ),
+  'use_featured_image'    => _x( 'Use as cover image', 'Overrides the "Use as featured image" phrase', 'TEXT_DOMAIN' ),
+  'archives'              => _x( 'Portfolio Archives', 'The post type archive label', 'TEXT_DOMAIN' ),
+  'insert_into_item'      => _x( 'Insert into portfolio item', 'Overrides the "Insert into post" phrase', 'TEXT_DOMAIN' ),
+  'uploaded_to_this_item' => _x( 'Uploaded to this portfolio item', 'Overrides the "Uploaded to this post" phrase', 'TEXT_DOMAIN' ),
+  'filter_items_list'     => _x( 'Filter portfolio items list', 'Screen reader text', 'TEXT_DOMAIN' ),
+  'items_list_navigation' => _x( 'Portfolio items list navigation', 'Screen reader text', 'TEXT_DOMAIN' ),
+  'items_list'            => _x( 'Portfolio items list', 'Screen reader text', 'TEXT_DOMAIN' ),
+ );
 
-	$args = array(
-		'labels'             => $labels,
-		'public'             => true,
-		'publicly_queryable' => true,
-		'show_ui'            => true,
-		'show_in_menu'       => true,
-		'show_in_rest'       => true,
-		'query_var'          => true,
-		'rewrite'            => array( 'slug' => 'portfolio' ),
-		'capability_type'    => 'post',
-		'has_archive'        => true,
-		'hierarchical'       => false,
-		'menu_position'      => 20,
-		'menu_icon'          => 'dashicons-portfolio',
-		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
-	);
+ $args = array(
+  'labels'             => $labels,
+  'public'             => true,
+  'publicly_queryable' => true,
+  'show_ui'            => true,
+  'show_in_menu'       => true,
+  'show_in_rest'       => true,
+  'query_var'          => true,
+  'rewrite'            => array( 'slug' => 'portfolio' ),
+  'capability_type'    => 'post',
+  'has_archive'        => true,
+  'hierarchical'       => false,
+  'menu_position'      => 20,
+  'menu_icon'          => 'dashicons-portfolio',
+  'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
+ );
 
-	register_post_type( 'portfolio', $args );
-	*/
+ register_post_type( 'portfolio', $args );
+ */
 }
 add_action( 'init', 'THEME_PREFIX_register_post_types' );
 
@@ -471,42 +471,42 @@ add_action( 'init', 'THEME_PREFIX_register_post_types' );
  * @return void
  */
 function THEME_PREFIX_register_taxonomies(): void {
-	// Example: Portfolio Category taxonomy.
-	// Uncomment and customize the block below to register a custom taxonomy.
+ // Example: Portfolio Category taxonomy.
+ // Uncomment and customize the block below to register a custom taxonomy.
 
-	/*
-	$labels = array(
-		'name'                       => _x( 'Portfolio Categories', 'Taxonomy general name', 'TEXT_DOMAIN' ),
-		'singular_name'              => _x( 'Portfolio Category', 'Taxonomy singular name', 'TEXT_DOMAIN' ),
-		'search_items'               => __( 'Search Portfolio Categories', 'TEXT_DOMAIN' ),
-		'all_items'                  => __( 'All Portfolio Categories', 'TEXT_DOMAIN' ),
-		'parent_item'                => __( 'Parent Portfolio Category', 'TEXT_DOMAIN' ),
-		'parent_item_colon'          => __( 'Parent Portfolio Category:', 'TEXT_DOMAIN' ),
-		'edit_item'                  => __( 'Edit Portfolio Category', 'TEXT_DOMAIN' ),
-		'update_item'                => __( 'Update Portfolio Category', 'TEXT_DOMAIN' ),
-		'add_new_item'               => __( 'Add New Portfolio Category', 'TEXT_DOMAIN' ),
-		'new_item_name'              => __( 'New Portfolio Category Name', 'TEXT_DOMAIN' ),
-		'menu_name'                  => __( 'Portfolio Categories', 'TEXT_DOMAIN' ),
-		'not_found'                  => __( 'No portfolio categories found.', 'TEXT_DOMAIN' ),
-		'no_terms'                   => __( 'No portfolio categories', 'TEXT_DOMAIN' ),
-		'items_list_navigation'      => __( 'Portfolio categories list navigation', 'TEXT_DOMAIN' ),
-		'items_list'                 => __( 'Portfolio categories list', 'TEXT_DOMAIN' ),
-		'back_to_items'              => __( '&larr; Go to Portfolio Categories', 'TEXT_DOMAIN' ),
-	);
+ /*
+ $labels = array(
+  'name'                       => _x( 'Portfolio Categories', 'Taxonomy general name', 'TEXT_DOMAIN' ),
+  'singular_name'              => _x( 'Portfolio Category', 'Taxonomy singular name', 'TEXT_DOMAIN' ),
+  'search_items'               => __( 'Search Portfolio Categories', 'TEXT_DOMAIN' ),
+  'all_items'                  => __( 'All Portfolio Categories', 'TEXT_DOMAIN' ),
+  'parent_item'                => __( 'Parent Portfolio Category', 'TEXT_DOMAIN' ),
+  'parent_item_colon'          => __( 'Parent Portfolio Category:', 'TEXT_DOMAIN' ),
+  'edit_item'                  => __( 'Edit Portfolio Category', 'TEXT_DOMAIN' ),
+  'update_item'                => __( 'Update Portfolio Category', 'TEXT_DOMAIN' ),
+  'add_new_item'               => __( 'Add New Portfolio Category', 'TEXT_DOMAIN' ),
+  'new_item_name'              => __( 'New Portfolio Category Name', 'TEXT_DOMAIN' ),
+  'menu_name'                  => __( 'Portfolio Categories', 'TEXT_DOMAIN' ),
+  'not_found'                  => __( 'No portfolio categories found.', 'TEXT_DOMAIN' ),
+  'no_terms'                   => __( 'No portfolio categories', 'TEXT_DOMAIN' ),
+  'items_list_navigation'      => __( 'Portfolio categories list navigation', 'TEXT_DOMAIN' ),
+  'items_list'                 => __( 'Portfolio categories list', 'TEXT_DOMAIN' ),
+  'back_to_items'              => __( '&larr; Go to Portfolio Categories', 'TEXT_DOMAIN' ),
+ );
 
-	$args = array(
-		'labels'            => $labels,
-		'hierarchical'      => true,
-		'public'            => true,
-		'show_ui'           => true,
-		'show_admin_column' => true,
-		'show_in_nav_menus' => true,
-		'show_in_rest'      => true,
-		'rewrite'           => array( 'slug' => 'portfolio-category' ),
-	);
+ $args = array(
+  'labels'            => $labels,
+  'hierarchical'      => true,
+  'public'            => true,
+  'show_ui'           => true,
+  'show_admin_column' => true,
+  'show_in_nav_menus' => true,
+  'show_in_rest'      => true,
+  'rewrite'           => array( 'slug' => 'portfolio-category' ),
+ );
 
-	register_taxonomy( 'portfolio_category', array( 'portfolio' ), $args );
-	*/
+ register_taxonomy( 'portfolio_category', array( 'portfolio' ), $args );
+ */
 }
 add_action( 'init', 'THEME_PREFIX_register_taxonomies' );
 ```
@@ -525,208 +525,208 @@ add_action( 'init', 'THEME_PREFIX_register_taxonomies' );
 declare(strict_types=1);
 
 if ( ! function_exists( 'THEME_PREFIX_posted_on' ) ) {
-	/**
-	 * Print HTML with meta information for the current post-date/time.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_posted_on(): void {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+ /**
+  * Print HTML with meta information for the current post-date/time.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_posted_on(): void {
+  $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-		}
+  if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+   $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+  }
 
-		$time_string = sprintf(
-			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
-		);
+  $time_string = sprintf(
+   $time_string,
+   esc_attr( get_the_date( DATE_W3C ) ),
+   esc_html( get_the_date() ),
+   esc_attr( get_the_modified_date( DATE_W3C ) ),
+   esc_html( get_the_modified_date() )
+  );
 
-		printf(
-			'<span class="posted-on">%1$s <a href="%2$s" rel="bookmark">%3$s</a></span>',
-			esc_html_x( 'Posted on', 'post date', 'TEXT_DOMAIN' ),
-			esc_url( get_permalink() ),
-			$time_string
-		);
-	}
+  printf(
+   '<span class="posted-on">%1$s <a href="%2$s" rel="bookmark">%3$s</a></span>',
+   esc_html_x( 'Posted on', 'post date', 'TEXT_DOMAIN' ),
+   esc_url( get_permalink() ),
+   $time_string
+  );
+ }
 }
 
 if ( ! function_exists( 'THEME_PREFIX_posted_by' ) ) {
-	/**
-	 * Print HTML with meta information for the current author.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_posted_by(): void {
-		printf(
-			'<span class="byline">%1$s <span class="author vcard"><a class="url fn n" href="%2$s">%3$s</a></span></span>',
-			esc_html_x( 'by', 'post author', 'TEXT_DOMAIN' ),
-			esc_url( get_author_posts_url( (int) get_the_author_meta( 'ID' ) ) ),
-			esc_html( get_the_author() )
-		);
-	}
+ /**
+  * Print HTML with meta information for the current author.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_posted_by(): void {
+  printf(
+   '<span class="byline">%1$s <span class="author vcard"><a class="url fn n" href="%2$s">%3$s</a></span></span>',
+   esc_html_x( 'by', 'post author', 'TEXT_DOMAIN' ),
+   esc_url( get_author_posts_url( (int) get_the_author_meta( 'ID' ) ) ),
+   esc_html( get_the_author() )
+  );
+ }
 }
 
 if ( ! function_exists( 'THEME_PREFIX_entry_footer' ) ) {
-	/**
-	 * Print HTML with meta information for the categories, tags and comments.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_entry_footer(): void {
-		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
-			$categories_list = get_the_category_list( esc_html__( ', ', 'TEXT_DOMAIN' ) );
-			if ( $categories_list ) {
-				printf(
-					'<span class="cat-links">%1$s %2$s</span>',
-					esc_html_x( 'Posted in', 'categories', 'TEXT_DOMAIN' ),
-					$categories_list
-				);
-			}
+ /**
+  * Print HTML with meta information for the categories, tags and comments.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_entry_footer(): void {
+  // Hide category and tag text for pages.
+  if ( 'post' === get_post_type() ) {
+   $categories_list = get_the_category_list( esc_html__( ', ', 'TEXT_DOMAIN' ) );
+   if ( $categories_list ) {
+    printf(
+     '<span class="cat-links">%1$s %2$s</span>',
+     esc_html_x( 'Posted in', 'categories', 'TEXT_DOMAIN' ),
+     $categories_list
+    );
+   }
 
-			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'tag delimiter', 'TEXT_DOMAIN' ) );
-			if ( $tags_list ) {
-				printf(
-					'<span class="tags-links">%1$s %2$s</span>',
-					esc_html_x( 'Tagged', 'tags', 'TEXT_DOMAIN' ),
-					$tags_list
-				);
-			}
-		}
+   $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'tag delimiter', 'TEXT_DOMAIN' ) );
+   if ( $tags_list ) {
+    printf(
+     '<span class="tags-links">%1$s %2$s</span>',
+     esc_html_x( 'Tagged', 'tags', 'TEXT_DOMAIN' ),
+     $tags_list
+    );
+   }
+  }
 
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link">';
-			comments_popup_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'TEXT_DOMAIN' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				)
-			);
-			echo '</span>';
-		}
+  if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+   echo '<span class="comments-link">';
+   comments_popup_link(
+    sprintf(
+     wp_kses(
+      /* translators: %s: post title */
+      __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'TEXT_DOMAIN' ),
+      array(
+       'span' => array(
+        'class' => array(),
+       ),
+      )
+     ),
+     wp_kses_post( get_the_title() )
+    )
+   );
+   echo '</span>';
+  }
 
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: post title */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'TEXT_DOMAIN' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
-	}
+  edit_post_link(
+   sprintf(
+    wp_kses(
+     /* translators: %s: post title */
+     __( 'Edit <span class="screen-reader-text">%s</span>', 'TEXT_DOMAIN' ),
+     array(
+      'span' => array(
+       'class' => array(),
+      ),
+     )
+    ),
+    wp_kses_post( get_the_title() )
+   ),
+   '<span class="edit-link">',
+   '</span>'
+  );
+ }
 }
 
 if ( ! function_exists( 'THEME_PREFIX_post_thumbnail' ) ) {
-	/**
-	 * Display an optional post thumbnail.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_post_thumbnail(): void {
-		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
-			return;
-		}
+ /**
+  * Display an optional post thumbnail.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_post_thumbnail(): void {
+  if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+   return;
+  }
 
-		if ( is_singular() ) {
-			?>
-			<div class="post-thumbnail">
-				<?php the_post_thumbnail( 'full' ); ?>
-			</div>
-			<?php
-		} else {
-			?>
-			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-				<?php
-				the_post_thumbnail(
-					'post-thumbnail',
-					array(
-						'alt' => the_title_attribute(
-							array(
-								'echo' => false,
-							)
-						),
-					)
-				);
-				?>
-			</a>
-			<?php
-		}
-	}
+  if ( is_singular() ) {
+   ?>
+   <div class="post-thumbnail">
+    <?php the_post_thumbnail( 'full' ); ?>
+   </div>
+   <?php
+  } else {
+   ?>
+   <a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+    <?php
+    the_post_thumbnail(
+     'post-thumbnail',
+     array(
+      'alt' => the_title_attribute(
+       array(
+        'echo' => false,
+       )
+      ),
+     )
+    );
+    ?>
+   </a>
+   <?php
+  }
+ }
 }
 
 if ( ! function_exists( 'THEME_PREFIX_pagination' ) ) {
-	/**
-	 * Display pagination for archive pages.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	function THEME_PREFIX_pagination(): void {
-		the_posts_pagination(
-			array(
-				'mid_size'  => 2,
-				'prev_text' => sprintf(
-					'<span class="screen-reader-text">%s</span><span aria-hidden="true">&laquo;</span>',
-					esc_html__( 'Previous page', 'TEXT_DOMAIN' )
-				),
-				'next_text' => sprintf(
-					'<span class="screen-reader-text">%s</span><span aria-hidden="true">&raquo;</span>',
-					esc_html__( 'Next page', 'TEXT_DOMAIN' )
-				),
-			)
-		);
-	}
+ /**
+  * Display pagination for archive pages.
+  *
+  * @since 1.0.0
+  *
+  * @return void
+  */
+ function THEME_PREFIX_pagination(): void {
+  the_posts_pagination(
+   array(
+    'mid_size'  => 2,
+    'prev_text' => sprintf(
+     '<span class="screen-reader-text">%s</span><span aria-hidden="true">&laquo;</span>',
+     esc_html__( 'Previous page', 'TEXT_DOMAIN' )
+    ),
+    'next_text' => sprintf(
+     '<span class="screen-reader-text">%s</span><span aria-hidden="true">&raquo;</span>',
+     esc_html__( 'Next page', 'TEXT_DOMAIN' )
+    ),
+   )
+  );
+ }
 }
 
 if ( ! function_exists( 'THEME_PREFIX_excerpt_more' ) ) {
-	/**
-	 * Customize the excerpt "read more" string.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string $more The default "more" text.
-	 * @return string Modified "more" text.
-	 */
-	function THEME_PREFIX_excerpt_more( string $more ): string {
-		if ( is_admin() ) {
-			return $more;
-		}
+ /**
+  * Customize the excerpt "read more" string.
+  *
+  * @since 1.0.0
+  *
+  * @param string $more The default "more" text.
+  * @return string Modified "more" text.
+  */
+ function THEME_PREFIX_excerpt_more( string $more ): string {
+  if ( is_admin() ) {
+   return $more;
+  }
 
-		return sprintf(
-			'&hellip; <a href="%1$s" class="more-link">%2$s</a>',
-			esc_url( get_permalink( get_the_ID() ) ),
-			esc_html__( 'Continue reading', 'TEXT_DOMAIN' )
-		);
-	}
+  return sprintf(
+   '&hellip; <a href="%1$s" class="more-link">%2$s</a>',
+   esc_url( get_permalink( get_the_ID() ) ),
+   esc_html__( 'Continue reading', 'TEXT_DOMAIN' )
+  );
+ }
 }
 add_filter( 'excerpt_more', 'THEME_PREFIX_excerpt_more' );
 ```
@@ -748,69 +748,69 @@ declare(strict_types=1);
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+ <meta charset="<?php bloginfo( 'charset' ); ?>">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+ <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary">
-		<?php esc_html_e( 'Skip to content', 'TEXT_DOMAIN' ); ?>
-	</a>
+ <a class="skip-link screen-reader-text" href="#primary">
+  <?php esc_html_e( 'Skip to content', 'TEXT_DOMAIN' ); ?>
+ </a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php if ( has_custom_logo() ) : ?>
-				<div class="site-logo">
-					<?php the_custom_logo(); ?>
-				</div>
-			<?php endif; ?>
+ <header id="masthead" class="site-header">
+  <div class="site-branding">
+   <?php if ( has_custom_logo() ) : ?>
+    <div class="site-logo">
+     <?php the_custom_logo(); ?>
+    </div>
+   <?php endif; ?>
 
-			<?php if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php bloginfo( 'name' ); ?>
-					</a>
-				</h1>
-			<?php else : ?>
-				<p class="site-title">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php bloginfo( 'name' ); ?>
-					</a>
-				</p>
-			<?php endif; ?>
+   <?php if ( is_front_page() && is_home() ) : ?>
+    <h1 class="site-title">
+     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+      <?php bloginfo( 'name' ); ?>
+     </a>
+    </h1>
+   <?php else : ?>
+    <p class="site-title">
+     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+      <?php bloginfo( 'name' ); ?>
+     </a>
+    </p>
+   <?php endif; ?>
 
-			<?php
-			$THEME_PREFIX_description = get_bloginfo( 'description', 'display' );
-			if ( $THEME_PREFIX_description || is_customize_preview() ) :
-				?>
-				<p class="site-description">
-					<?php echo esc_html( $THEME_PREFIX_description ); ?>
-				</p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+   <?php
+   $THEME_PREFIX_description = get_bloginfo( 'description', 'display' );
+   if ( $THEME_PREFIX_description || is_customize_preview() ) :
+    ?>
+    <p class="site-description">
+     <?php echo esc_html( $THEME_PREFIX_description ); ?>
+    </p>
+   <?php endif; ?>
+  </div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'TEXT_DOMAIN' ); ?>">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-				<?php esc_html_e( 'Menu', 'TEXT_DOMAIN' ); ?>
-			</button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary',
-					'menu_id'        => 'primary-menu',
-					'container_class' => 'primary-menu-container',
-					'fallback_cb'    => false,
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+  <nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'TEXT_DOMAIN' ); ?>">
+   <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+    <?php esc_html_e( 'Menu', 'TEXT_DOMAIN' ); ?>
+   </button>
+   <?php
+   wp_nav_menu(
+    array(
+     'theme_location' => 'primary',
+     'menu_id'        => 'primary-menu',
+     'container_class' => 'primary-menu-container',
+     'fallback_cb'    => false,
+    )
+   );
+   ?>
+  </nav><!-- #site-navigation -->
+ </header><!-- #masthead -->
 ```
 
 Replace the variable `$THEME_PREFIX_description` with the actual prefix (e.g., `$starter_theme_description`).
@@ -829,45 +829,45 @@ Replace the variable `$THEME_PREFIX_description` with the actual prefix (e.g., `
 declare(strict_types=1);
 
 ?>
-	<footer id="colophon" class="site-footer">
-		<div class="site-footer-inner">
-			<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
-				<div class="footer-widgets">
-					<?php dynamic_sidebar( 'footer-1' ); ?>
-				</div><!-- .footer-widgets -->
-			<?php endif; ?>
+ <footer id="colophon" class="site-footer">
+  <div class="site-footer-inner">
+   <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+    <div class="footer-widgets">
+     <?php dynamic_sidebar( 'footer-1' ); ?>
+    </div><!-- .footer-widgets -->
+   <?php endif; ?>
 
-			<?php if ( has_nav_menu( 'footer' ) ) : ?>
-				<nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'TEXT_DOMAIN' ); ?>">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer',
-							'menu_class'     => 'footer-menu',
-							'depth'          => 1,
-							'fallback_cb'    => false,
-						)
-					);
-					?>
-				</nav><!-- .footer-navigation -->
-			<?php endif; ?>
+   <?php if ( has_nav_menu( 'footer' ) ) : ?>
+    <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'TEXT_DOMAIN' ); ?>">
+     <?php
+     wp_nav_menu(
+      array(
+       'theme_location' => 'footer',
+       'menu_class'     => 'footer-menu',
+       'depth'          => 1,
+       'fallback_cb'    => false,
+      )
+     );
+     ?>
+    </nav><!-- .footer-navigation -->
+   <?php endif; ?>
 
-			<div class="site-info">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-				<span class="sep"> | </span>
-				<?php
-				printf(
-					/* translators: %s: current year and site name */
-					esc_html__( '&copy; %1$s %2$s. All rights reserved.', 'TEXT_DOMAIN' ),
-					esc_html( (string) gmdate( 'Y' ) ),
-					esc_html( get_bloginfo( 'name' ) )
-				);
-				?>
-			</div><!-- .site-info -->
-		</div><!-- .site-footer-inner -->
-	</footer><!-- #colophon -->
+   <div class="site-info">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+     <?php bloginfo( 'name' ); ?>
+    </a>
+    <span class="sep"> | </span>
+    <?php
+    printf(
+     /* translators: %s: current year and site name */
+     esc_html__( '&copy; %1$s %2$s. All rights reserved.', 'TEXT_DOMAIN' ),
+     esc_html( (string) gmdate( 'Y' ) ),
+     esc_html( get_bloginfo( 'name' ) )
+    );
+    ?>
+   </div><!-- .site-info -->
+  </div><!-- .site-footer-inner -->
+ </footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
@@ -890,12 +890,12 @@ declare(strict_types=1);
 declare(strict_types=1);
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
+ return;
 }
 ?>
 
 <aside id="secondary" class="widget-area" aria-label="<?php esc_attr_e( 'Sidebar', 'TEXT_DOMAIN' ); ?>">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+ <?php dynamic_sidebar( 'sidebar-1' ); ?>
 </aside><!-- #secondary -->
 ```
 
@@ -916,106 +916,106 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-	<?php
-	if ( have_posts() ) :
+ <?php
+ if ( have_posts() ) :
 
-		if ( is_home() && ! is_front_page() ) :
-			?>
-			<header class="page-header">
-				<h1 class="page-title screen-reader-text">
-					<?php single_post_title(); ?>
-				</h1>
-			</header><!-- .page-header -->
-			<?php
-		endif;
+  if ( is_home() && ! is_front_page() ) :
+   ?>
+   <header class="page-header">
+    <h1 class="page-title screen-reader-text">
+     <?php single_post_title(); ?>
+    </h1>
+   </header><!-- .page-header -->
+   <?php
+  endif;
 
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="entry-header">
-					<?php
-					if ( is_singular() ) :
-						the_title( '<h1 class="entry-title">', '</h1>' );
-					else :
-						the_title(
-							'<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
-							'</a></h2>'
-						);
-					endif;
+  while ( have_posts() ) :
+   the_post();
+   ?>
+   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <header class="entry-header">
+     <?php
+     if ( is_singular() ) :
+      the_title( '<h1 class="entry-title">', '</h1>' );
+     else :
+      the_title(
+       '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
+       '</a></h2>'
+      );
+     endif;
 
-					if ( 'post' === get_post_type() ) :
-						?>
-						<div class="entry-meta">
-							<?php
-							THEME_PREFIX_posted_on();
-							THEME_PREFIX_posted_by();
-							?>
-						</div><!-- .entry-meta -->
-					<?php endif; ?>
-				</header><!-- .entry-header -->
+     if ( 'post' === get_post_type() ) :
+      ?>
+      <div class="entry-meta">
+       <?php
+       THEME_PREFIX_posted_on();
+       THEME_PREFIX_posted_by();
+       ?>
+      </div><!-- .entry-meta -->
+     <?php endif; ?>
+    </header><!-- .entry-header -->
 
-				<?php THEME_PREFIX_post_thumbnail(); ?>
+    <?php THEME_PREFIX_post_thumbnail(); ?>
 
-				<div class="entry-content">
-					<?php
-					if ( is_singular() ) :
-						the_content(
-							sprintf(
-								wp_kses(
-									/* translators: %s: post title */
-									__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'TEXT_DOMAIN' ),
-									array(
-										'span' => array(
-											'class' => array(),
-										),
-									)
-								),
-								wp_kses_post( get_the_title() )
-							)
-						);
+    <div class="entry-content">
+     <?php
+     if ( is_singular() ) :
+      the_content(
+       sprintf(
+        wp_kses(
+         /* translators: %s: post title */
+         __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'TEXT_DOMAIN' ),
+         array(
+          'span' => array(
+           'class' => array(),
+          ),
+         )
+        ),
+        wp_kses_post( get_the_title() )
+       )
+      );
 
-						wp_link_pages(
-							array(
-								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
-								'after'  => '</div>',
-							)
-						);
-					else :
-						the_excerpt();
-					endif;
-					?>
-				</div><!-- .entry-content -->
+      wp_link_pages(
+       array(
+        'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
+        'after'  => '</div>',
+       )
+      );
+     else :
+      the_excerpt();
+     endif;
+     ?>
+    </div><!-- .entry-content -->
 
-				<footer class="entry-footer">
-					<?php THEME_PREFIX_entry_footer(); ?>
-				</footer><!-- .entry-footer -->
-			</article><!-- #post-<?php the_ID(); ?> -->
-			<?php
-		endwhile;
+    <footer class="entry-footer">
+     <?php THEME_PREFIX_entry_footer(); ?>
+    </footer><!-- .entry-footer -->
+   </article><!-- #post-<?php the_ID(); ?> -->
+   <?php
+  endwhile;
 
-		THEME_PREFIX_pagination();
+  THEME_PREFIX_pagination();
 
-	else :
-		?>
-		<section class="no-results not-found">
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php esc_html_e( 'Nothing Found', 'TEXT_DOMAIN' ); ?>
-				</h1>
-			</header><!-- .page-header -->
+ else :
+  ?>
+  <section class="no-results not-found">
+   <header class="page-header">
+    <h1 class="page-title">
+     <?php esc_html_e( 'Nothing Found', 'TEXT_DOMAIN' ); ?>
+    </h1>
+   </header><!-- .page-header -->
 
-			<div class="page-content">
-				<?php if ( is_search() ) : ?>
-					<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'TEXT_DOMAIN' ); ?></p>
-					<?php get_search_form(); ?>
-				<?php else : ?>
-					<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'TEXT_DOMAIN' ); ?></p>
-					<?php get_search_form(); ?>
-				<?php endif; ?>
-			</div><!-- .page-content -->
-		</section><!-- .no-results -->
-	<?php endif; ?>
+   <div class="page-content">
+    <?php if ( is_search() ) : ?>
+     <p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'TEXT_DOMAIN' ); ?></p>
+     <?php get_search_form(); ?>
+    <?php else : ?>
+     <p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'TEXT_DOMAIN' ); ?></p>
+     <?php get_search_form(); ?>
+    <?php endif; ?>
+   </div><!-- .page-content -->
+  </section><!-- .no-results -->
+ <?php endif; ?>
 </main><!-- #primary -->
 
 <?php
@@ -1040,58 +1040,58 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-	<?php
-	while ( have_posts() ) :
-		the_post();
-		?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header class="entry-header">
-				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+ <?php
+ while ( have_posts() ) :
+  the_post();
+  ?>
+  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+   <header class="entry-header">
+    <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-				<div class="entry-meta">
-					<?php
-					THEME_PREFIX_posted_on();
-					THEME_PREFIX_posted_by();
-					?>
-				</div><!-- .entry-meta -->
-			</header><!-- .entry-header -->
+    <div class="entry-meta">
+     <?php
+     THEME_PREFIX_posted_on();
+     THEME_PREFIX_posted_by();
+     ?>
+    </div><!-- .entry-meta -->
+   </header><!-- .entry-header -->
 
-			<?php THEME_PREFIX_post_thumbnail(); ?>
+   <?php THEME_PREFIX_post_thumbnail(); ?>
 
-			<div class="entry-content">
-				<?php
-				the_content();
+   <div class="entry-content">
+    <?php
+    the_content();
 
-				wp_link_pages(
-					array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
-						'after'  => '</div>',
-					)
-				);
-				?>
-			</div><!-- .entry-content -->
+    wp_link_pages(
+     array(
+      'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
+      'after'  => '</div>',
+     )
+    );
+    ?>
+   </div><!-- .entry-content -->
 
-			<footer class="entry-footer">
-				<?php THEME_PREFIX_entry_footer(); ?>
-			</footer><!-- .entry-footer -->
-		</article><!-- #post-<?php the_ID(); ?> -->
+   <footer class="entry-footer">
+    <?php THEME_PREFIX_entry_footer(); ?>
+   </footer><!-- .entry-footer -->
+  </article><!-- #post-<?php the_ID(); ?> -->
 
-		<?php
-		// Post navigation.
-		the_post_navigation(
-			array(
-				'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'TEXT_DOMAIN' ) . '</span> <span class="nav-title">%title</span>',
-				'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'TEXT_DOMAIN' ) . '</span> <span class="nav-title">%title</span>',
-			)
-		);
+  <?php
+  // Post navigation.
+  the_post_navigation(
+   array(
+    'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'TEXT_DOMAIN' ) . '</span> <span class="nav-title">%title</span>',
+    'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'TEXT_DOMAIN' ) . '</span> <span class="nav-title">%title</span>',
+   )
+  );
 
-		// If comments are open or there is at least one comment, load the comments template.
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif;
+  // If comments are open or there is at least one comment, load the comments template.
+  if ( comments_open() || get_comments_number() ) :
+   comments_template();
+  endif;
 
-	endwhile;
-	?>
+ endwhile;
+ ?>
 </main><!-- #primary -->
 
 <?php
@@ -1116,68 +1116,68 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-	<?php if ( have_posts() ) : ?>
+ <?php if ( have_posts() ) : ?>
 
-		<header class="page-header">
-			<?php
-			the_archive_title( '<h1 class="page-title">', '</h1>' );
-			the_archive_description( '<div class="archive-description">', '</div>' );
-			?>
-		</header><!-- .page-header -->
+  <header class="page-header">
+   <?php
+   the_archive_title( '<h1 class="page-title">', '</h1>' );
+   the_archive_description( '<div class="archive-description">', '</div>' );
+   ?>
+  </header><!-- .page-header -->
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="entry-header">
-					<?php
-					the_title(
-						'<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
-						'</a></h2>'
-					);
+  <?php
+  while ( have_posts() ) :
+   the_post();
+   ?>
+   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <header class="entry-header">
+     <?php
+     the_title(
+      '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
+      '</a></h2>'
+     );
 
-					if ( 'post' === get_post_type() ) :
-						?>
-						<div class="entry-meta">
-							<?php
-							THEME_PREFIX_posted_on();
-							THEME_PREFIX_posted_by();
-							?>
-						</div><!-- .entry-meta -->
-					<?php endif; ?>
-				</header><!-- .entry-header -->
+     if ( 'post' === get_post_type() ) :
+      ?>
+      <div class="entry-meta">
+       <?php
+       THEME_PREFIX_posted_on();
+       THEME_PREFIX_posted_by();
+       ?>
+      </div><!-- .entry-meta -->
+     <?php endif; ?>
+    </header><!-- .entry-header -->
 
-				<?php THEME_PREFIX_post_thumbnail(); ?>
+    <?php THEME_PREFIX_post_thumbnail(); ?>
 
-				<div class="entry-summary">
-					<?php the_excerpt(); ?>
-				</div><!-- .entry-summary -->
+    <div class="entry-summary">
+     <?php the_excerpt(); ?>
+    </div><!-- .entry-summary -->
 
-				<footer class="entry-footer">
-					<?php THEME_PREFIX_entry_footer(); ?>
-				</footer><!-- .entry-footer -->
-			</article><!-- #post-<?php the_ID(); ?> -->
-			<?php
-		endwhile;
+    <footer class="entry-footer">
+     <?php THEME_PREFIX_entry_footer(); ?>
+    </footer><!-- .entry-footer -->
+   </article><!-- #post-<?php the_ID(); ?> -->
+   <?php
+  endwhile;
 
-		THEME_PREFIX_pagination();
+  THEME_PREFIX_pagination();
 
-	else :
-		?>
-		<section class="no-results not-found">
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php esc_html_e( 'Nothing Found', 'TEXT_DOMAIN' ); ?>
-				</h1>
-			</header><!-- .page-header -->
+ else :
+  ?>
+  <section class="no-results not-found">
+   <header class="page-header">
+    <h1 class="page-title">
+     <?php esc_html_e( 'Nothing Found', 'TEXT_DOMAIN' ); ?>
+    </h1>
+   </header><!-- .page-header -->
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'TEXT_DOMAIN' ); ?></p>
-				<?php get_search_form(); ?>
-			</div><!-- .page-content -->
-		</section><!-- .no-results -->
-	<?php endif; ?>
+   <div class="page-content">
+    <p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'TEXT_DOMAIN' ); ?></p>
+    <?php get_search_form(); ?>
+   </div><!-- .page-content -->
+  </section><!-- .no-results -->
+ <?php endif; ?>
 </main><!-- #primary -->
 
 <?php
@@ -1202,62 +1202,62 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-	<?php
-	while ( have_posts() ) :
-		the_post();
-		?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header class="entry-header">
-				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			</header><!-- .entry-header -->
+ <?php
+ while ( have_posts() ) :
+  the_post();
+  ?>
+  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+   <header class="entry-header">
+    <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+   </header><!-- .entry-header -->
 
-			<?php THEME_PREFIX_post_thumbnail(); ?>
+   <?php THEME_PREFIX_post_thumbnail(); ?>
 
-			<div class="entry-content">
-				<?php
-				the_content();
+   <div class="entry-content">
+    <?php
+    the_content();
 
-				wp_link_pages(
-					array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
-						'after'  => '</div>',
-					)
-				);
-				?>
-			</div><!-- .entry-content -->
+    wp_link_pages(
+     array(
+      'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'TEXT_DOMAIN' ),
+      'after'  => '</div>',
+     )
+    );
+    ?>
+   </div><!-- .entry-content -->
 
-			<?php if ( get_edit_post_link() ) : ?>
-				<footer class="entry-footer">
-					<?php
-					edit_post_link(
-						sprintf(
-							wp_kses(
-								/* translators: %s: page title */
-								__( 'Edit <span class="screen-reader-text">%s</span>', 'TEXT_DOMAIN' ),
-								array(
-									'span' => array(
-										'class' => array(),
-									),
-								)
-							),
-							wp_kses_post( get_the_title() )
-						),
-						'<span class="edit-link">',
-						'</span>'
-					);
-					?>
-				</footer><!-- .entry-footer -->
-			<?php endif; ?>
-		</article><!-- #post-<?php the_ID(); ?> -->
+   <?php if ( get_edit_post_link() ) : ?>
+    <footer class="entry-footer">
+     <?php
+     edit_post_link(
+      sprintf(
+       wp_kses(
+        /* translators: %s: page title */
+        __( 'Edit <span class="screen-reader-text">%s</span>', 'TEXT_DOMAIN' ),
+        array(
+         'span' => array(
+          'class' => array(),
+         ),
+        )
+       ),
+       wp_kses_post( get_the_title() )
+      ),
+      '<span class="edit-link">',
+      '</span>'
+     );
+     ?>
+    </footer><!-- .entry-footer -->
+   <?php endif; ?>
+  </article><!-- #post-<?php the_ID(); ?> -->
 
-		<?php
-		// If comments are open or there is at least one comment, load the comments template.
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif;
+  <?php
+  // If comments are open or there is at least one comment, load the comments template.
+  if ( comments_open() || get_comments_number() ) :
+   comments_template();
+  endif;
 
-	endwhile;
-	?>
+ endwhile;
+ ?>
 </main><!-- #primary -->
 
 <?php
@@ -1282,94 +1282,94 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-	<section class="error-404 not-found">
-		<header class="page-header">
-			<h1 class="page-title">
-				<?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'TEXT_DOMAIN' ); ?>
-			</h1>
-		</header><!-- .page-header -->
+ <section class="error-404 not-found">
+  <header class="page-header">
+   <h1 class="page-title">
+    <?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'TEXT_DOMAIN' ); ?>
+   </h1>
+  </header><!-- .page-header -->
 
-		<div class="page-content">
-			<p>
-				<?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'TEXT_DOMAIN' ); ?>
-			</p>
+  <div class="page-content">
+   <p>
+    <?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'TEXT_DOMAIN' ); ?>
+   </p>
 
-			<?php get_search_form(); ?>
+   <?php get_search_form(); ?>
 
-			<div class="widget-area">
-				<?php
-				the_widget(
-					'WP_Widget_Recent_Posts',
-					array(
-						'title'  => esc_html__( 'Recent Posts', 'TEXT_DOMAIN' ),
-						'number' => 5,
-					),
-					array(
-						'before_widget' => '<section class="widget">',
-						'after_widget'  => '</section>',
-						'before_title'  => '<h2 class="widget-title">',
-						'after_title'   => '</h2>',
-					)
-				);
-				?>
+   <div class="widget-area">
+    <?php
+    the_widget(
+     'WP_Widget_Recent_Posts',
+     array(
+      'title'  => esc_html__( 'Recent Posts', 'TEXT_DOMAIN' ),
+      'number' => 5,
+     ),
+     array(
+      'before_widget' => '<section class="widget">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+     )
+    );
+    ?>
 
-				<section class="widget widget_categories">
-					<h2 class="widget-title">
-						<?php esc_html_e( 'Most Used Categories', 'TEXT_DOMAIN' ); ?>
-					</h2>
-					<ul>
-						<?php
-						wp_list_categories(
-							array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => true,
-								'title_li'   => '',
-								'number'     => 10,
-							)
-						);
-						?>
-					</ul>
-				</section><!-- .widget_categories -->
+    <section class="widget widget_categories">
+     <h2 class="widget-title">
+      <?php esc_html_e( 'Most Used Categories', 'TEXT_DOMAIN' ); ?>
+     </h2>
+     <ul>
+      <?php
+      wp_list_categories(
+       array(
+        'orderby'    => 'count',
+        'order'      => 'DESC',
+        'show_count' => true,
+        'title_li'   => '',
+        'number'     => 10,
+       )
+      );
+      ?>
+     </ul>
+    </section><!-- .widget_categories -->
 
-				<?php
-				/* translators: %1$s: smiley face */
-				$THEME_PREFIX_archive_content = '<p>' . sprintf(
-					esc_html__( 'Try looking in the monthly archives. %1$s', 'TEXT_DOMAIN' ),
-					convert_smilies( ':)' )
-				) . '</p>';
+    <?php
+    /* translators: %1$s: smiley face */
+    $THEME_PREFIX_archive_content = '<p>' . sprintf(
+     esc_html__( 'Try looking in the monthly archives. %1$s', 'TEXT_DOMAIN' ),
+     convert_smilies( ':)' )
+    ) . '</p>';
 
-				the_widget(
-					'WP_Widget_Archives',
-					array(
-						'title'    => esc_html__( 'Archives', 'TEXT_DOMAIN' ),
-						'count'    => true,
-						'dropdown' => true,
-					),
-					array(
-						'before_widget' => '<section class="widget">',
-						'after_widget'  => '</section>' . $THEME_PREFIX_archive_content,
-						'before_title'  => '<h2 class="widget-title">',
-						'after_title'   => '</h2>',
-					)
-				);
+    the_widget(
+     'WP_Widget_Archives',
+     array(
+      'title'    => esc_html__( 'Archives', 'TEXT_DOMAIN' ),
+      'count'    => true,
+      'dropdown' => true,
+     ),
+     array(
+      'before_widget' => '<section class="widget">',
+      'after_widget'  => '</section>' . $THEME_PREFIX_archive_content,
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+     )
+    );
 
-				the_widget(
-					'WP_Widget_Tag_Cloud',
-					array(
-						'title' => esc_html__( 'Tags', 'TEXT_DOMAIN' ),
-					),
-					array(
-						'before_widget' => '<section class="widget">',
-						'after_widget'  => '</section>',
-						'before_title'  => '<h2 class="widget-title">',
-						'after_title'   => '</h2>',
-					)
-				);
-				?>
-			</div><!-- .widget-area -->
-		</div><!-- .page-content -->
-	</section><!-- .error-404 -->
+    the_widget(
+     'WP_Widget_Tag_Cloud',
+     array(
+      'title' => esc_html__( 'Tags', 'TEXT_DOMAIN' ),
+     ),
+     array(
+      'before_widget' => '<section class="widget">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+     )
+    );
+    ?>
+   </div><!-- .widget-area -->
+  </div><!-- .page-content -->
+ </section><!-- .error-404 -->
 </main><!-- #primary -->
 
 <?php
@@ -1697,14 +1697,14 @@ get_header();
 ?>
 
 <main id="primary" class="site-main woocommerce-single-product">
-	<?php
-	while ( have_posts() ) :
-		the_post();
+ <?php
+ while ( have_posts() ) :
+  the_post();
 
-		wc_get_template_part( 'content', 'single-product' );
+  wc_get_template_part( 'content', 'single-product' );
 
-	endwhile;
-	?>
+ endwhile;
+ ?>
 </main><!-- #primary -->
 
 <?php
@@ -1733,77 +1733,77 @@ get_header();
 ?>
 
 <main id="primary" class="site-main woocommerce-archive">
-	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-		<header class="woocommerce-products-header">
-			<h1 class="woocommerce-products-header__title page-title">
-				<?php woocommerce_page_title(); ?>
-			</h1>
-		</header>
-	<?php endif; ?>
+ <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+  <header class="woocommerce-products-header">
+   <h1 class="woocommerce-products-header__title page-title">
+    <?php woocommerce_page_title(); ?>
+   </h1>
+  </header>
+ <?php endif; ?>
 
-	<?php
-	/**
-	 * Hook: woocommerce_archive_description.
-	 *
-	 * @hooked woocommerce_taxonomy_archive_description - 10
-	 * @hooked woocommerce_product_archive_description - 10
-	 */
-	do_action( 'woocommerce_archive_description' );
-	?>
+ <?php
+ /**
+  * Hook: woocommerce_archive_description.
+  *
+  * @hooked woocommerce_taxonomy_archive_description - 10
+  * @hooked woocommerce_product_archive_description - 10
+  */
+ do_action( 'woocommerce_archive_description' );
+ ?>
 
-	<?php if ( woocommerce_product_loop() ) : ?>
+ <?php if ( woocommerce_product_loop() ) : ?>
 
-		<?php
-		/**
-		 * Hook: woocommerce_before_shop_loop.
-		 *
-		 * @hooked woocommerce_output_all_notices - 10
-		 * @hooked woocommerce_result_count - 20
-		 * @hooked woocommerce_catalog_ordering - 30
-		 */
-		do_action( 'woocommerce_before_shop_loop' );
-		?>
+  <?php
+  /**
+   * Hook: woocommerce_before_shop_loop.
+   *
+   * @hooked woocommerce_output_all_notices - 10
+   * @hooked woocommerce_result_count - 20
+   * @hooked woocommerce_catalog_ordering - 30
+   */
+  do_action( 'woocommerce_before_shop_loop' );
+  ?>
 
-		<?php woocommerce_product_loop_start(); ?>
+  <?php woocommerce_product_loop_start(); ?>
 
-		<?php
-		if ( wc_get_loop_prop( 'total' ) ) :
-			while ( have_posts() ) :
-				the_post();
+  <?php
+  if ( wc_get_loop_prop( 'total' ) ) :
+   while ( have_posts() ) :
+    the_post();
 
-				/**
-				 * Hook: woocommerce_shop_loop.
-				 */
-				do_action( 'woocommerce_shop_loop' );
+    /**
+     * Hook: woocommerce_shop_loop.
+     */
+    do_action( 'woocommerce_shop_loop' );
 
-				wc_get_template_part( 'content', 'product' );
-			endwhile;
-		endif;
-		?>
+    wc_get_template_part( 'content', 'product' );
+   endwhile;
+  endif;
+  ?>
 
-		<?php woocommerce_product_loop_end(); ?>
+  <?php woocommerce_product_loop_end(); ?>
 
-		<?php
-		/**
-		 * Hook: woocommerce_after_shop_loop.
-		 *
-		 * @hooked woocommerce_pagination - 10
-		 */
-		do_action( 'woocommerce_after_shop_loop' );
-		?>
+  <?php
+  /**
+   * Hook: woocommerce_after_shop_loop.
+   *
+   * @hooked woocommerce_pagination - 10
+   */
+  do_action( 'woocommerce_after_shop_loop' );
+  ?>
 
-	<?php else : ?>
+ <?php else : ?>
 
-		<?php
-		/**
-		 * Hook: woocommerce_no_products_found.
-		 *
-		 * @hooked wc_no_products_found - 10
-		 */
-		do_action( 'woocommerce_no_products_found' );
-		?>
+  <?php
+  /**
+   * Hook: woocommerce_no_products_found.
+   *
+   * @hooked wc_no_products_found - 10
+   */
+  do_action( 'woocommerce_no_products_found' );
+  ?>
 
-	<?php endif; ?>
+ <?php endif; ?>
 </main><!-- #primary -->
 
 <?php
@@ -1832,61 +1832,61 @@ global $product;
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
+ return;
 }
 ?>
 
 <li <?php wc_product_class( '', $product ); ?>>
-	<?php
-	/**
-	 * Hook: woocommerce_before_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_open - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item' );
+ <?php
+ /**
+  * Hook: woocommerce_before_shop_loop_item.
+  *
+  * @hooked woocommerce_template_loop_product_link_open - 10
+  */
+ do_action( 'woocommerce_before_shop_loop_item' );
 
-	/**
-	 * Hook: woocommerce_before_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_show_product_loop_sale_flash - 10
-	 * @hooked woocommerce_template_loop_product_thumbnail - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item_title' );
+ /**
+  * Hook: woocommerce_before_shop_loop_item_title.
+  *
+  * @hooked woocommerce_show_product_loop_sale_flash - 10
+  * @hooked woocommerce_template_loop_product_thumbnail - 10
+  */
+ do_action( 'woocommerce_before_shop_loop_item_title' );
 
-	/**
-	 * Hook: woocommerce_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_product_title - 10
-	 */
-	do_action( 'woocommerce_shop_loop_item_title' );
+ /**
+  * Hook: woocommerce_shop_loop_item_title.
+  *
+  * @hooked woocommerce_template_loop_product_title - 10
+  */
+ do_action( 'woocommerce_shop_loop_item_title' );
 
-	/**
-	 * Hook: woocommerce_after_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_rating - 5
-	 * @hooked woocommerce_template_loop_price - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop_item_title' );
+ /**
+  * Hook: woocommerce_after_shop_loop_item_title.
+  *
+  * @hooked woocommerce_template_loop_rating - 5
+  * @hooked woocommerce_template_loop_price - 10
+  */
+ do_action( 'woocommerce_after_shop_loop_item_title' );
 
-	/**
-	 * Hook: woocommerce_after_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_close - 5
-	 * @hooked woocommerce_template_loop_add_to_cart - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop_item' );
-	?>
+ /**
+  * Hook: woocommerce_after_shop_loop_item.
+  *
+  * @hooked woocommerce_template_loop_product_link_close - 5
+  * @hooked woocommerce_template_loop_add_to_cart - 10
+  */
+ do_action( 'woocommerce_after_shop_loop_item' );
+ ?>
 </li>
 ```
 
 Also add WooCommerce theme support in `inc/theme-support.php` by appending this inside the `THEME_PREFIX_setup()` function:
 
 ```php
-		// WooCommerce support.
-		add_theme_support( 'woocommerce' );
-		add_theme_support( 'wc-product-gallery-zoom' );
-		add_theme_support( 'wc-product-gallery-lightbox' );
-		add_theme_support( 'wc-product-gallery-slider' );
+  // WooCommerce support.
+  add_theme_support( 'woocommerce' );
+  add_theme_support( 'wc-product-gallery-zoom' );
+  add_theme_support( 'wc-product-gallery-lightbox' );
+  add_theme_support( 'wc-product-gallery-slider' );
 ```
 
 ### 20. Generate the src/.gitkeep File

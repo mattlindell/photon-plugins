@@ -23,14 +23,16 @@ Before generating anything, ask the user three questions and wait for answers:
 Based on the Bedrock answer, establish the full theme path:
 
 **If Bedrock (yes):**
-```
+
+```text
 <bedrock-root>/web/app/themes/<theme-name>
 ```
 
 Explain that Bedrock manages WordPress as a Composer dependency. The entire project lives in a Git repository, WordPress core is installed to `web/wp/`, and themes live in `web/app/themes/`. The `web/` directory is the webroot served by the web server.
 
 **If not Bedrock (no):**
-```
+
+```text
 <wordpress-root>/wp-content/themes/<theme-name>
 ```
 
@@ -76,6 +78,7 @@ Explain what this generates:
 ```
 
 Key points to explain:
+
 - `app/` contains PHP classes following Laravel conventions (service providers, view composers)
 - `resources/` contains source files: Blade templates, uncompiled CSS/JS, images, fonts
 - `public/` is the build output directory -- never edit files here directly
@@ -318,6 +321,7 @@ Explain that without Bedrock, the user must install Acorn as a WordPress plugin 
 2. Alternatively, require it in the theme: `composer require roots/acorn`
 
 The `functions.php` shown above is the same -- Sage's default `functions.php` already handles booting Acorn. The key difference is that without Bedrock, the user must ensure:
+
 - `composer install` has been run inside the theme directory
 - Acorn is available (either as a plugin or via the theme's vendor directory)
 - The web server can read the theme's `vendor/` directory
@@ -627,6 +631,7 @@ pnpm dev
 ```
 
 Verify that:
+
 - `pnpm build` completes without errors
 - The `public/` directory is populated with compiled assets
 - The theme appears in WordPress admin under Appearance > Themes
@@ -637,13 +642,13 @@ Verify that:
 
 Present a final summary to the user listing every file created or modified beyond the base `composer create-project` output:
 
-| File | Purpose |
-|------|---------|
-| `bud.config.js` | Updated for chosen CSS framework and theme public path |
-| `tailwind.config.js` | Tailwind configuration with content paths (Tailwind only) |
-| `postcss.config.js` | PostCSS plugin configuration (Tailwind only) |
-| `resources/styles/app.css` or `app.scss` | Framework imports and theme custom styles |
-| `resources/scripts/app.js` | Bootstrap JS import (Bootstrap only) |
-| `app/View/Composers/App.php` | Site-wide view composer passing navigation, sidebar, and site data |
-| `resources/views/components/button.blade.php` | Reusable button Blade component |
-| `resources/views/partials/entry-meta.blade.php` | Post metadata partial for archives and single posts |
+| File                                            | Purpose                                                            |
+| ----------------------------------------------- | ------------------------------------------------------------------ |
+| `bud.config.js`                                 | Updated for chosen CSS framework and theme public path             |
+| `tailwind.config.js`                            | Tailwind configuration with content paths (Tailwind only)          |
+| `postcss.config.js`                             | PostCSS plugin configuration (Tailwind only)                       |
+| `resources/styles/app.css` or `app.scss`        | Framework imports and theme custom styles                          |
+| `resources/scripts/app.js`                      | Bootstrap JS import (Bootstrap only)                               |
+| `app/View/Composers/App.php`                    | Site-wide view composer passing navigation, sidebar, and site data |
+| `resources/views/components/button.blade.php`   | Reusable button Blade component                                    |
+| `resources/views/partials/entry-meta.blade.php` | Post metadata partial for archives and single posts                |
