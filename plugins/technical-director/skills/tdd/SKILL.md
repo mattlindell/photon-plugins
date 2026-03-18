@@ -1,197 +1,123 @@
 ---
 name: tdd
-description: Use for any code implementation task. Enforces RED-GREEN-REFACTOR cycle. "If you didn't watch it fail, you don't know if it tests the right thing."
+description: Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
 ---
 
-# Test-Driven Development Skill
+# Test-Driven Development
 
-> **Core Principle**: If you didn't watch it fail, you don't know if it tests the right thing.
+## Philosophy
 
-## The Cycle
+**Core principle**: Tests should verify behavior through public interfaces, not implementation details. Code can change entirely; tests shouldn't.
 
-```
-    ┌──────────────────────────────────────────┐
-    │                                          │
-    ▼                                          │
-┌───────┐    ┌───────┐    ┌──────────┐        │
-│  RED  │ ──▶│ GREEN │ ──▶│ REFACTOR │ ───────┘
-└───────┘    └───────┘    └──────────┘
-Write test   Make pass    Clean up
-Watch FAIL   Minimal code  Keep green
-```
+**Good tests** are integration-style: they exercise real code paths through public APIs. They describe _what_ the system does, not _how_ it does it. A good test reads like a specification - "user can checkout with valid cart" tells you exactly what capability exists. These tests survive refactors because they don't care about internal structure.
 
----
+**Bad tests** are coupled to implementation. They mock internal collaborators, test private methods, or verify through external means (like querying a database directly instead of using the interface). The warning sign: your test breaks when you refactor, but behavior hasn't changed. If you rename an internal function and tests fail, those tests were testing implementation, not behavior.
 
-## RED Phase
+## Reference Documents
 
-### What to Do
-1. Write a single failing test
-2. Run the test
-3. **Watch it fail**
-4. Verify failure is for expected reason
+### Good and Bad Tests — @tests.md
+**Read when:** you need concrete examples of good vs bad test patterns, or are unsure whether a test is testing behavior or implementation.
 
-### Why "Watch It Fail" Matters
+### When to Mock — @mocking.md
+**Read when:** deciding whether to mock a dependency, or designing interfaces for mockability at system boundaries.
 
-| Without Watching Fail | With Watching Fail |
-|-----------------------|-------------------|
-| Test might always pass (bug in test) | Confirms test can fail |
-| Test might fail for wrong reason | Confirms test checks right thing |
-| No proof test validates behavior | Evidence of validation |
+### Deep Modules — @deep-modules.md
+**Read when:** designing interfaces and considering how to hide complexity behind simple, testable boundaries.
 
-### Red Phase Checklist
-- [ ] Test written for ONE behavior
-- [ ] Test run
-- [ ] Test failed
-- [ ] Failure is for expected reason (not typo, import error, etc.)
+### Interface Design for Testability — @interface-design.md
+**Read when:** designing new interfaces or refactoring existing ones to improve testability.
 
----
+### Refactor Candidates — @refactoring.md
+**Read when:** all tests are GREEN and you're looking for refactoring opportunities.
 
-## GREEN Phase
+## Anti-Pattern: Horizontal Slices
 
-### What to Do
-1. Write the **minimum** code to pass the test
-2. Run the test
-3. **Watch it pass**
-4. Nothing more - no extras, no "while I'm here"
+**DO NOT write all tests first, then all implementation.** This is "horizontal slicing" - treating RED as "write all tests" and GREEN as "write all code."
 
-### What Minimum Means
+This produces **crap tests**:
 
-| Too Much | Minimum |
-|----------|---------|
-| Add error handling for edge cases | Just make this test pass |
-| Refactor related code | Just make this test pass |
-| Add features "we'll need" | Just make this test pass |
+- Tests written in bulk test _imagined_ behavior, not _actual_ behavior
+- You end up testing the _shape_ of things (data structures, function signatures) rather than user-facing behavior
+- Tests become insensitive to real changes - they pass when behavior breaks, fail when behavior is fine
+- You outrun your headlights, committing to test structure before understanding the implementation
 
-### Green Phase Checklist
-- [ ] Only code needed for this test written
-- [ ] Test run
-- [ ] Test passed
-- [ ] No other tests broken
+**Correct approach**: Vertical slices via tracer bullets. One test → one implementation → repeat. Each test responds to what you learned from the previous cycle. Because you just wrote the code, you know exactly what behavior matters and how to verify it.
 
----
+```text
+WRONG (horizontal):
+  RED:   test1, test2, test3, test4, test5
+  GREEN: impl1, impl2, impl3, impl4, impl5
 
-## REFACTOR Phase
-
-### What to Do
-1. Clean up the code
-2. Run ALL tests after each change
-3. Keep everything green
-4. Stop when code is clean
-
-### Safe Refactorings
-- Rename for clarity
-- Extract methods/functions
-- Remove duplication
-- Improve structure
-
-### Refactor Phase Checklist
-- [ ] Code is clean
-- [ ] All tests still pass
-- [ ] No new behavior added
-
----
-
-## Non-Negotiable Rules
-
-> [!CRITICAL]
-> These are not guidelines. They are rules.
-
-### Rule 1: Test First
-```
-Production code written BEFORE failing test → DELETE and restart
+RIGHT (vertical):
+  RED→GREEN: test1→impl1
+  RED→GREEN: test2→impl2
+  RED→GREEN: test3→impl3
+  ...
 ```
 
-No exceptions. No "I'll write the test after." That's not TDD.
+## Workflow
 
-### Rule 2: Watch It Fail
-```
-Test not seen failing → Test not trusted
-```
+### 1. Planning
 
-Running the test and seeing green immediately means something is wrong.
+Before writing any code:
 
-### Rule 3: Minimal Green
-```
-Code beyond minimum → Remove it
-```
+- [ ] Check for existing test framework and conventions (look at package.json, composer.json, existing test files, CI config). If you can't determine the testing framework, ask the user.
+- [ ] Confirm with user what interface changes are needed
+- [ ] Confirm with user which behaviors to test (prioritize)
+- [ ] Identify opportunities for deep modules (small interface, deep implementation)
+- [ ] Design interfaces for testability
+- [ ] List the behaviors to test (not implementation steps)
+- [ ] Get user approval on the plan
 
-YAGNI (You Aren't Gonna Need It). Add it when a test requires it.
+Ask: "What should the public interface look like? Which behaviors are most important to test?"
 
-### Rule 4: Keep Tests Green
-```
-Refactoring breaks tests → Undo and retry smaller
-```
+**You can't test everything.** Confirm with the user exactly which behaviors matter most. Focus testing effort on critical paths and complex logic, not every possible edge case.
 
-Refactoring should never change behavior.
+### 2. Tracer Bullet
 
----
+Write ONE test that confirms ONE thing about the system:
 
-## Integration with Verification
-
-TDD is a specialized form of the `verification` skill:
-
-| Verification Step | TDD Equivalent |
-|-------------------|----------------|
-| IDENTIFY | Write the test |
-| RUN | Execute the test |
-| READ | Observe failure/pass |
-| VERIFY | Expected behavior? |
-| CLAIM | Only after green |
-
----
-
-## Integration with Writing-Plans
-
-Plans should include TDD structure:
-
-```markdown
-## Task N: [Name]
-
-1. Write failing test:
-   ```typescript
-   [complete test code]
-   ```
-
-2. Run test:
-   ```bash
-   [command]
-   ```
-   Expected: FAIL with "[message]"
-
-3. Implement:
-   ```typescript
-   [complete implementation]
-   ```
-
-4. Run test:
-   Expected: PASS
+```text
+RED:   Write test for first behavior → test fails
+GREEN: Write minimal code to pass → test passes
 ```
 
----
+This is your tracer bullet - proves the path works end-to-end.
 
-## Deviation Logging
+### 3. Incremental Loop
 
-Code without test logged:
+For each remaining behavior:
 
-```yaml
-- id: [auto]
-  timestamp: [now]
-  expected: "Failing test written before implementation"
-  actual: "Implementation written without test"
-  root_cause: untested_code
-  fix: |
-    Enforce TDD skill for all code tasks.
-    Add test-first check to orchestration.
+```text
+RED:   Write next test → fails
+GREEN: Minimal code to pass → passes
 ```
 
----
+Rules:
 
-## Common TDD Mistakes
+- One test at a time
+- Only enough code to pass current test
+- Don't anticipate future tests
+- Keep tests focused on observable behavior
 
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Writing test after code | Can't verify test catches bugs | Delete code, write test first |
-| Not watching test fail | Don't know if test works | Run test before implementation |
-| Making multiple tests pass at once | Can't isolate failures | One test at a time |
-| Refactoring while red | Changes behavior | Get green first |
-| Testing implementation details | Brittle tests | Test behavior, not code |
+### 4. Refactor
+
+After all tests pass, look for refactor candidates:
+
+- [ ] Extract duplication
+- [ ] Deepen modules (move complexity behind simple interfaces)
+- [ ] Apply SOLID principles where natural
+- [ ] Consider what new code reveals about existing code
+- [ ] Run tests after each refactor step
+
+**Never refactor while RED.** Get to GREEN first.
+
+## Checklist Per Cycle
+
+```text
+[ ] Test describes behavior, not implementation
+[ ] Test uses public interface only
+[ ] Test would survive internal refactor
+[ ] Code is minimal for this test
+[ ] No speculative features added
+```
