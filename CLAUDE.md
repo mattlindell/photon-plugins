@@ -4,7 +4,7 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 
 ## Project Structure
 
-```
+```text
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
@@ -12,7 +12,8 @@ plugins/
 ```
 
 Each plugin follows this structure:
-```
+
+```text
 plugin-name/
   .claude-plugin/plugin.json     — plugin metadata (name, version, description, author)
   agents/                        — strategic decision-makers with YAML frontmatter (name, description, model)

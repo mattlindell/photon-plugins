@@ -4,9 +4,10 @@ A Claude Code plugin marketplace for PHP development workflows.
 
 ## Available Plugins
 
-| Plugin                                      | Description                                                                                                                  |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| [php-development](plugins/php-development/) | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 3 agents, 12 skills, 4 scaffold commands. |
+| Plugin                                            | Description                                                                                                                                                                          |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [php-development](plugins/php-development/)       | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 3 agents, 12 skills, 4 scaffold commands.                                                         |
+| [technical-director](plugins/technical-director/) | Project management and technical direction: covers the full development lifecycle from design exploration through implementation planning, issue tracking, and codebase improvement. |
 
 ## Installation
 
