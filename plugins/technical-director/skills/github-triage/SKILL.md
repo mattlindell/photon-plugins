@@ -1,6 +1,6 @@
 ---
 name: github-triage
-description: Triage GitHub issues through a label-based state machine. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
+description: Triage *existing* GitHub issues through a label-based state machine — sort the inbound backlog, label/process bugs and feature requests, and prepare them for an AFK agent. Use when user wants to triage the backlog, label or sort existing issues, or work through inbound issues. For investigating a single bug and filing one new issue, use triage-issue instead.
 ---
 
 # GitHub Issue Triage

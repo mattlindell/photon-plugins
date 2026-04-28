@@ -25,7 +25,7 @@
     {
       "name": "technical-director",
       "source": "./plugins/technical-director",
-      "description": "Observable subagent direction with structured contracts, verification loops, and deviation tracking",
+      "description": "Skills for design exploration, planning, issue triage, TDD, and codebase architecture across the full development lifecycle",
       "version": "1.0.0",
       "author": {
         "name": "Matt Lindell",

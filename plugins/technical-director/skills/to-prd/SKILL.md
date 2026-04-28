@@ -1,6 +1,6 @@
 ---
 name: to-prd
-description: Turn the current conversation context into a PRD and submit it as a GitHub issue. Use when user wants to create a PRD from the current context.
+description: Synthesize the current conversation and codebase understanding into a PRD and submit it as a GitHub issue. No user interview — uses what the agent already knows. Use when user wants to write a PRD from this chat, turn the current discussion into a PRD, capture this conversation as a PRD, or create a PRD from the current context. For breaking a PRD into implementation issues, use to-issues.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
