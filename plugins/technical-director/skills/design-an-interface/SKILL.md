@@ -1,6 +1,6 @@
 ---
 name: design-an-interface
-description: Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
+description: Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
 ---
 
 # Design an Interface
@@ -13,7 +13,6 @@ Based on "Design It Twice" from "A Philosophy of Software Design": your first id
 
 Before designing, understand:
 
-- [ ] What language, frameworks, and patterns are already in use? (Check source files, config files, existing interfaces.) If unclear, ask the user.
 - [ ] What problem does this module solve?
 - [ ] Who are the callers? (other modules, external users, tests)
 - [ ] What are the key operations?
@@ -26,7 +25,7 @@ Ask: "What does this module need to do? Who will use it?"
 
 Spawn 3+ sub-agents simultaneously using Task tool. Each must produce a **radically different** approach.
 
-```text
+```
 Prompt template for each sub-agent:
 
 Design an interface for: [module description]
@@ -75,14 +74,17 @@ Often the best design combines insights from multiple options. Ask:
 - "Which design best fits your primary use case?"
 - "Any elements from other designs worth incorporating?"
 
-## Decision Heuristics
+## Evaluation Criteria
 
-When designs score similarly on the comparison criteria, use these tie-breakers:
+From "A Philosophy of Software Design":
 
-- **Prefer depth over breadth** — a design that hides more complexity behind fewer entry points will age better than one that exposes more surface area.
-- **Prefer the design callers wish existed** — the best interface is the one that makes calling code simplest, even if implementation is harder.
-- **Prefer the design that's hardest to misuse** — if one design makes invalid states unrepresentable, it beats one that requires callers to "use it correctly."
-- **Prefer the design that survives requirement changes** — which interface would still work if the requirements shifted 20%?
+**Interface simplicity**: Fewer methods, simpler params = easier to learn and use correctly.
+
+**General-purpose**: Can handle future use cases without changes. But beware over-generalization.
+
+**Implementation efficiency**: Does interface shape allow efficient implementation? Or force awkward internals?
+
+**Depth**: Small interface hiding significant complexity = deep module (good). Large interface with thin implementation = shallow module (avoid).
 
 ## Anti-Patterns
 

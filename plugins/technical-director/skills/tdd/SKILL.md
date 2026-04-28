@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
+description: Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
 ---
 
 # Test-Driven Development
@@ -13,22 +13,7 @@ description: Use when user wants to build features or fix bugs using TDD, mentio
 
 **Bad tests** are coupled to implementation. They mock internal collaborators, test private methods, or verify through external means (like querying a database directly instead of using the interface). The warning sign: your test breaks when you refactor, but behavior hasn't changed. If you rename an internal function and tests fail, those tests were testing implementation, not behavior.
 
-## Reference Documents
-
-### Good and Bad Tests — @tests.md
-**Read when:** you need concrete examples of good vs bad test patterns, or are unsure whether a test is testing behavior or implementation.
-
-### When to Mock — @mocking.md
-**Read when:** deciding whether to mock a dependency, or designing interfaces for mockability at system boundaries.
-
-### Deep Modules — @deep-modules.md
-**Read when:** designing interfaces and considering how to hide complexity behind simple, testable boundaries.
-
-### Interface Design for Testability — @interface-design.md
-**Read when:** designing new interfaces or refactoring existing ones to improve testability.
-
-### Refactor Candidates — @refactoring.md
-**Read when:** all tests are GREEN and you're looking for refactoring opportunities.
+See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking guidelines.
 
 ## Anti-Pattern: Horizontal Slices
 
@@ -43,7 +28,7 @@ This produces **crap tests**:
 
 **Correct approach**: Vertical slices via tracer bullets. One test → one implementation → repeat. Each test responds to what you learned from the previous cycle. Because you just wrote the code, you know exactly what behavior matters and how to verify it.
 
-```text
+```
 WRONG (horizontal):
   RED:   test1, test2, test3, test4, test5
   GREEN: impl1, impl2, impl3, impl4, impl5
@@ -61,11 +46,10 @@ RIGHT (vertical):
 
 Before writing any code:
 
-- [ ] Check for existing test framework and conventions (look at package.json, composer.json, existing test files, CI config). If you can't determine the testing framework, ask the user.
 - [ ] Confirm with user what interface changes are needed
 - [ ] Confirm with user which behaviors to test (prioritize)
-- [ ] Identify opportunities for deep modules (small interface, deep implementation)
-- [ ] Design interfaces for testability
+- [ ] Identify opportunities for [deep modules](deep-modules.md) (small interface, deep implementation)
+- [ ] Design interfaces for [testability](interface-design.md)
 - [ ] List the behaviors to test (not implementation steps)
 - [ ] Get user approval on the plan
 
@@ -77,7 +61,7 @@ Ask: "What should the public interface look like? Which behaviors are most impor
 
 Write ONE test that confirms ONE thing about the system:
 
-```text
+```
 RED:   Write test for first behavior → test fails
 GREEN: Write minimal code to pass → test passes
 ```
@@ -88,7 +72,7 @@ This is your tracer bullet - proves the path works end-to-end.
 
 For each remaining behavior:
 
-```text
+```
 RED:   Write next test → fails
 GREEN: Minimal code to pass → passes
 ```
@@ -102,7 +86,7 @@ Rules:
 
 ### 4. Refactor
 
-After all tests pass, look for refactor candidates:
+After all tests pass, look for [refactor candidates](refactoring.md):
 
 - [ ] Extract duplication
 - [ ] Deepen modules (move complexity behind simple interfaces)
@@ -114,7 +98,7 @@ After all tests pass, look for refactor candidates:
 
 ## Checklist Per Cycle
 
-```text
+```
 [ ] Test describes behavior, not implementation
 [ ] Test uses public interface only
 [ ] Test would survive internal refactor

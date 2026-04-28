@@ -1,39 +1,21 @@
 ---
-name: write-a-prd
-description: Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
+name: to-prd
+description: Turn the current conversation context into a PRD and submit it as a GitHub issue. Use when user wants to create a PRD from the current context.
 ---
 
-# Write a PRD
-
-**If the conversation already contains a resolved decision tree from a prior grill-me session**, skip directly to step 4 — the problem, codebase context, and design decisions are already established.
+This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
 
 ## Process
 
-### 1. Capture the problem
+1. Explore the repo to understand the current state of the codebase, if you haven't already.
 
-Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
-
-### 2. Explore the codebase
-
-Explore the repo to verify their assertions and understand the current state of the codebase.
-
-### 3. Resolve the decision tree
-
-Invoke the **grill-me** skill to systematically interview the user, resolving each branch of the design's decision tree until all decisions are discrete enough to act on.
-
-### 4. Sketch modules
-
-Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
+2. Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
 
 A deep module (as opposed to a shallow module) is one which encapsulates a lot of functionality in a simple, testable interface which rarely changes.
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-### 5. Write the PRD
-
-Once you have a complete understanding of the problem and solution, use the template below to write the PRD.
-
-Publish the PRD using the project's configured document tracker (check the project's CLAUDE.md for an "Issue Tracker" section). If no tracker is configured, ask the user where PRDs should be created (e.g., GitHub issue, Confluence page, local markdown file) and suggest they add it to CLAUDE.md for future sessions.
+3. Write the PRD using the template below and submit it as a GitHub issue.
 
 <prd-template>
 
