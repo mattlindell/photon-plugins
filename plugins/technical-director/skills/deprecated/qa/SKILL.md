@@ -14,8 +14,8 @@ Read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where
 | Tracker | How to publish |
 | --- | --- |
 | GitHub | `gh issue create --title "..." --body "..."` |
-| Jira | Atlassian MCP — use the project key from `CLAUDE.md` |
-| Beads | `bd create` — see the agent's `bd prime` context for the full command surface |
+| Jira | Atlassian MCP - use the project key from `CLAUDE.md` |
+| Beads | `bd create` - see the agent's `bd prime` context for the full command surface |
 | Local | Append a Markdown file under the path specified in `CLAUDE.md` (e.g. `./issues/<slug>.md`) |
 
 If no tracker is configured, ask the user which to use at the start of the session, then offer to record the choice in `CLAUDE.md`.
@@ -34,13 +34,13 @@ Do NOT over-interview. If the description is clear enough to file, move on.
 
 ### 2. Explore the codebase in the background
 
-While talking to the user, kick off an Agent (subagent_type=Explore) in the background to understand the relevant area. The goal is NOT to find a fix — it's to:
+While talking to the user, kick off an Agent (subagent_type=Explore) in the background to understand the relevant area. The goal is NOT to find a fix - it's to:
 
 - Learn the domain language used in that area (check UBIQUITOUS_LANGUAGE.md)
 - Understand what the feature is supposed to do
 - Identify the user-facing behavior boundary
 
-This context helps you write a better issue — but the issue itself should NOT reference specific files, line numbers, or internal implementation details.
+This context helps you write a better issue - but the issue itself should NOT reference specific files, line numbers, or internal implementation details.
 
 ### 3. Assess scope: single item or breakdown?
 
@@ -59,9 +59,9 @@ Keep as a single item when:
 
 ### 4. File the work item(s)
 
-File work items using the configured tracker's tooling (see Tracker Resolution above). Do NOT ask the user to review first — just file and share URLs/IDs.
+File work items using the configured tracker's tooling (see Tracker Resolution above). Do NOT ask the user to review first - just file and share URLs/IDs.
 
-Work items must be **durable** — they should still make sense after major refactors. Write from the user's perspective.
+Work items must be **durable** - they should still make sense after major refactors. Write from the user's perspective.
 
 #### For a single item
 
@@ -84,7 +84,7 @@ Use this template:
 
 ## Additional context
 
-[Any extra observations from the user or from codebase exploration that help frame the issue — e.g. "this only happens when using the Docker layer, not the filesystem layer" — use domain language but don't cite files]
+[Any extra observations from the user or from codebase exploration that help frame the issue - e.g. "this only happens when using the Docker layer, not the filesystem layer" - use domain language but don't cite files]
 ```
 
 #### For a breakdown (multiple items)
@@ -114,7 +114,7 @@ Use this template for each sub-item:
 
 - `<work-item-id>` (if this item can't be fixed until another is resolved)
 
-Or "None — can start immediately" if no blockers.
+Or "None - can start immediately" if no blockers.
 
 ## Additional context
 
@@ -123,21 +123,21 @@ Or "None — can start immediately" if no blockers.
 
 When creating a breakdown:
 
-- **Prefer many thin items over few thick ones** — each should be independently fixable and verifiable
-- **Mark blocking relationships honestly** — if item B genuinely can't be tested until item A is fixed, say so. If they're independent, mark both as "None — can start immediately"
+- **Prefer many thin items over few thick ones** - each should be independently fixable and verifiable
+- **Mark blocking relationships honestly** - if item B genuinely can't be tested until item A is fixed, say so. If they're independent, mark both as "None - can start immediately"
 - **Create items in dependency order** so you can reference real IDs in "Blocked by"
-- **Maximize parallelism** — the goal is that multiple people (or agents) can grab different items simultaneously
+- **Maximize parallelism** - the goal is that multiple people (or agents) can grab different items simultaneously
 
 #### Rules for all item bodies
 
-- **No file paths or line numbers** — these go stale
+- **No file paths or line numbers** - these go stale
 - **Use the project's domain language** (check UBIQUITOUS_LANGUAGE.md if it exists)
-- **Describe behaviors, not code** — "the sync service fails to apply the patch" not "applyPatch() throws on line 42"
-- **Reproduction steps are mandatory** — if you can't determine them, ask the user
-- **Keep it concise** — a developer should be able to read the item in 30 seconds
+- **Describe behaviors, not code** - "the sync service fails to apply the patch" not "applyPatch() throws on line 42"
+- **Reproduction steps are mandatory** - if you can't determine them, ask the user
+- **Keep it concise** - a developer should be able to read the item in 30 seconds
 
 After filing, print all work item URLs/IDs (with blocking relationships summarized) and ask: "Next issue, or are we done?"
 
 ### 5. Continue the session
 
-Keep going until the user says they're done. Each item is independent — don't batch them.
+Keep going until the user says they're done. Each item is independent - don't batch them.
