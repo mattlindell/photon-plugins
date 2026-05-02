@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -26,7 +26,7 @@
       "name": "technical-director",
       "source": "./plugins/technical-director",
       "description": "Eighteen skills for technical direction across the development lifecycle: diagnosis, planning, PRDs, issue triage, TDD, refactoring, codebase architecture, and repo-tooling guardrails",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
