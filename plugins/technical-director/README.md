@@ -52,42 +52,43 @@ plugins/technical-director/
 
 ## Skills
 
-### Design & Exploration
-
-| Skill                   | Description                                                                                                                                                          |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **grill-me**            | Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree.                              |
-| **domain-model**        | Grilling session that challenges a plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` / ADRs inline as decisions crystallize.    |
-| **design-an-interface** | Generate multiple radically different interface designs for a module using parallel sub-agents, compare them, and synthesise the best approach. ("Design It Twice".) |
-| **zoom-out**            | Ask the agent to step up a layer of abstraction and produce a map of relevant modules and callers when working in unfamiliar code.                                   |
-| **ubiquitous-language** | Extract a DDD-style glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`.                        |
-| **caveman**             | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens).                                   |
-
-### Planning & Issue Management
-
-| Skill                     | Description                                                                                                                                              |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **to-prd**                | Synthesise the current conversation and codebase context into a PRD and publish it to the configured tracker. No interview — uses what the agent already knows.   |
-| **to-issues**             | Break a plan, spec, or PRD into independently-grabbable work items using tracer-bullet vertical slices, ordered by dependency.                                    |
-| **triage-issue**          | Investigate a reported bug, find its root cause through codebase exploration, and file a work item with a TDD fix plan. Mostly hands-off.                         |
-| **github-triage**         | Triage *existing* GitHub issues through a label-based state machine — sort incoming bugs/feature requests and prepare them for an AFK agent. (GitHub-specific.)    |
-| **qa**                    | Interactive QA session: the user reports problems conversationally, the agent clarifies, explores, and files work items using the project's domain language.      |
-| **request-refactor-plan** | Plan a refactor through a detailed user interview, then file it as a work item with a tiny-commits implementation plan.                                           |
-
-### Implementation
-
-| Skill                          | Description                                                                                                                                          |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **tdd**                        | Red-green-refactor workflow with reference docs on good/bad tests, mocking, deep modules, interface design for testability, and refactoring.         |
-| **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
-| **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
-
-### Architecture & Meta
+### Engineering
 
 | Skill                             | Description                                                                                                                                      |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.   |
+| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.    |
+| **triage**                        | Triage issues through a state machine of triage roles.                                                                                           |
 | **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors. |
-| **write-a-skill**                 | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                                    |
+| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.              |
+| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                              |
+| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.                                                   |
+| **to-prd**                        | Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview - just synthesizes what you've already discussed. |
+| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.                              |
+
+### Productivity
+
+| Skill             | Description                                                                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **caveman**       | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens). |
+| **grill-me**      | Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.                           |
+| **write-a-skill** | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                      |
+
+### Misc
+
+| Skill                          | Description                                                                                                                                          |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
+| **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
+
+### Deprecated
+
+| Skill                     | Description                                                                                                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **design-an-interface**   | Generate multiple radically different interface designs for a module using parallel sub-agents, compare them, and synthesize the best approach. ("Design It Twice".) |
+| **qa**                    | Interactive QA session: the user reports problems conversationally, the agent clarifies, explores, and files issues using the project's domain language.             |
+| **request-refactor-plan** | Plan a refactor through a detailed user interview, then file it as a GitHub issue with a tiny-commits implementation plan.                                           |
+| **ubiquitous-language**   | Extract a DDD-style glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`.                        |
 
 ---
 
@@ -95,32 +96,32 @@ plugins/technical-director/
 
 **Design → PRD → Issues → Build:**
 
-1. **grill-me** or **domain-model** — resolve the design's decision tree (use `domain-model` if the project has `CONTEXT.md` / ADRs)
-2. **design-an-interface** — explore multiple module shapes if APIs are in play
-3. **to-prd** — synthesize into a PRD work item
-4. **to-issues** — break the PRD into vertical-slice work items
-5. **tdd** — implement each slice test-first
+1. **grill-me** or **domain-model** - resolve the design's decision tree (use `domain-model` if the project has `CONTEXT.md` / ADRs)
+2. **design-an-interface** - explore multiple module shapes if APIs are in play
+3. **to-prd** - synthesize into a PRD work item
+4. **to-issues** - break the PRD into vertical-slice work items
+5. **tdd** - implement each slice test-first
 
 **Bug → Fix:**
 
-1. **triage-issue** — investigate, find root cause, file a work item with a TDD fix plan
-2. **tdd** — implement the fix following the plan
+1. **triage-issue** - investigate, find root cause, file a work item with a TDD fix plan
+2. **tdd** - implement the fix following the plan
 
 **Inbound issue triage:**
 
-1. **qa** — user reports problems, agent files work items during the session
-2. **github-triage** — sort the existing GitHub backlog through the label state machine
+1. **qa** - user reports problems, agent files work items during the session
+2. **github-triage** - sort the existing GitHub backlog through the label state machine
 
 **Architecture improvement:**
 
-1. **improve-codebase-architecture** — find deepening opportunities, propose interface designs
-2. **request-refactor-plan** — plan the refactor with tiny commits
+1. **improve-codebase-architecture** - find deepening opportunities, propose interface designs
+2. **request-refactor-plan** - plan the refactor with tiny commits
 
 ---
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, work items, RFCs) — `to-prd`, `to-issues`, `triage-issue`, `qa`, `request-refactor-plan` — read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`.
+Skills that publish artifacts (PRDs, work items, RFCs) - `to-prd`, `to-issues`, `triage-issue`, `qa`, `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`.
 
 `github-triage` is GitHub-specific and ignores this configuration.
 
@@ -129,27 +130,27 @@ Example `CLAUDE.md` entries:
 ```markdown
 ## Issue Tracker
 
-GitHub — use `gh` for all work items. Repo inferred from `git remote`.
+GitHub - use `gh` for all work items. Repo inferred from `git remote`.
 ```
 
 ```markdown
 ## Issue Tracker
 
-- **Documents (PRDs)**: Confluence via Atlassian MCP — space: PROJ
-- **Work items**: Jira via Atlassian MCP — project: PROJ
+- **Documents (PRDs)**: Confluence via Atlassian MCP - space: PROJ
+- **Work items**: Jira via Atlassian MCP - project: PROJ
 - Link work items back to their parent Confluence document
 ```
 
 ```markdown
 ## Issue Tracker
 
-Beads — use `bd create` / `bd ready` / `bd close`. The agent's `bd prime` context covers the full command surface.
+Beads - use `bd create` / `bd ready` / `bd close`. The agent's `bd prime` context covers the full command surface.
 ```
 
 ```markdown
 ## Issue Tracker
 
-Local — append work items as Markdown files under `./issues/<slug>.md`.
+Local - append work items as Markdown files under `./issues/<slug>.md`.
 ```
 
 ---
