@@ -25,7 +25,7 @@ description: Create new agent skills with proper structure, progressive disclosu
 
 ## Skill Structure
 
-```
+```text
 skill-name/
 ├── SKILL.md           # Main instructions (required)
 ├── REFERENCE.md       # Detailed docs (if needed)
