@@ -8,18 +8,21 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
-  technical-director/            — planning, design, and process skills
+  technical-director/            — diagnosis, planning, issue triage, TDD, refactoring, and process skills
 ```
 
 Each plugin follows this structure:
 
 ```text
 plugin-name/
-  .claude-plugin/plugin.json     — plugin metadata (name, version, description, author)
-  agents/                        — strategic decision-makers with YAML frontmatter (name, description, model)
-  skills/skill-name/SKILL.md     — implementation patterns with YAML frontmatter (name, description)
-  commands/command-name.md       — interactive scaffolding workflows (no frontmatter)
+  .claude-plugin/plugin.json                 — plugin metadata (name, version, description, author)
+  agents/                                    — strategic decision-makers with YAML frontmatter (name, description, model)
+  skills/skill-name/SKILL.md                 — implementation patterns with YAML frontmatter (name, description)
+  skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see technical-director)
+  commands/command-name.md                   — interactive scaffolding workflows (no frontmatter)
 ```
+
+Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are optional. When used, each category folder should contain a `README.md` listing its skills. Claude Code discovers skills regardless of nesting depth.
 
 ## Conventions
 

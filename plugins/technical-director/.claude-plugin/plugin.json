@@ -1,7 +1,7 @@
 {
   "name": "technical-director",
   "version": "1.0.0",
-  "description": "Technical direction skills for design exploration, planning, issue triage, TDD, refactoring, and codebase architecture",
+  "description": "Eighteen skills for technical direction across the development lifecycle: diagnosis, planning, PRDs, issue triage, TDD, refactoring, codebase architecture, and repo-tooling guardrails",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"

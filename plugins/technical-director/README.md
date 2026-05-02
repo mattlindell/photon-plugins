@@ -1,6 +1,6 @@
 # technical-director
 
-A Claude Code plugin for technical direction. It provides seventeen skills covering design exploration, planning, issue triage, TDD, refactoring, codebase architecture, and the meta-tools you need to keep a project's process tight.
+A Claude Code plugin for technical direction. Eighteen skills covering diagnosis, planning, issue triage, TDD, refactoring, codebase architecture, and the meta-tools that keep a project's process tight — organized into engineering, productivity, misc, and deprecated buckets.
 
 **Version:** 1.0.0
 **Author:** Matt Lindell
@@ -15,37 +15,59 @@ plugins/technical-director/
   .claude-plugin/
     plugin.json
   skills/
-    caveman/SKILL.md
-    design-an-interface/SKILL.md
-    domain-model/SKILL.md
-    domain-model/ADR-FORMAT.md
-    domain-model/CONTEXT-FORMAT.md
-    git-guardrails-claude-code/SKILL.md
-    git-guardrails-claude-code/scripts/block-dangerous-git.sh
-    github-triage/SKILL.md
-    github-triage/AGENT-BRIEF.md
-    github-triage/OUT-OF-SCOPE.md
-    grill-me/SKILL.md
-    improve-codebase-architecture/SKILL.md
-    improve-codebase-architecture/DEEPENING.md
-    improve-codebase-architecture/INTERFACE-DESIGN.md
-    improve-codebase-architecture/LANGUAGE.md
-    qa/SKILL.md
-    request-refactor-plan/SKILL.md
-    setup-pre-commit/SKILL.md
-    setup-pre-commit/defaults/prettierrc.json
-    tdd/SKILL.md
-    tdd/deep-modules.md
-    tdd/interface-design.md
-    tdd/mocking.md
-    tdd/refactoring.md
-    tdd/tests.md
-    to-issues/SKILL.md
-    to-prd/SKILL.md
-    triage-issue/SKILL.md
-    ubiquitous-language/SKILL.md
-    write-a-skill/SKILL.md
-    zoom-out/SKILL.md
+    deprecated/
+      README.md
+      design-an-interface/SKILL.md
+      qa/SKILL.md
+      request-refactor-plan/SKILL.md
+      ubiquitous-language/SKILL.md
+    engineering/
+      README.md
+      diagnose/
+        SKILL.md
+        scripts/hitl-loop.template.sh
+      grill-with-docs/
+        SKILL.md
+        ADR-FORMAT.md
+        CONTEXT-FORMAT.md
+      improve-codebase-architecture/
+        SKILL.md
+        DEEPENING.md
+        INTERFACE-DESIGN.md
+        LANGUAGE.md
+      setup-matt-pocock-skills/
+        SKILL.md
+        domain.md
+        issue-tracker-github.md
+        issue-tracker-gitlab.md
+        issue-tracker-local.md
+        triage-labels.md
+      tdd/
+        SKILL.md
+        deep-modules.md
+        interface-design.md
+        mocking.md
+        refactoring.md
+        tests.md
+      to-issues/SKILL.md
+      to-prd/SKILL.md
+      triage-issue/
+        SKILL.md
+        AGENT-BRIEF.md
+        OUT-OF-SCOPE.md
+      zoom-out/SKILL.md
+    misc/
+      git-guardrails-claude-code/
+        SKILL.md
+        scripts/block-dangerous-git.sh
+      setup-pre-commit/
+        SKILL.md
+        defaults/prettierrc.json
+    productivity/
+      README.md
+      caveman/SKILL.md
+      grill-me/SKILL.md
+      write-a-skill/SKILL.md
 ```
 
 ---
@@ -54,19 +76,23 @@ plugins/technical-director/
 
 ### Engineering
 
-| Skill                             | Description                                                                                                                                      |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.   |
-| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.    |
-| **triage**                        | Triage issues through a state machine of triage roles.                                                                                           |
-| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors. |
-| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.              |
-| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                              |
-| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.                                                   |
-| **to-prd**                        | Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview - just synthesizes what you've already discussed. |
-| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.                              |
+Skills that comprise the Matt Pocock workflow pattern: design → PRD → issues → TDD → refactor, anchored on `CONTEXT.md` and `docs/adr/`.
+
+| Skill                             | Description                                                                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.                           |
+| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.                            |
+| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors.                         |
+| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.                                      |
+| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                                      |
+| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable work items using vertical slices, with dependencies tracked.                                                   |
+| **to-prd**                        | Turn the current conversation context into a PRD and publish it to the project's issue tracker. No interview - just synthesizes what you've already discussed.           |
+| **triage-issue**                  | Move issues through a state-machine of triage roles (needs-triage → ready-for-agent / ready-for-human / wontfix), including root-cause investigation and a fix plan.     |
+| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code, returning a module map in the project's glossary.    |
 
 ### Productivity
+
+General workflow tools, not code-specific.
 
 | Skill             | Description                                                                                                                        |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -76,12 +102,16 @@ plugins/technical-director/
 
 ### Misc
 
+Repo and tooling guardrails that don't fit the engineering workflow.
+
 | Skill                          | Description                                                                                                                                          |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
 | **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
 
 ### Deprecated
+
+Skills kept for reference but no longer part of the standard workflow.
 
 | Skill                     | Description                                                                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -96,34 +126,33 @@ plugins/technical-director/
 
 **Design → PRD → Issues → Build:**
 
-1. **grill-me** or **domain-model** - resolve the design's decision tree (use `domain-model` if the project has `CONTEXT.md` / ADRs)
-2. **design-an-interface** - explore multiple module shapes if APIs are in play
-3. **to-prd** - synthesize into a PRD work item
-4. **to-issues** - break the PRD into vertical-slice work items
-5. **tdd** - implement each slice test-first
+1. **grill-with-docs** - resolve the design's decision tree against `CONTEXT.md` and ADRs
+2. **to-prd** - synthesize the resolved design into a PRD work item
+3. **to-issues** - break the PRD into vertical-slice work items
+4. **tdd** - implement each slice test-first
 
 **Bug → Fix:**
 
-1. **triage-issue** - investigate, find root cause, file a work item with a TDD fix plan
-2. **tdd** - implement the fix following the plan
+1. **diagnose** - reproduce, minimize, hypothesize, find root cause
+2. **triage-issue** - file the bug with a state-machine label and TDD fix plan
+3. **tdd** - implement the fix following the plan
 
-**Inbound issue triage:**
+**Onboarding to a new repo:**
 
-1. **qa** - user reports problems, agent files work items during the session
-2. **github-triage** - sort the existing GitHub backlog through the label state machine
+1. **setup-matt-pocock-skills** - scaffold `CONTEXT.md`, `docs/adr/`, the issue-tracker config, and triage labels
+2. **zoom-out** - get a module map in the project's glossary before touching code
 
 **Architecture improvement:**
 
 1. **improve-codebase-architecture** - find deepening opportunities, propose interface designs
-2. **request-refactor-plan** - plan the refactor with tiny commits
+2. **to-issues** - break the proposal into incremental, mergeable refactors
+3. **tdd** - land each refactor behind tests
 
 ---
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, work items, RFCs) - `to-prd`, `to-issues`, `triage-issue`, `qa`, `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`.
-
-`github-triage` is GitHub-specific and ignores this configuration.
+Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, `triage-issue`, plus the deprecated `qa` and `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run **setup-matt-pocock-skills** to generate the config in one shot.
 
 Example `CLAUDE.md` entries:
 
