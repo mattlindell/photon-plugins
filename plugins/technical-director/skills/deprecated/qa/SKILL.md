@@ -93,14 +93,14 @@ Create items in dependency order (blockers first) so you can reference real IDs.
 
 Use this template for each sub-item:
 
-```
+```text
 ## Parent
 
 `<parent-id>` (if you created a tracking item) or "Reported during QA session"
 
 ## What's wrong
 
-[Describe this specific behavior problem — just this slice, not the whole report]
+[Describe this specific behavior problem - just this slice, not the whole report]
 
 ## What I expected
 

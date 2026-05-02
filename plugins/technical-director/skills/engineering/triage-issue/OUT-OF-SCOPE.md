@@ -18,7 +18,7 @@ One file per **concept**, not per issue. Multiple issues requesting the same thi
 
 ## File format
 
-The file should be written in a relaxed, readable style — more like a short design document than a database entry. Use paragraphs, code samples, and examples to make the reasoning clear and useful to someone encountering it for the first time.
+The file should be written in a relaxed, readable style - more like a short design document than a database entry. Use paragraphs, code samples, and examples to make the reasoning clear and useful to someone encountering it for the first time.
 
 ```markdown
 # Dark Mode
