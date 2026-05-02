@@ -54,40 +54,40 @@ plugins/technical-director/
 
 ### Design & Exploration
 
-| Skill                   | Description                                                                                                                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **grill-me**            | Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree.                                      |
-| **domain-model**        | Grilling session that challenges a plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` / ADRs inline as decisions crystallise.            |
-| **design-an-interface** | Generate multiple radically different interface designs for a module using parallel sub-agents, compare them, and synthesise the best approach. ("Design It Twice".)         |
-| **zoom-out**            | Ask the agent to step up a layer of abstraction and produce a map of relevant modules and callers when working in unfamiliar code.                                           |
-| **ubiquitous-language** | Extract a DDD-style glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`.                                |
-| **caveman**             | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens).                                           |
+| Skill                   | Description                                                                                                                                                          |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **grill-me**            | Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree.                              |
+| **domain-model**        | Grilling session that challenges a plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` / ADRs inline as decisions crystallize.    |
+| **design-an-interface** | Generate multiple radically different interface designs for a module using parallel sub-agents, compare them, and synthesise the best approach. ("Design It Twice".) |
+| **zoom-out**            | Ask the agent to step up a layer of abstraction and produce a map of relevant modules and callers when working in unfamiliar code.                                   |
+| **ubiquitous-language** | Extract a DDD-style glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`.                        |
+| **caveman**             | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens).                                   |
 
 ### Planning & Issue Management
 
-| Skill                     | Description                                                                                                                                                              |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **to-prd**                | Synthesise the current conversation and codebase context into a PRD and submit it as a GitHub issue. No interview — uses what the agent already knows.                  |
-| **to-issues**             | Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices, ordered by dependency.                                        |
-| **triage-issue**          | Investigate a reported bug, find its root cause through codebase exploration, and create a GitHub issue with a TDD fix plan. Mostly hands-off.                           |
-| **github-triage**         | Triage *existing* GitHub issues through a label-based state machine — sort incoming bugs/feature requests and prepare them for an AFK agent.                             |
-| **qa**                    | Interactive QA session: the user reports problems conversationally, the agent clarifies, explores, and files issues using the project's domain language.                 |
-| **request-refactor-plan** | Plan a refactor through a detailed user interview, then file it as a GitHub issue with a tiny-commits implementation plan.                                               |
+| Skill                     | Description                                                                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **to-prd**                | Synthesise the current conversation and codebase context into a PRD and publish it to the configured tracker. No interview — uses what the agent already knows.   |
+| **to-issues**             | Break a plan, spec, or PRD into independently-grabbable work items using tracer-bullet vertical slices, ordered by dependency.                                    |
+| **triage-issue**          | Investigate a reported bug, find its root cause through codebase exploration, and file a work item with a TDD fix plan. Mostly hands-off.                         |
+| **github-triage**         | Triage *existing* GitHub issues through a label-based state machine — sort incoming bugs/feature requests and prepare them for an AFK agent. (GitHub-specific.)    |
+| **qa**                    | Interactive QA session: the user reports problems conversationally, the agent clarifies, explores, and files work items using the project's domain language.      |
+| **request-refactor-plan** | Plan a refactor through a detailed user interview, then file it as a work item with a tiny-commits implementation plan.                                           |
 
 ### Implementation
 
-| Skill                          | Description                                                                                                                                                                 |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **tdd**                        | Red-green-refactor workflow with reference docs on good/bad tests, mocking, deep modules, interface design for testability, and refactoring.                                |
-| **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                                                      |
-| **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute.                        |
+| Skill                          | Description                                                                                                                                          |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **tdd**                        | Red-green-refactor workflow with reference docs on good/bad tests, mocking, deep modules, interface design for testability, and refactoring.         |
+| **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
+| **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
 
 ### Architecture & Meta
 
-| Skill                             | Description                                                                                                                                                              |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors.                         |
-| **write-a-skill**                 | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                                                            |
+| Skill                             | Description                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors. |
+| **write-a-skill**                 | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                                    |
 
 ---
 
@@ -120,16 +120,36 @@ plugins/technical-director/
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, issues, RFCs) target GitHub by default and use `gh` for all operations. The repo is inferred from `git remote`.
+Skills that publish artifacts (PRDs, work items, RFCs) — `to-prd`, `to-issues`, `triage-issue`, `qa`, `request-refactor-plan` — read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`.
 
-If a project uses a different tracker, add an "Issue Tracker" section to the project's `CLAUDE.md` and the skills will adapt:
+`github-triage` is GitHub-specific and ignores this configuration.
+
+Example `CLAUDE.md` entries:
 
 ```markdown
 ## Issue Tracker
 
-- **Documents (PRDs)**: Confluence via Atlassian Cloud MCP — space: PROJ
-- **Work items**: Jira via Atlassian Cloud MCP — project: PROJ
+GitHub — use `gh` for all work items. Repo inferred from `git remote`.
+```
+
+```markdown
+## Issue Tracker
+
+- **Documents (PRDs)**: Confluence via Atlassian MCP — space: PROJ
+- **Work items**: Jira via Atlassian MCP — project: PROJ
 - Link work items back to their parent Confluence document
+```
+
+```markdown
+## Issue Tracker
+
+Beads — use `bd create` / `bd ready` / `bd close`. The agent's `bd prime` context covers the full command surface.
+```
+
+```markdown
+## Issue Tracker
+
+Local — append work items as Markdown files under `./issues/<slug>.md`.
 ```
 
 ---
