@@ -97,19 +97,19 @@ plugins/technical-director/
 
 1. **grill-me** or **domain-model** — resolve the design's decision tree (use `domain-model` if the project has `CONTEXT.md` / ADRs)
 2. **design-an-interface** — explore multiple module shapes if APIs are in play
-3. **to-prd** — synthesise into a PRD GitHub issue
-4. **to-issues** — break the PRD into vertical-slice issues
+3. **to-prd** — synthesize into a PRD work item
+4. **to-issues** — break the PRD into vertical-slice work items
 5. **tdd** — implement each slice test-first
 
 **Bug → Fix:**
 
-1. **triage-issue** — investigate, find root cause, create issue with TDD fix plan
+1. **triage-issue** — investigate, find root cause, file a work item with a TDD fix plan
 2. **tdd** — implement the fix following the plan
 
 **Inbound issue triage:**
 
-1. **qa** — user reports problems, agent files issues during the session
-2. **github-triage** — sort the existing backlog through the label state machine
+1. **qa** — user reports problems, agent files work items during the session
+2. **github-triage** — sort the existing GitHub backlog through the label state machine
 
 **Architecture improvement:**
 
