@@ -1,29 +1,27 @@
 {
   "name": "technical-director",
-  "version": "1.1.2",
-  "description": "Eighteen skills for technical direction across the development lifecycle: diagnosis, planning, PRDs, issue triage, TDD, refactoring, codebase architecture, and repo-tooling guardrails",
+  "version": "1.1.3",
+  "description": "Sixteen skills for technical direction across the development lifecycle: diagnosis, planning, PRDs, issue triage, TDD, refactoring, codebase architecture, and repo-tooling guardrails",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"
   },
   "skills": [
-    "./skills/deprecated/design-an-interface",
-    "./skills/deprecated/qa",
-    "./skills/deprecated/request-refactor-plan",
-    "./skills/deprecated/ubiquitous-language",
     "./skills/engineering/diagnose",
     "./skills/engineering/grill-with-docs",
-    "./skills/engineering/triage",
     "./skills/engineering/improve-codebase-architecture",
+    "./skills/engineering/prototype",
     "./skills/engineering/setup-matt-pocock-skills",
     "./skills/engineering/tdd",
     "./skills/engineering/to-issues",
     "./skills/engineering/to-prd",
+    "./skills/engineering/triage",
     "./skills/engineering/zoom-out",
     "./skills/misc/git-guardrails-claude-code",
     "./skills/misc/setup-pre-commit",
     "./skills/productivity/caveman",
     "./skills/productivity/grill-me",
+    "./skills/productivity/handoff",
     "./skills/productivity/write-a-skill"
   ]
 }

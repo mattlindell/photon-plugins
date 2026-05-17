@@ -1,6 +1,6 @@
 # technical-director
 
-A Claude Code plugin for technical direction. Eighteen skills covering diagnosis, planning, issue triage, TDD, refactoring, codebase architecture, and the meta-tools that keep a project's process tight — organized into engineering, productivity, misc, and deprecated buckets.
+A Claude Code plugin for technical direction. Eighteen skills covering diagnosis, planning, issue triage, TDD, refactoring, codebase architecture, and the meta-tools that keep a project's process tight - organized into engineering, productivity, misc, and deprecated buckets.
 
 **Version:** 1.0.0
 **Author:** Matt Lindell
@@ -15,12 +15,6 @@ plugins/technical-director/
   .claude-plugin/
     plugin.json
   skills/
-    deprecated/
-      README.md
-      design-an-interface/SKILL.md
-      qa/SKILL.md
-      request-refactor-plan/SKILL.md
-      ubiquitous-language/SKILL.md
     engineering/
       README.md
       diagnose/
@@ -35,6 +29,10 @@ plugins/technical-director/
         DEEPENING.md
         INTERFACE-DESIGN.md
         LANGUAGE.md
+      prototype/
+        SKILL.md
+        LOGIC.md
+        UI.md
       setup-matt-pocock-skills/
         SKILL.md
         domain.md
@@ -67,6 +65,7 @@ plugins/technical-director/
       README.md
       caveman/SKILL.md
       grill-me/SKILL.md
+      handoff/SKILL.md
       write-a-skill/SKILL.md
 ```
 
@@ -78,17 +77,18 @@ plugins/technical-director/
 
 Skills that comprise the Matt Pocock workflow pattern: design → PRD → issues → TDD → refactor, anchored on `CONTEXT.md` and `docs/adr/`.
 
-| Skill                             | Description                                                                                                                                                              |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.                           |
-| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.                            |
-| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors.                         |
-| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.                                      |
-| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                                      |
-| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable work items using vertical slices, with dependencies tracked.                                                   |
-| **to-prd**                        | Turn the current conversation context into a PRD and publish it to the project's issue tracker. No interview - just synthesizes what you've already discussed.           |
-| **triage-issue**                  | Move issues through a state-machine of triage roles (needs-triage → ready-for-agent / ready-for-human / wontfix), including root-cause investigation and a fix plan.     |
-| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code, returning a module map in the project's glossary.    |
+| Skill                             | Description                                                                                                                                                                                    |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.                                                 |
+| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.                                                  |
+| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors.                                               |
+| **prototype**                     | Build a throwaway prototype to flesh out a design — either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route. |
+| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.                                                            |
+| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                                                            |
+| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable work items using vertical slices, with dependencies tracked.                                                                         |
+| **to-prd**                        | Turn the current conversation context into a PRD and publish it to the project's issue tracker. No interview - just synthesizes what you've already discussed.                                 |
+| **triage-issue**                  | Move issues through a state-machine of triage roles (needs-triage → ready-for-agent / ready-for-human / wontfix), including root-cause investigation and a fix plan.                           |
+| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code, returning a module map in the project's glossary.                          |
 
 ### Productivity
 
@@ -98,6 +98,7 @@ General workflow tools, not code-specific.
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | **caveman**       | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens). |
 | **grill-me**      | Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.                           |
+| **handoff**       | Compact the current conversation into a handoff document so another agent can continue the work.                                   |
 | **write-a-skill** | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                      |
 
 ### Misc
@@ -108,17 +109,6 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
 | **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
-
-### Deprecated
-
-Skills kept for reference but no longer part of the standard workflow.
-
-| Skill                     | Description                                                                                                                                                          |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **design-an-interface**   | Generate multiple radically different interface designs for a module using parallel sub-agents, compare them, and synthesize the best approach. ("Design It Twice".) |
-| **qa**                    | Interactive QA session: the user reports problems conversationally, the agent clarifies, explores, and files issues using the project's domain language.             |
-| **request-refactor-plan** | Plan a refactor through a detailed user interview, then file it as a GitHub issue with a tiny-commits implementation plan.                                           |
-| **ubiquitous-language**   | Extract a DDD-style glossary from the current conversation, flag ambiguities, and propose canonical terms. Saves to `UBIQUITOUS_LANGUAGE.md`.                        |
 
 ---
 

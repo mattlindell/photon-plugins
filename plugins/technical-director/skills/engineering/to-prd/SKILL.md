@@ -17,7 +17,7 @@ A deep module (as opposed to a shallow module) is one which encapsulates a lot o
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-1. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `needs-triage` triage label so it enters the normal triage flow.
+1. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
 
 <prd-template>
 
@@ -36,7 +36,9 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 1. As an <actor>, I want a <feature>, so that <benefit>
 
 <user-story-example>
+
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
+
 </user-story-example>
 
 This list of user stories should be extremely extensive and cover all aspects of the feature.
@@ -54,6 +56,8 @@ A list of implementation decisions that were made. This can include:
 - Specific interactions
 
 Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+
+Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts - not a working demo, just the important bits.
 
 ## Testing Decisions
 
