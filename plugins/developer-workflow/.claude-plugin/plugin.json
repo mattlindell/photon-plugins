@@ -1,0 +1,10 @@
+{
+  "name": "developer-workflow",
+  "version": "1.0.0",
+  "description": "Developer workflow skills for daily development tasks including commit helpers, code review, and branch management",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "homepage": "https://github.com/mattlindell/photon-plugins"
+}

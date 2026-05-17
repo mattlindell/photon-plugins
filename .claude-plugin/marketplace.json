@@ -33,6 +33,18 @@
       },
       "homepage": "https://github.com/mattlindell/photon-plugins",
       "category": "workflow"
+    },
+    {
+      "name": "developer-workflow",
+      "source": "./plugins/developer-workflow",
+      "description": "Developer workflow skills for daily development tasks including CLAUDE.md authoring and conventional/gitmoji commit helpers",
+      "version": "1.0.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
     }
   ]
 }
