@@ -21,6 +21,15 @@ plugins/developer-workflow/
     commit/
       SKILL.md
       gitmoji-reference.md
+    worktree/
+      SKILL.md
+      scripts/
+        create-worktree.sh
+        create-worktree.ps1
+        sync-untracked.sh
+        sync-untracked.ps1
+        remove-worktree.sh
+        remove-worktree.ps1
 ```
 
 ---
@@ -33,6 +42,7 @@ Skills provide concrete implementation patterns, code examples, and best practic
 | ------------- | ----------------------------------------------------------------- |
 | **claude-md** | Create, audit, or triage CLAUDE.md files following best practices |
 | **commit**    | Commit workflow with conventional commits and gitmoji             |
+| **worktree**  | Create, enter, and remove git worktrees with sibling placement    |
 
 ---
 

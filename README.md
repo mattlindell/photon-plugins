@@ -8,7 +8,7 @@ A Claude Code plugin marketplace for PHP development workflows.
 | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [php-development](plugins/php-development/)       | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 3 agents, 12 skills, 4 scaffold commands.                                                                                                       |
 | [technical-director](plugins/technical-director/) | Technical direction across the development lifecycle: diagnosis, planning, PRDs, issue triage, TDD, refactoring, codebase architecture, and repo-tooling guardrails. 16 skills across engineering, productivity, and misc buckets. |
-| [developer-workflow](plugins/developer-workflow/) | Developer workflow skills for daily tasks: CLAUDE.md authoring/auditing and a conventional-commit + gitmoji commit helper. 2 skills.                                                                                               |
+| [developer-workflow](plugins/developer-workflow/) | Developer workflow skills for daily tasks: CLAUDE.md authoring/auditing, a conventional-commit + gitmoji commit helper, and a git worktree manager with sibling-placement rules. 3 skills.                                          |
 
 ## Installation
 
