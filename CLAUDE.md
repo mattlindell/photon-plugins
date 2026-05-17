@@ -9,6 +9,7 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
   technical-director/            — diagnosis, planning, issue triage, TDD, refactoring, and process skills
+  developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
 ```
 
 Each plugin follows this structure:
@@ -41,6 +42,8 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
 ### Plugin Registry
 
 **IMPORTANT: When adding or removing a plugin, you MUST update both the plugin's own `plugin.json` AND `.claude-plugin/marketplace.json` at the root.** Also update the root `README.md` plugin table.
+
+**IMPORTANT: When adding or removing a skill within an existing plugin, bump the plugin's minor version in both `plugin.json` and `.claude-plugin/marketplace.json`, and update the marketplace `description` if the new/removed skill changes the plugin's surface area.** Update the plugin's own `README.md` skills table and structure tree.
 
 ## Testing Locally
 
