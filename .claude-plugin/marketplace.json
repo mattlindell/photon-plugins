@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.1.1"
+    "version": "1.2.0"
   },
   "plugins": [
     {
@@ -39,6 +39,18 @@
       "source": "./plugins/developer-workflow",
       "description": "Developer workflow skills for daily development tasks including CLAUDE.md authoring, conventional/gitmoji commit helpers, and git worktree management with sibling-placement rules",
       "version": "1.1.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
+    },
+    {
+      "name": "nonprofit-toolkit",
+      "source": "./plugins/nonprofit-toolkit",
+      "description": "Six skills for nonprofit operations: a foundational organization profile builder plus grant writing, budget creation, donor thank-you communications, social media content, and volunteer scheduling",
+      "version": "1.0.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"

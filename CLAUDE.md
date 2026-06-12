@@ -10,6 +10,7 @@ plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
   technical-director/            — diagnosis, planning, issue triage, TDD, refactoring, and process skills
   developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
+  nonprofit-toolkit/             — nonprofit operations skills (org profile, grants, budgets, donor comms, social media, volunteers)
 ```
 
 Each plugin follows this structure:

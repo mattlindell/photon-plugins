@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "givebutter": {
+      "type": "http",
+      "url": "${user_config.givebutter_mcp_url}",
+      "headers": {
+        "Authorization": "Bearer ${user_config.givebutter_mcp_token}"
+      }
+    }
+  }
+}

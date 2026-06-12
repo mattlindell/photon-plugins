@@ -1,0 +1,32 @@
+{
+  "name": "nonprofit-toolkit",
+  "version": "1.0.0",
+  "description": "Nonprofit operations skills for grant writing, budget creation, donor communications, social media content, volunteer coordination, and a foundational organization profile builder that personalizes every other skill",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "homepage": "https://github.com/mattlindell/plugin-marketplace",
+  "keywords": [
+    "nonprofit",
+    "grant-writing",
+    "fundraising",
+    "donor-stewardship",
+    "volunteer-management"
+  ],
+  "userConfig": {
+    "givebutter_mcp_url": {
+      "type": "string",
+      "title": "Givebutter MCP server URL",
+      "description": "The /mcp endpoint of your deployed givebutter-mcp Cloudflare Worker, e.g. https://givebutter-mcp.<subdomain>.workers.dev/mcp. Leave blank to skip the Givebutter integration.",
+      "required": false
+    },
+    "givebutter_mcp_token": {
+      "type": "string",
+      "title": "Givebutter MCP access token",
+      "description": "The shared bearer token (MCP_AUTH_TOKEN) configured on the Worker. Leave blank if the Worker has no MCP_AUTH_TOKEN set.",
+      "sensitive": true,
+      "required": false
+    }
+  }
+}
