@@ -28,7 +28,7 @@ Content that does NOT belong in CLAUDE.md:
 | Content                            | Why                                                  |
 | ---------------------------------- | ---------------------------------------------------- |
 | Standard language conventions      | Claude already knows TypeScript/Python/etc. patterns |
-| Detailed API documentation         | Link to docs instead — use @imports                  |
+| Detailed API documentation         | Reference by plain path with a "Read when" trigger   |
 | Code style enforced by linters     | Don't send an LLM to do a linter's job               |
 | File-by-file codebase descriptions | Claude can read files itself                         |
 | Obvious instructions               | "Write clean code" wastes tokens                     |
@@ -53,7 +53,7 @@ One-line description of what this project does and its tech stack.
 [Non-obvious, non-default patterns only]
 
 ## Reference Documents
-### [Doc Name] — `@docs/filename.md`
+### [Doc Name] — `docs/filename.md`
 **Read when:** [trigger condition]
 [2-3 line summary]
 ```
@@ -68,12 +68,15 @@ Every line consumes context window budget that could be spent on actual code.
 
 ## Progressive Disclosure Mechanisms
 
+Progressive disclosure means content loads *only when needed* — not at session start. Use these to keep CLAUDE.md lean:
+
 | Mechanism             | Best For                                          | How                                                      |
 | --------------------- | ------------------------------------------------- | -------------------------------------------------------- |
-| `@imports`            | READMEs, detailed SOPs, API architecture docs     | `@path/to/file.md` syntax pulls external files on demand |
+| `docs/` with triggers | READMEs, detailed SOPs, API architecture docs, long-form style guides, migration playbooks | Reference the file by plain path with a "Read when" trigger; Claude reads it on demand |
 | `.claude/rules/`      | Team-wide coding rules, review checklists         | Markdown files auto-load alongside CLAUDE.md             |
 | `.claude/skills/`     | Domain knowledge, specialized workflows           | Load on-demand based on relevance                        |
-| `docs/` with triggers | Long-form docs, style guides, migration playbooks | "Read when" triggers in CLAUDE.md reference section      |
+
+**`@imports` are NOT progressive disclosure.** The `@path/to/file.md` syntax eager-loads the referenced file (recursively, up to 5 levels deep) into context at session start — functionally identical to pasting its contents inline. Use `@imports` only to *organize* always-needed content across files (e.g. `@~/.claude/personal-prefs.md`), never to defer loading. For anything that should load only when relevant, use a plain path with a "Read when" trigger instead.
 
 ## File Placement Hierarchy
 
@@ -95,7 +98,7 @@ When auditing an existing CLAUDE.md, check each of these:
 3. **Stale content** — Commands that don't match package.json scripts? References to files/dirs that don't exist?
 4. **Noise** — Standard conventions? Linter-enforced rules? Obvious instructions? File-by-file descriptions?
 5. **Structure** — Follows the section order template? Has essential commands? Directory overview?
-6. **Progressive disclosure** — Large reference content inline that should use @imports or "Read when" triggers?
+6. **Progressive disclosure** — Large reference content inline that should be moved to a separate file referenced by a plain path with a "Read when" trigger? (Note: `@imports` eager-load, so they don't reduce context cost — only deferred reads do.)
 7. **Emphasis** — Critical rules using IMPORTANT or YOU MUST for adherence?
 
 ## Triage Destination Bias

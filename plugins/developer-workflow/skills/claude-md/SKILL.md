@@ -48,7 +48,7 @@ This informs deduplication. Never repeat what's already inherited.
 2. **The removal test** — "If I remove this, will Claude make mistakes?" No → cut it.
 3. **No noise** — no standard conventions, linter-enforced rules, obvious instructions, file-by-file descriptions
 4. **Section order** — follow the structure template in `best-practices-reference.md` (project context → commands → directory structure → conventions → reference docs)
-5. **Progressive disclosure** — `@imports` for detailed docs, `.claude/rules/` for team rules
+5. **Progressive disclosure** — reference detailed docs by plain path with a "Read when" trigger so Claude loads them on demand; `.claude/rules/` for team rules (note: `@imports` eager-load at session start — they are *not* lazy loading)
 6. **Deduplication** — never repeat what's in `~/.claude/CLAUDE.md` or `.claude/rules/`
 7. **IMPORTANT/YOU MUST** for critical rules to improve adherence
 
