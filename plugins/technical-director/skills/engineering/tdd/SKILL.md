@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
+description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
 ---
 
 # Test-Driven Development
@@ -28,7 +28,7 @@ This produces **crap tests**:
 
 **Correct approach**: Vertical slices via tracer bullets. One test → one implementation → repeat. Each test responds to what you learned from the previous cycle. Because you just wrote the code, you know exactly what behavior matters and how to verify it.
 
-```text
+```
 WRONG (horizontal):
   RED:   test1, test2, test3, test4, test5
   GREEN: impl1, impl2, impl3, impl4, impl5
@@ -44,14 +44,13 @@ RIGHT (vertical):
 
 ### 1. Planning
 
-When exploring the codebase, use the project's domain glossary so that test names and interface vocabulary match the project's language, and respect ADRs in the area you're touching.
+When exploring the codebase, read `CONTEXT.md` (if it exists) so that test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
 
 Before writing any code:
 
 - [ ] Confirm with user what interface changes are needed
 - [ ] Confirm with user which behaviors to test (prioritize)
-- [ ] Identify opportunities for [deep modules](deep-modules.md) (small interface, deep implementation)
-- [ ] Design interfaces for [testability](interface-design.md)
+- [ ] Identify opportunities for deep modules (small interface, deep implementation) — run the `/codebase-design` skill for the vocabulary and the testability checks
 - [ ] List the behaviors to test (not implementation steps)
 - [ ] Get user approval on the plan
 
@@ -63,7 +62,7 @@ Ask: "What should the public interface look like? Which behaviors are most impor
 
 Write ONE test that confirms ONE thing about the system:
 
-```text
+```
 RED:   Write test for first behavior → test fails
 GREEN: Write minimal code to pass → test passes
 ```
@@ -74,7 +73,7 @@ This is your tracer bullet - proves the path works end-to-end.
 
 For each remaining behavior:
 
-```text
+```
 RED:   Write next test → fails
 GREEN: Minimal code to pass → passes
 ```
@@ -100,7 +99,7 @@ After all tests pass, look for [refactor candidates](refactoring.md):
 
 ## Checklist Per Cycle
 
-```text
+```
 [ ] Test describes behavior, not implementation
 [ ] Test uses public interface only
 [ ] Test would survive internal refactor
