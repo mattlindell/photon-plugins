@@ -1,6 +1,9 @@
 # technical-director
 
-A Claude Code plugin for technical direction. Eighteen skills covering diagnosis, planning, issue triage, TDD, refactoring, codebase architecture, and the meta-tools that keep a project's process tight - organized into engineering, productivity, misc, and deprecated buckets.
+A Claude Code plugin for technical direction. Twenty-two skills shamelessly copied from [Matt Pocock's skill
+repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, planning, issue triage, TDD,
+codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
+organized into engineering, productivity, and misc buckets.
 
 **Version:** 1.0.0
 **Author:** Matt Lindell
