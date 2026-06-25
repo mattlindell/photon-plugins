@@ -1,6 +1,9 @@
 # technical-director
 
-A Claude Code plugin for technical direction. Twenty-two skills covering diagnosis, domain modeling, planning, issue triage, TDD, codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight — organized into engineering, productivity, and misc buckets.
+A Claude Code plugin for technical direction. Twenty-two skills shamelessly copied from [Matt Pocock's skill
+repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, planning, issue triage, TDD,
+codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
+organized into engineering, productivity, and misc buckets.
 
 **Version:** 2.0.0
 **Author:** Matt Lindell
@@ -159,7 +162,11 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, and `triage` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run **setup-matt-pocock-skills** to generate the config in one shot.
+Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, `triage-issue`, plus the deprecated
+`qa` and `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
+publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown
+files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run
+**setup-matt-pocock-skills** to generate the config in one shot.
 
 Example `CLAUDE.md` entries:
 
