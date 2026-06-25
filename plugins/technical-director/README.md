@@ -5,7 +5,7 @@ repository](https://github.com/mattpocock/skills) covering diagnosis, domain mod
 codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
 organized into engineering, productivity, and misc buckets.
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Author:** Matt Lindell
 **License:** MIT
 
@@ -17,25 +17,32 @@ organized into engineering, productivity, and misc buckets.
 plugins/technical-director/
   .claude-plugin/
     plugin.json
+  README.md
   skills/
     engineering/
       README.md
-      diagnose/
+      ask-matt/SKILL.md
+      codebase-design/
+        SKILL.md
+        DEEPENING.md
+        DESIGN-IT-TWICE.md
+      diagnosing-bugs/
         SKILL.md
         scripts/hitl-loop.template.sh
-      grill-with-docs/
+      domain-modeling/
         SKILL.md
         ADR-FORMAT.md
         CONTEXT-FORMAT.md
+      grill-with-docs/SKILL.md
+      implement/SKILL.md
       improve-codebase-architecture/
         SKILL.md
-        DEEPENING.md
-        INTERFACE-DESIGN.md
-        LANGUAGE.md
+        HTML-REPORT.md
       prototype/
         SKILL.md
         LOGIC.md
         UI.md
+      resolve-merge-conflicts/SKILL.md
       setup-matt-pocock-skills/
         SKILL.md
         domain.md
@@ -45,31 +52,38 @@ plugins/technical-director/
         triage-labels.md
       tdd/
         SKILL.md
-        deep-modules.md
-        interface-design.md
         mocking.md
         refactoring.md
         tests.md
       to-issues/SKILL.md
       to-prd/SKILL.md
-      triage-issue/
+      triage/
         SKILL.md
         AGENT-BRIEF.md
         OUT-OF-SCOPE.md
-      zoom-out/SKILL.md
+    productivity/
+      README.md
+      caveman/SKILL.md
+      grill-me/SKILL.md
+      grilling/SKILL.md
+      handoff/SKILL.md
+      teach/
+        SKILL.md
+        GLOSSARY-FORMAT.md
+        LEARNING-RECORD-FORMAT.md
+        MISSION-FORMAT.md
+        RESOURCES-FORMAT.md
+      writing-great-skills/
+        SKILL.md
+        GLOSSARY.md
     misc/
+      README.md
       git-guardrails-claude-code/
         SKILL.md
         scripts/block-dangerous-git.sh
       setup-pre-commit/
         SKILL.md
         defaults/prettierrc.json
-    productivity/
-      README.md
-      caveman/SKILL.md
-      grill-me/SKILL.md
-      handoff/SKILL.md
-      write-a-skill/SKILL.md
 ```
 
 ---
@@ -78,31 +92,37 @@ plugins/technical-director/
 
 ### Engineering
 
-Skills that comprise the Matt Pocock workflow pattern: design → PRD → issues → TDD → refactor, anchored on `CONTEXT.md` and `docs/adr/`.
+The Matt Pocock workflow pattern — design → PRD → issues → implement → refactor, anchored on `CONTEXT.md` and `docs/adr/`. Skills marked **(user)** are user-invoked only (`disable-model-invocation: true`); the rest carry trigger phrasing so the model can reach for them on its own.
 
-| Skill                             | Description                                                                                                                                                                                    |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **diagnose**                      | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.                                                 |
-| **grill-with-docs**               | Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.                                                  |
-| **improve-codebase-architecture** | Find deepening opportunities in a codebase, informed by `CONTEXT.md` and `docs/adr/`. Surfaces friction and proposes module-deepening refactors.                                               |
-| **prototype**                     | Build a throwaway prototype to flesh out a design — either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route. |
-| **setup-matt-pocock-skills**      | Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume.                                                            |
-| **tdd**                           | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                                                            |
-| **to-issues**                     | Break any plan, spec, or PRD into independently-grabbable work items using vertical slices, with dependencies tracked.                                                                         |
-| **to-prd**                        | Turn the current conversation context into a PRD and publish it to the project's issue tracker. No interview - just synthesizes what you've already discussed.                                 |
-| **triage-issue**                  | Move issues through a state-machine of triage roles (needs-triage → ready-for-agent / ready-for-human / wontfix), including root-cause investigation and a fix plan.                           |
-| **zoom-out**                      | Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code, returning a module map in the project's glossary.                          |
+| Skill                                 | Description                                                                                                                                          |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ask-matt** _(user)_                 | A router over the skills — ask which skill or flow fits your situation and it maps the path.                                                         |
+| **grill-with-docs** _(user)_          | Grilling session that also builds the domain model — sharpens terminology and updates `CONTEXT.md` and ADRs as decisions crystallize.                |
+| **improve-codebase-architecture** _(user)_ | Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.                   |
+| **setup-matt-pocock-skills** _(user)_ | Scaffold the per-repo config (issue tracker, triage labels, domain doc layout) the other engineering skills consume. Run once per repo.             |
+| **to-prd** _(user)_                   | Turn the current conversation into a PRD and publish it to the issue tracker — no interview, just synthesis of what you've already discussed.        |
+| **to-issues** _(user)_                | Break any plan, spec, or PRD into independently-grabbable issues using tracer-bullet vertical slices.                                                |
+| **implement** _(user)_                | Implement a piece of work from a PRD or set of issues, leaning on `tdd` at pre-agreed seams, then reviewing the result.                              |
+| **prototype** _(user)_                | Build a throwaway prototype — a runnable terminal app for state/business-logic questions, or several radically different UI variations on one route. |
+| **triage** _(user)_                   | Move issues and external PRs through a state machine of triage roles — categorize, verify, grill if needed, and write agent-ready briefs.            |
+| **diagnosing-bugs**                   | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.       |
+| **tdd**                               | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                  |
+| **domain-modeling**                   | Actively build and sharpen a project's domain model — challenge terms, stress-test with scenarios, write the glossary and ADRs inline.              |
+| **codebase-design**                   | Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.                          |
+| **resolve-merge-conflicts**           | Resolve an in-progress git merge/rebase conflict by tracing each change to its original intent, then running the project's checks.                   |
 
 ### Productivity
 
-General workflow tools, not code-specific.
+General workflow tools, not code-specific. **(user)** marks user-invoked-only skills.
 
-| Skill             | Description                                                                                                                        |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **caveman**       | Ultra-compressed communication mode that drops fillers and pleasantries while keeping full technical accuracy (~75% fewer tokens). |
-| **grill-me**      | Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.                           |
-| **handoff**       | Compact the current conversation into a handoff document so another agent can continue the work.                                   |
-| **write-a-skill** | Create new agent skills with proper structure, progressive disclosure, and bundled resources.                                      |
+| Skill                            | Description                                                                                                                        |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **grill-me** _(user)_            | Get relentlessly interviewed about a plan or design — the stateless sibling of `grill-with-docs`, for plans that don't live in a repo. |
+| **handoff** _(user)_             | Compact the current conversation into a handoff document so another agent can continue the work.                                  |
+| **teach** _(user)_               | Learn a concept over multiple sessions, using the current directory as a stateful workspace.                                       |
+| **writing-great-skills** _(user)_ | Reference for writing and editing skills well: the vocabulary and principles that make a skill predictable.                       |
+| **caveman**                      | Ultra-compressed communication mode that drops filler and pleasantries while keeping full technical accuracy (~75% fewer tokens).  |
+| **grilling**                     | Interview the user relentlessly about a plan or design, resolving each branch of the decision tree one question at a time.         |
 
 ### Misc
 
@@ -117,29 +137,26 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 
 ## Common Workflows
 
-**Design → PRD → Issues → Build:**
+**Not sure where to start?** Run **ask-matt** — a router that walks you to the skill or flow that fits your situation.
 
-1. **grill-with-docs** - resolve the design's decision tree against `CONTEXT.md` and ADRs
+**Idea → ship (the main flow):**
+
+1. **grill-with-docs** - sharpen the idea by interview against `CONTEXT.md` and ADRs
 2. **to-prd** - synthesize the resolved design into a PRD work item
-3. **to-issues** - break the PRD into vertical-slice work items
-4. **tdd** - implement each slice test-first
+3. **to-issues** - break the PRD into independently-grabbable vertical slices
+4. **implement** - build each issue (fresh session per issue), leaning on **tdd** at pre-agreed seams
 
-**Bug → Fix:**
+**Bug → fix:**
 
-1. **diagnose** - reproduce, minimize, hypothesize, find root cause
-2. **triage-issue** - file the bug with a state-machine label and TDD fix plan
-3. **tdd** - implement the fix following the plan
-
-**Onboarding to a new repo:**
-
-1. **setup-matt-pocock-skills** - scaffold `CONTEXT.md`, `docs/adr/`, the issue-tracker config, and triage labels
-2. **zoom-out** - get a module map in the project's glossary before touching code
+1. **diagnosing-bugs** - reproduce, minimize, hypothesize, find root cause
+2. **triage** - route the bug through the state machine and write an agent-ready brief
+3. **tdd** - implement the fix test-first
 
 **Architecture improvement:**
 
-1. **improve-codebase-architecture** - find deepening opportunities, propose interface designs
-2. **to-issues** - break the proposal into incremental, mergeable refactors
-3. **tdd** - land each refactor behind tests
+1. **improve-codebase-architecture** - find deepening opportunities, pick one, grill it
+2. **codebase-design** - apply the deep-module vocabulary to the chosen refactor
+3. **to-issues** → **implement** - land each refactor incrementally, behind tests
 
 ---
 
