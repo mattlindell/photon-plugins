@@ -145,7 +145,11 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, `triage-issue`, plus the deprecated `qa` and `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run **setup-matt-pocock-skills** to generate the config in one shot.
+Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, `triage-issue`, plus the deprecated
+`qa` and `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
+publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown
+files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run
+**setup-matt-pocock-skills** to generate the config in one shot.
 
 Example `CLAUDE.md` entries:
 
