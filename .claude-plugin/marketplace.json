@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.3.0"
+    "version": "1.4.0"
   },
   "plugins": [
     {
@@ -50,6 +50,18 @@
       "name": "nonprofit-toolkit",
       "source": "./plugins/nonprofit-toolkit",
       "description": "Six skills for nonprofit operations: a foundational organization profile builder plus grant writing, budget creation, donor thank-you communications, social media content, and volunteer scheduling",
+      "version": "1.0.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
+    },
+    {
+      "name": "project-manager",
+      "source": "./plugins/project-manager",
+      "description": "Eight skills for project management and Atlassian work: Jira, Confluence, Atlassian administration and templates, Scrum Master sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Bundles the Atlassian Remote MCP server.",
       "version": "1.0.0",
       "author": {
         "name": "Matt Lindell",
