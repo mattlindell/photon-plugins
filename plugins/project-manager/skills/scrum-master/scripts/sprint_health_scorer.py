@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
 """
 Sprint Health Scorer
 
@@ -7,8 +11,8 @@ scope creep, blocker resolution time, ceremony attendance, and story completion
 distribution. Produces composite health scores with actionable recommendations.
 
 Usage:
-    python sprint_health_scorer.py sprint_data.json
-    python sprint_health_scorer.py sprint_data.json --format json
+    uv run sprint_health_scorer.py sprint_data.json
+    uv run sprint_health_scorer.py sprint_data.json --format json
 """
 
 import argparse
@@ -747,6 +751,11 @@ def format_json_output(result: HealthScoreResult) -> Dict[str, Any]:
 
 def main() -> int:
     """Main CLI entry point."""
+    # Force UTF-8 stdout so RAG-status emoji render on Windows (cp1252) consoles.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     parser = argparse.ArgumentParser(
         description="Analyze sprint health across multiple dimensions"
     )

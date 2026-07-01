@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
 """
 Resource Capacity Planner
 
@@ -7,8 +11,8 @@ Models team capacity across projects, identifies over/under-allocation, simulate
 and provides capacity optimization recommendations for project portfolios.
 
 Usage:
-    python resource_capacity_planner.py capacity_data.json
-    python resource_capacity_planner.py capacity_data.json --format json
+    uv run resource_capacity_planner.py capacity_data.json
+    uv run resource_capacity_planner.py capacity_data.json --format json
 """
 
 import argparse
@@ -916,6 +920,11 @@ def format_json_output(result: CapacityAnalysisResult) -> Dict[str, Any]:
 
 def main() -> int:
     """Main CLI entry point."""
+    # Force UTF-8 stdout so RAG-status emoji render on Windows (cp1252) consoles.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     parser = argparse.ArgumentParser(
         description="Analyze resource capacity and allocation across project portfolio"
     )

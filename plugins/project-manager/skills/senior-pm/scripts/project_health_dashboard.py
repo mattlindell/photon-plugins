@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
 """
 Project Health Dashboard
 
@@ -7,8 +11,8 @@ Calculates composite health scores, generates RAG (Red/Amber/Green) status repor
 and identifies projects needing intervention for portfolio management.
 
 Usage:
-    python project_health_dashboard.py portfolio_data.json
-    python project_health_dashboard.py portfolio_data.json --format json
+    uv run project_health_dashboard.py portfolio_data.json
+    uv run project_health_dashboard.py portfolio_data.json --format json
 """
 
 import argparse
@@ -896,6 +900,11 @@ ProjectMetrics.calculate_composite_health_score = lambda self: (
 
 def main() -> int:
     """Main CLI entry point."""
+    # Force UTF-8 stdout so RAG-status emoji render on Windows (cp1252) consoles.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     parser = argparse.ArgumentParser(
         description="Analyze project portfolio health across multiple dimensions"
     )

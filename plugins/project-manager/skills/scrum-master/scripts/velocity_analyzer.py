@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
 """
 Sprint Velocity Analyzer
 
@@ -7,8 +11,8 @@ capacity, and identify anomalies. Supports multiple statistical measures and
 probabilistic forecasting for scrum teams.
 
 Usage:
-    python velocity_analyzer.py sprint_data.json
-    python velocity_analyzer.py sprint_data.json --format json
+    uv run velocity_analyzer.py sprint_data.json
+    uv run velocity_analyzer.py sprint_data.json --format json
 """
 
 import argparse
@@ -592,6 +596,11 @@ def format_json_output(analysis: VelocityAnalysis) -> Dict[str, Any]:
 
 def main() -> int:
     """Main CLI entry point."""
+    # Force UTF-8 stdout so RAG-status emoji render on Windows (cp1252) consoles.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     parser = argparse.ArgumentParser(
         description="Analyze sprint velocity data with trend detection and forecasting"
     )

@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = []
+# ///
 """
 Risk Matrix Analyzer
 
@@ -7,8 +11,8 @@ strategies based on risk category, and tracks risk trends over time. Provides
 comprehensive risk assessment and prioritization for project portfolios.
 
 Usage:
-    python risk_matrix_analyzer.py risk_data.json
-    python risk_matrix_analyzer.py risk_data.json --format json
+    uv run risk_matrix_analyzer.py risk_data.json
+    uv run risk_matrix_analyzer.py risk_data.json --format json
 """
 
 import argparse
@@ -714,6 +718,11 @@ def format_json_output(result: RiskAnalysisResult) -> Dict[str, Any]:
 
 def main() -> int:
     """Main CLI entry point."""
+    # Force UTF-8 stdout so RAG-status emoji render on Windows (cp1252) consoles.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     parser = argparse.ArgumentParser(
         description="Analyze project risks with probability/impact matrix and mitigation recommendations"
     )
