@@ -5,7 +5,8 @@ Comprehensive guide to Jira automation rules: triggers, conditions, actions, sma
 ## Rule Structure
 
 Every automation rule follows this pattern:
-```
+
+```text
 TRIGGER → [CONDITION(s)] → ACTION(s)
 ```
 
@@ -17,54 +18,54 @@ TRIGGER → [CONDITION(s)] → ACTION(s)
 
 ### Issue Triggers
 
-| Trigger | Fires When | Use For |
-|---------|------------|---------|
-| **Issue created** | New issue is created | Auto-assignment, notifications, SLA start |
-| **Issue transitioned** | Status changes | Workflow automation, notifications |
-| **Issue updated** | Any field changes | Field sync, cascading updates |
-| **Issue commented** | Comment is added | Auto-responses, SLA tracking |
-| **Issue assigned** | Assignee changes | Workload notifications |
-| **Issue linked** | Link is added/removed | Dependency tracking |
-| **Issue deleted** | Issue is deleted | Cleanup, audit logging |
+| Trigger                | Fires When            | Use For                                   |
+| ---------------------- | --------------------- | ----------------------------------------- |
+| **Issue created**      | New issue is created  | Auto-assignment, notifications, SLA start |
+| **Issue transitioned** | Status changes        | Workflow automation, notifications        |
+| **Issue updated**      | Any field changes     | Field sync, cascading updates             |
+| **Issue commented**    | Comment is added      | Auto-responses, SLA tracking              |
+| **Issue assigned**     | Assignee changes      | Workload notifications                    |
+| **Issue linked**       | Link is added/removed | Dependency tracking                       |
+| **Issue deleted**      | Issue is deleted      | Cleanup, audit logging                    |
 
 ### Sprint & Board Triggers
 
-| Trigger | Fires When |
-|---------|------------|
-| **Sprint started** | Sprint is activated |
-| **Sprint completed** | Sprint is closed |
-| **Issue moved between sprints** | Issue is moved |
+| Trigger                          | Fires When                 |
+| -------------------------------- | -------------------------- |
+| **Sprint started**               | Sprint is activated        |
+| **Sprint completed**             | Sprint is closed           |
+| **Issue moved between sprints**  | Issue is moved             |
 | **Backlog item moved to sprint** | Item is pulled into sprint |
 
 ### Scheduled Triggers
 
-| Trigger | Fires When |
-|---------|------------|
-| **Scheduled** | Cron-based (daily, weekly, custom) |
-| **Issue stale** | No updates for X days |
+| Trigger         | Fires When                         |
+| --------------- | ---------------------------------- |
+| **Scheduled**   | Cron-based (daily, weekly, custom) |
+| **Issue stale** | No updates for X days              |
 
 ### Version Triggers
 
-| Trigger | Fires When |
-|---------|------------|
-| **Version created** | New version added |
+| Trigger              | Fires When          |
+| -------------------- | ------------------- |
+| **Version created**  | New version added   |
 | **Version released** | Version is released |
 
 ## Conditions
 
 ### Issue Conditions
 
-| Condition | Matches When |
-|-----------|-------------|
-| **Issue fields condition** | Field matches value (e.g., priority = High) |
-| **JQL condition** | Issue matches JQL query |
-| **Related issues condition** | Linked/sub-task issues match criteria |
-| **User condition** | Actor matches (reporter, assignee, group) |
-| **Advanced compare** | Complex field comparisons |
+| Condition                    | Matches When                                |
+| ---------------------------- | ------------------------------------------- |
+| **Issue fields condition**   | Field matches value (e.g., priority = High) |
+| **JQL condition**            | Issue matches JQL query                     |
+| **Related issues condition** | Linked/sub-task issues match criteria       |
+| **User condition**           | Actor matches (reporter, assignee, group)   |
+| **Advanced compare**         | Complex field comparisons                   |
 
 ### Condition Operators
 
-```
+```text
 Field = value           # Exact match
 Field != value          # Not equal
 Field > value           # Greater than (numeric/date)
@@ -79,35 +80,35 @@ Field changed from      # Field changed from specific value
 
 ### Issue Actions
 
-| Action | Does |
-|--------|------|
-| **Edit issue** | Update any field on the current issue |
-| **Transition issue** | Move to a new status |
-| **Assign issue** | Change assignee |
-| **Comment on issue** | Add a comment |
-| **Create issue** | Create a new linked issue |
-| **Create sub-tasks** | Create child issues |
-| **Clone issue** | Duplicate the issue |
-| **Delete issue** | Remove the issue |
-| **Link issues** | Add issue links |
-| **Log work** | Add time tracking entry |
+| Action               | Does                                  |
+| -------------------- | ------------------------------------- |
+| **Edit issue**       | Update any field on the current issue |
+| **Transition issue** | Move to a new status                  |
+| **Assign issue**     | Change assignee                       |
+| **Comment on issue** | Add a comment                         |
+| **Create issue**     | Create a new linked issue             |
+| **Create sub-tasks** | Create child issues                   |
+| **Clone issue**      | Duplicate the issue                   |
+| **Delete issue**     | Remove the issue                      |
+| **Link issues**      | Add issue links                       |
+| **Log work**         | Add time tracking entry               |
 
 ### Notification Actions
 
-| Action | Does |
-|--------|------|
-| **Send email** | Send custom email to users/groups |
-| **Send Slack message** | Post to Slack channel (requires integration) |
-| **Send Microsoft Teams message** | Post to Teams (requires integration) |
-| **Send web request** | HTTP call to external service |
+| Action                           | Does                                         |
+| -------------------------------- | -------------------------------------------- |
+| **Send email**                   | Send custom email to users/groups            |
+| **Send Slack message**           | Post to Slack channel (requires integration) |
+| **Send Microsoft Teams message** | Post to Teams (requires integration)         |
+| **Send web request**             | HTTP call to external service                |
 
 ### Lookup & Branch Actions
 
-| Action | Does |
-|--------|------|
+| Action                  | Does                                        |
+| ----------------------- | ------------------------------------------- |
 | **Lookup issues (JQL)** | Find issues matching JQL, iterate over them |
-| **Create branch** | Branch logic (if/then/else) |
-| **For each** | Loop over found issues |
+| **Create branch**       | Branch logic (if/then/else)                 |
+| **For each**            | Loop over found issues                      |
 
 ## Smart Values
 
@@ -115,7 +116,7 @@ Smart values are dynamic placeholders that resolve at runtime.
 
 ### Issue Smart Values
 
-```
+```text
 {{issue.key}}                    # PROJ-123
 {{issue.summary}}                # Issue title
 {{issue.description}}            # Full description
@@ -134,7 +135,7 @@ Smart values are dynamic placeholders that resolve at runtime.
 
 ### Transition Smart Values
 
-```
+```text
 {{transition.from_status}}       # Previous status
 {{transition.to_status}}         # New status
 {{transition.transitionName}}    # Transition name
@@ -142,7 +143,7 @@ Smart values are dynamic placeholders that resolve at runtime.
 
 ### User Smart Values
 
-```
+```text
 {{initiator.displayName}}        # Who triggered the rule
 {{initiator.emailAddress}}       # Their email
 {{initiator.accountId}}          # Their account ID
@@ -150,7 +151,7 @@ Smart values are dynamic placeholders that resolve at runtime.
 
 ### Date Smart Values
 
-```
+```text
 {{now}}                          # Current timestamp
 {{now.plusDays(7)}}              # 7 days from now
 {{now.minusHours(24)}}          # 24 hours ago
@@ -159,7 +160,7 @@ Smart values are dynamic placeholders that resolve at runtime.
 
 ### Conditional Smart Values
 
-```
+```text
 {{#if issue.priority.name == "High"}}
   This is high priority
 {{/if}}
@@ -178,13 +179,11 @@ Smart values are dynamic placeholders that resolve at runtime.
 ```yaml
 Trigger: Issue created
 Condition: Issue has component
-Action: Edit issue
-  - Assignee = Component lead
+Action: Edit issue - Assignee = Component lead
 
 Rule Logic:
-  IF component = "Backend" → assign to @backend-lead
-  IF component = "Frontend" → assign to @frontend-lead
-  IF component = "DevOps" → assign to @devops-lead
+  IF component = "Backend" → assign to @backend-lead IF component = "Frontend" → assign to @frontend-lead IF component =
+  "DevOps" → assign to @devops-lead
 ```
 
 ### 2. SLA Warning — Stale Issues
@@ -192,7 +191,7 @@ Rule Logic:
 ```yaml
 Trigger: Scheduled (daily at 9am)
 Condition: JQL = "status != Done AND updated <= -5d AND priority in (High, Highest)"
-Action: 
+Action:
   - Add comment: "⚠️ This {{issue.priority.name}} issue hasn't been updated in 5+ days."
   - Send Slack: "#engineering-alerts: {{issue.key}} is stale ({{issue.assignee.displayName}})"
 ```
@@ -215,7 +214,7 @@ Condition: Issue status != Done
 Action:
   - Comment: "Spilled over from Sprint {{sprint.name}}. Reason needs review."
   - Add label: "spillover"
-  - Send email to: {{issue.assignee.emailAddress}}
+  - Send email to: { { issue.assignee.emailAddress } }
 ```
 
 ### 5. Sub-Task Completion → Parent Transition
@@ -256,7 +255,7 @@ Trigger: Version released
 Condition: None
 Action:
   - Lookup: JQL = "fixVersion = {{version.name}} AND status = Done"
-  - Create Confluence page:
+  - ? Create Confluence page
     Title: "Release Notes — {{version.name}}"
     Content: List of resolved issues with types and summaries
 ```
