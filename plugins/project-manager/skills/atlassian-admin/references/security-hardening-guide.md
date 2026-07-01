@@ -97,6 +97,30 @@ enterprise security standards.
 - [ ] Audit "anyone" or "logged in users" permissions
 - [ ] Remove direct user permissions where groups exist
 
+### Permission Scheme Audit Heuristics
+
+When reviewing a Jira permission scheme (export via `GET /rest/api/3/permissionscheme/{id}`), flag these patterns:
+
+**Sensitive permissions** — treat these as privileged; every grant needs justification:
+
+`administer_project`, `administer_jira`, `system_admin`, `delete_issues`, `delete_all_comments`,
+`delete_all_attachments`, `manage_watchers`, `modify_reporter`, `bulk_change`, `manage_group_filter_subscriptions`
+
+**Flag conditions (severity):**
+
+- **Critical** — any grant of `system_admin` or `administer_jira` (limit to 2-3 people); any delete permission
+  (`delete_issues`, `delete_all_comments`, `delete_all_attachments`) granted to a broad group (`users`, `everyone`,
+  `all-users`, `jira-users`, `jira-software-users`).
+- **High** — a single group holding 3 or more sensitive permissions (review whether all are necessary); a scheme with
+  more than 5 direct user grants (migrate to group-based permissions).
+- **Medium** — any direct user grant of a non-sensitive permission (use groups instead); a scheme with no explicit admin
+  permission defined (project administration is unassigned).
+- **Info** — one group holds every sensitive permission while multiple groups exist (consider separating duties across
+  groups).
+
+**Remediation order:** apply least privilege to over-permissioned groups first, migrate direct user grants to groups,
+restrict deletes to admins/leads, then standardize schemes across projects and document intentional differences.
+
 ## Audit & Monitoring
 
 ### Audit Log Configuration

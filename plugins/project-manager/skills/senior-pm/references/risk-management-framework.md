@@ -123,6 +123,29 @@ EMV = $30K + $60K + $50K = $140K
 Risk-adjusted budget should include $140K contingency for this risk.
 ```
 
+**Reference implementation** (used when computing portfolio EMV and a risk-adjusted budget by hand rather than through
+`risk_matrix_analyzer.py`):
+
+```python
+def calculate_emv(risks):
+    """Portfolio EMV = Σ(probability × financial_impact). Also stamps each
+    risk with a weighted score used for response selection."""
+    category_weights = {
+        "technical": 1.2, "resource": 1.1, "schedule": 1.0,
+        "business": 1.3, "financial": 1.4, "regulatory": 1.5, "external": 1.0,
+    }
+    total_emv = 0
+    for risk in risks:
+        risk["score"] = risk["probability"] * risk["impact"] * category_weights[risk["category"]]
+        total_emv += risk["probability"] * risk["financial_impact"]
+    return total_emv
+
+
+def risk_adjusted_budget(base_budget, portfolio_risk_score, risk_tolerance_factor):
+    """Risk-adjusted budget = base × (1 + portfolio_risk_score × risk_tolerance_factor)."""
+    return base_budget * (1 + portfolio_risk_score * risk_tolerance_factor)
+```
+
 ### 2. Monte Carlo Simulation for Schedule Risk
 
 **Purpose:** Model schedule uncertainty using probabilistic analysis
@@ -259,6 +282,22 @@ N(d) = Cumulative standard normal distribution
 ---
 
 ## Risk Response Strategies with Decision Trees
+
+### Response Strategy by Weighted Risk Score
+
+The `risk_matrix_analyzer.py` script computes a weighted risk score (`probability × impact × category_weight`) and
+selects a response using the thresholds below. Use the same bands when computing responses manually:
+
+| Weighted risk score | Response     | Meaning                                                  |
+| ------------------- | ------------ | -------------------------------------------------------- |
+| > 18                | **Avoid**    | Eliminate through scope or approach changes              |
+| 12 – 18             | **Mitigate** | Reduce probability or impact through active intervention |
+| 8 – 12              | **Transfer** | Insurance, fixed-price contracts, partnerships           |
+| < 8                 | **Accept**   | Monitor with contingency planning                        |
+
+Category weights applied to the base `probability × impact` score: Technical 1.2×, Resource 1.1×, Schedule 1.0×,
+Business 1.3×, Financial 1.4×, Regulatory 1.5×, External 1.0×. (These are the weights encoded in
+`risk_matrix_analyzer.py` — the script is the single source of truth for the exact multipliers.)
 
 ### Strategy Selection Framework
 

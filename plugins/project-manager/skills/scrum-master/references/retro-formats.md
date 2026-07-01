@@ -388,3 +388,74 @@ Based on the story:
 - Let team choose occasionally
 - Match format to team mood
 - Try new format when stuck
+
+---
+
+## Retrospective Analysis (Manual)
+
+Reach this section when scoring retrospective effectiveness by hand — the agent computes these from the
+`retrospectives[]` array of `assets/sample_sprint_data.json` when no automated tool is available.
+
+### Retrospective input schema
+
+Each retrospective record supplies:
+
+```json
+{
+  "sprint_number": "number",
+  "date": "YYYY-MM-DD",
+  "facilitator": "string",
+  "attendees": ["string"],
+  "duration_minutes": "number",
+  "went_well": ["string"],
+  "to_improve": ["string"],
+  "action_items": [
+    {
+      "id": "string",
+      "description": "string",
+      "owner": "string",
+      "priority": "high|medium|low",
+      "due_date": "YYYY-MM-DD",
+      "status": "completed|in_progress|blocked|cancelled|not_started",
+      "created_sprint": "number",
+      "completed_sprint": "number"
+    }
+  ]
+}
+```
+
+### Action-item completion
+
+Completion rate = completed action items / total action items across the retrospectives analyzed. Thresholds:
+
+| Completion rate | Reading                     | Response                                                 |
+| --------------- | --------------------------- | -------------------------------------------------------- |
+| <50%            | Critical follow-through gap | Cap new action items at 2-3; assign owners and due dates |
+| 50-70%          | Needs improvement           | Systematize owners and due dates                         |
+| >90%            | Strong follow-through       | Take on more ambitious improvement initiatives           |
+
+An overdue rate above 30% (items past `due_date` and not `completed`) signals unrealistic timelines — review estimation
+and prioritization.
+
+### Recurring themes and persistent issues
+
+Classify each `went_well`/`to_improve` item into a theme: **communication**, **process**, **technical**,
+**team_dynamics**, or **external**. A theme is **recurring** when it appears in more than 50% of retrospectives. A
+recurring theme is a **persistent issue** when it is `technical`, `process`, or `external`, appears in more than 60% of
+retrospectives, and its mention count is stable or increasing sprint-over-sprint. Two or more persistent issues warrant
+a dedicated deep-dive rather than another surface-level action item.
+
+### Team maturity level
+
+Map action-item patterns and sentiment to a Tuckman stage (full stage detail in `team-dynamics-framework.md`). The sweet
+spot is 2-5 action items per retrospective with balanced positive/negative sentiment and high attendance:
+
+| Level           | Signal                                                                    |
+| --------------- | ------------------------------------------------------------------------- |
+| forming         | Erratic action-item counts, weak follow-through, low psychological safety |
+| developing      | Improving follow-through, deeper root-cause discussion emerging           |
+| performing      | 2-5 focused action items, consistent completion, self-facilitation        |
+| high_performing | Sustained completion, resolving persistent issues, coaching other teams   |
+
+**Improvement velocity** is the rate at which persistent themes get resolved across 4+ retrospectives: a theme whose
+recent mention count drops below 70% of its early count is resolving; one holding above 90% is stagnant.

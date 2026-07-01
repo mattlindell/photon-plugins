@@ -6,7 +6,25 @@ Well-designed Confluence and Jira templates accelerate team productivity by prov
 common documents and workflows. This guide covers design patterns, variable handling, and best practices for creating
 reusable templates.
 
-## Variable Placeholders
+## Storage-format scaffolding
+
+Every deployable Confluence body is **storage-format XHTML** — `createConfluencePage`/`updateConfluencePage` reject
+legacy wiki markup (`{panel}`, `h2.`, `{info}`). Author the body directly as XHTML; the design patterns below are
+drafting shorthand you convert into this form before deployment.
+
+**Body assembly convention** (the standard shape a scaffolded template takes):
+
+1. Open with a Table of Contents macro, then an Info panel holding the "replace this placeholder text" instruction to
+   the author.
+2. Emit each section as an `<h2>` heading followed by its content.
+3. Render tabular sections (metadata header, decision log, action items, risks) as
+   `<table><colgroup><col /></colgroup><thead><tr><th><p>…</p></th></tr></thead><tbody><tr><td><p>…</p></td></tr></tbody></table>`.
+4. Place a Status macro lozenge in any status cell rather than plain text.
+5. Wrap optional or long detail in an Expand macro; wrap runnable commands in a Code Block macro with
+   `<ac:plain-text-body><![CDATA[…]]></ac:plain-text-body>`.
+
+**Macro storage-format syntax** (info, warning, note, status `colour`, expand, toc, jira, code, and the rest) lives in
+`confluence-expert/references/macro-cheat-sheet.md` — that is the single source; do not restate macro XHTML here.
 
 ### Confluence Template Variables
 

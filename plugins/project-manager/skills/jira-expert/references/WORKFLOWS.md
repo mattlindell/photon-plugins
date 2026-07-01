@@ -203,6 +203,23 @@ Workflow Scheme: "Engineering Workflow Scheme"
   Sub-task    → Sub-task Workflow (inherits parent transitions)
 ```
 
+## Design Validation Checklist
+
+Before building a workflow in Jira, walk the design against every rule below. Each is a defect that traps issues or
+confuses users, so treat any hit as blocking until fixed.
+
+| Anti-pattern             | Rule                                                                                                | Severity      |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | ------------- |
+| **Too few states**       | Fewer than 2 states — nothing to transition between                                                 | Error         |
+| **State bloat**          | More than 10 states is a warning; more than 15 is an error (complex flows slow teams, raise errors) | Warning/Error |
+| **No terminal state**    | No `Done`/`Closed`/`Resolved`/`Completed`-category state — issues can never be marked complete      | Error         |
+| **Dead-end state**       | A non-terminal state with no outgoing transition — issues get stuck                                 | Error         |
+| **Unreachable state**    | A non-initial state with no incoming transition — nothing can ever reach it                         | Warning       |
+| **Undefined state ref**  | A transition names a `from`/`to` state that the state list does not define                          | Error         |
+| **Circular no-exit**     | A non-terminal state from which no path reaches any terminal state — issues never resolve           | Error         |
+| **Duplicate transition** | Two transitions with the same name leaving the same state — users can't tell them apart             | Warning       |
+| **Self-transition**      | A transition from a state to itself — legitimate only for triggering automation; flag to confirm    | Info          |
+
 ## Best Practices
 
 1. **Start simple, add complexity only when needed** — a 5-status workflow beats a 15-status one

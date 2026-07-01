@@ -207,6 +207,13 @@ issuetype = Epic ORDER BY status, priority DESC
 issuetype = Story AND "Acceptance Criteria" IS EMPTY AND status = Backlog
 ```
 
+**Stories without estimates:**
+
+```jql
+issuetype = Story AND ("Story Points" IS EMPTY OR "Story Points" = 0)
+AND status != Done ORDER BY priority DESC
+```
+
 **Technical debt:**
 
 ```jql
