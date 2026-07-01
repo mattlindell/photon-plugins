@@ -1,0 +1,19 @@
+{
+  "name": "project-manager",
+  "version": "1.0.1",
+  "description": "Eight skills for project management and Atlassian work: Jira, Confluence, Atlassian administration and templates, Scrum Master sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Bundles the Atlassian Remote MCP server.",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "skills": [
+    "./skills/atlassian-admin",
+    "./skills/atlassian-templates",
+    "./skills/confluence-expert",
+    "./skills/jira-expert",
+    "./skills/meeting-analyzer",
+    "./skills/scrum-master",
+    "./skills/senior-pm",
+    "./skills/team-communications"
+  ]
+}
