@@ -113,7 +113,7 @@ The Matt Pocock workflow pattern — design → spec → tickets → implement �
 | **tdd**                               | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                  |
 | **domain-modeling**                   | Actively build and sharpen a project's domain model — challenge terms, stress-test with scenarios, write the glossary and ADRs inline.              |
 | **codebase-design**                   | Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.                          |
-| **code-review**                       | Two-axis review of the diff since a fixed point — Standards (repo coding standards plus a Fowler smell baseline) and Spec (faithful to the originating issue/PRD?) — run as parallel sub-agents. |
+| **code-review**                       | Two-axis review of the diff since a fixed point — Standards (repo coding standards plus a Fowler smell baseline) and Spec (faithful to the originating spec or ticket?) — run as parallel sub-agents. |
 | **resolve-merge-conflicts**           | Resolve an in-progress git merge/rebase conflict by tracing each change to its original intent, then running the project's checks.                   |
 
 ### Productivity
@@ -167,8 +167,8 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 
 ## Issue Tracker
 
-Skills that publish artifacts (specs, work items, fix plans) - `to-spec`, `to-tickets`, `wayfinder`, `triage`, and
-`code-review` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
+Skills that publish artifacts (specs, work items, fix plans) - `to-spec`, `to-tickets`, `wayfinder`, and `triage` -
+read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
 publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown
 files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run
 **setup-matt-pocock-skills** to generate the config in one shot.
