@@ -8,7 +8,7 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
-  technical-director/            — diagnosis, planning, issue triage, TDD, refactoring, and process skills
+  technical-director/            — diagnosis, domain modeling, planning, specs/tickets, issue triage, TDD, code review, research, codebase design, and process skills
   developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
   nonprofit-toolkit/             — nonprofit operations skills (org profile, grants, budgets, donor comms, social media, volunteers)
 ```
