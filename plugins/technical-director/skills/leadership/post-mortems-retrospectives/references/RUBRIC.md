@@ -1,6 +1,6 @@
 # Rubric (score 1–5)
 
-Score the draft across categories. A “pass” requires:
+Score the draft across categories. A "pass" requires:
 - No category below **3**
 - Average score **≥ 4.0**
 
@@ -17,7 +17,7 @@ Score the draft across categories. A “pass” requires:
 ## 3) Systems thinking (contributing factors)
 1: Individual blame or single-point cause  
 3: Some systems factors; shallow clustering  
-5: Multi-factor systems view; “why it made sense” captured; changeable conditions identified
+5: Multi-factor systems view; "why it made sense" captured; changeable conditions identified
 
 ## 4) Decisions and actionability
 1: Vague recommendations; no owners/dates  
@@ -27,10 +27,10 @@ Score the draft across categories. A “pass” requires:
 ## 5) Learning dissemination and institutionalization
 1: No shareout; learning stays local  
 3: Shareout exists but lacks cadence/ownership  
-5: Clear 1-page shareout + recurring “Impact & Learnings” review with owner and inputs
+5: Clear 1-page shareout + recurring "Impact & Learnings" review with owner and inputs
 
 ## 6) Kill criteria / triggers (if applicable)
-1: Triggers absent or meaningless (“discuss later”)  
+1: Triggers absent or meaningless ("discuss later")  
 3: Some triggers but unclear thresholds or actions  
 5: Observable signals with thresholds and pre-committed actions; ownership is clear
 

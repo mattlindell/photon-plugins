@@ -1,10 +1,30 @@
 # Templates (copy/paste)
 
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Single-Ritual Quick Spec (Branch B — the workhorse)
+
+Use this to spec a new ritual or fix a broken one fast. For a full-fidelity spec, see section 4.
+
+- **Ritual name** (memorable, referencable): ______
+- **The one job** (pick exactly one): alignment / decision / execution / learning / belonging
+- **Cadence + duration:** ______  **Owner/facilitator:** ______
+- **Prework (async-first):** …
+- **Timeboxed agenda:**
+  1. (time) — …
+  2. (time) — …
+- **Artifact output** (the reusable thing it produces + where it lives): …
+- **Decision rule** (who decides / how disagreement resolves): …
+- **Async fallback** (how non-attendees participate): …
+- **If fixing a broken ritual, the anti-pattern I'm rewriting:** status-only / no template / sprawl / surveillance / do-everything
+
+---
+
 ## 1) Context Snapshot (inputs)
 
 - Team: (size, function(s), seniority)
 - Work mode: (remote/hybrid/in-office; time zones)
-- Current symptoms: (what’s broken)
+- Current symptoms: (what's broken)
 - Desired outcomes: (top 2–3)
 - Constraints: (meeting time budget, tooling, decision model)
 - Notes on culture/inclusion: (psych safety, async needs, accessibility)
@@ -72,7 +92,7 @@
   - Fix:
 
 **Async fallback**
-- If people can’t attend live, how they participate / stay informed:
+- If people can't attend live, how they participate / stay informed:
 
 ---
 
@@ -80,7 +100,7 @@
 
 ### Our Golden Rituals (cheatsheet)
 
-| Ritual name | What it’s for | When it happens | Who attends | Where the template lives |
+| Ritual name | What it's for | When it happens | Who attends | Where the template lives |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
@@ -104,7 +124,7 @@
 **Phase 2: Full rollout (weeks 3–6)**
 - [ ] Add calendar invites / recurring docs
 - [ ] Publish onboarding primer
-- [ ] Reinforce usage (“Bring X to <RitualName>”)
+- [ ] Reinforce usage ("Bring X to <RitualName>")
 
 **Phase 3: Governance (ongoing)**
 - [ ] Monthly pulse (1–3 questions)

@@ -28,10 +28,10 @@ Use this checklist before finalizing the Systems Thinking Pack.
 - [ ] 3–7 leverage points are named and tied to the loops/effects.
 - [ ] Each intervention has an owner and sequencing (now/next/later).
 - [ ] Each intervention includes leading indicators and rollback/stop conditions.
-- [ ] Includes at least one “build a system” opportunity for recurring pain.
+- [ ] Includes at least one "build a system" opportunity for recurring pain.
 
 ## F) Communication readiness
-- [ ] A stakeholder who wasn’t in the room can understand the map and actions.
+- [ ] A stakeholder who wasn't in the room can understand the map and actions.
 - [ ] Trade-offs are explicit (who benefits, who pays).
 - [ ] Final section includes **Risks / Open questions / Next steps**.
 

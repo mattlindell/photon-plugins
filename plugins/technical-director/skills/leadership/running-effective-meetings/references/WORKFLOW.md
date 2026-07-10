@@ -1,94 +1,90 @@
-# WORKFLOW (Expanded)
+# Meeting Playbook (Heuristics)
 
-This file expands `../SKILL.md` with heuristics, branching logic, and meeting hygiene practices.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## 1) First decision: meeting vs async
+## The first gate: meeting vs async
 
-Default stance: **if it’s not discussion, don’t meet.**
+Default stance: **if it isn't discussion, don't meet.**
 
-Use a meeting when you need at least one of:
-- Real-time debate on trade-offs / objections
+Meet when you need at least one of:
+
+- Real-time debate on trade-offs or objections
 - Fast clarification across functions
 - Live negotiation of constraints and commitments
 
-Prefer async when you only need:
+Go async when you only need:
+
 - Status updates
-- Broadcasting a decision
-- Collecting ideas without interaction (use a doc/form first)
+- Broadcasting a decision that's already made
+- Collecting ideas without interaction (use a doc or form first)
 
-## 2) Pick the meeting format (separate operational vs strategic)
+## Choosing the format
 
-**Operational meeting (high structure)**
-- Purpose: track priority work, surface blockers, assign owners
-- Format: tight agenda, timeboxed updates, clear “off-ramp” for deep dives
-- Output: action items + blockers + owner/due dates
+- **Operational (high structure).** Track priority work, surface blockers, assign owners. Tight agenda, timeboxed updates, a clear off-ramp for deep dives. Output: action items + blockers + owners/dates.
+- **Strategic (more open).** Explore direction, evaluate hypotheses, align on principles. Fewer topics, more discussion time, an explicit parking lot. Output: decisions (or the evidence needed) + next steps.
+- **Decision.** Pressure-test options and record a call. Requires the decision owner present and a pre-read with options + recommendation. Output: decision record + rationale + follow-ups.
+- **Workshop (single session).** Generate outputs collaboratively (risks list, plan, options). Scripted exercises, an artifact per exercise, strong timekeeping. Output: compiled artifact(s) + handoff.
 
-**Strategic discussion (more open)**
-- Purpose: explore direction, evaluate hypotheses, align on principles
-- Format: fewer topics, more discussion time, explicit parking lot
-- Output: decisions made (or what evidence is needed) + next steps
+Heuristic: if one recurring meeting keeps mixing operational and strategic, split it into two. Big, cross-functional, high-unknown problems want a multi-day workshop — out of scope for a single session.
 
-Heuristic: If your weekly meeting keeps mixing both, split it into two meetings.
+## Discover / Discuss / Decide
 
-**Decision meeting**
-- Purpose: pressure-test options and record a decision
-- Requirements: decision owner present; pre-read with options + recommendation
-- Output: decision record + rationale + follow-up actions
+Many meetings fail because they try to do all three live:
 
-**Workshop (single-session)**
-- Purpose: generate outputs collaboratively (e.g., risks list, plan, options)
-- Format: scripted exercises, artifacts per exercise, strong timekeeping
-- Output: compiled artifact(s) and a clear handoff
+- **Discover** (context, data, options) happens **before** the meeting, in the pre-read and async comments.
+- **Discuss** (debate, clarify, stress-test) happens **in** the meeting.
+- **Decide** (choose, commit, record) happens **immediately after** discussion, captured explicitly.
 
-If the problem is big and cross-functional with lots of unknowns, consider a multi-day workshop (out of scope for this skill pack’s default workflow).
+Aim to reserve at least 60% of live time for Discuss.
 
-## 3) Use “Discover / Discuss / Decide”
+## Priming the room (no cold starts)
 
-Many meetings fail because they try to do all 3 live:
-- **Discover:** share context, data, options
-- **Discuss:** debate, clarify, stress-test
-- **Decide:** choose, commit, record
+Open every meeting by stating:
 
-Rule of thumb:
-- Discover happens **before** the meeting (pre-read + async comments)
-- Discuss happens **in** the meeting
-- Decide happens **immediately after** discussion, captured explicitly
+- The objective and the desired output
+- The meeting type ("this is an operational sync" / "this is a decision meeting")
+- Decision rights ("X decides after hearing input")
+- The conversation mode (creative problem-solving vs tactical efficiency)
+- Ground rules (timeboxing, parking lot, live note capture)
 
-## 4) Prime the room (avoid “cold start” meetings)
+This kills derailments and "wait — why are we here?" moments.
 
-Start every meeting by stating:
-- Objective and desired output
-- Meeting type (“This is an operational sync” / “This is a decision meeting”)
-- Decision rights (“X decides after hearing input”)
-- Conversation mode (creative problem solving vs tactical efficiency)
-- Ground rules (timeboxing, parking lot, note capture)
+## Agenda design
 
-This reduces derailments and “wait—why are we here?” moments.
+- Cap at **1–3 topics**.
+- Design for **discussion time**, not live reading.
+- Give each segment an **expected output**: decision, list, owner, next step.
+- Build in a **deep-dive off-ramp**: if a topic needs 30+ minutes, park it and schedule a follow-up with the right subset.
 
-## 5) Agenda design rules
+## Closing alignment (prevent re-meetings)
 
-- Cap at **1–3 topics** per meeting.
-- Design for **discussion time** (not live reading).
-- Add an “expected output” per segment: decision, list, owner, next step.
-- Add explicit “deep dive off-ramp”: if a topic needs 30+ minutes, park it and schedule a follow-up with the right subset.
+End with these three questions and write the answers:
 
-## 6) Closing alignment (prevent re-meetings)
+1. What did we decide?
+2. Who does what by when?
+3. Who else needs to know?
 
-End with these three questions (and write the answers):
-1) What did we decide?
-2) Who needs to do what by when?
-3) Who else needs to know?
+If you can't answer #1, the outcome is "no decision" — record what evidence is needed and by when.
 
-If you can’t answer #1, the meeting outcome is “no decision” — record what evidence is needed and by when.
-
-## 7) Follow-up rules
+## Follow-up and hygiene cadence
 
 Within 24 hours:
-- Send decisions + action items + owners + due dates
-- Link to notes and the decision record
-- Name “who else needs to know” and assign an owner to inform them
 
-Within 1–2 weeks (for recurring meetings):
+- Send decisions + action items + owners + due dates.
+- Link the notes and the decision record.
+- Name who else needs to know and assign someone to inform them.
+
+Every 1–2 weeks for recurring meetings:
+
 - Audit: does this meeting still earn its calendar time?
-- Kill, shorten, or split meetings that drift
+- Kill, shorten, or split meetings that drift; move status async.
 
+## Anti-patterns (catch yourself)
+
+- **Meeting to broadcast.** If no one will debate anything, it's an email. Send the doc and reclaim the hour.
+- **Cramming Discover into the room.** Reading a deck aloud burns the discussion budget. Move context to a pre-read and start on the trade-offs.
+- **No named decision owner.** "We'll align as a group" with no owner produces a re-meeting. Name who decides before you send the invite.
+- **Status-in-disguise.** A recurring "alignment" meeting that's really a ticket replay should be async status plus a short discussion-only meeting for the one real decision.
+- **Invite-the-world.** Eight to twelve attendees "just in case" dilutes accountability. Invite the minimum who must discuss and act; send everyone else the notes.
+- **Open-ended drift.** No time boxes and no off-ramp means one topic eats the hour. Timebox segments and park deep dives.
+- **No close-out.** Ending without decide / who-does-what / who-else-needs-to-know means the decision evaporates. Spend the last five minutes on it, every time.

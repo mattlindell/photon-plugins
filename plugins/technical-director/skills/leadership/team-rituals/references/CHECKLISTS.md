@@ -8,7 +8,7 @@
 
 ## B) System design (minimal, outcome-driven)
 - [ ] Rituals map to explicit outcomes (alignment, decisions, execution, learning, belonging)
-- [ ] Total sync time fits within the team’s meeting time budget
+- [ ] Total sync time fits within the team's meeting time budget
 - [ ] Each ritual has an owner/facilitator responsible for prep and outputs
 - [ ] Each ritual has an explicit artifact output (decisions, priorities, action list, learnings)
 - [ ] Status-only meetings are replaced with async updates where feasible
@@ -22,7 +22,7 @@
 
 ## D) Rollout + onboarding readiness
 - [ ] Rollout plan includes pilot, feedback collection, and iteration
-- [ ] Calendars/docs are created and linked from a single “ritual index”
+- [ ] Calendars/docs are created and linked from a single "ritual index"
 - [ ] New hires can find templates quickly and understand how to prepare
 
 ## E) Governance (avoid ritual sprawl)
@@ -33,5 +33,5 @@
 ## F) Final pack completeness
 - [ ] Includes **Risks / Open questions / Next steps**
 - [ ] Assumptions are labeled; missing info is listed
-- [ ] The system is adoptable for the team’s size and maturity (not over-processed)
+- [ ] The system is adoptable for the team's size and maturity (not over-processed)
 

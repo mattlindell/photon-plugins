@@ -1,114 +1,81 @@
 ---
 name: "team-rituals"
-description: "Design a lightweight set of named, templated “Golden Rituals” (team operating cadence) and produce a Team Rituals Pack (ritual inventory, ritual specs + agendas, onboarding primer, rollout + iteration plan). Use for team rituals, operating cadence, meeting templates, team operating system, golden rituals. Category: Hiring & Teams."
+description: "Design a lightweight team operating cadence: a small set of named, templated Golden Rituals that drive alignment, decisions, execution, and learning without adding meeting load, each with an owner, a repeatable agenda, and a real artifact output."
+disable-model-invocation: true
 ---
 
 # Team Rituals
 
-## Scope
+## Rituals, not more meetings
 
-**Covers**
-- Designing a **small set of high-leverage team rituals** that drive alignment, execution, learning, and belonging
-- Turning rituals into an **operating system** (not “more meetings”): named rituals, clear owners, repeatable templates, and explicit outputs
-- Creating “Golden Rituals” that are **Named**, **Templated**, and **Known by every new hire by their first Friday**
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Our meetings are chaotic; design a better team cadence.”
-- “Define our team operating system / rituals / ceremonies.”
-- “Create named, templated Golden Rituals and a one-pager for onboarding.”
-- “We need better alignment and decision velocity without adding meeting load.”
+- **Rituals, not more meetings.** Every ritual is a mechanism that produces a reusable artifact — a decision, a ranked priority list, a learning. If it produces only talk, it's a meeting, not a ritual.
+- **Golden Rituals are named, templated, and known by first Friday.** Keep the set small (3–7). Each has a memorable name people can reference ("bring that to <RitualName>"), a repeatable template in a known place, and is legible to every new hire in week one.
+- **Design within a time budget.** Start from a weekly sync-time budget and design inside it. Replace status readouts with async, and separate alignment, decisions, and execution into different rituals instead of one do-everything meeting.
+- **Iterate, don't accumulate.** Every ritual has an owner and a keep/change/kill review, or the calendar fills with rituals no one remembers the reason for. Never use rituals for surveillance — it destroys the trust they run on.
 
-**When NOT to use**
-- You need to define company values, org design, or strategy from scratch (do that first; rituals should express decisions you’ve made)
-- You need help facilitating a single workshop/meeting agenda only (this skill produces an end-to-end ritual system)
-- You need HR/legal policy guidance (this is not compliance or legal advice)
-- You’re trying to use rituals for surveillance or performance policing (this will backfire; redesign for trust and psychological safety)
+## When to use / not
 
-## Inputs
+Use to build a team's ritual system, spec or fix a single ritual, audit the meetings that already exist, or run the quarterly governance review.
 
-**Minimum required**
-- Team type + size + composition (functions; cross-functional vs single function)
-- Work mode: remote/hybrid/in-office + time zones
-- What’s currently broken (symptoms) + what you want to improve (outcomes)
-- Existing cadence/rituals (or “none”) and what people hate about them
-- Constraints: meeting time budget, decision-making model, tooling (calendar/docs/chat)
+Do **not** use when: you need to define company values, org design, or strategy from scratch (do that first — rituals express decisions you've already made); you need HR or legal policy guidance; or the goal is to police individuals — surveillance dressed as process backfires, so redesign for trust and psychological safety instead.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If inputs are still missing, proceed with clearly labeled assumptions and provide 2–3 options.
-- Do not request secrets. If context is sensitive, ask for redacted/high-level descriptions.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To design the team's ritual system end-to-end | **A — Build the system** |
+| To spec a new ritual or fix a broken one right now | **B — Spec one ritual** |
+| To audit the meetings/rituals they already run | **C — Audit** |
+| To run the quarterly keep/change/kill review | **D — Governance review** |
 
-Produce a **Team Rituals Pack** in Markdown (in-chat; or as files if the user requests):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets (ask for redacted descriptions if context is sensitive).
 
-1) **Context snapshot** (team, work mode, constraints, goals)
-2) **Ritual inventory audit** (current rituals + what to keep/change/kill)
-3) **Golden Rituals shortlist** (3–7 named rituals mapped to outcomes)
-4) **Ritual specs + templates** (one spec per Golden Ritual: purpose, cadence, owner, agenda, outputs, anti-patterns)
-5) **Onboarding primer** (“Known by first Friday”: 1-page cheatsheet + where templates live)
-6) **Rollout plan** (pilot, comms, calendar/docs setup, training)
-7) **Governance plan** (review cadence, feedback loop, metrics, retirement/iteration rules)
-8) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+The full flow. Produce a minimal, adoptable ritual operating system.
 
-## Workflow (7 steps)
+1. **Frame outcomes + budget.** Clarify the top 2–3 outcomes (alignment, decision speed, execution, learning, belonging), set the weekly sync-time budget, and state the "why" in one sentence ("we're doing this to ___ without ___"). Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** outcomes and a time budget are explicit and you can say the why in one line.
+2. **Audit what exists (keep/change/kill).** Run branch **C** to inventory current rituals, flag duplicates and status-only meetings, and decide what survives.
+   **Done when:** every existing ritual has an explicit purpose and output, and each kill has a replacement or rationale.
+3. **Select 3–7 Golden Rituals.** Pick the minimal set that covers the needed outcomes; name each memorably and map ritual → outcome. Categories and tailoring by stage: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** each Golden Ritual earns its slot — no nice-to-have meetings.
+4. **Spec + templatize each ritual.** For each, write the spec (purpose, cadence, owner, prework, timeboxed agenda, artifact outputs, decision rules, anti-patterns, async fallback) via branch **B**.
+   **Done when:** each ritual is named and templated, with explicit artifact outputs.
+5. **Make them known by first Friday.** Create the 1-page onboarding primer and a rollout plan (pilot order, comms, calendar/docs setup, where templates live).
+   **Done when:** a new hire can find the rituals, understand their purpose, and run one from the template by their first Friday.
+6. **Set governance.** Define ritual owners, the quarterly review (branch **D**), a lightweight feedback loop, and retirement rules. Then run [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
+   **Done when:** the system is minimal, discoverable via a single ritual index, and has a way to evolve without sprawl.
 
-### 1) Intake + outcome definition (what the rituals are for)
-- **Inputs:** user context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Clarify the top 2–3 outcomes (e.g., alignment, decision speed, execution reliability, learning). Set constraints (time budget, remote/async needs). Define what “good” feels like in 4–6 bullets.
-- **Outputs:** Context snapshot + outcome list + constraints.
-- **Checks:** You can explain the “why” in one sentence (“We’re doing this to ____ without ____.”).
+## Branch B — Spec one ritual
 
-### 2) Audit what exists (keep / change / kill)
-- **Inputs:** current meeting list/cadence; pain points.
-- **Actions:** Build a ritual inventory table. For each ritual: purpose, participants, cadence, outputs, and whether it’s working. Identify duplicates and “status-only” meetings.
-- **Outputs:** Ritual inventory audit with a keep/change/kill recommendation.
-- **Checks:** Every existing ritual has an explicit purpose and output; “kill” items have a replacement or rationale.
+The workhorse. Design a new ritual or repair a broken one without rebuilding the whole system. Quick-spec sheet and full spec: [references/TEMPLATES.md](references/TEMPLATES.md); anti-patterns: [references/WORKFLOW.md](references/WORKFLOW.md).
 
-### 3) Design rules + time budget (make it a system, not meetings)
-- **Inputs:** outcomes + audit.
-- **Actions:** Define a small set of design rules (named, templated, artifact-first, owner-driven, async-by-default). Establish a weekly meeting time budget and decide what must be synchronous vs async.
-- **Outputs:** Ritual design principles + time budget + naming scheme.
-- **Checks:** Total sync time stays within budget; each ritual has an owner and an artifact output.
+1. **Name the job.** What single outcome does this ritual produce (alignment / decision / execution / learning / belonging)? If it's doing more than one job, split it.
+2. **Fill the spec.** Purpose, cadence, owner, prework, timeboxed agenda, artifact output, decision rules, and an async fallback. If fixing a broken ritual, diagnose the anti-pattern first (status-only, no template, sprawl, surveillance) and rewrite to it.
 
-### 4) Select 3–7 “Golden Rituals” (the minimal set)
-- **Inputs:** outcomes + principles + constraints.
-- **Actions:** Propose 3–7 Golden Rituals that cover: alignment, decisions, execution, learning, and belonging (as needed). Name them with memorable, team-relevant names.
-- **Outputs:** Golden Rituals shortlist + mapping table (ritual → outcome).
-- **Checks:** Each Golden Ritual earns its slot; no “nice-to-have” meetings.
+**Done when:** the ritual has a memorable name, a reusable template, an owner, and one explicit artifact output — and does exactly one job.
 
-### 5) Write ritual specs + templates (make them repeatable)
-- **Inputs:** Golden Rituals shortlist; [references/TEMPLATES.md](references/TEMPLATES.md).
-- **Actions:** For each Golden Ritual, produce a spec: purpose, cadence, roles, agenda/format, prep, outputs, follow-ups, and anti-patterns. Create the corresponding agenda/notes template.
-- **Outputs:** One “Ritual Spec” per Golden Ritual + copy/paste templates.
-- **Checks:** Rituals are **Named** and **Templated**; outputs are explicit (decisions, priorities, action list, learnings).
+## Branch C — Audit
 
-### 6) Make them “Known by first Friday” (onboarding + rollout)
-- **Inputs:** Ritual specs; onboarding constraints.
-- **Actions:** Create a 1-page onboarding primer and a rollout plan: pilot order, comms, calendar creation, where templates live, and how new hires learn the rituals in week 1.
-- **Outputs:** Onboarding primer + rollout plan.
-- **Checks:** A new hire can find the rituals, understand purpose, and run one using templates by their first Friday.
+Inventory the meetings/rituals that already exist and decide keep/change/kill. Audit table: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 7) Governance + quality gate (iterate, don’t accumulate)
-- **Inputs:** full draft pack.
-- **Actions:** Define governance: ritual owners, quarterly review, feedback loop, and retirement rules. Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**.
-- **Outputs:** Final Team Rituals Pack.
-- **Checks:** The pack is minimal, adoptable, and has a way to evolve without ritual sprawl.
+For each ritual capture purpose, participants, cadence, outputs, and whether it's working; flag duplicates and status-only meetings.
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+**Done when:** every ritual has a keep/change/kill call, and each kill names a replacement or the reason it's simply removed.
+
+## Branch D — Governance review
+
+Run the quarterly review against outcomes and the time budget. Agenda: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+Reconfirm outcomes, review each ritual keep/change/kill, check the time budget, decide changes and owners, and update the onboarding primer and ritual index.
+
+**Done when:** each ritual has a fresh keep/change/kill decision, the time budget still holds, and the ritual index and primer reflect the changes.
 
 ## Examples
 
-**Example 1 (fix chaotic cadence):** “We’re a 12-person product+engineering team (remote across PST/EST). Meetings feel random and we keep missing decisions. Design Golden Rituals, write templates, and create a first-Friday onboarding primer.”  
-Expected: a small set of named rituals with templates, mapped to outcomes, plus rollout + governance.
-
-**Example 2 (new manager operating system):** “I’m inheriting a team of 7 ICs with low accountability and unclear priorities. Create a weekly operating cadence with minimal meetings and clear artifact outputs.”  
-Expected: ritual inventory audit + a minimal Golden Rituals set + artifact-first templates.
-
-**Boundary example:** “Fix our company culture.”  
-Response: ask what specifically is broken and at what scope; propose a small team-level ritual system only, or suggest doing values/strategy/org work first.
+- *"We're a 12-person remote product+eng team; meetings feel random and we keep missing decisions."* → **Branch A**: audit, a small named-ritual set mapped to outcomes, templates, a first-Friday primer, and governance.
+- *"Our decision review keeps turning into a status meeting — fix it."* → **Branch B**: rewrite the one ritual to a single job, add doc-first prework, an explicit decision-log output, and an async fallback.
+- *"Fix our company culture."* → out of scope: ask what specifically is broken and at what scope; propose a team-level ritual system only, or route values/strategy/org work first.

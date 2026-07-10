@@ -11,7 +11,7 @@ Use these to validate the OKR & Goals Pack before finalizing.
 ## B) Objective quality checklist
 - [ ] 1–3 objectives total (per team per cycle)
 - [ ] Objectives are outcomes, not project lists
-- [ ] “Why now” is documented
+- [ ] "Why now" is documented
 - [ ] Each objective is understandable without reading the KRs
 
 ## C) KR quality checklist (measurement + ownership)
@@ -23,7 +23,7 @@ Use these to validate the OKR & Goals Pack before finalizing.
 ## D) Anti-gaming + metric robustness checklist
 - [ ] Prefer absolute metrics over ratios/percentages
 - [ ] Any ratio KR includes numerator/denominator checks or complementary absolute KRs
-- [ ] Each KR includes 1–2 “how this could be gamed” notes (or explicitly “hard to game because…”)
+- [ ] Each KR includes 1–2 "how this could be gamed" notes (or explicitly "hard to game because…")
 - [ ] Guardrails exist to prevent obvious harm (quality/trust/margin/volume)
 
 ## E) Systems & habits checklist

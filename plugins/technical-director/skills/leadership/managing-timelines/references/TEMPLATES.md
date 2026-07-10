@@ -1,6 +1,27 @@
 # Templates (Managing Timelines)
 
-Copy/paste these templates to produce a Timeline Management Pack.
+Copy/paste these to produce a Timeline Management Pack or to run a single branch. Grab the one your branch points to.
+
+## 0) Slip Rescue Sheet (Branch B — the workhorse)
+
+Fill this the moment a milestone goes yellow/red.
+
+**Milestone / commitment at risk:** ______   **Original date:** ______   **New forecast:** ______
+
+- **The gap:** slipping by ~____ (days/weeks) against a (commit / forecast / target).
+- **What changed (trigger):** ______
+- **Root cause (pick the real one):** scope creep / under-estimate / dependency block / capacity loss / quality debt
+- **Options:**
+
+  | Lever | Trade (what it costs) | Impact on scope/quality | Recommend? |
+  |---|---|---|---|
+  | Cut scope |  |  |  |
+  | Move date |  |  |  |
+  | Add resources |  |  |  |
+  | Lower quality (if allowed) |  |  |  |
+
+- **Recommendation:** ______
+- **Decision needed by:** ______   **Decision owner:** ______
 
 ## 1) Timeline Management Pack (full outline)
 
@@ -59,7 +80,7 @@ RAG definitions:
   - Scope freeze:
   - Code freeze:
   - QA / launch readiness freeze:
-- Change control rule (“trade, don’t add”):
+- Change control rule ("trade, don't add"):
   - Decision owner:
   - Evaluation criteria:
   - What gets traded off first:
@@ -68,8 +89,8 @@ RAG definitions:
 Weekly update template:
 - Status (RAG):
 - What changed since last update:
-- This week’s progress:
-- Next week’s plan:
+- This week's progress:
+- Next week's plan:
 - Risks (top 3):
 - Decisions needed (owner + deadline):
 - Scope changes (what we traded):
@@ -95,13 +116,13 @@ Escalation note template (when red):
 - ...
 ```
 
-## 2) Commitment language snippets (copy/paste)
+## 2) Commitment language snippets (Branch D — copy/paste)
 
 ```md
 ### Date language
-- Commitment: “We will deliver <X> by <D> provided <assumptions>. If <risk> happens, we will <trade-off>.”
-- Forecast: “Based on what we know today, we expect <D>. Confidence: <H/M/L>. Next update: <date>.”
-- Target: “Our goal is <D>. We will confirm a commitment after <gate>.”
+- Commitment: "We will deliver <X> by <D> provided <assumptions>. If <risk> happens, we will <trade-off>."
+- Forecast: "Based on what we know today, we expect <D>. Confidence: <H/M/L>. Next update: <date>."
+- Target: "Our goal is <D>. We will confirm a commitment after <gate>."
 ```
 
 ## 3) Decision log (simple)
@@ -133,10 +154,9 @@ Escalation note template (when red):
 - Decision needed by:
 ```
 
-## 6) AI/ML outer-loop milestone prompts (only if applicable)
+## 6) AI/ML outer-loop milestone prompts (Branch E — only if applicable)
 - Evaluation harness + acceptance metrics defined?
 - Data readiness + privacy review complete?
 - Safety/guardrails + fallback behavior defined?
 - Monitoring + alerting + on-call/runbook ready?
 - Gradual rollout plan (canary/beta) + rollback plan?
-

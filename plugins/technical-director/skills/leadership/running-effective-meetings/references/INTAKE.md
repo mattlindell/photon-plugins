@@ -1,9 +1,9 @@
 # INTAKE (Question Bank)
 
-Ask up to 5 questions at a time. If the user can’t answer, proceed with explicit assumptions and label unknowns.
+Ask up to 5 questions at a time. If the user can't answer, proceed with explicit assumptions and label unknowns.
 
 ## Minimum questions (pick 3–5)
-1) What is the meeting’s **objective** and what must be true when it ends?
+1) What is the meeting's **objective** and what must be true when it ends?
 2) Is this an **operational**, **strategic discussion**, **decision**, or **workshop** meeting (or should I recommend)?
 3) What **decision(s)** (if any) must be made, and who is the **decision owner**?
 4) Who must attend, and what role does each person play (input, approver, implementer, informed)?

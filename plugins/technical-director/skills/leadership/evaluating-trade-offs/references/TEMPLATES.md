@@ -1,34 +1,50 @@
 # Templates (copy/paste)
 
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Quick Trade-off Call (Branch A - the workhorse)
+
+Fill this in a few minutes when you need a decision now.
+
+**Decision (one sentence):** We are choosing ___ vs ___ by ___ to achieve ___.
+**Owner:** ______
+
+- **Criteria that actually differ** (2-3; skip anything both options tie on):
+  - …
+- **Order-of-magnitude read:** Is one option plausibly 10x better, or are they within the error bars? …
+- **Assumption that would flip it:** …
+- **Opportunity cost of the pick:** If we choose this, we stop/defer …
+- **Call:** ______  **Review date:** ______
+
 ## 1) Trade-off brief
 
-**Decision (one sentence):**  
-**Decision owner:**  
-**Decision date:**  
-**Why now:**  
+**Decision (one sentence):**
+**Decision owner:**
+**Decision date:**
+**Why now:**
 **Time horizon:** (e.g., 90 days / 12 months / 3 years)
 
-**Context (2–5 bullets):**
+**Context (2-5 bullets):**
 - …
 
 **Constraints / non-negotiables:**
 - …
 
-**Options (2–4):**
+**Options (2-4):**
 - Option A:
 - Option B:
 - Option C (optional):
 - Do nothing (optional):
 
-**Success metrics (1–3):**
+**Success metrics (1-3):**
 - …
 
-**Guardrails (2–5):** (trust, reliability, cost, latency, support load, brand, compliance)
+**Guardrails (2-5):** (trust, reliability, cost, latency, support load, brand, compliance)
 - …
 
 ## 2) Options + criteria matrix (decision table)
 
-Define 4–8 criteria. Prefer ordinal scoring (e.g., Low/Med/High) when uncertainty is high.
+Define 4-8 criteria. Prefer ordinal scoring (e.g., Low/Med/High) when uncertainty is high.
 
 | Criterion | Definition (observable) | Weight (opt) | Option A | Option B | Notes / assumptions |
 |---|---|---:|---|---|---|
@@ -55,18 +71,18 @@ Include hidden costs: integration/migrations, QA, on-call, maintenance, coordina
 
 Use ranges and confidence. Avoid fake precision; record the assumptions that drive the model.
 
-| Option | Expected upside range | Expected downside range | Time-to-impact | Confidence (L/M/H) | Key assumptions (top 2–3) |
+| Option | Expected upside range | Expected downside range | Time-to-impact | Confidence (L/M/H) | Key assumptions (top 2-3) |
 |---|---|---|---|---|---|
 | A |  |  |  |  |  |
 | B |  |  |  |  |  |
 
-**10× check:** Which option is plausibly an order of magnitude better if assumptions hold? Which is only marginally better?
+**10x check:** Which option is plausibly an order of magnitude better if assumptions hold? Which is only marginally better?
 
 ## 5) Worse-first + mitigation plan
 
-**If we choose the “worse first” path, what dip do we expect?**
+**If we choose the "worse first" path, what dip do we expect?**
 - Expected dip: …
-- Why it’s worth it: …
+- Why it's worth it: …
 
 **Leading indicators (watch weekly):**
 - …
@@ -80,10 +96,10 @@ Use ranges and confidence. Avoid fake precision; record the assumptions that dri
 
 ## 6) Stop/continue triggers (sunk-cost reset)
 
-**Sunk-cost reset question:** If we weren’t already doing this, would we start today? Why/why not?
+**Sunk-cost reset question:** If we weren't already doing this, would we start today? Why/why not?
 
-**Review date:**  
-**Owner:**  
+**Review date:**
+**Owner:**
 
 **Continue if (leading indicators):**
 - …
@@ -96,9 +112,9 @@ Use ranges and confidence. Avoid fake precision; record the assumptions that dri
 
 ## 7) Recommendation memo (final)
 
-**Recommendation:** Choose Option A / B / C  
-**Confidence:** Low / Medium / High  
-**Rationale (3–6 bullets):**
+**Recommendation:** Choose Option A / B / C
+**Confidence:** Low / Medium / High
+**Rationale (3-6 bullets):**
 - …
 
 **Key trade-offs (explicit):**
@@ -107,11 +123,10 @@ Use ranges and confidence. Avoid fake precision; record the assumptions that dri
 - We are not optimizing for: …
 
 **Risks (with mitigations):**
-- Risk: … → Mitigation: …
+- Risk: … -> Mitigation: …
 
 **Open questions (that could change the decision):**
 - …
 
 **Next steps (owner + date):**
 - …
-

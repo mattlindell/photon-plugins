@@ -19,7 +19,7 @@ Suggested passing bar: **>= 16/20**.
 ## 4) Agenda quality (0–2)
 - Agenda is timed, interactive-heavy, and every block has an output artifact.
 
-## 5) “Defrag the day” (0–2)
+## 5) "Defrag the day" (0–2)
 - Distraction controls exist (laptops down, scribe pattern, breaks, physical tools).
 
 ## 6) Prework protects time (0–2)

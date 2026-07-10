@@ -23,7 +23,7 @@ Suggested passing bar: **≥ 16/20**.
 - Timed, limited topics, explicit outputs per segment, preserves discussion time.
 
 ## 6) Facilitation readiness (0–2)
-- Roles assigned; script includes priming + prompts + “if stuck” branches.
+- Roles assigned; script includes priming + prompts + "if stuck" branches.
 
 ## 7) Decision/action capture (0–2)
 - Decision log and action items are filled with owners and due dates.

@@ -1,16 +1,31 @@
-# Templates — Organizational Design
+# Templates - Organizational Design
 
-Use these templates to produce an Organizational Design Pack. Copy/paste and fill.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Quick Structural Call (Branch A - the workhorse)
+
+Fill this when you have one bounded structural question to answer now.
+
+**Question (one line):** e.g., where should ___ sit / should we split ___ / who decides ___?
+**Outcome it should improve:** speed / ownership / coherence / ______
+
+- **Friction behind it** (dependency chain or decision-rights gap): …
+- **Is the fix structural or decision rights?** …
+- **The trade** (what gets faster / what gets harder): …
+- **Does it remove a dependency or just move it?** …
+- **Recommendation:** ______
+- **New decision rights:** ______
+- **30-day signal it worked:** ______
 
 ## 1) Org Design Brief (template)
 
 **Context:** (company stage, domain, size; functions in-scope)  
-**Why now:** (what changed; what’s breaking)  
+**Why now:** (what changed; what's breaking)  
 **Time horizon:** (when must outcomes improve?)  
 
 **Design problem (1–2 sentences):**  
 
-**What we’re optimizing for (ranked 1–5):**
+**What we're optimizing for (ranked 1–5):**
 1)  
 2)  
 3)  
@@ -57,8 +72,8 @@ Use these templates to produce an Organizational Design Pack. Copy/paste and fil
 
 ### D) Management layers snapshot (current)
 - Layers between IC → CEO/GM:  
-- Where managers don’t know the work (examples):  
-- Where “people management” is detached from craft (risk areas):  
+- Where managers don't know the work (examples):  
+- Where "people management" is detached from craft (risk areas):  
 
 ## 3) Operating Model Decision (template)
 
@@ -77,8 +92,8 @@ Use these templates to produce an Organizational Design Pack. Copy/paste and fil
 -  
 
 ### C) Guardrails
-- “We will not decentralize decisions about ____ without standards/interfaces.”
-- “We will not centralize decisions about ____ because it creates bottlenecks.”
+- "We will not decentralize decisions about ____ without standards/interfaces."
+- "We will not centralize decisions about ____ because it creates bottlenecks."
 
 ## 4) Org Options (template)
 
@@ -169,7 +184,7 @@ Create 2–3 options. Keep each option concrete and comparable.
 ### C) Risk mitigations
 - Continuity plan for critical work:
 - Morale/attrition risks:
-- “Unknown approver” risks:
+- "Unknown approver" risks:
 - Rollback triggers:
 
 ### D) Measurement and checkpoints

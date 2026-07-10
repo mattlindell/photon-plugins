@@ -1,78 +1,50 @@
-# Workflow Notes (expanded guidance)
+# Team Rituals Playbook (Heuristics)
 
-This file helps tailor the ritual system to team size, stage, and work mode.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Tailor every default to team size, stage, and work mode.
 
-## Core insights → design rules
+## Anti-patterns (catch yourself)
 
-### 1) Rituals are the engine (not “meeting management”)
-- Treat rituals as the mechanisms that produce alignment, decisions, learning, and belonging.
-- Prefer **artifact-first** rituals: every ritual produces a reusable output (priorities, decisions, action list, learnings).
-- Include “micro-rituals” (async patterns) in addition to meetings when possible.
+- **Ritual sprawl.** Too many recurring meetings and no one remembers why they exist. Every ritual needs an owner and a keep/change/kill review, or the calendar silts up.
+- **No templates.** Meetings vary wildly and their outputs disappear. If it isn't templated and stored somewhere known, it isn't a Golden Ritual.
+- **Status-only rituals.** Lots of talking, no decisions, no commitments, no learning. Replace status with async and reclaim the time for a real job.
+- **Do-everything meeting.** Mixing status + brainstorming + decision-making in one weekly slot means none of them happens well. One ritual, one job.
+- **Surveillance disguised as process.** Rituals used to police individuals make people disengage and information quality drops. Design for transparency and support, not gotchas.
 
-### 2) Golden Rituals are small, named, templated, and widely known
-- Keep the Golden Ritual list **small** (usually 3–7).
-- **Named:** memorable names people can reference (“Bring this to <RitualName>”).
+## Rituals are the engine
+
+Treat rituals as the mechanisms that produce alignment, decisions, learning, and belonging — not "meeting management." Prefer artifact-first rituals: every one produces a reusable output (priorities, decisions, action list, learnings). Include micro-rituals (async patterns), not just meetings, where they'll do the job.
+
+## Golden Rituals: small, named, templated, known
+
+- **Small:** usually 3–7 total.
+- **Named:** memorable names people reference in conversation ("bring this to <RitualName>").
 - **Templated:** a consistent agenda/notes format stored in a known place.
 - **Known by first Friday:** onboarding makes rituals legible to every new hire quickly.
 
 ## Design principles (defaults)
 
-1) **Minimize meeting load**
-- Start from a weekly sync-time budget and design within it.
-- Replace status meetings with async updates when feasible.
+1. **Minimize meeting load.** Start from a weekly sync-time budget and design within it; replace status meetings with async updates when feasible.
+2. **Make ownership explicit.** Every ritual has an owner responsible for prep, facilitation, and outputs. Shared ownership is fine, but the single throat to choke is clear.
+3. **Separate alignment vs decisions vs execution.** Don't fold multiple jobs into one ritual.
+4. **Make outputs real.** Define what the ritual produces — a decision, a ranked list, a risk register, an action tracker, a retro log — and track follow-ups in the system the team actually uses.
+5. **Default to async-friendly.** Provide async participation paths (prework prompts, doc-first agendas, recordings, summaries). Rotate times if time zones are spread; don't require everyone live for everything.
 
-2) **Make ownership explicit**
-- Every ritual has an owner responsible for prep, facilitation, and outputs.
-- Shared ownership is allowed, but the “single throat to choke” is clear.
-
-3) **Separate alignment vs decisions vs execution**
-- Avoid mixing multiple meeting “jobs” into one ritual.
-- Example: don’t do status + brainstorming + decision-making in a single weekly meeting.
-
-4) **Make outputs real**
-- Define what the ritual produces: a decision, a ranked list, a risk register, an action tracker, a retro log.
-- Track follow-ups in the system the team actually uses (docs, tickets, tasks).
-
-5) **Default to async-friendly**
-- Provide async participation paths (prework prompts, doc-first agendas, recordings, summaries).
-- Rotate times if time zones are spread; do not require everyone live for everything.
-
-## Common categories of Golden Rituals (choose what you need)
+## Categories of Golden Rituals (choose what you need)
 
 - **Alignment:** weekly priorities, focus review, roadmap/goal check
-- **Decisions:** decision review, trade-off forum, escalation ritual
+- **Decisions:** decision review, tradeoff forum, escalation ritual
 - **Execution:** sprint planning/checkpoint, execution review, dependency sync
 - **Learning:** retro, pre-mortem/post-mortem, customer/quality review
 - **Belonging:** team demo/show-and-tell, wins/gratitude, office hours
 
-## Tailoring: by stage
+## Tailoring by stage
 
-### Early stage (small team, fast iteration)
-- Keep rituals minimal and bias to async.
-- Pick 3–4 Golden Rituals; avoid heavy process.
-
-### Scaling (10–50 people across functions)
-- Prioritize decision velocity + dependency management.
-- Make ritual outputs consistent and discoverable; add explicit owners.
-
-### Turnaround / low trust
-- Start with rituals that rebuild trust: predictable updates, clear decisions, and a learning cadence.
-- Avoid “gotcha” accountability rituals; focus on transparency and support.
-
-## Anti-patterns (avoid)
-
-1) **Ritual sprawl**
-- Too many recurring meetings; no one knows why they exist.
-2) **No templates**
-- Meetings vary wildly; outputs disappear.
-3) **Status-only rituals**
-- Lots of talking; no decisions, no commitments, no learning.
-4) **Surveillance disguised as process**
-- Rituals used to police individuals; people disengage and information quality drops.
+- **Early stage (small team, fast iteration):** keep rituals minimal and bias to async; pick 3–4 and avoid heavy process.
+- **Scaling (10–50 across functions):** prioritize decision velocity and dependency management; make outputs consistent and discoverable, with explicit owners.
+- **Turnaround / low trust:** start with rituals that rebuild trust — predictable updates, clear decisions, a learning cadence. Avoid "gotcha" accountability rituals; focus on transparency and support.
 
 ## Governance (keep it healthy)
 
-- Set a **quarterly ritual review**: kill/change/keep, based on outcomes and time budget.
-- Maintain a **single ritual index** (table) so the operating system is discoverable.
+- Set a quarterly ritual review: keep/change/kill based on outcomes and time budget.
+- Maintain a single ritual index (table) so the operating system is discoverable.
 - Use a lightweight feedback loop (1–3 questions monthly) to spot issues early.
-

@@ -8,9 +8,9 @@ Use these checklists before finalizing the Organizational Design Pack and during
 - Current-State Map captures real dependency/decision bottlenecks (not just org chart).
 - Operating Model Decision is explicit (centralization + functional/divisional posture) with guardrails.
 - At least 2 org options are presented with clear pros/cons and assumptions.
-- Recommendation includes “Day 1 changes” vs “follow-on changes”.
-- Decision rights are clear enough that a manager can answer “who decides?” without ambiguity.
-- Management layers and leadership roles are explicit (no hidden “manager-only” layers).
+- Recommendation includes "Day 1 changes" vs "follow-on changes".
+- Decision rights are clear enough that a manager can answer "who decides?" without ambiguity.
+- Management layers and leadership roles are explicit (no hidden "manager-only" layers).
 - Transition plan includes comms, sequencing, and safety rails (continuity + rollback triggers).
 - Risks / Open questions / Next steps are included.
 
@@ -18,7 +18,7 @@ Use these checklists before finalizing the Organizational Design Pack and during
 - Top dependency hotspots are listed and addressed (removed or given a stable interface).
 - Interfaces between teams are explicit (what inputs/outputs are exchanged, and how often).
 - Shared services/platform teams have clear service boundaries and prioritization mechanisms.
-- The reorg does not merely “move dependencies” without reducing coordination load.
+- The reorg does not merely "move dependencies" without reducing coordination load.
 
 ## C) UX coherence checklist (when customer experience is integrated)
 - There is a clear owner for end-to-end journeys that must feel coherent.
@@ -27,7 +27,7 @@ Use these checklists before finalizing the Organizational Design Pack and during
 
 ## D) Decision rights checklist
 - Decisions have explicit owners (and escalation triggers).
-- “Consulted vs informed” is clear to avoid consensus-by-default.
+- "Consulted vs informed" is clear to avoid consensus-by-default.
 - Decisions are logged somewhere durable (doc hub/decision log).
 
 ## E) Transition & people-risk checklist

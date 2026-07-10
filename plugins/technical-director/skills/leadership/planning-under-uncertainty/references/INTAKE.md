@@ -10,15 +10,15 @@ Ask **up to 5 questions at a time**. Prefer questions that change the decision, 
 
 2) **What does success look like (and what must not get worse)?**
    - Success metric(s):
-   - Guardrails (“must not worsen”):
+   - Guardrails ("must not worsen"):
    - Minimum acceptable outcome:
 
-3) **What’s fixed vs flexible?**
+3) **What's fixed vs flexible?**
    - Non-negotiable constraints (compliance, brand, quality, budget):
    - What can move (scope, time, resources, quality, market segment)?
 
 4) **What are the top unknowns/assumptions?**
-   - List the top 3–5 “things that would change the plan”.
+   - List the top 3–5 "things that would change the plan".
    - What signals/data do we already have?
 
 5) **Who are the stakeholders and decision owners?**
@@ -29,22 +29,22 @@ Ask **up to 5 questions at a time**. Prefer questions that change the decision, 
 
 ### Wartime vs peacetime
 - Are we stabilizing an incident / preventing further damage, or exploring for growth?
-- What’s the rollback capability and tolerance for customer impact?
+- What's the rollback capability and tolerance for customer impact?
 
 ### Feasible experiments
 - What experiments are possible (customer calls, prototypes, A/B tests, ops drills)?
 - What is the fastest test we can run within 48 hours / 1 week / 2 weeks?
-- What data instrumentation exists (and what’s missing)?
+- What data instrumentation exists (and what's missing)?
 
 ### Baseline + segmentation
-- What’s the baseline (last good week/month)? Any seasonality?
+- What's the baseline (last good week/month)? Any seasonality?
 - Which segment is impacted most? Any known confounders?
 
 ### Capacity + dependencies
 - Who is available to run tests and analyze results?
 - Any dependencies on other teams/vendors/reviews?
 
-## Default assumptions (if the user can’t answer)
+## Default assumptions (if the user can't answer)
 - Optimize for **learning first**: commit to the next learning milestone, not a final delivery date.
 - Prefer **reversible decisions** and small bets where possible.
 - Use a weekly learning/decision cadence with a written decision log.

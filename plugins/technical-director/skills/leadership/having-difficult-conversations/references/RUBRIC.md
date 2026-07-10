@@ -1,9 +1,9 @@
 # Rubric (Score the Pack)
 
-Score each dimension 1–5. A “pass” is **≥ 4 average** with **no dimension below 3**, and **no triggered Stop items** in [CHECKLISTS.md](CHECKLISTS.md).
+Score each dimension 1-5. A "pass" is **>= 4 average** with **no dimension below 3**, and **no triggered Stop items** in [CHECKLISTS.md](CHECKLISTS.md).
 
 ## 1) Clarity + directness
-1: Message is vague/hedged; the person won’t know what’s being asked/decided.  
+1: Message is vague/hedged; the person won't know what's being asked/decided.  
 3: Message is mostly clear but rambly or buried.  
 5: Key message is explicit and early; boundaries and next steps are unmistakable.
 
@@ -15,7 +15,7 @@ Score each dimension 1–5. A “pass” is **≥ 4 average** with **no dimensio
 ## 3) Specificity + fairness
 1: Uses labels/character judgments; no concrete examples.  
 3: Some examples, but mixed with interpretation or excessive volume.  
-5: 2–5 observable examples tied to impact and expectations; avoids “kitchen-sinking.”
+5: 2-5 observable examples tied to impact and expectations; avoids "kitchen-sinking."
 
 ## 4) Safety + policy alignment
 1: Ignores HR/legal/process risk; includes unsafe advice.  
@@ -24,7 +24,7 @@ Score each dimension 1–5. A “pass” is **≥ 4 average** with **no dimensio
 
 ## 5) Emotion + objection handling
 1: No plan for reactions; likely to escalate conflict.  
-3: Generic empathy; doesn’t handle defensiveness well.  
+3: Generic empathy; doesn't handle defensiveness well.  
 5: Anticipates likely reactions; includes concrete response moves and anchor phrases.
 
 ## 6) Follow-up system
@@ -33,8 +33,8 @@ Score each dimension 1–5. A “pass” is **≥ 4 average** with **no dimensio
 5: Written follow-up note + clear check-in cadence + measurable expectations (when relevant).
 
 ## Red flags (automatic revision required)
-- The “ask/decision” is unclear or delayed until the end.
-- Script contains labels (“lazy”, “not a leader”) instead of observable behaviors.
+- The "ask/decision" is unclear or delayed until the end.
+- Script contains labels ("lazy", "not a leader") instead of observable behaviors.
 - Suggests delivering termination/layoff news via email/group message.
 - Missing follow-up plan or dates.
 

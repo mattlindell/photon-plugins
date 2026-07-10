@@ -1,6 +1,27 @@
-# Templates — Running Decision Processes
+# Templates (Copy/Paste)
 
-Use these templates to produce a Decision Process Pack. Copy/paste and fill.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Decision Meeting Prep Sheet (Branch B — the workhorse)
+
+Fill this before you walk into the meeting.
+
+**Decision:** ______  **Deadline:** ______  **Type:** one-way / two-way door  **Timebox:** ______
+
+- **Decider:** ______ | **Driver/Owner:** ______ | **Who can veto:** ______
+- **Options on the table** (2–4; include "do nothing" if apt):
+  - …
+- **Recommendation (if any) + the tradeoff it accepts:**
+  - …
+- **Key assumptions to pressure-test in the room:**
+  - …
+- **Agenda (timeboxed):**
+  1. Restate decision + deadline (2 min)
+  2. Review options + criteria + key assumptions (10–15 min)
+  3. Surface disagreement + "what would change your mind?" (10–15 min)
+  4. Decide: state decision + tradeoffs + owner (5 min)
+  5. Next steps + comms + review date (5 min)
+- **Close checklist:** decision stated; owner named; tradeoffs recorded; review date set; comms owner named.
 
 ## 1) Decision Brief / Pre-read (template)
 
@@ -12,7 +33,7 @@ Use these templates to produce a Decision Process Pack. Copy/paste and fill.
 **Why now (what changed / why it matters):**
 -  
 
-**Success criteria (what “good” looks like):**
+**Success criteria (what "good" looks like):**
 -  
 
 **Non-negotiables / constraints:**
@@ -129,7 +150,7 @@ Agenda:
 **What would trigger a revisit:**
 -  
 
-**Owner’s next steps (milestones):**
+**Owner's next steps (milestones):**
 -  
 
 **Review date + metrics to review:**
@@ -140,9 +161,9 @@ Agenda:
 **Message (email/Slack)**
 Subject: Quick input on <decision> (2 min)
 
-Hi <name> — we’re deciding **<decision statement>** by **<date>**.  
+Hi <name> — we're deciding **<decision statement>** by **<date>**.  
 Could you please:
-1) Pick the top **2** options you’d choose (from below) and **why**
+1) Pick the top **2** options you'd choose (from below) and **why**
 2) Name the **#1 missing consideration** we should include
 3) What would change your mind?
 
@@ -165,7 +186,7 @@ Ask 1–2 tenured people (or search prior docs). Capture answers in bullets.
 - Have we faced a similar decision? What did we decide and why?
 - What surprised us last time (hidden constraints, stakeholder dynamics, tech debt)?
 - What would you never do again?
-- What “baggage” should we surface so it doesn’t become a hidden veto?
+- What "baggage" should we surface so it doesn't become a hidden veto?
 
 ## 8) Decision Communication (template)
 
@@ -179,7 +200,7 @@ Message:
 - **What stays the same:** <bullets>  
 - **Owner + next steps:** <who/what/when>  
 - **Risks / watch-outs:** <bullets>  
-- **When we’ll review:** <date + metrics>  
+- **When we'll review:** <date + metrics>  
 
 ## 9) Decision Review / Retrospective (template)
 
@@ -194,7 +215,7 @@ Message:
 **What we learned (process + content):**
 -  
 
-**What we’d do differently next time (decision process improvements):**
+**What we'd do differently next time (decision process improvements):**
 -  
 
 **Follow-ups / next decision(s):**

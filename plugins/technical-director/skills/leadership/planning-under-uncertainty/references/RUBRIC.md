@@ -8,7 +8,7 @@ Score each item 0/1/2:
 Suggested passing bar: **>= 14/18**.
 
 ## 1) Decision clarity (0–2)
-- Objective, “why now”, and time horizon are explicit.
+- Objective, "why now", and time horizon are explicit.
 - Decision owner(s) and decision type (stop/pivot/scale/commit) are clear.
 
 ## 2) Mode fit (0–2)
@@ -29,11 +29,11 @@ Suggested passing bar: **>= 14/18**.
 
 ## 6) Metrics as compass (0–2)
 - Primary signals are leading and directional; guardrails exist.
-- The pack avoids false precision and includes “disprove” signals.
+- The pack avoids false precision and includes "disprove" signals.
 
 ## 7) Buffers + contingencies (0–2)
 - Buffers are explicit and proportional to uncertainty.
-- Contingency paths and triggers are operational (“if X then Y”).
+- Contingency paths and triggers are operational ("if X then Y").
 
 ## 8) Cadence + comms (0–2)
 - Learning/decision cadence exists with a runnable agenda.

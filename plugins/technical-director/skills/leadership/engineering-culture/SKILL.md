@@ -1,117 +1,87 @@
 ---
 name: "engineering-culture"
-description: "Build or refresh engineering culture and produce an Engineering Culture Operating System Pack (capability map, culture code, org↔architecture alignment, clock-speed/DevEx backlog, workflow contract, rollout + measurement). Use for engineering culture, DevOps capabilities, DevEx, clock speed, Conway's Law, and engineering principles. Category: Engineering."
+description: "Build or refresh engineering culture as a delivery system: diagnose what is real in the code and the pipeline, express it as a culture code, align teams with architecture (Conway's Law), raise clock speed and DevEx, and fix a specific practice or run a blameless postmortem right now."
+disable-model-invocation: true
 ---
 
 # Engineering Culture
 
-## Scope
+## Culture shows up in the code and the pipeline, not the wiki
 
-**Covers**
-- Diagnosing the current engineering culture *and* delivery system (technical, architectural, cultural, and management capabilities)
-- Defining a clear **engineering culture code** (principles → behaviors → decision rules → anti-patterns)
-- Aligning org structure with architecture (Conway’s Law) and reducing cross-team friction
-- Increasing **clock speed** (safe shipping + experimentation throughput) and improving DevEx
-- Creating a practical cross-functional workflow contract (how engineering + PM/Design/Marketing collaborate in the same toolchain)
-- Making AI-assisted development safe and effective (humans as “architects”: spec, review, and oversight)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Help me improve engineering culture / DevEx and make it concrete.”
-- “Our delivery is slow—build a plan to increase shipping speed without breaking things.”
-- “Our org structure fights our architecture—analyze Conway’s Law and propose changes.”
-- “We want tighter processes and faster experimentation (higher clock speed).”
-- “Non-engineering functions struggle to work with engineering—define a shared workflow contract.”
-- “We’re adopting AI coding tools/agents—set norms so engineers shift toward higher-level design and review.”
+- **The delivery system is the culture.** What the CI logs, the open PRs, and the on-call rotation reveal is the real culture — the values doc is not. Diagnose the system with evidence before you rewrite anything.
+- **Org shape drives architecture (Conway's Law).** Teams ship their communication structure. Design team boundaries and ownership deliberately, or the architecture will inherit the accidents of your org chart.
+- **Velocity and stability rise together.** Sustainable speed comes from small batches, reliable CI, and good tests — not heroics. Hero culture and quality theater both slow you down; measure with DORA plus quality, not vanity metrics.
+- **Blameless learning compounds.** Treat failures as system signals, not personal faults. A blameless postmortem culture turns incidents into reliability; blame culture buries the truth you need to improve.
 
-**When NOT to use**
-- You need to respond to an active incident or outage (use incident response/runbooks)
-- You need HR/legal policy, investigations, or employee relations handling (involve HR/legal)
-- You only need to implement a specific technical improvement (e.g., “set up CI”) without culture/org/process work
-- You need a full company strategy/roadmap prioritization across many bets (use `prioritizing-roadmap`)
+## When to use / not
 
-## Inputs
+Use to diagnose engineering culture as a delivery system, write an engineering culture code, align team structure with architecture (Conway's Law), raise clock speed and DevEx, define a cross-functional workflow contract, or fix a specific engineering practice or moment right now.
 
-**Minimum required**
-- Org context: product(s), stage, engineering size, team topology, on-call model
-- Current symptoms + 2–5 examples (e.g., slow delivery, flaky deploys, low ownership, poor collaboration, high toil)
-- Current delivery system snapshot (release cadence, CI/CD maturity, test strategy, environments)
-- Architecture constraints (e.g., monolith vs services; coupling hotspots; ownership boundaries)
-- Cross-functional workflow reality (where work is tracked, how decisions are made, how releases happen)
-- Desired outcomes (what should be *more true* in 4–12 weeks?) + timeline constraints
+Do **not** use for: an active incident or outage — follow your runbook / on-call process (offer a blameless postmortem afterward); HR/legal policy, investigations, or employee relations — route to HR/legal; a purely technical task with no culture/org/process angle (e.g. "set up CI") — just do the work; or full roadmap prioritization across many bets — use **prioritizing-roadmap**.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time), then proceed with explicit assumptions.
-- If metrics are missing, use best-effort ranges and label confidence; list instrumentation gaps.
-- Do not request secrets, credentials, or proprietary identifiers; use redacted summaries.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To build or refresh the whole engineering culture + delivery system | **A — Engineering-culture operating system** |
+| To diagnose what the culture and delivery system actually are today | **B — Capability & delivery snapshot** |
+| To write the engineering culture code (principles → behaviors) | **C — Culture code** |
+| To align team structure with architecture | **D — Conway's Law alignment** |
+| To ship faster and safer / improve DevEx | **E — Clock speed & delivery** |
+| To fix one engineering practice or handle a moment right now | **F — Practice fix (the workhorse)** |
 
-Produce an **Engineering Culture Operating System Pack** in Markdown (in-chat; or as files if requested):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets, credentials, or proprietary identifiers, and use redacted summaries.
 
-1) **Culture + capability snapshot** (what’s true today; evidence; capability gaps)
-2) **Engineering culture code (v1)** (3–7 principles with behaviors, do/don’t, decision rules, anti-patterns)
-3) **Org ↔ architecture alignment brief** (Conway’s Law analysis + proposed operating model changes)
-4) **Clock speed + DevEx improvement backlog** (prioritized initiatives with owners, sequencing, metrics)
-5) **Cross-functional workflow contract** (GitHub/issue/PR/release norms; how non-engineers contribute; AI norms)
-6) **Rollout + measurement plan** (30/60/90, rituals, metrics + guardrails, feedback loops)
-7) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the engineering-culture operating system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+1. **Frame goals and route risk.** Confirm what should be more true in 4–12 weeks, the constraints, and the non-negotiables (compliance, security, quality guardrails). If the request is an active incident or an HR/legal matter, pause and route it.
+   **Done when:** the target state is observable and incident/HR topics are routed away from this skill.
+2. **Build the capability & delivery snapshot** (Branch B) so change rests on evidence, not opinion.
+   **Done when:** the snapshot separates stated from lived culture, includes a capability map, and has a DORA baseline (or labeled instrumentation gaps).
+3. **Write the engineering culture code** (Branch C) from 2–4 priority shifts.
+   **Done when:** each principle has behaviors, a decision rule, an anti-pattern, and one observable signal.
+4. **Align org with architecture** (Branch D) and **raise clock speed / DevEx** (Branch E).
+   **Done when:** Conway misalignments have transition steps and trade-offs, and the delivery backlog has owners and metrics.
+5. **Plan rollout and reinforcement.** Design a 30/60/90 with rituals, onboarding for the workflow contract, and metrics with guardrails (DORA + quality + DevEx). Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** reinforcement exists beyond "publish the doc," with owners and measurable signals.
+6. **Quality gate and finalize.** Pass [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), propose the smallest 1–2 experiments to start this week, and close with **Risks / Open questions / Next steps**.
 
-## Workflow (7 steps)
+Deliverable: an **Engineering Culture Operating System** — capability snapshot, culture code, org↔architecture brief, clock-speed/DevEx backlog, workflow contract, and rollout + measurement plan.
 
-### 1) Intake + boundary setting
-- **Inputs:** User context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Confirm scope (team vs org), decision owner(s), timeline, and constraints. Identify any HR/legal or active-incident concerns and route appropriately. Confirm which deliverables to produce.
-- **Outputs:** Context snapshot + assumptions/unknowns list.
-- **Checks:** Scope boundaries are explicit; success definition is stated in observable terms.
+## Branch B — Capability & delivery snapshot (diagnose first)
 
-### 2) Diagnose the current culture as a delivery system (capability map)
-- **Inputs:** Symptoms/examples; current process/tooling; architecture context.
-- **Actions:** Build a capability map across **technical**, **architectural**, **cultural**, and **management** capabilities. Capture evidence and gaps (not platitudes). Distinguish stated culture vs lived culture.
-- **Outputs:** Culture + capability snapshot (draft).
-- **Checks:** Each claimed problem has at least one piece of evidence (example, metric, observed behavior) or is labeled “needs data”.
+Capture what is true today before touching anything. Build a capability map across **technical**, **architectural**, **cultural**, and **management/lean** capabilities; distinguish stated vs lived culture; establish a DORA baseline (deploy frequency, lead time, change failure rate, MTTR) or label the gaps; and run a value-stream timeline on 1–2 recent changes (idea → prod → learn). Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 3) Define the target culture (culture code v1)
-- **Inputs:** Snapshot; constraints; what already works.
-- **Actions:** Pick 2–4 priority shifts, then write a culture code: 3–7 principles with behaviors, do/don’t, decision rules, and anti-patterns. Prefer rules that increase autonomy while reducing ambiguity.
-- **Outputs:** Engineering culture code (v1).
-- **Checks:** Every principle includes a concrete “how we work” example and at least one measurable/observable signal.
+**Done when:** the snapshot is evidence-based (2–5 anonymized examples per symptom), has a capability map, and carries a DORA baseline or explicitly labeled instrumentation gaps.
 
-### 4) Align org structure with architecture (Conway’s Law)
-- **Inputs:** Current team topology; architecture coupling/ownership hotspots; dependency pain.
-- **Actions:** Map org → architecture fit. Propose changes: team boundaries, ownership, interfaces, and standardization (e.g., leveling definitions, incident policies, review expectations) where misalignment causes friction.
-- **Outputs:** Org ↔ architecture alignment brief.
-- **Checks:** Proposed changes include migration/transition steps and explicit trade-offs (what gets worse).
+## Branch C — Engineering culture code
 
-### 5) Increase clock speed (safe shipping + experimentation throughput)
-- **Inputs:** Current shipping/experiment cadence; pipeline constraints; quality constraints.
-- **Actions:** Define “clock speed” targets and bottlenecks. Propose initiatives that raise throughput safely (small batches, CI reliability, test strategy, progressive delivery, observability). Convert into a prioritized backlog.
-- **Outputs:** Clock speed + DevEx improvement backlog (draft).
-- **Checks:** Each initiative has an owner, an effort range, a dependency note, and a metric/leading indicator.
+Write 3–7 principles. For each: definition, do/don't behaviors, decision rules for common engineering dilemmas (ship vs polish, review depth, tech-debt trade-offs), anti-patterns, and healthy signals. Prefer articulating what already works; make each principle observable in code, PRs, or on-call — not a slogan. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 6) Create the workflow contract (including AI norms)
-- **Inputs:** Collaboration pain points; tool constraints; roles.
-- **Actions:** Specify how work flows from idea → issue → PR → deploy → learn. Define cross-functional participation (where PM/Design/Marketing contribute) and working agreements (review SLAs, merge/deploy policy, experiment ownership). Add AI-assisted development norms: where agents help, human review requirements, and safe data handling.
-- **Outputs:** Cross-functional workflow contract.
-- **Checks:** The contract reduces common failure modes (stalled PRs, unclear ownership, “drive-by” requests) and is teachable to new hires.
+**Done when:** each principle is behavior-based with a decision rule, at least one anti-pattern, and an observable signal or metric.
 
-### 7) Rollout + measurement + quality gate
-- **Inputs:** Draft pack.
-- **Actions:** Create a 30/60/90 rollout plan with rituals/cadence and training. Define metrics and guardrails (e.g., DORA + quality + DevEx). Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Finalize **Risks / Open questions / Next steps**.
-- **Outputs:** Final Engineering Culture Operating System Pack.
-- **Checks:** The first 1–2 actions can start this week; measurement is feasible; risks/trade-offs are explicit.
+## Branch D — Conway's Law alignment
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+Map team dependencies (who blocks whom) against architecture ownership boundaries (who owns what), then find the misalignments — multiple teams editing one critical area, an ownerless shared component, or a platform bottleneck with no product interface. Propose team boundary/ownership changes, explicit interfaces (APIs, contracts, SLAs), and standardization where inconsistent expectations create friction (leveling, on-call, code review, incident process). Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** each misalignment has a proposed change with transition steps and explicit trade-offs (what gets worse).
+
+## Branch E — Clock speed & delivery
+
+Define clock-speed targets (deploy frequency, lead time) paired with quality guardrails (change failure rate, MTTR). Find the bottlenecks in the value stream and convert them into a prioritized DevEx backlog — make CI boring, shrink batch size, add progressive delivery, improve observability and rollback confidence. Set the cross-functional workflow contract (idea → issue → PR → deploy → learn; review SLAs; who can deploy) and AI-assisted development norms (allowed uses, required human checks, no silent changes). Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** each backlog item has an owner, an effort range, a dependency note, and a leading indicator; every speed target ships paired with a guardrail.
+
+## Branch F — Practice fix (the workhorse)
+
+The frequent, in-the-moment use: fix one engineering practice or handle a specific moment now — run a blameless postmortem after an incident, repair a code-review norm that is causing friction, or make a tech-debt call (pay down vs defer). Name the behavior or pattern observed, tie it to the principle or metric at stake, choose the practice change or ritual to run, and set a follow-up. Working sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** the moment is handled as a system fix (behavior/pattern → impact → the practice or principle it touches), kept blameless, with a concrete follow-up and owner.
 
 ## Examples
 
-**Example 1 (slow delivery + DevEx):** “Use `engineering-culture`. Context: B2B SaaS, 35 engineers, monolith + a few services, weekly releases, rising incidents. Goal: increase shipping speed without quality regressions. Output: an Engineering Culture Operating System Pack with a clock-speed backlog and a workflow contract.”
-
-**Example 2 (Conway misalignment):** “We have 6 teams but architecture ownership is unclear and everything depends on platform. Analyze Conway’s Law issues and propose a new operating model + standardization (leveling, code ownership, on-call) plus a rollout plan.”
-
-**Boundary example:** “Write a generic essay about what engineering culture is.”  
-Response: explain this skill produces a concrete operating system pack; ask for context/symptoms/timeline or provide the intake checklist and an example template from [references/TEMPLATES.md](references/TEMPLATES.md).
+- *"Our delivery is slow and incidents are rising — build us a real engineering culture and delivery system."* → **Branch A**: evidence-based capability snapshot with a DORA baseline, culture code, Conway alignment, clock-speed backlog, and a 30/60/90 rollout.
+- *"We just had a production incident — help me run the postmortem so it doesn't turn into blame."* → **Branch F**: a blameless postmortem tied to the learning/reliability principle, with follow-ups limited to system fixes, not fault.
+- *"We have a P1 outage right now — what do I do?"* → out of scope: this is active incident response — follow your runbook and on-call process first; offer to run a blameless postmortem (Branch F) once it is resolved.

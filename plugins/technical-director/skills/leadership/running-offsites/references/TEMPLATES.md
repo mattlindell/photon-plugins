@@ -1,6 +1,26 @@
-# Running Offsites — Templates
+# Templates (Copy/Paste)
 
-Copy/paste the templates you need. Keep outputs short and explicit.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to. Keep outputs short and explicit.
+
+## 0) Facilitator Prep Sheet (Branch B — the workhorse)
+
+Fill this before you run the day (or one hard session).
+
+**Offsite/session:** ______  **Date:** ______  **Format:** whiteboard day / retreat / burst
+
+- **Outcomes (artifacts we must leave with):**
+  - …
+- **Roles:** Facilitator ______ | Timekeeper ______ | Scribe/decision logger ______ | Logistics owner ______
+- **Opening line:** "We're here to ______. By the end we leave with: [outputs]. Norms: laptops down during co-creation, disagree in the room, decide and document."
+- **Session-by-session** (each block names its artifact):
+
+  | Time | Session | Format | Output artifact |
+  |---|---|---|---|
+  |  |  |  |  |
+
+- **Decision capture fields:** statement / rationale / tradeoffs / owner / review trigger + date.
+- **Disagreement move:** name it, restate the shared goal, switch to criteria/principles; if stuck, assign a small group to propose 2 options + tradeoffs by a deadline.
+- **Close checklist:** decisions + owners confirmed; parking lot assigned; memory artifact planned; checkpoint scheduled.
 
 ## 1) Offsite Brief (1-pager)
 
@@ -11,8 +31,8 @@ Copy/paste the templates you need. Keep outputs short and explicit.
 **Decision makers in room:**  
 
 ### Purpose (why are we doing this?)
-- Why now (what changed; what happens if we don’t do this)?
-- The single sentence “we’re here to ____”.
+- Why now (what changed; what happens if we don't do this)?
+- The single sentence "we're here to ____".
 
 ### Target outputs (3–7)
 List outputs as artifacts (not feelings):
@@ -24,7 +44,7 @@ List outputs as artifacts (not feelings):
 - In scope:
 - Out of scope:
 
-### Success measures (how we’ll know it worked)
+### Success measures (how we'll know it worked)
 - Immediately after:
 - 2–4 weeks after:
 
@@ -53,7 +73,7 @@ List outputs as artifacts (not feelings):
 | 9:20–10:20 |  |  |  |  |  |  |
 
 Notes:
-- Mark “**laptops down**” blocks explicitly.
+- Mark "**laptops down**" blocks explicitly.
 - Every session must have an output artifact.
 
 ---
@@ -63,7 +83,7 @@ Notes:
 ### Message to participants (send 5–10 business days before)
 - Goal of the offsite:
 - What to prepare:
-- What not to do (e.g., “don’t bring slides unless asked”):
+- What not to do (e.g., "don't bring slides unless asked"):
 - Logistics expectations:
 
 ### Pre-read (choose 1–3)
@@ -73,11 +93,11 @@ Notes:
 - Prior decisions + open questions:
 
 ### Prework prompts (pick 5–8)
-1) What’s the #1 thing we must decide in the next 30–60 days?
+1) What's the #1 thing we must decide in the next 30–60 days?
 2) What are we pretending not to know?
-3) What’s one bet you’d make if you were confident?
+3) What's one bet you'd make if you were confident?
 4) What should we stop doing?
-5) What’s the biggest risk to our plan?
+5) What's the biggest risk to our plan?
 
 ### Assignments
 - Owner:
@@ -89,14 +109,14 @@ Notes:
 ## 4) Facilitation Run-of-Show
 
 ### Opening script (5 minutes)
-- “We’re here to ____.”
-- “By the end we will leave with: [outputs].”
-- “Norms today: laptops down during co-creation, disagree in the room, decide and document.”
+- "We're here to ____."
+- "By the end we will leave with: [outputs]."
+- "Norms today: laptops down during co-creation, disagree in the room, decide and document."
 
 ### Norms (defaults)
 - Laptops down during co-creation blocks (scribe exception).
 - One conversation at a time; no side chats.
-- Use a “parking lot” for tangents.
+- Use a "parking lot" for tangents.
 - Timeboxes are real; we will cut.
 
 ### Decision capture (required fields)
@@ -122,7 +142,7 @@ Notes:
 ### Closing (15–30 minutes)
 - Review decisions + action plan
 - Confirm owners and dates
-- “Memory artifact” plan (what gets published)
+- "Memory artifact" plan (what gets published)
 - Schedule checkpoint(s)
 
 ---
@@ -174,11 +194,11 @@ Subject: Offsite outcomes — decisions, next steps, and checkpoints
 
 Team —
 
-Here’s what we decided and what changes starting now:
+Here's what we decided and what changes starting now:
 - Decision 1 (why it matters):
 - Decision 2:
 
-What we’re doing next (owners + dates):
+What we're doing next (owners + dates):
 - [Owner] — [Action] — [Date]
 
 Open questions:
@@ -191,13 +211,13 @@ Thanks —
 [Name]
 
 ### Memory artifact (choose one)
-- 1-page narrative: “What we aligned on, what we chose, what we’re doing next”
+- 1-page narrative: "What we aligned on, what we chose, what we're doing next"
 - Principles list + top decisions
 - Photos of boards + 1-page summary
 
 ---
 
-## 7) Remote-first “Burst” Program Plan (optional)
+## 7) Remote-first "Burst" Program Plan (optional)
 
 ### Burst cadence
 - Frequency: (quarterly / semi-annual)
@@ -206,7 +226,7 @@ Thanks —
 - Budget model: (per person / per team)
 
 ### Burst objectives (pick 2–4)
-- Deep creative work that’s hard async
+- Deep creative work that's hard async
 - Relationship building + trust
 - Strategy alignment + decisions
 - Skill-building workshop (internal expert)

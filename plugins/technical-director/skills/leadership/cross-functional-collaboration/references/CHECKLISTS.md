@@ -5,7 +5,7 @@ Use these checklists before finalizing the Collaboration Pack and during executi
 ## A) Collaboration Pack quality checklist (pre-flight)
 - Mission is explicit (1–2 sentences) and tied to measurable success metrics.
 - Timeframe and collaboration mode are named (project vs ongoing interface).
-- Stakeholder map includes all execution dependencies and approvers (“no surprise veto”).
+- Stakeholder map includes all execution dependencies and approvers ("no surprise veto").
 - Incentives/concerns are captured (what each function optimizes for + fears).
 - Roles & expectations contract includes decision rights and escalation triggers.
 - Artifact plan defines a source of truth and avoids doc sprawl.
@@ -17,7 +17,7 @@ Use these checklists before finalizing the Collaboration Pack and during executi
 
 ## B) Decision clarity checklist
 - Every major decision has: owner, due date, criteria, and recorded rationale.
-- The team agrees on “what would change the decision” (new info thresholds).
+- The team agrees on "what would change the decision" (new info thresholds).
 - Disagreements map to decision rights (decide vs escalate).
 
 ## C) Mid-flight health check (weekly/biweekly)

@@ -1,95 +1,60 @@
-# Workflow Notes (Planning Under Uncertainty)
+# Uncertainty Playbook (Heuristics)
 
-Use this as expanded guidance for the workflow in `skills/planning-under-uncertainty/SKILL.md`.
+Topic-keyed heuristics and defaults for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## Core concepts
+## Wartime vs peacetime
 
-### 1) Wartime humility: diagnose before acting
-When the system is behaving unexpectedly (growth collapse, retention drop, reliability incident), prioritize **diagnosis**:
-- Separate **symptoms** (“metric dropped”) from **causes** (why it dropped).
-- Generate multiple plausible hypotheses (including uncomfortable ones).
-- Define what evidence would falsify each hypothesis.
+Set the mode before anything else - it changes tempo, evidence bar, and what you optimize for.
 
-Bias toward reversible actions until uncertainty is reduced.
+- **Wartime:** stabilize and stop the bleeding. Restrict changes, diagnose fast, and pre-agree rollback/patch rules. Tempo is daily or every 48 hours on the top hypotheses.
+- **Peacetime:** explore and learn. Tolerate slower, higher-quality evidence building. Tempo is a weekly learning review plus a biweekly decision checkpoint.
 
-### 2) Experiments are about learning, not “wins”
-A healthy experimentation culture:
-- Defines a **hypothesis** up front.
-- Treats a “failed” result as valuable if it changes a decision.
-- Avoids measuring individuals by “win rate” (creates risk aversion).
+## Diagnose before acting (humility first)
 
-Practical rule: every experiment must answer, “What will we do differently depending on the result?”
+When the system behaves unexpectedly, diagnose before committing.
 
-### 3) Build a reproducible testing process (“many shots at bat”)
-Create a system that makes testing repeatable:
-- A single place to store hypotheses and experiments (a portfolio table).
-- A consistent review cadence (weekly by default; daily in crisis).
-- Clear roles: who designs, runs, analyzes, decides.
+- Separate symptoms ("the metric dropped") from causes (why it dropped).
+- Write a short situation report: what changed (release, traffic source, pricing, infra), what the data shows (trend, magnitude, segment), and what you don't know yet.
+- Generate hypotheses across categories - product, marketing, pricing, reliability, ops, external - including uncomfortable ones, and state what would falsify each.
+- Bias toward reversible actions until uncertainty is reduced.
 
-Speed matters because uncertainty is unpredictable; process quality often dominates idea quality.
+## Uncertainty mapping
 
-### 4) Data is a compass, not a GPS
-Use data to check direction and falsify bad assumptions:
-- Prefer **directional** decisions over false precision.
-- Define “ridiculousness tests”: signals that tell you you’re wrong quickly.
-- Pair metrics with **guardrails** so you don’t optimize the wrong thing.
+- Rate each assumption on confidence (H/M/L) and impact; prioritize high-impact, low-confidence items.
+- Give every top unknown a validation method (customer calls, log analysis, A/B tests, usability tests, forced-choice surveys, market scans) with an owner and a time bound.
 
-### 5) Buffers + contingencies keep plans alive
-Uncertainty demands:
-- Time/capacity buffers (explicitly allocated).
-- Contingency paths (Plan A/B/C) that can be activated quickly.
-- Trigger thresholds that define when to pivot/rollback/escalate.
+## Experiments are about learning, not "wins"
 
-Good plans do not claim certainty; they state what you’ll do when uncertainty resolves in each direction.
+- Define the hypothesis up front; treat a "failed" result as valuable if it changes a decision.
+- Every experiment must answer: "What will we do differently depending on the result?"
+- Don't measure individuals on win rate - it breeds risk aversion.
+- Write hypotheses falsifiably: "If <condition>, then <measurable change> because <mechanism>," each with a primary signal, guardrails, and a decision rule.
 
-## Step-by-step guidance (matches SKILL workflow)
+## Reproducible testing process (many shots at bat)
 
-### Step 1) Intake + mode setting
-- Confirm the decision needed, the time horizon, and the “why now”.
-- Decide the operating mode:
-  - **Wartime:** stabilize and stop the bleeding; restrict changes; fast diagnosis and rollback/patch rules.
-  - **Peacetime:** explore and learn; tolerate slower, higher-quality evidence building.
+- Keep one place for hypotheses and experiments (a portfolio table) and a consistent review cadence.
+- Give each test a clear owner and reviewer: who designs, runs, analyzes, decides.
+- Mix fast/cheap tests with slower/high-confidence ones; ensure at least one fast test can run soon.
+- Speed matters because uncertainty is unpredictable - process quality often dominates idea quality.
 
-### Step 2) Diagnose reality
-- Produce a short “situation report”:
-  - What changed (release, traffic source, pricing, infra)?
-  - What does the data show (trend, magnitude, segment)?
-  - What do we *not* know yet?
-- Generate hypotheses across categories: product, marketing, pricing, reliability, ops, external factors.
+## Data is a compass, not a GPS
 
-### Step 3) Uncertainty map
-- Convert hypotheses into an uncertainty map:
-  - Mark confidence (H/M/L) and impact.
-  - Prioritize “high impact, low confidence” items.
-- Add a validation method per item:
-  - Customer calls, log analysis, A/B tests, usability tests, forced-choice surveys, market scans, etc.
+- Prefer directional decisions over false precision.
+- Define "ridiculousness tests": signals that tell you quickly that you're wrong.
+- Pair every metric with a guardrail so you don't optimize the wrong thing.
 
-### Step 4) Hypotheses + decision rules
-- Write hypotheses in falsifiable form:
-  - “If <condition>, then <measurable change> because <mechanism>.”
-- For each hypothesis, define:
-  - Primary signal (compass metric)
-  - Guardrails
-  - Decision rule (“If we see X by Y date, we will do Z”)
+## Buffers, contingencies, and triggers keep plans alive
 
-### Step 5) Reproducible testing process
-- Build an experiment portfolio:
-  - Mix fast/cheap tests and slower/high-confidence tests.
-  - Ensure each test has an owner and a review date.
-- Pick a cadence:
-  - Wartime: daily or every 48 hours for top hypotheses.
-  - Peacetime: weekly learning review, biweekly decision checkpoint.
+- Allocate explicit time/capacity/budget buffers, proportional to uncertainty (higher uncertainty, larger buffer).
+- Keep contingency paths (Plan A/B/C) that can be activated quickly.
+- Write triggers as "if <signal> crosses <threshold>, then rollback/pivot/escalate by <when>."
+- Structure Plan v0 around learning gates: Phase 1 reduce uncertainty, Phase 2 commit to a direction, Phase 3 build and roll out.
 
-### Step 6) Plan v0 with buffers + contingencies
-- Plan v0 should commit to learning gates:
-  - Phase 1: validate top unknowns
-  - Phase 2: commit to a direction
-  - Phase 3: build + rollout
-- Add buffers:
-  - Explicit time/capacity set aside for “unknown unknowns”
-- Add contingencies:
-  - Pre-decide what gets cut or changed if signals go bad.
+## Anti-patterns (catch yourself)
 
-### Step 7) Quality gate
-- Ensure the pack can be executed without additional “interpretation meetings”.
-- The final output should be readable by a stakeholder and runnable by the team.
+- **Acting before diagnosing.** Jumping to a fix in a crisis based on the first plausible story, before any hypothesis is tested.
+- **Confirmation bias.** Generating only hypotheses the team already believes; skip the uncomfortable ones and you'll miss the real cause.
+- **Theater experiments.** Running a test with no decision attached - "winning" measured as a positive result rather than a decision that changed.
+- **GPS thinking.** Treating a noisy metric as precise truth, or optimizing a number with no guardrail.
+- **Certainty cosplay.** A plan with fixed dates and no buffers, contingencies, or triggers, presented as if uncertainty were already resolved.
+- **Cadence drift.** Running experiments with no review ritual or decision log, so learning never turns into decisions.

@@ -13,7 +13,7 @@ Suggested passing bar: **>= 10/12**
 
 ## 2) Criteria + horizon (0–2)
 - 4–8 criteria (incl. guardrail) + explicit time horizon
-- “Not optimizing for” is stated to prevent goalpost moving
+- "Not optimizing for" is stated to prevent goalpost moving
 
 ## 3) All-in cost + opportunity cost (0–2)
 - Costs are complete (incl. hidden costs) and comparable

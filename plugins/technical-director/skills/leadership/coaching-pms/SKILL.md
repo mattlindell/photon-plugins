@@ -1,126 +1,85 @@
 ---
 name: "coaching-pms"
-description: "Coach product managers and produce a PM Coaching Pack (context-specific definition of “good PM”, evidence-based assessment, growth bets + development plan, coaching cadence + session toolkit, follow-up tracker). Use for coaching PMs, developing PMs, leveling expectations, and creating growth plans. Category: Leadership."
+description: "Coach product managers to grow product judgment and decision quality — define what good looks like, diagnose gaps from evidence, and turn them into growth bets, reps, and a coaching cadence; also for coaching a PM through a live problem or feedback moment."
+disable-model-invocation: true
 ---
 
 # Coaching Product Managers
 
-## Scope
+## Coaching builds judgment, not deliverables
 
-**Covers**
-- Coaching a PM (direct report or mentee) to improve product craft, leadership, and decision quality
-- Converting “be better at X” into a measurable **development plan** with weekly reps + follow-ups
-- Defining what “good PM” means **in your context** and diagnosing skill depth using **Bloom’s Taxonomy**
-- Building a coaching cadence that scales (coaching as the primary job of product leadership)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Coach my PM on strategic thinking / product sense / execution.”
-- “Create a PM development plan / growth plan for the next 8–12 weeks.”
-- “Assess a PM’s current level and decide what to coach next.”
-- “Define what ‘good PM’ means here and align on expectations.”
+- **Coach the person, not the deliverable.** The goal is durable judgment the PM keeps after you leave the room, not a fixed PRD. Ask before you answer; go directive only for risk, safety, or genuinely time-critical calls. Being the answer machine trains dependency.
+- **Define good, then diagnose, then prescribe.** Agree on what a good PM means *in this context* before assessing anyone, and assess from evidence before prescribing advice. Skipping straight to "do more research" optimizes activity, not outcomes.
+- **Grow judgment through reps one Bloom level up.** Skill deepens when the PM deliberately practices the next level of thinking (Apply → Analyze → Synthesize) on real work with real artifacts — not by absorbing more theory.
+- **Separate skill gaps from context gaps.** Coaching fixes skills; it cannot fix a missing mandate, absent data, or no authority. Diagnose which one is in play before you build a plan, or you will coach a problem that isn't the PM's to solve.
 
-**When NOT to use**
-- You need a formal performance-management process (PIP, HR documentation, investigation) — use your company/HR process.
-- You only need 1:1 meeting design (use `running-effective-1-1s`).
-- The situation is primarily a conflict/difficult feedback moment (use `having-difficult-conversations`).
-- You need org-wide leveling/comp framework design (this pack can seed inputs, but it’s not the full program).
+## When to use / not
 
-## Inputs
+Use to stand up a coaching program for a PM, define what "good PM" means in your context, assess a PM's current level from evidence, build a development plan, or coach a PM through a specific problem or feedback moment right now.
 
-**Minimum required**
-- Your context: role (PM manager/product leader), team/product, stage, constraints
-- The PM: level/title, scope, tenure, strengths, current challenges
-- Coaching goal: what must be more true in 4–12 weeks (outcomes + behaviors)
-- Evidence: 2–5 examples of work (PRDs, launches, decisions, stakeholder feedback) — anonymized
-- Any existing ladder/role expectations/values (if available)
+Do **not** use for: a performance-improvement plan, HR documentation, or investigation — route to HR / your company process (offer a coaching-focused development plan only, clearly labeled non-HR); a difficult-feedback or conflict moment — that's the **having-difficult-conversations** skill; 1:1 meeting-system design — that's **running-effective-1-1s**; an org-wide leveling or comp framework — out of scope (this can seed inputs, not the full program); or a mental-health crisis — follow company policy and point to professional resources. This is not therapy.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If role expectations or evidence are missing, proceed with explicit assumptions and label unknowns.
-- Do not request sensitive personal data; use behavior/evidence summaries.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To coach a PM through a specific problem or prep a feedback conversation right now | **B — Coach in the moment** |
+| To stand up a full coaching program for a PM | **A — Coaching program** |
+| To define what "good PM" means in their context | **C — Definition of good** |
+| To assess a PM's current level from evidence | **D — Assessment** |
+| To turn gaps into growth bets and a development plan | **E — Development plan** |
 
-Produce a **PM Coaching Pack** (Markdown in-chat; or files if requested) in this order:
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets or sensitive personal data, and anonymize evidence.
 
-1) **Definition of “Good PM” (in this context)**  
-   - Competency model + observable behaviors + Bloom depth ladder
-2) **Current Assessment (evidence-based)**  
-   - Strengths, gaps, current level per competency, evidence notes, constraints vs skill gaps
-3) **Shared Vision (1–3 growth bets)**  
-   - Target level, success signals, why it matters, timeframe
-4) **Development Plan (practice loops + stretch work)**  
-   - Weekly reps, stretch assignment(s), required artifacts, coaching support, timeline, measurement
-5) **Coaching Cadence + Session Toolkit**  
-   - 1:1 structure, coaching prompts, feedback moments, artifact review points
-6) **Follow-up Tracker + Review Plan**  
-   - Checkpoints, how to evaluate progress, how to adjust the plan
-7) **Risks / Open questions / Next steps** (always included)
+## Branch B — Coach in the moment (the workhorse)
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+The frequent, in-the-moment use: coach a PM through a live decision or problem, or prep a specific feedback conversation. Produce a coaching prep sheet, not a program.
 
-## Workflow (8 steps)
+1. **Name the situation.** State the decision the PM is facing, or the specific behavior you want to give feedback on — an observable event, not a label.
+2. **Coach before you solve.** Ask for their desired outcome, options considered, tradeoffs rejected, and riskiest assumption before offering a view. Prompt bank: [references/WORKFLOW.md](references/WORKFLOW.md).
+3. **Frame any feedback** as observation → impact → request, tied to an artifact or criterion — never a personality judgment.
+4. **Land one rep + commitment.** Agree on one small next step that pushes their thinking a level up, with a checkpoint. Working sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 1) Intake + boundaries + coaching goal
-- **Inputs:** user context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Confirm this is a coaching engagement (not HR/PIP). Define timeframe and outcomes. Choose whether to output the full pack or a subset.
-- **Outputs:** Context snapshot + assumptions/unknowns.
-- **Checks:** Goal is stated as observable outcomes/behaviors (not personality traits).
+**Done when:** a one-page prep sheet exists with the coaching prompts to ask, any feedback framed as observation → impact → request, and one concrete rep with a checkpoint.
 
-### 2) Define “good PM” for this role (Petra step 1)
-- **Inputs:** PM role scope; company context; any existing ladder/values.
-- **Actions:** Draft a context-specific competency model. For each competency, define behaviors and a Bloom ladder for skill depth (know → understand → apply → analyze → synthesize → evaluate).
-- **Outputs:** Definition of “Good PM” (competencies + behaviors + Bloom levels).
-- **Checks:** Expectations are observable; avoids vague labels like “be more strategic” without behaviors.
+## Branch A — Build the coaching program
 
-### 3) Assess current capability using evidence (Petra step 2)
-- **Inputs:** work examples; feedback; self-assessment (optional).
-- **Actions:** Map evidence to competencies. Assign a current Bloom level per competency. Separate skill gaps from constraints (scope, unclear mandate, lack of data/authority).
-- **Outputs:** Current Assessment table.
-- **Checks:** Each claimed gap has at least 1 concrete evidence bullet; uncertainties are labeled.
+1. **Frame the goal and route risk.** Confirm this is development coaching, not HR/PIP. Set the timeframe (4–12 weeks) and state the goal as observable outcomes and behaviors, not traits.
+   **Done when:** the goal is observable and any performance-management situation is routed away from this skill.
+2. **Define "good PM"** for this role (Branch C) so everything downstream rests on a shared bar.
+   **Done when:** competencies have observable behaviors and a Bloom depth ladder.
+3. **Assess current capability from evidence** (Branch D).
+   **Done when:** each gap has concrete evidence and skill gaps are separated from context gaps.
+4. **Choose growth bets and build the development plan** (Branch E). Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** each of the 1–3 bets has reps, required artifacts, a measurement signal, and a coach commitment.
+5. **Design the coaching cadence and follow-up.** Set a sustainable 1:1 + async artifact-review rhythm, a session toolkit, and a tracker. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** the cadence is sustainable and progress is tracked by artifacts and behaviors, not vibes.
+6. **Quality gate and finalize.** Pass [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
 
-### 4) Choose 1–3 growth bets + shared vision (Petra step 3)
-- **Inputs:** assessment; business priorities; PM aspirations (if known).
-- **Actions:** Pick the highest-leverage competencies. Define target Bloom level + success signals. Align on what “good” looks like for this coaching cycle.
-- **Outputs:** Shared Vision (growth bets + targets).
-- **Checks:** Bets are achievable in timeframe; limit to 1–3 to avoid thrash.
+Deliverable: a **PM Coaching Pack** — definition of good, evidence-based assessment, growth bets, development plan, coaching cadence + toolkit, and follow-up tracker.
 
-### 5) Build a development plan with “reps” (Petra step 4 + Bloom)
-- **Inputs:** growth bets; upcoming work; available support (mentors, tools, stakeholders).
-- **Actions:** Turn each bet into practice loops: weekly reps + a stretch assignment + required artifacts. Choose reps that deliberately move up Bloom levels.
-- **Outputs:** Development Plan.
-- **Checks:** Every bet has (a) reps, (b) artifacts, (c) a measurement signal, (d) a coach commitment.
+## Branch C — Definition of good
 
-### 6) Design coaching cadence + session toolkit
-- **Inputs:** time budget; existing 1:1 cadence; tool constraints.
-- **Actions:** Propose cadence and meeting design (pre-work, agenda, artifact review points). Add coaching prompts that develop independent reasoning. Define “when to be directive” exceptions (risk/time-critical).
-- **Outputs:** Coaching Cadence + Session Toolkit.
-- **Checks:** Cadence is sustainable; coaching promotes autonomy (not dependency).
+Draft a context-specific competency model. For each competency (problem framing, strategy, execution, stakeholder leadership, product craft, business acumen — edit for your org), define observable behaviors and a Bloom depth ladder (Knowledge → Comprehension → Application → Analysis → Synthesis → Evaluation). Competency areas and leveling guidance: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 7) Follow-up loop + measurement (Petra step 5)
-- **Inputs:** development plan + cadence.
-- **Actions:** Create a tracker and review checkpoints. Decide how progress will be evaluated (rubric + evidence). Define how/when to adjust bets if constraints change.
-- **Outputs:** Follow-up Tracker + Review Plan.
-- **Checks:** Progress is measured via artifacts and behaviors, not vibes.
+**Done when:** expectations are observable and tied to artifacts, with no vague labels like "be more strategic" left unbehaviored.
 
-### 8) Quality gate + finalize pack
-- **Inputs:** full draft pack.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**.
-- **Outputs:** Final PM Coaching Pack.
-- **Checks:** The next coaching session can be run using the toolkit without additional invention.
+## Branch D — Assessment
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+Map 2–5 anonymized work artifacts (PRDs, roadmap slices, decision briefs, launch plans) and feedback themes to the competencies. Assign a current Bloom level per competency, and separate skill gaps from context gaps (unclear mandate, missing data, no authority, shifting priorities). Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** each claimed gap has at least one concrete evidence bullet, and uncertainties are labeled where evidence is thin.
+
+## Branch E — Development plan
+
+Pick the 1–3 highest-leverage growth bets (prefer ones whose effects show up in multiple competencies). Turn each into practice loops — weekly reps + a stretch assignment + required artifacts — designed to move the PM one Bloom level up. Add coach commitments, a measurement signal, the cadence, and a follow-up tracker. Rep design and cadence patterns: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** every bet has reps, required artifacts, a measurement signal, a coach commitment, and a review checkpoint.
 
 ## Examples
 
-**Example 1 (strategic thinking):** “My PM is strong at execution but weak at strategy. Build an 8-week coaching plan, including an assessment and weekly reps.”  
-Expected: growth bet around problem framing/insight synthesis; Bloom ladder; stretch work (opportunity assessment); cadence + artifact reviews.
-
-**Example 2 (stakeholder leadership):** “Coach a senior PM to lead cross-functional alignment and improve exec comms.”  
-Expected: bet on stakeholder mapping + decision briefs; practice reps (pre-reads, narratives); coaching prompts; review checkpoints.
-
-**Boundary example:** “I need to start a PIP and document underperformance.”  
-Response: recommend HR/performance process; optionally provide a coaching-focused development plan template only, clearly labeled as non-HR.
+- *"My PM ships reliably but can't frame the right problems — build an 8-week coaching plan."* → **Branch A**: definition of good, evidence-based assessment, a growth bet on problem framing (Apply → Analyze), weekly reps + a stretch initiative, and a review cadence.
+- *"My PM has a tough prioritization call tomorrow and I want to coach them through it, not decide it for them."* → **Branch B**: the prompts to ask, any feedback framed observation → impact → request, and one rep with a checkpoint.
+- *"I need to document underperformance and start a PIP."* → out of scope: route to HR / your company performance process; offer a coaching-focused development plan template only, clearly labeled non-HR.

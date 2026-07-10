@@ -1,6 +1,21 @@
 # Templates (Copy/Paste)
 
-Use these templates to produce the **Systems Thinking Pack**.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Second-Order Effects Sheet (Branch B — the workhorse)
+
+Fill this in the few minutes before you commit to a move.
+
+**Candidate move:** ______  **Time horizon:** ______
+
+- **1st order** (immediate, local): …
+- **2nd order** (how other actors respond and adapt): …
+- **3rd order** (long-term constraints, norm shifts, path dependence): …
+- **Who wins / who loses** (and how they'll respond): …
+- **Which constraints tighten or loosen over time:** …
+- **New loop this might create** (intended or accidental): …
+- **At least one unintended consequence:** …
+- **Mitigation + guardrail to catch it:** …
 
 ## 1) Context + System boundary
 - Focal decision/problem:
@@ -50,7 +65,7 @@ Describe 2–6 loops:
 ## 7) System-build opportunities (automation/standardization)
 Use this to convert recurring pain into a reusable system.
 
-| Recurring pain | Frequency | Root driver hypothesis | Proposed “system” (process/tool/automation) | First small step | Risks | Notes |
+| Recurring pain | Frequency | Root driver hypothesis | Proposed "system" (process/tool/automation) | First small step | Risks | Notes |
 |---|---:|---|---|---|---|---|
 | | | | | | | |
 

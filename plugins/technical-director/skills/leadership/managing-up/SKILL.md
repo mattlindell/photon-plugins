@@ -1,123 +1,95 @@
 ---
 name: "managing-up"
-description: "Manage up effectively and produce a Managing Up Operating System Pack (manager profile, comms cadence, weekly updates, escalation/ask plan, expectation & boundary script, and exec-ready decision/tradeoff memo). Use for managing up, managing your boss, working with your manager, exec communication, stakeholder updates, and escalation. Category: Leadership."
+description: "Manage up: build a manager's upward operating system, or prep a specific leadership update, escalation, decision memo, or boundary conversation right now. Use when the user mentions managing up, managing their boss or manager, working with their manager, exec or stakeholder communication, a weekly leadership update, escalating a blocker, asking a leader for help, framing a decision or trade-off for leadership, resetting expectations, setting boundaries with a manager, or earning more influence / a seat at the table."
 ---
 
 # Managing Up
 
-## Scope
+## Make it easy for your leader to help you
 
-**Covers**
-- Building a proactive **partnership** with your manager (vs waiting to be managed)
-- Setting a clear **upward communication system** (async updates, 1:1 structure, decision memos)
-- **Leveraging leaders** to remove blockers and accelerate decisions (clear asks + escalation triggers)
-- Communicating **trade-offs and context** so leadership can make good calls
-- Creating a “seat at the table” path: showing **business-level perspective** before you’re invited
-- Setting **boundaries** when leadership pace/expectations are misaligned (without being adversarial)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Help me manage up with my boss—set a cadence and a weekly update template.”
-- “My exec stakeholders feel out of touch—help me communicate context and trade-offs better.”
-- “I need a clean escalation plan and how to ask my leader for help without sounding needy.”
-- “I want more influence / a seat at the table—create a plan and artifacts.”
+- **Make it easy to help you.** Your manager is a teammate with leverage. Bring options and a recommendation, not raw problems; carry the thinking cost so their reply can be one word.
+- **No surprises.** Escalate while course-correction is still possible. A leader asking "why am I only hearing this now?" is a system failure, not bad luck.
+- **Every ask is a decision you've teed up.** Time-bound it, make it binary when you can, and say what you'll do if they don't respond.
+- **Boundaries protect outcomes, not preferences.** Push back by anchoring on quality, speed, or decision integrity — and always propose the alternative in the same breath.
 
-**When NOT to use**
-- You need HR/legal guidance (harassment, discrimination, retaliation, threats, investigations) — follow your company process and involve HR/legal.
-- You’re negotiating compensation/title or a formal performance process — use your company process; this skill can help with communication artifacts but not with policy/legal strategy.
-- You have a personal safety or mental-health crisis — seek professional help and follow company policy.
+## When to use / not
 
-## Inputs
+Use to stand up or repair a managing-up system, draft a specific upward update, escalation, or decision memo, reset expectations, or build influence toward a seat at the table.
 
-**Minimum required**
-- Your role, scope, and current priorities (what you own; what “good” looks like in the next 4–8 weeks)
-- Who you’re managing up to (manager level; decision power; relationship stage: new/stable/strained)
-- Current friction (2–5 concrete examples) and desired outcome (clarity, autonomy, speed, influence, boundaries)
-- Communication environment (remote/hybrid, time zones, tools, meeting cadence)
-- Constraints (sensitive topics, confidentiality/PII rules, upcoming deadlines)
+Do **not** use for: an HR/legal matter — harassment, discrimination, retaliation, or an investigation — follow your company process and involve HR/legal; compensation, title, or a formal performance process — use your company process (this skill can draft neutral communication artifacts, not policy or legal strategy); or a personal safety or mental-health crisis — seek professional help and follow company policy.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If details are missing, proceed with a **default managing-up operating system** and clearly label assumptions.
-- Do not request secrets (passwords/tokens) or sensitive personal data; use anonymized summaries.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To set up or fix how they manage up | **A — Operating system** |
+| To write this week's update to leadership | **B — Weekly upward update** |
+| To escalate a blocker or make a specific ask of a leader | **C — Escalate / frame a decision** |
+| To reset expectations or set a boundary with their manager | **D — Boundary reset** |
+| To build influence and earn a seat at the table | **E — Influence loop** |
 
-Produce a **Managing Up Operating System Pack** in Markdown (in-chat; or as files if requested):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 questions at a time, then proceed on clearly labeled assumptions. Never request secrets; use anonymized summaries.
 
-1) **Context snapshot** (role, goals, constraints, assumptions)
-2) **Manager profile** (“How my manager works” + what they optimize for)
-3) **Upward communication cadence** (1:1 structure + async update rhythm)
-4) **Weekly update template** (exec-ready; “no response required” default)
-5) **Decision/trade-off memo template** (for major decisions / escalations)
-6) **Escalation + ask plan** (leader leverage map, escalation triggers, ask ladder)
-7) **Working agreement + boundary script** (how to reset expectations respectfully)
-8) **Influence / seat-at-the-table plan** (pre-wiring, strategic contribution loop)
-9) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the managing-up operating system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+The one-time system build. Produce a system, not a single artifact.
 
-## Workflow (8 steps)
+1. **Profile your manager.** Draft "how my manager works": what they optimize for, decision style, risk tolerance, comms preferences, and failure modes — each with an implication (what you'll do differently). Validate the guesses in a 1:1. Prompts: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** the profile lists ≥3 concrete behavior changes, not generic traits.
+2. **Separate the channels.** Map what goes where: async weekly update, 1:1 agenda, decision memo / pre-read, urgent escalation path — and what does *not* belong in the 1:1 (pure status).
+   **Done when:** status and asks each have a home that isn't a surprise drive-by.
+3. **Set the update + 1:1 rhythm.** Cadence, who preps what by when, and a default "no reply required unless…".
+   **Done when:** every recurring channel has a cadence and an owner-prep rule.
+4. **Stand up the escalation + ask plan.** Write the escalation triggers and the ask ladder (FYI → nudge → unblock → sponsor → decision).
+   **Done when:** triggers are written and each ask type has a reusable phrasing.
+5. **Add boundary + influence playbooks.** A working agreement, ready boundary scripts, and one recurring weekly strategic-contribution touchpoint.
+   **Done when:** boundaries and a seat-at-the-table loop are documented.
+6. **Pilot and close.** Propose a 4-week pilot with a retro; pass [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
 
-### 1) Intake + objective + boundaries
-- **Inputs:** user context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Clarify the outcome (autonomy, clarity, influence, speed, boundaries) and define what “better” means in 4–8 weeks. Identify constraints (HR/legal/PII). Choose pack scope (full pack vs subset).
-- **Outputs:** Context snapshot + assumptions/unknowns list.
-- **Checks:** Goal is measurable enough to evaluate after 4 weeks.
+Deliverable: a **Managing Up Operating System** — manager profile, channels map, update + 1:1 rhythm, escalation/ask plan, and boundary + influence playbooks.
 
-### 2) Build a manager profile (what they optimize for)
-- **Inputs:** org context, manager level, prior interactions.
-- **Actions:** Draft “How my manager works”: success metrics, incentives/pressures, decision style, risk tolerance, communication preferences, and common failure modes.
-- **Outputs:** Manager profile (draft) + validation questions to confirm in 1:1.
-- **Checks:** Profile includes at least 3 actionable implications (what to do differently).
+## Branch B — Weekly upward update
 
-### 3) Design the comms operating system (what goes where)
-- **Inputs:** current cadences, meeting load, tools.
-- **Actions:** Define channels: async weekly update, 1:1 agenda, decision memos for big calls, and escalation path for urgent issues. Decide what does **not** belong in 1:1s (pure status, unless required).
-- **Outputs:** Cadence plan + “what goes where” map.
-- **Checks:** System reduces surprises and reduces “drive-by” requests.
+The recurring workhorse. Produce one update, not a system.
 
-### 4) Write the weekly update + exec-ready narrative
-- **Inputs:** priorities, milestones, risks, dependencies.
-- **Actions:** Create a weekly update that is skimmable: TL;DR, progress vs plan, decisions needed, risks, explicit trade-offs, and clear asks. Default to “no reply required unless…”.
-- **Outputs:** Weekly update template + example filled-in update (anonymized).
-- **Checks:** A leader can understand status and decision needs in ≤ 60 seconds.
+1. **Pull the thread.** Gather progress vs plan, what slipped and why, decisions pending, risks, and blockers since the last update.
+2. **Lead with the TL;DR and the ask.** Three bullets max up top; put decisions-needed and asks near the top, never buried under activity. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+3. **Make trade-offs explicit.** Where results look worse than planned, state the trade-off and what you recommend — don't make the leader reverse-engineer it.
+4. **Default to low burden.** Close with "no reply required unless you disagree, see a missing risk, or want a deeper read"; link out for depth.
 
-### 5) Create an escalation + ask plan (use leaders as resources)
-- **Inputs:** blockers, dependencies, stakeholders.
-- **Actions:** Define escalation triggers, pre-wire plan, and an “ask ladder” (from lightweight FYI → unblock → sponsor → decision). Translate blockers into specific leader actions.
-- **Outputs:** Escalation triggers + ask ladder + leverage map.
-- **Checks:** Each “ask” is actionable and time-bounded, not a vague request for help.
+**Done when:** a leader can grasp status, decisions needed, and asks in ≤60 seconds; every ask is time-bounded; and the trade-off behind any slippage is named.
 
-### 6) Align expectations + set boundaries (respectfully)
-- **Inputs:** mismatches (pace, scope, availability), examples.
-- **Actions:** Draft a working agreement and boundary script: clarify expectations, propose alternatives, and secure explicit agreement. Prepare “pushback” language for unreasonable requests (times, scope, urgency).
-- **Outputs:** Working agreement + scripts (short, copy/paste).
-- **Checks:** Boundaries are framed as protecting outcomes (quality, speed, sustainability), not personal preferences.
+## Branch C — Escalate or frame a decision
 
-### 7) Build influence: seat-at-the-table loop
-- **Inputs:** strategy calendar, decisions, adjacent teams.
-- **Actions:** Create a plan to contribute at the business level: pre-reads, crisp POVs, trade-off framing, and consistent pre-briefs. Identify 1–2 high-leverage forums and how to earn invitation.
-- **Outputs:** Influence plan (30 days) + artifacts to share (POV note, decision memo).
-- **Checks:** Plan includes at least one recurring “strategic contribution” touchpoint per week.
+1. **Confirm it's time.** Escalate while course-correction is still possible — options beat a fait accompli. Check triggers: decision rights, timeline cliff, cross-team dependency, blocker past N days, customer/brand risk. Timing heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+2. **Turn the blocker into a specific ask.** Use the ask ladder; make the ask binary and time-bounded and name the exact leader action (decide, sponsor, unblock, introduce, prioritize).
+3. **If it's a real decision, write the memo.** One page: context, options with trade-offs, and a recommendation. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+4. **Pre-wire the room.** TL;DR, the decision you want, the two main trade-offs, and who's already aligned vs not — walk it to key people before any group forum.
 
-### 8) Quality gate + 4-week pilot + iteration plan
-- **Inputs:** full draft pack.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**. Propose a 4-week pilot and a retro prompt set.
-- **Outputs:** Final Managing Up Operating System Pack.
-- **Checks:** Pack is immediately usable; next interactions are scheduled (cadence + checkpoints).
+**Done when:** the ask names a specific action, owner, and due date (or the memo gives options + a recommendation), and the room is pre-wired before any group decision.
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+## Branch D — Reset expectations or set a boundary
+
+The sensitive branch — respectful, never adversarial.
+
+1. **Name the mismatch.** Pick the concrete pattern — late-night pings, urgency inflation, scope creep, unclear definition of "good" — with 2–3 anonymized examples.
+2. **Anchor on outcomes.** Frame the boundary around quality, speed, sustainability, or decision integrity — never personal preference.
+3. **Always offer the alternative.** "I can't do X; I can do Y or Z — what's best?" Land it as a written working agreement both sides commit to. Scripts: [references/TEMPLATES.md](references/TEMPLATES.md); patterns: [references/WORKFLOW.md](references/WORKFLOW.md).
+
+**Done when:** the reset is framed as protecting an outcome, offers a concrete alternative, and lands as a written working agreement — and anything HR/legal is routed out per "When to use / not".
+
+## Branch E — Build influence / seat at the table
+
+1. **Pick the forum.** Identify 1–2 high-leverage forums and what would earn an invitation.
+2. **Contribute above your line.** Crisp POVs, pre-reads, and trade-off framing; be useful in the rooms you already reach. Guidance: [references/WORKFLOW.md](references/WORKFLOW.md).
+3. **Pre-wire consistently.** Run a recurring pre-brief loop so you shape decisions before the meeting, not during it.
+
+**Done when:** there's at least one recurring weekly strategic-contribution touchpoint and a named target forum with a concrete plan to earn the invite.
 
 ## Examples
 
-**Example 1 (new relationship):** “I started a new PM role. Help me manage up with my manager: create a manager profile template, a weekly update format, and a 4-week pilot cadence.”  
-Expected: manager profile + cadence + weekly update template + pilot plan + risks/open questions/next steps.
-
-**Example 2 (exec misalignment):** “Our exec team keeps changing priorities and feels out of touch. Create an exec-ready weekly update and a trade-off memo template so I can escalate issues early and frame decisions.”  
-Expected: weekly update + decision/trade-off memo + escalation triggers + comms map.
-
-**Boundary example:** “My manager is retaliating against me and I need to document it.”  
-Response: recommend HR/legal/company process; offer to create a factual incident timeline template and a neutral summary, but do not provide legal advice.
+- *"Our exec team keeps changing priorities and I'm always reacting."* → **Branch B** (+ C): a skimmable weekly update that surfaces trade-offs early, plus escalation triggers so you flag drift before the cliff.
+- *"I need my VP to unblock a cross-team dependency by Friday without sounding needy."* → **Branch C**: one specific, time-bounded ask on the ask ladder, pre-wired with whoever owns the dependency.
+- *"My manager is retaliating against me and I need to document it."* → out of scope: route to HR/legal and your company process; this skill can draft a neutral factual timeline but not legal strategy.

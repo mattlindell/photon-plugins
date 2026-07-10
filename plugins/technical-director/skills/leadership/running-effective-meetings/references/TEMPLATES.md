@@ -1,11 +1,30 @@
-# TEMPLATES (Copy/Paste)
+# Templates (Copy/Paste)
+
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Meeting Prep Sheet (Branch A — the workhorse)
+
+Fill this in the five minutes before you send the invite or walk into the room.
+
+**Meeting:** ______  **Date/time:** ______  **Time box:** ______
+
+- **Does this need a meeting?** (real discussion? if not, kill it and send: ______)
+- **Objective** (what's different after):
+- **Primary output** (decision / plan / list / commitments):
+- **Decision + owner** (if a decision meeting): decides ______; attending? ______
+- **Pre-read** (context/options moved out of the room — link or 5–10 bullets):
+- **Agenda** (1–3 topics, ≥60% discussion):
+  - ______ (timebox ___, output ___)
+- **Facilitation** (opening prime + one "if stuck" prompt):
+- **Off-ramp** (what gets parked if it runs 30+ min):
+- **Close-out** (decide / who-does-what-by-when / who-else-needs-to-know):
 
 ## 1) Meeting Brief (1 page max)
 
-**Title:**  
-**Meeting type:** Operational / Strategic discussion / Decision / Workshop  
-**Objective (what changes after):**  
-**Desired outputs (explicit):**  
+**Title:**
+**Meeting type:** Operational / Strategic discussion / Decision / Workshop
+**Objective (what changes after):**
+**Desired outputs (explicit):**
 - Output 1:
 - Output 2:
 
@@ -36,7 +55,7 @@
 **Context (5–10 bullets):**
 - …
 
-**What’s in scope / out of scope:**
+**What's in scope / out of scope:**
 - In:
 - Out:
 
@@ -54,9 +73,9 @@
   - What would change my mind:
 
 **Open questions for discussion:**
-1) …
-2) …
-3) …
+1. …
+2. …
+3. …
 
 ## 3) Timed Agenda (with outputs)
 
@@ -71,26 +90,26 @@
 ## 4) Facilitation Script (skeleton)
 
 **Open (priming):**
-- “The objective today is ____. The output is ____.”
-- “This is a ____ meeting. The decision owner is ____.”
-- “We are optimizing for ____ (tactical efficiency / creative problem solving).”
-- “We’ll timebox segments and capture decisions/actions live.”
+- "The objective today is ____. The output is ____."
+- "This is a ____ meeting. The decision owner is ____."
+- "We are optimizing for ____ (tactical efficiency / creative problem-solving)."
+- "We'll timebox segments and capture decisions/actions live."
 
 **Prompts (pick as needed):**
-- “What would make this a ‘no’ for you?”
-- “What are we assuming that might be false?”
-- “What’s the smallest decision we can make today?”
-- “What evidence would change your mind?”
+- "What would make this a 'no' for you?"
+- "What are we assuming that might be false?"
+- "What's the smallest decision we can make today?"
+- "What evidence would change your mind?"
 
 **If stuck:**
-- Summarize: “I’m hearing A vs B. The trade-off is ____.”
-- Narrow: “What is the decision we’re actually making?”
-- Escalate: “Decision owner: do you want more input, or should we decide and revisit if new evidence appears?”
+- Summarize: "I'm hearing A vs B. The trade-off is ____."
+- Narrow: "What is the decision we're actually making?"
+- Escalate: "Decision owner: do you want more input, or should we decide and revisit if new evidence appears?"
 
 **Close (alignment):**
-1) “What did we decide?”
-2) “Who does what by when?”
-3) “Who else needs to know?”
+1. "What did we decide?"
+2. "Who does what by when?"
+3. "Who else needs to know?"
 
 ## 5) Notes + Decision Log + Action Items (single doc)
 
@@ -125,3 +144,13 @@ Subject: **[Meeting] Outcomes + next steps — <topic>**
 
 Notes + decision record: <link>
 
+## 7) Risks / Open questions / Next steps
+
+### Risks
+- …
+
+### Open questions
+- …
+
+### Next steps
+- …

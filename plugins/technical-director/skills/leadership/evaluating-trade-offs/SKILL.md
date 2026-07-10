@@ -1,115 +1,89 @@
 ---
 name: "evaluating-trade-offs"
-description: "Evaluate trade-offs and produce a Trade-off Evaluation Pack (trade-off brief, options+criteria matrix, all-in cost/opportunity cost table, impact ranges, recommendation, stop/continue triggers). Use for tradeoff/trade-off, pros and cons, cost-benefit, opportunity cost, build vs buy, ship fast vs ship better, continue vs stop (sunk costs). Category: Leadership."
+description: "Evaluate a leadership or product trade-off: compare options on all-in cost and opportunity cost, estimate impact as ranges, and reach a decision-ready recommendation with stop/continue triggers."
+disable-model-invocation: true
 ---
 
 # Evaluating Trade-offs
 
-## Scope
+## Turn the debate into a decision
 
-**Covers**
-- Turning an ambiguous “pros/cons” debate into a decision-ready **trade-off evaluation**
-- Comparing options using **all-in cost** (not just dollars) and explicit **opportunity cost**
-- Using **order-of-magnitude estimates** (ranges + confidence) instead of false precision
-- Stress-testing decisions with **thought experiments** (pre-mortems, reversibility, “worse first” dips)
-- Avoiding sunk-cost traps with a clean **stop/continue** decision rule
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Help me evaluate this trade-off and recommend a path.”
-- “Create a pros/cons that actually leads to a decision.”
-- “Compare options with cost/impact ranges and key assumptions.”
-- “We’re debating speed vs quality—what’s the right trade and how do we manage the dip?”
-- “Should we keep investing in this project, or stop? (Sunk cost question.)”
+- **All-in cost, not the sticker price.** Compare options on total cost - cash, people-time, maintenance, coordination, switching - plus what you give up elsewhere (opportunity cost), never the obvious line item alone.
+- **Order of magnitude beats false precision.** Estimate impact as ranges with a confidence label. A 10x difference decides; a 2% difference is noise inside your error bars, so don't let it drive the call.
+- **Think more, build less.** Most "experiments" should start as thought experiments - a pre-mortem and the cheapest test that could falsify your biggest assumption - before anyone writes code.
+- **Sunk costs are gone; worse-first is normal.** Continuation turns on future ROI and strategic fit, never on what's already spent. If the right path dips before it climbs, plan the dip instead of reversing it.
 
-**When NOT to use**
-- You need to clarify what problem you’re solving (use `problem-definition`).
-- You need a full cross-functional decision process (use `running-decision-processes`).
-- You’re prioritizing across many initiatives (use `prioritizing-roadmap`).
-- You’re cutting scope to hit a date/timebox (use `scoping-cutting`).
-- The decision is personal/legal/HR/financial advice (escalate to qualified humans).
+## When to use / not
 
-## Inputs
+Use to evaluate a specific trade-off, compare 2-4 options, decide whether to stop or continue an existing effort, or manage a speed-vs-quality call.
 
-**Minimum required**
-- The trade-off / decision statement (one sentence) and a decision date (or “by EOW”)
-- 2–4 options you’re choosing between (include “do nothing” if plausible)
-- Constraints + non-negotiables (budget, headcount, policy, deadlines, customer commitments)
-- What “good” means (success metrics + guardrails) and the time horizon you care about
-- What you already know (evidence) + biggest unknowns (assumptions that drive the choice)
+Do **not** use for: clarifying what problem you're solving (use `problem-definition`); a full cross-functional decision process with decision rights and a decision log (use `running-decision-processes`); prioritizing across many initiatives (use `prioritizing-roadmap`); cutting scope to hit a date (use `scoping-cutting`); or a personal, legal, HR, or financial decision - route to a qualified human.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If inputs are unavailable, proceed with explicit assumptions and label unknowns that would change the recommendation.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants... | Branch |
+|---|---|
+| To make a specific call now (reversible / time-boxed) | **A - Quick trade-off call** |
+| A rigorous evaluation of a high-stakes or one-way-door decision | **B - Full evaluation** |
+| To decide whether to keep investing or stop (sunk cost) | **C - Stop or continue** |
+| To weigh shipping now vs polishing (speed vs quality) | **D - Speed vs quality** |
 
-Produce a **Trade-off Evaluation Pack** in Markdown (in-chat; or as files if requested) in this order:
-1) **Trade-off brief** (decision, why now, options, constraints, horizon, stakeholders)
-2) **Options + criteria matrix** (criteria + weights/guardrails; option notes)
-3) **All-in cost + opportunity cost table** (money, people/time, eng effort, complexity, displacement)
-4) **Impact ranges (order-of-magnitude)** (upside/downside ranges, confidence, key assumptions)
-5) **Worse-first + mitigation plan** (expected dip, leading indicators, mitigations, comms)
-6) **Recommendation + stop/continue triggers** (decision, rationale, review date, kill/continue criteria)
-7) **Risks / Open questions / Next steps** (always included)
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) - ask <=5 at a time, then proceed on labeled assumptions; never request secrets.
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+## Branch A - Quick trade-off call
 
-## Workflow (7 steps)
+The workhorse. Produce a one-page call, not a pack.
 
-### 1) Frame the trade-off (make it decidable)
-- **Inputs:** User request; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Write the decision in one sentence (“We are choosing X vs Y by DATE to achieve GOAL”). List constraints/non-negotiables. Confirm the decision owner and who must live with the outcome.
-- **Outputs:** Trade-off brief (decision, why now, constraints, stakeholders).
-- **Checks:** You can answer: “What exactly are we deciding, by when, and for what outcome?”
+1. **Frame it in one sentence.** "We are choosing X vs Y by DATE to achieve GOAL." Name the owner and who lives with the outcome.
+2. **Score only what differs.** Pick the 2-3 criteria on which the options actually diverge (include one guardrail); skip everything they tie on.
+3. **Size it order-of-magnitude.** Is one option plausibly 10x better, or are they within the error bars? Name the one assumption that would flip the answer. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+4. **Make the call.** State the pick, the opportunity cost you're accepting, and a review date.
 
-### 2) Define what you’re optimizing (criteria + horizon)
-- **Inputs:** Goals, metrics, guardrails; time horizon.
-- **Actions:** Pick 4–8 criteria (include at least one *guardrail* like trust/reliability/cost). Decide weights only if it changes the decision. Explicitly name what you’re *not* optimizing for.
-- **Outputs:** Options + criteria matrix (criteria definitions + weights/guardrails).
-- **Checks:** Criteria reflect real trade-offs (not “everything is important”); horizon is explicit (e.g., 90 days vs 2 years).
+**Done when:** the decision, the accepted trade-off, and a review date fit on one page, and a reader can act without reopening the debate.
 
-### 3) Build the all-in cost + opportunity cost view
-- **Inputs:** Team capacity, budget, dependencies, timelines.
-- **Actions:** Estimate **all-in cost** (cash, headcount time, eng effort, maintenance, coordination). List the **opportunity cost**: what won’t be done if you choose each option.
-- **Outputs:** All-in cost + opportunity cost table.
-- **Checks:** Costs include “hidden” items (maintenance/on-call, tooling, cross-team coordination, switching costs).
+## Branch B - Full evaluation
 
-### 4) Estimate impact with ranges (avoid false precision)
-- **Inputs:** Any baseline numbers; evidence; assumptions.
-- **Actions:** For each option, estimate upside/downside as **ranges** and note confidence. Prefer **order-of-magnitude** comparisons (10× vs 1.1×). Identify the 2–3 assumptions that drive the model.
-- **Outputs:** Impact ranges table (range, confidence, key assumptions).
-- **Checks:** No fake decimals; uncertainty is explicit; the decision is driven by a few key drivers you can name.
+For high-stakes or one-way-door decisions. Produce a written evaluation a stakeholder can decide from async. Templates: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 5) Run “thought experiments” (think more, build less)
-- **Inputs:** Options, assumptions, risks.
-- **Actions:** Do a pre-mortem for the top 1–2 options (“It failed—why?”). Identify the cheapest evidence to de-risk the biggest assumption (data pull, customer calls, small prototype, timeboxed spike). Decide if this should be a **thought experiment only** (no build) vs a real experiment.
-- **Outputs:** Assumption list + minimal validation plan (if needed).
-- **Checks:** Proposed tests are the smallest that could change your mind; you’re not shipping an “obvious loser” experiment.
+1. **Frame the trade-off.** One-sentence decision, why now, owner, constraints, non-negotiables, and time horizon.
+   **Done when:** you can answer what you're deciding, by when, and for what outcome.
+2. **Define what you're optimizing.** Pick 4-8 criteria including at least one guardrail (trust, reliability, cost, support load); name what you're explicitly *not* optimizing for.
+   **Done when:** criteria reflect real trade-offs and the horizon is explicit.
+3. **Build the all-in cost view.** Estimate total cost per option (cash, people-time, engineering, maintenance, coordination) and the opportunity cost - what gets displaced.
+   **Done when:** hidden costs (on-call, tooling, cross-team coordination, switching) are included and comparable across options.
+4. **Estimate impact as ranges.** Give upside/downside ranges with confidence; name the 2-3 assumptions that drive the model.
+   **Done when:** no fake decimals, and a few named drivers explain the decision.
+5. **Run the thought experiments.** Pre-mortem the top 1-2 options; design the cheapest test that could falsify the biggest assumption, and decide whether a build is even warranted.
+   **Done when:** any proposed test is the smallest that could change your mind.
+6. **Plan worse-first + triggers.** Name any short-term dip and its mitigations/leading indicators; set stop/continue triggers and a review date.
+   **Done when:** the dip is anticipated and continuation logic ignores sunk costs.
+7. **Recommend and gate.** Write the recommendation with rationale and explicit trade-offs (what you'll stop doing), plus Risks / Open questions / Next steps with owners. Gate with [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
+   **Done when:** a stakeholder can decide async without re-litigating the debate.
 
-### 6) Account for “worse first” + sunk costs
-- **Inputs:** Expected short-term impacts; current investment/sunk costs.
-- **Actions:** Name any “worse-first” dip (short-term pain) and plan mitigations/leading indicators. Apply a sunk-cost reset: “If we weren’t already doing this, would we start today?” Define stop/continue triggers and a review date.
-- **Outputs:** Worse-first plan + stop/continue triggers.
-- **Checks:** The plan anticipates the dip; continuation logic ignores sunk costs and focuses on future ROI and strategic fit.
+## Branch C - Stop or continue
 
-### 7) Recommend, commit, and quality-gate
-- **Inputs:** All artifacts above.
-- **Actions:** Write the recommendation with rationale and explicit trade-offs (what you will stop doing). Add risks, open questions, and next steps with owners/dates. Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
-- **Outputs:** Final Trade-off Evaluation Pack.
-- **Checks:** A stakeholder can read this async and make (or support) the decision without re-litigating the debate.
+For continuation decisions on an existing effort. Templates: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+1. **Reset on sunk cost.** Ask: "If we weren't already doing this, would we start today with what we know now?"
+2. **Compare forward, not backward.** Estimate the remaining all-in cost to finish against future ROI and strategic fit; ignore what's already spent.
+3. **Set the rule.** Define stop/continue triggers and a review date. If stopping, decide what to salvage (reusable work, learnings, comms) and how to avoid the repeat failure mode.
+
+**Done when:** there's a clear stop/continue verdict with kill criteria and a review date, and the logic never cites sunk cost as a reason to continue.
+
+## Branch D - Speed vs quality
+
+For ship-now-vs-polish calls. Templates: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+1. **Separate the guardrails from the trade.** Name what quality protects (trust, reliability, support load) and which of those you can safely trade now.
+2. **Size the worse-first dip.** Estimate the short-term degradation if you ship now and why the long-term upside beats it.
+3. **Instrument the dip.** Set leading indicators and mitigations so the team doesn't reverse prematurely, and define what would make you pull back.
+
+**Done when:** the ship decision is explicit, the guardrail line is drawn, and a dip-mitigation plan with leading indicators is in place.
 
 ## Examples
 
-**Example 1 (resource allocation):** “Should we invest in SEO or paid acquisition for the next 2 quarters? Build a trade-off pack with all-in cost, ROI speed, and assumptions.”  
-Expected: all-in cost vs alternatives, order-of-magnitude impact ranges, and a clear recommendation + review date.
-
-**Example 2 (speed vs quality):** “We can ship v1 next week with rough edges or delay 3 weeks to ship ‘noteworthy’. Evaluate the trade-off and propose a worse-first mitigation plan if we ship now.”  
-Expected: explicit criteria/guardrails (trust/support load), dip plan, and stop/continue triggers if metrics degrade.
-
-**Boundary example:** “Help me decide if I should leave my job.”  
-Response: this skill is for organizational/product leadership trade-offs; suggest a personal decision framework or coach instead.
+- *"Should we invest in SEO or paid acquisition for the next two quarters?"* -> **Branch B**: all-in cost per channel, order-of-magnitude impact ranges, recommendation with a review date.
+- *"Ship v1 next week rough, or delay three weeks to ship it polished?"* -> **Branch D**: guardrails that quality protects, an expected dip plan, and pull-back triggers if support load spikes.
+- *"Should I leave my job?"* -> out of scope: this skill is for organizational and product leadership trade-offs; suggest a personal decision framework or a coach instead.

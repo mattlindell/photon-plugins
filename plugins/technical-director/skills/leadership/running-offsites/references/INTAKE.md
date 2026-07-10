@@ -4,11 +4,11 @@ Ask 3–5 questions at a time. If answers are unavailable, proceed with explicit
 
 ## A) Quick intake (minimum)
 
-1) What type of offsite is this (strategy / planning / retro / reset / “burst”)? What does “success” look like in 1–2 sentences?
+1) What type of offsite is this (strategy / planning / retro / reset / "burst")? What does "success" look like in 1–2 sentences?
 2) What are the 3–7 target outputs? (Examples: decision, principles, roadmap slice, working agreements, action plan.)
-3) Who’s attending (count, roles, seniority)? Who must be present for decisions?
+3) Who's attending (count, roles, seniority)? Who must be present for decisions?
 4) Constraints: date window, duration, location constraints, budget band, accessibility needs, time zones.
-5) Current state: what’s broken today? What must be different the Monday after the offsite?
+5) Current state: what's broken today? What must be different the Monday after the offsite?
 
 ## B) Decision + scope clarity
 
@@ -18,7 +18,7 @@ Ask 3–5 questions at a time. If answers are unavailable, proceed with explicit
 
 ## C) Team dynamics (risk check)
 
-9) Are there “elephants in the room” (tension, trust issues, unresolved conflict)? If yes, should we address them directly, in a limited way, or defer/escalate?
+9) Are there "elephants in the room" (tension, trust issues, unresolved conflict)? If yes, should we address them directly, in a limited way, or defer/escalate?
 10) Is psychological safety low? Any topics that should not be handled in a group setting?
 
 ## D) Format preference
@@ -30,7 +30,7 @@ Ask 3–5 questions at a time. If answers are unavailable, proceed with explicit
 ## E) Logistics + tooling
 
 14) Venue constraints: office vs offsite venue? Any required rooms (breakouts), whiteboards, supplies?
-15) Hybrid/remote attendees? If yes, what’s the plan to keep them first-class participants?
+15) Hybrid/remote attendees? If yes, what's the plan to keep them first-class participants?
 16) Any dietary, travel, security, or privacy constraints?
 
 ## F) Output preferences

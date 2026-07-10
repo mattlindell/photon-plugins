@@ -8,7 +8,7 @@ Score each category 0/1/2:
 Suggested passing bar: **>= 16/20**.
 
 ## 1) Triggering + scope (0–2)
-- Realistic trigger phrases and clear “when to use / not use”.
+- Realistic trigger phrases and clear "when to use / not use".
 
 ## 2) Boundary + success measures (0–2)
 - Boundary is actionable; metrics and guardrails are explicit.
@@ -20,7 +20,7 @@ Suggested passing bar: **>= 16/20**.
 - Variables are concrete; causal links are directional and testable.
 
 ## 5) Feedback loops + delays (0–2)
-- Loops are identified with “so what”; key delays are captured.
+- Loops are identified with "so what"; key delays are captured.
 
 ## 6) Second-/third-order effects (0–2)
 - Effects ledger is specific, includes winners/losers, mitigations, and guardrails.

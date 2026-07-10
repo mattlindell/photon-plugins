@@ -4,7 +4,7 @@ Use these before finalizing the Timeline Management Pack.
 
 ## 1) Deadline & commitment checklist
 - Date type is explicit (fixed external / fixed internal / target / window).
-- “Why now” is stated in 1–2 sentences.
+- "Why now" is stated in 1–2 sentences.
 - Commitment ladder (commit/forecast/target) is defined and used consistently.
 - The plan states what variable can move (scope/resources/quality/date).
 - Confidence level is stated with top risks and the next re-forecast checkpoint.
@@ -31,7 +31,7 @@ Use these before finalizing the Timeline Management Pack.
 - Non-goals are explicit.
 - A cut list exists (pre-traded options) and is ordered (cut first → cut next).
 - Freeze points are defined (as appropriate).
-- Change control rule is stated (“trade, don’t add”) with a decision owner.
+- Change control rule is stated ("trade, don't add") with a decision owner.
 - The plan states what work gets deprioritized if the deadline is P0.
 
 ## 6) AI/ML outer-loop checklist (only if applicable)
@@ -42,5 +42,5 @@ Use these before finalizing the Timeline Management Pack.
 
 ## 7) Finalization checklist
 - The pack includes **Risks**, **Open questions**, and **Next steps** with owners + dates.
-- A stakeholder could approve the plan async (it’s readable, specific, and unambiguous).
+- A stakeholder could approve the plan async (it's readable, specific, and unambiguous).
 

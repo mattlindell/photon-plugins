@@ -4,7 +4,7 @@ Use these before finalizing the Design Review Pack.
 
 ## A) Scope + decision
 - [ ] The review type is explicit (concept / flow / content / polish / ship-readiness).
-- [ ] The decision needed is explicit (“After this review we will decide ___”).
+- [ ] The decision needed is explicit ("After this review we will decide ___").
 - [ ] In-scope vs out-of-scope is clear.
 - [ ] Target user + JTBD is stated in 1–2 sentences.
 - [ ] Success criteria + constraints/guardrails are listed.

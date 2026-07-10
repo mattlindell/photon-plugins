@@ -3,7 +3,7 @@
 Use this to score the Design Review Pack. Target: **≥24/30**.
 
 ## 1) Decision clarity
-1 = No decision; “get feedback” only  
+1 = No decision; "get feedback" only  
 3 = Decision exists but still fuzzy  
 5 = Clear decision statement + explicit in/out scope
 

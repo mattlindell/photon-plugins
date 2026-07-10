@@ -1,6 +1,20 @@
-# Templates — Organizational Transformation
+# Templates - Organizational Transformation
 
-Use these templates to produce an Organizational Transformation Pack. Copy/paste and fill.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Pilot Card (Branch A - the workhorse)
+
+Fill one card per pilot when you need to stand up proof now.
+
+**Pilot name:** ______  **Team(s) / area:** ______  **Timebox:** ______ (aim 2-6 weeks)
+**Why this area** (leverage + willing leadership + manageable dependencies): …
+
+- **Hypothesis:** If we do ___, then ___ improves because ___.
+- **Enablement / nudges** (templates, rituals, coaching, default paths - not mandates): …
+- **Leading indicators to watch:** …
+- **Reversible? / rollback:** …
+- **Decision at end:** scale / iterate / stop
+- **How the insight feeds back** into the model + roadmap: …
 
 ## 1) Transformation Charter (template)
 
@@ -10,7 +24,7 @@ Use these templates to produce an Organizational Transformation Pack. Copy/paste
 
 **Transformation goal (1–2 sentences):**  
 
-**What we’re optimizing for (ranked 1–5):**
+**What we're optimizing for (ranked 1–5):**
 1)  
 2)  
 3)  
@@ -63,8 +77,8 @@ Describe the flow: idea → prioritization → build → launch → measurement 
 List the mechanisms that force feature delivery (e.g., annual commitments, output metrics, centralized requirements).
 -  
 
-### D) Capability gaps (what’s missing)
-| Capability | Current maturity (low/med/high) | Evidence | What would “good” look like |
+### D) Capability gaps (what's missing)
+| Capability | Current maturity (low/med/high) | Evidence | What would "good" look like |
 |---|---|---|---|
 | Discovery |  |  |  |
 | Product strategy |  |  |  |
@@ -122,7 +136,7 @@ How insights from pilots update the target operating model and roadmap.
 
 ## 5) Transformation Roadmap (6–12 months) (template)
 
-| Phase | Timeframe | Objectives | Key changes (“big rocks”) | Dependencies | Milestones |
+| Phase | Timeframe | Objectives | Key changes ("big rocks") | Dependencies | Milestones |
 |---|---|---|---|---|---|
 | 0: Prep |  |  |  |  |  |
 | 1: Pilot |  |  |  |  |  |
@@ -138,8 +152,8 @@ How insights from pilots update the target operating model and roadmap.
 
 ### B) Narrative + messages
 **Core narrative (short):**  
-**What’s changing (and why):**  
-**What’s not changing (yet):**  
+**What's changing (and why):**  
+**What's not changing (yet):**  
 **What teams can expect next (timeline):**  
 
 ### C) Enablement plan
@@ -158,8 +172,8 @@ Pick 6–10 indicators across discovery, delivery, decision speed, and outcomes.
 **Monthly:**  
 **Quarterly:**  
 
-### C) Guardrails (“framework hygiene”)
-What is mandatory vs optional. What’s explicitly not required.
+### C) Guardrails ("framework hygiene")
+What is mandatory vs optional. What's explicitly not required.
 
 ### D) Escalation + rollback
 Escalation path for blocked decisions; rollback triggers for high-risk changes.

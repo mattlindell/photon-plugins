@@ -8,7 +8,7 @@ Score the Decision Process Pack before finalizing. Use the total to decide wheth
 5 = One-sentence decision + deadline + scope boundaries are explicit
 
 ## 2) Options and tradeoffs
-1 = Only one “preferred” option; strawman alternatives  
+1 = Only one "preferred" option; strawman alternatives  
 3 = Multiple options, but tradeoffs are not explicit  
 5 = 2–4 viable options; tradeoffs and reversibility are clearly articulated
 
@@ -34,6 +34,6 @@ Score the Decision Process Pack before finalizing. Use the total to decide wheth
 
 ## Interpreting scores
 - **26–30:** ship as-is
-- **20–25:** ship with explicit assumptions + a short “unknowns” list
+- **20–25:** ship with explicit assumptions + a short "unknowns" list
 - **< 20:** do another intake round (max 5 questions) before finalizing
 

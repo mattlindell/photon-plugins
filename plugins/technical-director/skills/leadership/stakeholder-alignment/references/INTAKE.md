@@ -3,7 +3,7 @@
 Use these questions to gather the minimum context to produce a Stakeholder Alignment Pack. Ask **3–5 at a time**.
 
 ## A) Alignment target (required)
-1) What does “alignment” mean here: **inform, align, or decide**?
+1) What does "alignment" mean here: **inform, align, or decide**?
 2) What is the decision/commitment we need (one sentence)? By when?
 3) What happens if we do nothing (or fail to align) in the next 4–8 weeks?
 
@@ -13,8 +13,8 @@ Use these questions to gather the minimum context to produce a Stakeholder Align
 6) Who will have to do real work after the decision (implementers)? Are they represented?
 
 ## C) User value + context (required)
-7) Which user/customer segment is impacted, and what’s the intended user value?
-8) What is the “vital question” we should anchor on? (e.g., “How does this make our users love us more?”)
+7) Which user/customer segment is impacted, and what's the intended user value?
+8) What is the "vital question" we should anchor on? (e.g., "How does this make our users love us more?")
 
 ## D) Constraints + tradeoffs (required)
 9) What are the non-negotiables (deadline, budget, commitments, policies)?
@@ -32,7 +32,7 @@ Use these questions to gather the minimum context to produce a Stakeholder Align
 17) Any sensitive details we must avoid naming in writing?
 
 ## Default assumptions (use only if needed)
-If the user can’t answer, proceed with these defaults and label them as assumptions:
+If the user can't answer, proceed with these defaults and label them as assumptions:
 - Outcome: align on a path and secure a next step (decision or timeboxed experiment)
 - Decider: a single person or clearly named decision body
 - Timeline: 3–7 days of pre-briefs + 1 decision meeting

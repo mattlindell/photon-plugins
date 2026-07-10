@@ -1,6 +1,23 @@
-# Templates
+# Templates (Copy/Paste)
 
-Use these templates to produce a **Design Review Pack**. Output in-chat by default, or write to files if requested.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Critique Prep Sheet (Branch B — the workhorse)
+
+Fill this before you walk into the crit.
+
+**Project:** ______  **Review type:** concept / flow / content / polish / ship-readiness  **Timebox:** 30 / 45 / 60 min
+
+- **Decision:** After this review we will decide ______.
+- **Roles:** Presenter ______ | Facilitator ______ | Note-taker ______ | Sponsor/DRI ______
+- **Requested feedback (1–3 questions that serve the decision):**
+  - …
+- **Out of scope today** (defer aesthetics until Value/Ease hold):
+  - …
+- **Demo plan:** happy path + top edge case, in this order: …
+- **Agenda:** context → live demo → feedback capture (Value → Ease → Delight) → synthesis + decisions.
+- **Facilitation prompts:** "What problem is this solving, in one sentence?" / "Where does the flow break?" / "What's the riskiest assumption?" / "If we ship this, what might we regret?"
+- **Close checklist:** top 3 issues owned; decisions + tradeoffs written; next review / ship gate set.
 
 ## 1) Design review brief / pre-read
 **Project / feature:**  
@@ -17,7 +34,7 @@ Use these templates to produce a **Design Review Pack**. Output in-chat by defau
 **Success criteria (1–3):**  
 **Constraints/guardrails:** (timeline, platform, a11y, tech, content, legal)  
 
-### What we’re reviewing
+### What we're reviewing
 **In scope:** (flows/screens/states)  
 **Known unknowns:**  
 **Options considered:** (if any)  
@@ -44,7 +61,7 @@ Use these templates to produce a **Design Review Pack**. Output in-chat by defau
    - What is out of scope today
 2) **Live demo (15 min)**
    - Presenter walkthrough (happy path + top edge case)
-   - Sponsor interrupts only for “why” / concept clarity
+   - Sponsor interrupts only for "why" / concept clarity
 3) **Feedback capture (15 min)**
    - Round 1: Value
    - Round 2: Ease
@@ -55,10 +72,10 @@ Use these templates to produce a **Design Review Pack**. Output in-chat by defau
    - Owners + due dates
 
 Facilitation prompts:
-- “What problem is this solving, in one sentence?”
-- “Where does the flow break or feel confusing?”
-- “What’s the riskiest assumption here?”
-- “If we ship this, what might we regret?”
+- "What problem is this solving, in one sentence?"
+- "Where does the flow break or feel confusing?"
+- "What's the riskiest assumption here?"
+- "If we ship this, what might we regret?"
 
 ## 3) Feedback log (copy/paste table)
 | ID | Area/screen | Observation | Impact on user/business | Category (Value/Ease/Delight) | Severity (P0/P1/P2) | Suggested change | Owner | Due | Status |

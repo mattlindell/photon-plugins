@@ -3,7 +3,7 @@
 Use these before finalizing the pack.
 
 ## 1) Charter checklist
-- Goals are outcomes/behaviors (not “adopt framework X”).
+- Goals are outcomes/behaviors (not "adopt framework X").
 - Non-goals are explicit (reduces fear + scope creep).
 - Success metrics include leading indicators (not only lagging outcomes).
 - Constraints/non-negotiables are listed.
@@ -30,17 +30,17 @@ Use these before finalizing the pack.
 ## 5) Roadmap checklist
 - Phases, big rocks, dependencies, and milestones are explicit.
 - Protects business continuity; includes decision points and rollback triggers.
-- Resourcing plan is realistic (doesn’t assume infinite capacity).
+- Resourcing plan is realistic (doesn't assume infinite capacity).
 
 ## 6) Change + comms checklist
 - Stakeholder map includes stance/concerns/asks.
-- Messages include what changes, what doesn’t, and what happens next.
+- Messages include what changes, what doesn't, and what happens next.
 - Reinforcement mechanisms exist (rituals, metrics, leadership behaviors).
 
 ## 7) Governance + metrics checklist
 - 6–10 leading indicators span discovery, delivery, decision speed, and outcomes.
 - Review cadence and escalation paths are defined.
-- “Framework hygiene” guardrails prevent cargo-cult adoption.
+- "Framework hygiene" guardrails prevent cargo-cult adoption.
 
 ## 8) Final pack checklist (required)
 - Risks, Open questions, Next steps included.

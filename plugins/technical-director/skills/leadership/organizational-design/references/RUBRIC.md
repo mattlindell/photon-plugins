@@ -3,7 +3,7 @@
 Score the Organizational Design Pack before finalizing. Total score helps decide whether to proceed or do another intake round.
 
 ## 1) Optimization clarity + success metrics
-1 = Vague goals; no metrics; “reorg because vibes”  
+1 = Vague goals; no metrics; "reorg because vibes"  
 3 = Goals stated; some metrics/constraints unclear  
 5 = Optimization target + metrics + constraints are explicit and testable
 
@@ -23,7 +23,7 @@ Score the Organizational Design Pack before finalizing. Total score helps decide
 5 = 2–3 viable options with clear pros/cons, assumptions, and dependency changes
 
 ## 5) Decision rights + operating mechanisms
-1 = “Everyone owns it”; decisions still ambiguous  
+1 = "Everyone owns it"; decisions still ambiguous  
 3 = Some decision rights/cadence defined  
 5 = Decision rights, escalation triggers, and cadence are concrete and adoptable on Day 1
 

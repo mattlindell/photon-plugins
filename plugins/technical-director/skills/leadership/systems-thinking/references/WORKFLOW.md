@@ -1,93 +1,49 @@
-# Workflow (Expanded)
+# Systems Thinking Playbook (Heuristics)
 
-This file expands the steps from `../SKILL.md` with extra guidance and heuristics for leaders.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## Step 1 — Intake + focal decision/problem
-Aim: make the problem *decision-ready*.
+## Anti-patterns (catch yourself)
 
-Heuristics:
-- Rewrite “We need to build X” into “We need to achieve Y under constraints Z.”
-- If the “problem” is mostly a list of symptoms, choose a focal symptom and treat it as an entry point, not the root cause.
+- **Solving the symptom, not the structure.** Fixing the visible pain without touching the incentives or loop that produces it just relocates the pain. Ask what system makes this the rational outcome.
+- **The boundary is "everything".** A map that includes the whole company can't drive a decision. Draw it tight enough to act on; note key externalities as interfaces rather than expanding scope.
+- **Abstractions masquerading as variables.** "Alignment", "quality", "morale" aren't map variables until you can say how you'd observe them. If you can't define or measure it, it doesn't belong in the map yet.
+- **Wishful incentives.** Assuming actors will behave against their own incentives is how interventions backfire. Model what they actually optimize for.
+- **Fixing the metric, breaking the system (Goodhart).** Optimizing a proxy invites gaming. Pair every target with a guardrail and watch the loop it creates.
+- **Over-correcting through delays.** Acting as if effects are immediate causes oscillation. Where a delay exists, expect overshoot and dampen the response.
 
-## Step 2 — System boundary (useful, not complete)
-Pick a boundary that is actionable:
-- **Too narrow:** ignores externalities (partners, incentives, culture).
-- **Too wide:** becomes “everything,” which prevents decisions.
+## Framing the focal problem (decision-ready)
 
-Boundary outputs should include:
-- Goal + time horizon
-- In-scope actors and interfaces
-- Explicit non-scope
-- 1–3 outcome metrics + 3–7 leading indicators
+Rewrite "we need to build X" into "we need to achieve Y under constraints Z." If the problem is a list of symptoms, pick one focal symptom as an entry point — not the assumed root cause.
 
-## Step 3 — Actors + incentives map
-For each actor/player, capture:
-- Incentives (what they optimize for)
-- Constraints (what they can’t do)
-- Power/agency (what they can influence)
-- Likely behavior if nothing changes
+## System boundary (useful, not complete)
 
-Don’t forget “invisible actors,” when relevant:
-- Policies and compliance requirements
-- Cultural norms (“this is how we do things”)
-- Legacy platform constraints
-- Funding/allocations and performance reviews
+Pick an actionable boundary. Too narrow ignores externalities (partners, incentives, culture); too wide becomes "everything" and prevents decisions. The boundary should carry: goal + time horizon, in-scope actors and interfaces, explicit non-scope, and 1–3 outcome metrics plus 3–7 leading indicators.
 
-## Step 4 — System map (variables + causal links)
-Keep the map simple and testable:
-- Prefer concrete variables (“time-to-resolution”, “feature adoption”, “incident rate”) over abstract ones (“quality”, “alignment”).
-- Express links as: **A increases/decreases B**, optionally with a note on time delay.
+## Actors + incentives
 
-If you can’t define a variable or how you’d observe it, it doesn’t belong in the map yet.
+For each actor capture: incentives (what they optimize for), constraints (what they can't do), power/agency (what they can influence), and likely behavior if nothing changes. Don't forget invisible actors when relevant — policies and compliance, cultural norms ("this is how we do things"), legacy platform constraints, and funding/allocation and performance-review structures.
 
-## Step 5 — Feedback loops + time delays
-Classify loops:
-- **Reinforcing (R):** amplifies change (growth loops, death spirals).
-- **Balancing (B):** stabilizes (capacity limits, budget caps, policy enforcement).
+## System map (variables + causal links)
 
-For each loop, add a short “so what”:
-- What behavior/pattern does it create over time?
-- What does the loop “optimize” for?
+Keep it simple and testable. Prefer concrete variables (time-to-resolution, feature adoption, incident rate) over abstractions. Express links as "A increases/decreases B", optionally noting a time delay. If you can't define a variable or how you'd observe it, leave it out.
 
-Common leadership traps caused by delays:
-- Over-correcting (oscillation)
-- Fixing the metric, breaking the system (Goodhart)
-- Firefighting loops that starve prevention
+## Feedback loops + delays
 
-## Step 6 — Second-/third-order effects ledger
-For each candidate move:
-- 1st order: immediate, local effect
-- 2nd order: effects created by responses/adaptations of other actors
-- 3rd order: longer-term constraints, norm changes, path dependence
+Classify loops: reinforcing (R) amplifies change (growth loops, death spirals); balancing (B) stabilizes (capacity limits, budget caps, policy enforcement). Give each loop a short "so what": what pattern it creates over time and what it optimizes for. Common delay-driven traps: over-correcting (oscillation), fixing the metric and breaking the system (Goodhart), and firefighting loops that starve prevention.
 
-Include:
-- Who wins/loses (and how they might respond)
-- Which constraints tighten/loosen over time
-- What new loop you might create (intentional or accidental)
+## Second-/third-order effects
 
-## Step 7 — Leverage points + intervention plan
-Leverage point categories that often matter in leadership contexts:
-- **Incentives:** what gets rewarded/punished
+For each candidate move: 1st order is the immediate local effect; 2nd order is what other actors do in response; 3rd order is longer-term constraints, norm changes, and path dependence. Always include who wins/loses and how they might respond, which constraints tighten or loosen, and what new loop you might create — intentionally or accidentally.
+
+## Leverage points + interventions
+
+Leverage categories that matter in leadership contexts:
+
+- **Incentives:** what gets rewarded or punished
 - **Information flows:** who sees what, when (dashboards, transparency)
 - **Rules/policies:** definitions, SLAs, decision rights
 - **Buffers/capacity:** staffing, WIP limits, throttles
 - **Tools/automation:** eliminate recurring manual work
 - **Interfaces:** contracts between teams, APIs, handoffs
 
-Design interventions with:
-- Owner + sequencing
-- Leading indicator(s)
-- Guardrail metric(s) to prevent harm
-- Rollback or stop condition if risks materialize
-
-## Step 8 — Quality gate + finalize
-Before finalizing:
-- Run [CHECKLISTS.md](CHECKLISTS.md)
-- Score with [RUBRIC.md](RUBRIC.md)
-- Add **Risks / Open questions / Next steps**
-
-If the score is low, fix these first:
-1) Boundary and success measures
-2) Actor/incentive realism
-3) Testable causal links (no abstractions)
-
+Design each intervention with an owner and sequencing, leading indicator(s), guardrail metric(s) to prevent harm, and a rollback or stop condition if risks materialize. If a score comes back low, fix these first, in order: boundary and success measures, actor/incentive realism, then testable causal links.

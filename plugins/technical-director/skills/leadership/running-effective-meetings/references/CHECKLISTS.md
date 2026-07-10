@@ -1,6 +1,6 @@
 # CHECKLISTS
 
-## A) “Is a meeting needed?” checklist
+## A) "Is a meeting needed?" checklist
 - [ ] The goal requires real-time **discussion** (not just status or broadcasting).
 - [ ] The decision owner (or delegated authority) will attend.
 - [ ] There is a draft pre-read or shared context (no cold starts).
@@ -12,7 +12,7 @@
 - [ ] Pre-read sent with enough time (ideally 24–48h).
 - [ ] Agenda is timed; 1–3 topics max.
 - [ ] Roles assigned: facilitator, decision owner, note-taker, timekeeper.
-- [ ] “Deep dive off-ramp” defined (parking lot + follow-up plan).
+- [ ] "Deep dive off-ramp" defined (parking lot + follow-up plan).
 
 ## C) In-meeting facilitation checklist
 - [ ] Start with priming (objective, mode, decision rights, ground rules).
@@ -30,6 +30,6 @@
 ## E) Post-meeting checklist (follow-through)
 - [ ] Follow-up message sent within 24h.
 - [ ] Decisions recorded in a decision log (with rationale).
-- [ ] Action items entered into the team’s tracker (or at least a table).
+- [ ] Action items entered into the team's tracker (or at least a table).
 - [ ] Hygiene call: keep/kill/shorten/split recurring meetings that drift.
 

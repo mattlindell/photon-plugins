@@ -4,18 +4,18 @@ Use these checklists before finalizing the Offsite Pack.
 
 ## 1) Offsite Brief checklist
 
-- Purpose is a single sentence and includes “why now”.
-- Target outputs are 3–7 artifacts (not “feel aligned”).
+- Purpose is a single sentence and includes "why now".
+- Target outputs are 3–7 artifacts (not "feel aligned").
 - Decisions in scope are explicit; out-of-scope items are named.
 - Participants list includes decision makers needed for commitments.
-- Success measures include “immediately after” and “2–4 weeks after”.
+- Success measures include "immediately after" and "2–4 weeks after".
 - Risks include team dynamics and missing inputs/data.
 
 ## 2) Agenda checklist
 
 - Every session has an output artifact (decision/principles/plan/agreements).
 - At least 60% of time is interactive/co-creation.
-- “Laptops down” blocks are explicit (scribe exception defined).
+- "Laptops down" blocks are explicit (scribe exception defined).
 - Breaks are scheduled (10 min every 60–90 min; longer break mid-day).
 - The day starts with connection and ends with follow-through.
 
@@ -40,7 +40,7 @@ Use these checklists before finalizing the Offsite Pack.
 - Accessibility needs are accounted for.
 - Contingency plan exists (venue/tech/participant issues).
 
-## 6) Post-offsite follow-through checklist (“no Monday amnesia”)
+## 6) Post-offsite follow-through checklist ("no Monday amnesia")
 
 - Decisions log is complete and has owners + next steps.
 - Action plan has due dates and dependencies.

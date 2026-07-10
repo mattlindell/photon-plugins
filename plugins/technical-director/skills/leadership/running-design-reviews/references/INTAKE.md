@@ -22,19 +22,19 @@ Ask up to **5** questions at a time. If information is missing, proceed with exp
 
 ## Review mechanics
 - Live review or async? Time box (30/45/60 min)?
-- Who’s attending and what are their roles?
-- Who is the **Sponsor/DRI** (senior owner for “why” + core concept)?
+- Who's attending and what are their roles?
+- Who is the **Sponsor/DRI** (senior owner for "why" + core concept)?
 - Who will take notes and own follow-up?
 
 ## Requested feedback (make it explicit)
 - What 1–3 questions should reviewers answer?
-  - “Is the value proposition clear?”
-  - “Where does the flow break or feel confusing?”
-  - “What edge cases are missing?”
-  - “What is the biggest risk/tradeoff?”
+  - "Is the value proposition clear?"
+  - "Where does the flow break or feel confusing?"
+  - "What edge cases are missing?"
+  - "What is the biggest risk/tradeoff?"
 - What should reviewers **not** focus on yet (e.g., visual polish, microcopy)?
 
 ## Quality bar / ship gate
-- Is this a “must-review all screens” product area (high craft / founder-led quality bar)?
-- Do we need a final “screen-by-screen” pass before shipping?
+- Is this a "must-review all screens" product area (high craft / founder-led quality bar)?
+- Do we need a final "screen-by-screen" pass before shipping?
 

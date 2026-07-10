@@ -1,117 +1,76 @@
 ---
 name: "running-design-reviews"
-description: "Run high-signal design reviews (design critique / design crit / design feedback) by producing a Design Review Pack: review brief + requested feedback, agenda + facilitation script, feedback log prioritized by Value→Ease→Delight, decision record, and follow-up plan."
+description: "Run high-signal design reviews and critiques — plan the review around a real decision, facilitate feedback in Value/Ease/Delight order, and synthesize it into prioritized changes with owners."
+disable-model-invocation: true
 ---
 
 # Running Design Reviews
 
-## Scope
+## A review that changes the work
 
-**Covers**
-- Planning a design review with a clear decision and requested feedback type(s)
-- Running a live demo–centered critique (or async review when needed)
-- Capturing feedback without “design-by-committee”
-- Synthesizing feedback using **Value → Ease of Use → Delight** prioritization
-- Recording decisions, tradeoffs, and follow-ups so the review changes the work
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Prepare and run a design critique for this Figma prototype.”
-- “We need a structured design review agenda and feedback log.”
-- “Help us review this flow and decide what to change before we ship.”
-- “Turn messy comments into prioritized feedback + next steps.”
+- **Every review has a decision.** "Get feedback" is not a review. Name what changes after it, and let the requested-feedback questions all serve that decision.
+- **Value before Ease before Delight.** Confirm it solves the right problem, then remove friction, then polish. Don't argue pixels while the concept is unresolved.
+- **Observation + impact, not preference.** Capture what breaks and why it matters — not "I'd do it differently." The Sponsor/DRI breaks ties by returning to goals and constraints; no design-by-committee.
+- **Demo, don't deck; then write it down.** Anchor the review in a live artifact, and record the decisions and tradeoffs — an undocumented review doesn't change anything.
 
-**When NOT to use**
-- You don’t have a defined problem, target user, or goal yet (use `problem-definition` first).
-- You need build-ready interaction specs / acceptance criteria (use `writing-specs-designs`).
-- You need evidence from users rather than expert critique (use `usability-testing`).
-- You’re doing launch planning, comms, rollout/rollback (use `shipping-products`).
+## When to use / not
 
-## Inputs
+Use to plan and run a design review, prep and facilitate a critique that's coming up, synthesize messy feedback into a change plan, or run an async review when you can't meet live.
 
-**Minimum required**
-- Design artifact(s): link(s) or screenshots (e.g., Figma/prototype) + what parts are in scope
-- The decision needed (what will change after the review)
-- Target user + job-to-be-done (1–2 sentences)
-- Success criteria (1–3) and constraints (time, platform, accessibility, tech)
-- Review format + logistics: live vs async, time box, attendees/roles
+Do **not** use for: a design with **no defined problem, user, or goal** yet — do problem definition first; **build-ready specs / acceptance criteria** — that's a spec-writing task; **evidence from real users** — that's usability testing, not expert critique; or **launch planning, comms, and rollout** — that's shipping.
 
-**Missing-info strategy**
-- Ask up to **5** questions from [references/INTAKE.md](references/INTAKE.md), then proceed.
-- If answers aren’t available, make explicit assumptions and clearly label them.
-- Do not request secrets or credentials.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To plan and run a design review end-to-end | **A — Plan & run** |
+| To prep and facilitate a critique that's coming up | **B — Prep & facilitate** |
+| To turn a pile of comments into a prioritized change plan | **C — Synthesize feedback** |
+| To review without meeting live | **D — Async review** |
 
-Produce a **Design Review Pack** in Markdown (in-chat by default; write to files if requested), in this order:
-1) **Design review brief / pre-read** (context, decision, requested feedback, links)
-2) **Agenda + facilitation script** (timed, prompts, roles)
-3) **Feedback log** (captured + categorized + prioritized)
-4) **Decision record** (decisions, tradeoffs, owners, due dates)
-5) **Follow-up message + next review plan** (what changed, what’s next)
-6) **Risks / Open questions / Next steps** (always included)
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets or credentials.
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)
+## Branch A — Plan & run a design review
 
-## Workflow (7 steps)
+The spine. Turn an artifact and a decision into prioritized, owned changes.
 
-### 1) Classify the review and lock the decision
-- **Inputs:** Request + artifact(s) + constraints.
-- **Actions:** Identify the review type (concept / flow / content / visual polish / ship-readiness). Write the decision statement (“After this review we will decide ___”).
-- **Outputs:** Review type + decision statement + scope boundary (in/out).
-- **Checks:** Everyone can answer: “What will change after this review?”
+1. **Lock the decision and scope.** Pick the review type (concept / flow / content / polish / ship-readiness), write "After this review we will decide ___," and mark what's in and out of scope. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** everyone can answer "what changes after this review?" and scope boundaries are explicit.
+2. **Set the requested feedback.** Specify 1–3 feedback questions that map to the decision, and name what reviewers should *not* comment on yet (defer aesthetics until Value/Ease hold).
+   **Done when:** each feedback question ties directly to the decision, with out-of-scope feedback named.
+3. **Assign roles and prep the demo.** Name a Presenter, Facilitator, Note-taker, and a Sponsor/DRI who owns "why" and the core concept, and plan a live demo (happy path + top edge case) with a pre-read: problem → user → success criteria → constraints → options → risks → links. Brief template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** roles are assigned, decision rights are clear, and a reviewer could give useful feedback from the pre-read alone.
+4. **Run it, then synthesize and decide.** Open with the big picture, then evaluate in order — Value, Ease, Delight — capturing feedback as observation + impact + suggestion. Deduplicate, resolve conflicts by returning to goals, prioritize the top 3 by user impact and risk, and record decisions, tradeoffs, owners, and a re-review gate. Pass [references/CHECKLISTS.md](references/CHECKLISTS.md) / [references/RUBRIC.md](references/RUBRIC.md) and close with **Risks / Open questions / Next steps**.
+   **Done when:** the top issues each have an owned action, decisions and tradeoffs are written down, and the checklist passes.
 
-### 2) Set the requested feedback (and what NOT to comment on)
-- **Inputs:** Decision statement + stage of design.
-- **Actions:** Specify 1–3 feedback questions (e.g., “Is the value proposition clear?”, “Where does the flow break?”, “What edge cases are missing?”). Explicitly defer aesthetics/minutiae until Value/Ease are validated.
-- **Outputs:** Requested feedback list + “out of scope” feedback.
-- **Checks:** Feedback questions map directly to the decision.
+Deliverable: a design review pack — brief/pre-read, agenda + facilitation script, prioritized feedback log, decision record, and a follow-up + next-review plan.
 
-### 3) Assign roles (incl. a sponsor) and prepare a live demo
-- **Inputs:** Attendees list + timeline/risk.
-- **Actions:** Assign: **Presenter**, **Facilitator**, **Note-taker**, and a **Sponsor/DRI** (senior owner who focuses on “why” + core concept). Decide whether leadership must review all user-facing screens before ship (for high-craft products).
-- **Outputs:** Roles list + demo plan (what will be shown, in what order).
-- **Checks:** Decision rights are clear; the review is anchored in a live demo, not a slide deck.
+## Branch B — Prep & facilitate a critique
 
-### 4) Produce the pre-read (context first, then artifacts)
-- **Inputs:** [references/TEMPLATES.md](references/TEMPLATES.md) (brief template) + project context.
-- **Actions:** Write a 1–2 page brief: problem → user → success criteria → constraints → options considered → risks/tradeoffs → open questions → links.
-- **Outputs:** Shareable pre-read + “how to review” instructions.
-- **Checks:** A reviewer can give useful feedback asynchronously without a live context dump.
+The workhorse. You have a crit on the calendar and need to walk in ready to run it — not design a program.
 
-### 5) Run the review (big picture → Value → Ease → Delight)
-- **Inputs:** Agenda + demo + notes/feedback log.
-- **Actions:** Start with goals/feelings (“What’s bothering us overall?”), then evaluate:
-  1) **Value:** is it solving the right problem?
-  2) **Ease:** can users do it without friction?
-  3) **Delight:** polish, aesthetics, extra joy (only after 1–2)
-  Capture feedback as **observations + impact + suggestion**, not opinions.
-- **Outputs:** Filled feedback log with categories and severities.
-- **Checks:** The review does not get stuck in minutiae before Value/Ease are resolved.
+1. **Write the one-page brief.** Decision, requested feedback (1–3 questions), what's out of scope, and links. Brief and agenda templates: [references/TEMPLATES.md](references/TEMPLATES.md).
+2. **Pick the agenda.** Timebox to 30/45/60 min: context → live demo → feedback capture → synthesis + decisions.
+3. **Load the facilitation prompts.** Keep the room in Value → Ease → Delight order, make reviewers state observation + impact before solutions, and timebox solutioning so it doesn't drift into design-by-committee.
 
-### 6) Synthesize + prioritize feedback into a change plan
-- **Inputs:** Feedback log.
-- **Actions:** Deduplicate comments; resolve conflicts by returning to goals and constraints; prioritize by user impact and risk. Convert top items into explicit changes with owners and due dates.
-- **Outputs:** Prioritized change list + updated feedback log status/owners.
-- **Checks:** Top 3 issues are clear; each has a proposed action and owner.
+**Done when:** a one-page brief + timeboxed agenda exists, the feedback log table is ready to fill, and the Sponsor/DRI is named to break ties.
 
-### 7) Decide, document tradeoffs, and close the loop
-- **Inputs:** Proposed change plan + remaining open questions.
-- **Actions:** Record decisions and rationale; list tradeoffs and risks; define what must be re-reviewed. Send a follow-up summary and schedule the next review or ship gate.
-- **Outputs:** Decision record + follow-up message + Risks/Open questions/Next steps.
-- **Checks:** Decisions and action items are captured in writing; no critical decision is left implicit.
+## Branch C — Synthesize messy feedback
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+You already have a pile of comments and need signal. Deduplicate, categorize each item as Value / Ease / Delight, assign severity, resolve conflicts by returning to the goal → user → constraint (not by vote-counting), and convert the top items into explicit changes with owners and due dates. Feedback-log and decision-record templates: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** the top 3 issues are clear, each has a proposed action and owner, and conflicting comments were reconciled against goals rather than averaged.
+
+## Branch D — Async review
+
+When you can't meet live: share the pre-read (and a short walkthrough video if useful), request feedback via 1–3 explicit questions, require it logged into the same Value/Ease/Delight table, then synthesize and circulate a decision record + change plan. Async variant notes: [references/WORKFLOW.md](references/WORKFLOW.md).
+
+**Done when:** feedback is captured in the shared log against the requested questions, and a decision record + change plan is circulated.
 
 ## Examples
-See [references/EXAMPLES.md](references/EXAMPLES.md).
 
-## Reference files
-- [references/INTAKE.md](references/INTAKE.md)
-- [references/WORKFLOW.md](references/WORKFLOW.md)
-- [references/TEMPLATES.md](references/TEMPLATES.md)
-- [references/CHECKLISTS.md](references/CHECKLISTS.md)
-- [references/RUBRIC.md](references/RUBRIC.md)
-- [references/SOURCE_SUMMARY.md](references/SOURCE_SUMMARY.md)
-- [references/EXAMPLES.md](references/EXAMPLES.md)
+- *"We have a new onboarding flow in Figma — run a 45-minute review to choose Flow A vs. B before next sprint."* → **Branch A**: brief with the decision, timed agenda, feedback log by Value/Ease/Delight, decision record with owners, follow-up.
+- *"Turn these 30 messy Figma comments into a prioritized list of what to change."* → **Branch C**: deduplicated log with severities, top-3 changes with owners, conflicts reconciled against goals.
+- *"Can you give me general feedback on this Dribbble shot?"* (no user, goal, or decision) → out of scope: ask for the decision, target user, and success criteria first; without product context, decline the full pack.

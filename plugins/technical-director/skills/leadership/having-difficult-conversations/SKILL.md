@@ -1,120 +1,92 @@
 ---
 name: "having-difficult-conversations"
-description: "Prepare and lead difficult conversations as a manager/leader and produce a Difficult Conversation Pack (conversation brief, talk track/script, objection+emotion handling plan, follow-up note, and quality gates). Use for difficult conversation, hard conversation, tough feedback, performance conversation, promotion denial, layoff conversation, termination conversation, firing. Category: Leadership."
+description: "Prepare and lead a difficult conversation as a manager or leader. Use when the user mentions a hard or difficult conversation, tough or corrective feedback, a performance conversation or formal warning, denying a promotion, delivering disappointing news, or a layoff or termination -- or wants a talk track, script, anchor phrases, or follow-up note for any of these."
 ---
 
 # Having Difficult Conversations
 
-## Scope
+## Say the hard thing with care
 
-**Covers**
-- Planning and delivering **clear, respectful, direct** conversations about performance, behavior, expectations, and decisions
-- Turning “insight about feedback” into concrete artifacts: **brief → talk track → reactions plan → follow-up**
-- Using **Radical Candor** as a default stance: *care personally* + *challenge directly*
-- Preserving dignity in high-stakes moments (especially **layoffs/terminations**): private, human, and unambiguous
-- Separating **feelings** from **attributions** so feedback stays specific and actionable
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Help me prepare a difficult conversation with my direct report / peer.”
-- “Write a talk track for performance feedback (with specific examples).”
-- “I need to deny a promotion—help me be direct and still leave hope + a path.”
-- “Prepare a layoff/termination conversation talk track (I have HR involved).”
-- “Draft a follow-up message after a hard conversation that documents next steps.”
+- **Care personally, challenge directly.** Radical Candor: warmth and clarity are not a trade-off. Being kind is not softening the message; it is delivering a clear message from someone who visibly gives a damn.
+- **Lead with the message.** Say the hard thing early and plainly, then stop talking and let it land. Burying it under preamble is confusing and unkind. Carry one anchor phrase you can repeat under stress.
+- **Observations, not labels.** Every point is a specific, time-bounded behavior tied to its impact (observation -> impact -> request), never a character verdict. Keep your feelings ("I was concerned") separate from your stories about them ("you don't care").
+- **Dignity is non-negotiable, and so are the HR lines.** High-stakes news is delivered privately and in person. Deciding *whether* to fire or promote -- and anything touching harassment, legal risk, or an investigation -- is HR's process, not this skill's. Prepare the conversation; hand off at the line.
 
-**When NOT to use**
-- You need to decide *whether* to promote/terminate (use your company’s performance process; involve HR/leadership)
-- You’re handling harassment, discrimination, threats, or an investigation (stop and follow HR/legal policy)
-- You need legal advice, severance guidance, or policy interpretation (involve HR/legal)
-- The situation is a mental health or safety crisis (seek professional help and follow company policy)
+## When to use / not
 
-## Inputs
+Use to prep and deliver a specific hard conversation -- corrective or growth feedback, a performance conversation, a promotion denial or other disappointing decision, or (with HR) a layoff or termination.
 
-**Minimum required**
-- Conversation type (feedback, performance, promotion denial, layoff/termination) + relationship (manager/report/peer)
-- Desired outcome (what should be true immediately after + in 2–4 weeks)
-- 2–5 concrete examples/facts (what happened, when, impact) + expectations/standards
-- Constraints: timeline/urgency, location (in-person/video), HR/legal involvement (if applicable)
-- Any support you can offer (coaching, resources, training, timeline, check-ins)
+Do **not** use to decide *whether* to promote, discipline, or terminate -- that is your company's performance process with HR/leadership. Stop and route to HR/legal for: harassment, discrimination, threats, or any investigation; legal, severance, or policy interpretation; or an active safety or mental-health crisis (follow policy and point to professional resources).
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (in 3–5 question batches).
-- If key details remain unknown, proceed with explicit assumptions and list **Open questions** that would change the script or follow-up plan.
-- Do not request secrets or sensitive personal data; use anonymized summaries.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants... | Branch |
+|---|---|
+| Fast prep for a specific conversation happening soon | **A -- Prep now (fast path)** |
+| To give corrective or growth feedback | **B -- Feedback** |
+| To hold a performance conversation (missed expectations, formal warning) | **C -- Performance** |
+| To deny a promotion or deliver another disappointing decision | **D -- Decision denial** |
+| To deliver a layoff or termination | **E -- Separation (HR-gated)** |
 
-Produce a **Difficult Conversation Pack** in Markdown (in-chat; or as files if the user requests):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) -- ask <=5 at a time, then proceed on labeled assumptions; never request secrets.
 
-1) **Conversation brief** (context, decision/outcome, facts, success signals, constraints)
-2) **Message map + talk track/script** (opening, key message, evidence, impact, ask/decision, support, boundaries, close)
-3) **Objection + emotion handling plan** (likely reactions, what to say/do, what not to say/do)
-4) **Follow-up artifacts** (written follow-up note + next steps/check-ins; optional documentation note)
-5) **Risks / Open questions / Next steps** (always included)
+## Branch A -- Prep now (fast path)
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+The workhorse. You have a hard conversation soon and need a one-page plan, not a system.
 
-## Workflow (8 steps)
+1. **Name the type and the one-line message.** Classify it (feedback / performance / decision denial / separation) and write the core message in 1-2 sentences with no hedging. If it is a separation, confirm HR is engaged before drafting anything and jump to **Branch E**.
+2. **Gather 2-5 observations.** Convert every label into an observation tied to impact; separate facts from interpretations. Keep it to a handful -- resist kitchen-sinking.
+3. **Fill the prep sheet.** Opening line, key message, evidence, the ask/decision, support you can offer, one anchor phrase, and the close. Sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
+4. **Rehearse the first 60 seconds and one hard reaction.** Plan the pause after the message and pick the anchor phrase you will repeat if it gets tense. Reaction moves: [references/WORKFLOW.md](references/WORKFLOW.md).
 
-### 1) Intake + classify the conversation (and set safety boundaries)
-- **Inputs:** user request; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Determine conversation type and stakes. Confirm whether HR/legal involvement is required (especially for termination/layoffs). Decide deliverable scope (full pack vs just script + follow-up).
-- **Outputs:** Conversation type + constraints + assumptions/unknowns list.
-- **Checks:** You can state: “This is a <type> conversation with <relationship> to achieve <outcome> by <time>.”
+**Done when:** a one-page prep sheet exists -- key message in 1-2 sentences, 2-5 observations tied to impact, the ask/decision, support offered, one anchor phrase, and a follow-up plan. For the type-specific spine, drop into Branch B-E.
 
-### 2) Define the outcome and non‑negotiables
-- **Inputs:** intent; constraints.
-- **Actions:** Write the “desired after” (immediate + 2–4 weeks). Identify non-negotiables (e.g., decision already made, behavior must change, timeline is fixed). Decide what support you can offer and what you cannot.
-- **Outputs:** Outcome statement + non-negotiables + support menu.
-- **Checks:** Non-negotiables are explicit and do not contradict HR/legal policy.
+## Branch B -- Feedback (corrective or growth)
 
-### 3) Build the fact base (specific examples, not labels)
-- **Inputs:** examples/facts; expectations/standards.
-- **Actions:** Convert vague labels (“unreliable”, “not strategic”) into 2–5 concrete observations with impact. Separate **facts** from **interpretations**. Prepare a short “evidence” list you can calmly repeat.
-- **Outputs:** Evidence bullets + expectations statement.
-- **Checks:** Each example is time-bounded, observable, and tied to impact.
+Radical Candor by default. Frame every point as observation -> impact -> request; hold to one or two items, close to the event.
 
-### 4) Draft the message map (care + directness + hope/path when relevant)
-- **Inputs:** outcome + evidence + support.
-- **Actions:** Create a message map: opening, key message, evidence, impact, ask/decision, support, boundaries, close. For disappointing news (e.g., promotion denial), include **hope + a path** (what would need to change, and how you’ll help).
-- **Outputs:** Message map (ready for scripting).
-- **Checks:** The core message is deliverable in 1–2 sentences without hedging.
+1. **Frame each item** as a specific behavior -> its impact -> a concrete request. Never a label, never an attribution.
+2. **Open with intent, deliver, then pause.** Invite their read ("what are you hearing?") before you problem-solve.
+3. **Agree one change and a check-in**, then send a short recap within 24 hours. Scripts: [references/TEMPLATES.md](references/TEMPLATES.md); heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
 
-### 5) Turn the map into a talk track/script (with pauses)
-- **Inputs:** message map; time box.
-- **Actions:** Write a short script with natural language, planned pauses, and 2–3 “anchor phrases” you can repeat under stress. Add 3–5 questions that invite understanding (not debate).
-- **Outputs:** Talk track/script.
-- **Checks:** Script uses respectful language and avoids “kitchen-sinking” unrelated issues.
+**Done when:** each point is an observation tied to impact with a clear request, the report has restated what they heard, and one change plus a check-in date are written down.
 
-### 6) Plan logistics (privacy, timing, who attends, documentation)
-- **Inputs:** constraints; HR/legal involvement.
-- **Actions:** Choose private setting and sufficient time. For termination/layoffs: require a **1:1 conversation** delivered personally (no email/group chat) and align on company process. Decide what you will document and what you will not.
-- **Outputs:** Logistics plan + documentation plan.
-- **Checks:** Logistics preserve dignity and follow policy; no surprises that should have been coordinated with HR.
+## Branch C -- Performance conversation
 
-### 7) Anticipate reactions (emotion vs attribution) and write response options
-- **Inputs:** relationship history; likely reactions.
-- **Actions:** Create a reaction map (shock/anger/sadness/defensiveness). Draft empathy statements, listening moves, and boundary lines. Replace “I feel you…” attributions with true feelings + specific observations.
-- **Outputs:** Objection + emotion handling plan.
-- **Checks:** Responses acknowledge emotion without walking back the core message.
+Higher stakes than routine feedback -- missed expectations, a formal warning, or an improvement-plan-adjacent talk. Coordinate process and wording with HR; deciding to place on a PIP or terminate is HR's process, not this skill's.
 
-### 8) Follow up + quality gate
-- **Inputs:** full draft pack.
-- **Actions:** Draft the follow-up note (summary + next steps + check-in). If appropriate, draft a documentation note aligned with policy. Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**.
-- **Outputs:** Final Difficult Conversation Pack.
-- **Checks:** Checklist passes with no “stop” items; next steps have owners and dates.
+1. **State the expectation and the gap**, evidenced by 2-5 time-bounded facts. Name where the standard comes from (role level, goals, norm).
+2. **Make the required change explicit and non-negotiable**, with a date -- and state plainly what happens if it does not change.
+3. **Offer real support** (coaching, re-scoping, pairing, clearer priorities) and set a weekly check-in for 2-4 weeks; document per policy. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+**Done when:** the expectation, the gap, the required change with a date, the support, and the consequence are stated plainly and documented, and HR is aligned on any formal step.
+
+## Branch D -- Decision denial (promotion, role, disappointing news)
+
+The decision is already made. Your job is to deliver it clearly and leave hope plus a path -- not to relitigate it.
+
+1. **Deliver the decision in one sentence** -- no false hope, no burying it in the close.
+2. **Show the concrete gap** versus the next-level bar with examples, not a character verdict.
+3. **Give hope + a path:** what would need to be true, how you will help, and when you will revisit. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** the decision is unambiguous, gaps are tied to the expectation bar, and a written growth path with a revisit date exists.
+
+## Branch E -- Separation (layoff / termination) -- HR-gated
+
+**Stop first.** Do not draft specifics until HR has confirmed the decision, the process, and the wording. You can be compassionate; do not improvise policy.
+
+1. **Confirm HR is engaged** and the process/wording is approved; align on who attends and the logistics.
+2. **Deliver privately and in person** (video if remote) -- never by email or group chat. State the decision plainly and humanely in the first minute.
+3. **Keep it factual and minimal:** cover last day, pay, and next steps per HR, then document per policy. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** HR has confirmed the process, the conversation is scheduled as a private 1:1, the opening states the decision in the first minute, and all logistics follow HR guidance.
+
+Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md) before finalizing any pack, and close with **Risks / Open questions / Next steps**.
 
 ## Examples
 
-**Example 1 (performance feedback):** “I’m a manager. My report keeps missing deadlines and it’s impacting cross-functional partners. Help me prepare the conversation and a follow-up plan.”  
-Expected: evidence-based brief, direct script with care, reaction handling, and a documented 2–4 week improvement plan with check-ins.
-
-**Example 2 (promotion denial):** “I’m denying a promotion this cycle. I want to be clear and still leave hope + a path.”  
-Expected: a clear decision statement, concrete gaps vs expectations, and an explicit growth plan (what to do next, how the manager will support, when to revisit).
-
-**Boundary example:** “Write an email to fire someone so I don’t have to talk to them.”  
-Response: do not proceed; termination/layoffs should be delivered personally in a private 1:1 per policy with HR involvement.
+- *"My report keeps missing deadlines and it's hurting other teams -- help me prep the conversation."* -> **Branch A -> B**: fast prep sheet, feedback framed as observation -> impact -> request, one change plus a check-in, and a 24-hour recap.
+- *"I have to tell someone in an hour they're not getting promoted."* -> **Branch A -> D**: prep sheet, the decision in one sentence, the gap versus the next-level bar, and hope + a path with a revisit date.
+- *"Write an email so I can fire someone without talking to them."* -> out of scope: terminations are delivered in a private, in-person 1:1 with HR involved; route to **Branch E** only once HR confirms the process. If it involves a harassment or investigation matter, stop and hand off to HR/legal.

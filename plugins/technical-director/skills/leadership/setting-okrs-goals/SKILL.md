@@ -1,122 +1,79 @@
 ---
 name: "setting-okrs-goals"
-description: "Set aligned, measurable OKRs/goals and produce an OKR & Goals Pack (objectives, key results, anti-gaming guardrails, systems/habits, review cadence, grading plan)."
+description: "Set aligned, measurable OKRs and goals: turn strategy into a small set of objectives and robust, hard-to-game key results, backed by default-on systems and a review-and-grading loop."
+disable-model-invocation: true
 ---
 
 # Setting OKRs & Goals
 
-## Scope
+## OKRs are for focus and learning
 
-**Covers**
-- Turning strategy (or a North Star) into a small set of team/company OKRs
-- Writing objectives that drive weekly execution (not just aspirational statements)
-- Designing robust key results (prefer absolute counts; guard against gaming)
-- Adding “default-on” systems/habits that make progress inevitable
-- Defining review cadence + end-of-cycle grading to create a learning loop
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Set our Q2 OKRs.”
-- “Write objectives and key results for this team.”
-- “We need quarterly goals that actually change behavior week-to-week.”
-- “Our metrics are getting gamed / teams are optimizing the wrong thing.”
-- “We need an OKR review + grading process.”
+- **Alignment, one step away.** Every team objective traces to the company goal in a single hop. If it takes a five-layer cascade chart to explain the link, it's too far.
+- **Obsess over the system, not the goal.** Default-on habits produce progress; a target with no recurring mechanism behind it is a wish. Be obsessed with the system that gets you there.
+- **Absolute over ratio.** Prefer counts. Every ratio invites gaming by shrinking the denominator, so pair it with an absolute numerator or a volume/quality guardrail.
+- **Grade to learn, not to punish.** OKRs are for focus and learning. The moment they become individual performance scores, teams sandbag targets and the signal dies.
 
-**When NOT to use**
-- You don’t have an agreed strategy/North Star at all (use `writing-north-star-metrics` or `defining-product-vision` first)
-- You need sprint planning or a delivery plan (tickets, estimates, timelines)
-- You’re using OKRs primarily for individual performance evaluation
-- You only need a single experiment metric for one test
-- You need an analytics/event tracking implementation plan from scratch
+## When to use / not
 
-## Inputs
+Use to set a cycle's OKRs, sharpen a weak objective or key result, run a review or mid-cycle checkpoint, or grade a cycle and run the retro.
 
-**Minimum required**
-- Planning cycle + horizon (e.g., Q2; annual; 6 weeks) and the team(s) in scope
-- Strategy anchor: company goal, North Star, or “why now” narrative for the cycle
-- Current baseline for key metrics (or best-available proxy) + where the numbers come from
-- Constraints: capacity, must-do commitments, dependencies, risk tolerance
-- Stakeholders: decider(s), contributors, approvers, review cadence participants
+Do **not** use when: there's no agreed strategy or North Star to anchor to (do that first — `writing-north-star-metrics` or `defining-product-vision`); you need sprint planning or a delivery plan (tickets, estimates, timelines); or OKRs are being wired to individual performance evaluation — that corrupts them, so route compensation and rating to your HR process instead.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md).
-- If still missing, proceed with clearly labeled assumptions and provide 2–3 OKR set options (conservative/base/ambitious).
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To set the OKR set for a cycle | **A — Build the OKR set** |
+| To fix or sharpen a specific objective or KR right now | **B — Sharpen an OKR** |
+| To run a weekly check-in or mid-cycle checkpoint | **C — Review** |
+| To score the cycle and run the retro | **D — Grade + retro** |
 
-Produce an **OKR & Goals Pack** in Markdown (in-chat; or as files if the user requests), in this order:
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets.
 
-1) **Context snapshot** (strategy anchor, horizon, scope, constraints, stakeholders)
-2) **Alignment map** (company goal → team objective(s), no more than one step away)
-3) **Draft OKRs** (1–3 Objectives; 2–5 Key Results each) with metric definitions, baselines, targets, owners, cadence
-4) **Metric robustness + guardrails** (anti-gaming checks; ratio/denominator rules; quality guardrails)
-5) **Systems & habits plan** (“default-on” behaviors/processes that make progress recurring)
-6) **Review + grading plan** (weekly check-in; mid-cycle checkpoint; end-of-cycle scoring + learning retro)
-7) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the OKR set
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)
+The full design flow. Produce a shareable OKR set for the cycle.
 
-## Workflow (8 steps)
+1. **Frame + snapshot.** Confirm horizon, scope, strategy anchor, baseline availability, constraints, and decider. State up front that OKRs are for focus and learning, not evaluation. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** a context snapshot exists and everyone agrees what these OKRs are (and aren't) for.
+2. **Map alignment (one step away).** Write a one-sentence company goal for the cycle; trace each proposed objective back to it in a single hop.
+   **Done when:** for every objective you can answer "how does this move the company goal within this horizon?"
+3. **Draft 1–3 objectives (outcome-first).** Write objectives as outcomes and intent, not project lists. Keep the set small; prefer customer-value language over internal activity.
+   **Done when:** each objective is understandable without reading its KRs and changes what the team prioritizes weekly.
+4. **Generate robust KRs.** Draft 2–5 KRs per objective, each with definition, baseline, target, window, owner, and data source. Prefer absolute metrics; for any ratio, add its absolute numerator or a denominator/quality guardrail. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** two analysts would compute each KR the same way, and targets are ambitious but not fantasy.
+5. **Add default-on systems + guardrails.** Specify a recurring mechanism per objective (cadence, routine, gate, customer touchpoint) with an owner. Name 1–2 gaming or harm failure modes per KR and how you'll detect them early.
+   **Done when:** each objective has at least one default-on system, and each KR has a guardrail or a "hard to game because…" note.
+6. **Set the review + grading loop.** Define the weekly format, the mid-cycle checkpoint rules (what can change), and end-of-cycle scoring plus retro prompts. Then run [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
+   **Done when:** the set is shareable as-is and the loop specifies who reviews, when, and what decisions can change mid-cycle.
 
-### 1) Intake + decision framing
-- **Inputs:** User context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Confirm horizon, scope, strategy anchor, baseline availability, constraints, and decision-maker(s).
-- **Outputs:** Context snapshot.
-- **Checks:** Everyone agrees what OKRs are for (alignment + learning), and what they are not (performance evaluation).
+## Branch B — Sharpen an OKR
 
-### 2) Establish alignment (“one step away”)
-- **Inputs:** Strategy anchor; current company goal/North Star.
-- **Actions:** Write a one-sentence company goal for the cycle; map each proposed team objective to it (no deep cascading).
-- **Outputs:** Alignment map.
-- **Checks:** For every team objective, you can answer: “How does this move the company goal within this horizon?”
+The workhorse. Repair a specific objective or KR without redesigning the whole set.
 
-### 3) Draft 1–3 Objectives (outcome-first)
-- **Inputs:** Alignment map; key problems/opportunities.
-- **Actions:** Draft objectives as outcomes + intent (not projects). Keep the set small.
-- **Outputs:** Objective list with short rationale (“why now / why this”).
-- **Checks:** An objective can be understood without reading its KRs; it changes what the team prioritizes weekly.
+1. **Diagnose the weakness.** Is it a project masquerading as an objective? A vanity or ambiguous metric? A ratio that can be gamed? An orphan with no system behind it?
+2. **Rewrite to the failing property.** Objective → recast as an outcome. KR → add definition, baseline, target, window, owner, data source. Ratio → add absolute numerator or a volume/quality guardrail. Orphan → attach a default-on system with an owner and cadence. Question bank and anti-gaming notes: [references/WORKFLOW.md](references/WORKFLOW.md).
 
-### 4) Generate candidate KRs (robust, measurable)
-- **Inputs:** Objectives; baselines (or proxies).
-- **Actions:** Draft 2–5 KRs per objective; define baseline, target, time window, metric owner, and data source. Prefer **absolute** metrics; if you use a ratio, also include its absolute numerator/denominator KRs or guardrails.
-- **Outputs:** KR table(s) with metric definitions.
-- **Checks:** Two analysts would compute the same number; targets are directionally ambitious but not fantasy.
+**Done when:** the objective reads as an outcome, or the KR is unambiguous with baseline/target/owner/source and a named gaming failure mode plus its guardrail.
 
-### 5) Add systems/habits (default-on execution)
-- **Inputs:** OKRs draft; team operating model.
-- **Actions:** Specify the recurring mechanisms that will produce progress (cadences, routines, gates, customer touchpoints), not just one-off initiatives.
-- **Outputs:** Systems & habits plan.
-- **Checks:** At least one “default-on” system exists per objective, with an owner and cadence.
+## Branch C — Review
 
-### 6) Anti-gaming + guardrails
-- **Inputs:** KRs + systems plan.
-- **Actions:** Identify how each KR could be gamed or cause harm. Add guardrails (quality, trust, margin, volume) and ratio/denominator checks.
-- **Outputs:** Guardrails section + anti-gaming notes per KR.
-- **Checks:** You can name 1–2 failure modes per KR and how you’ll detect them early.
+Run a weekly check-in or the mid-cycle checkpoint. Agenda and decision rules: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 7) Review cadence + grading plan (learning loop)
-- **Inputs:** Full draft OKRs + guardrails.
-- **Actions:** Define weekly review format, mid-cycle checkpoint rules, and end-of-cycle grading (scoring + retrospective questions).
-- **Outputs:** Review + grading plan.
-- **Checks:** The plan produces learning, not blame; it specifies who reviews, when, and what decisions can change mid-cycle.
+Weekly: what moved, what changed in the world, decide what to stop/start/adjust, log risks and owners. Mid-cycle: allow dropping/replacing an unmeasurable KR, adjusting a target if the baseline was wrong (document why), or adding a guardrail if gaming appears.
 
-### 8) Quality gate + finalize the pack
-- **Inputs:** Entire OKR & Goals Pack.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add Risks/Open questions/Next steps.
-- **Outputs:** Final OKR & Goals Pack.
-- **Checks:** Pack is shareable as-is; alignment, metrics, guardrails, and cadence are unambiguous.
+**Done when:** each KR has an updated on-track/off-track status and the meeting produced a short decision log, not just a status readout.
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+## Branch D — Grade + retro
+
+Score each KR at cycle end (0.0 no progress → 0.3 some → 0.7 meaningful → 1.0 achieved), then run the learning retro. Prompts and grading table: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** every KR has a score, and the retro captures what blocked progress, which systems helped or were missing, and what changes next cycle — framed as learning, not blame.
 
 ## Examples
 
-**Example 1 (B2B SaaS):** “Set Q2 OKRs for Activation to improve time-to-first-value for new teams.”  
-Expected: 1–2 objectives focused on new-team success, KRs with baselines/targets, a weekly review cadence, and guardrails (e.g., support tickets/new team).
-
-**Example 2 (Growth):** “Set quarterly OKRs for Growth; we keep arguing about conversion rate vs volume.”  
-Expected: KRs expressed as absolute numbers (e.g., activated users) plus denominator/quality guardrails to prevent ‘ratio gaming’.
-
-**Boundary example:** “Write OKRs, but we don’t have a company goal or baseline metrics.”  
-Response: ask for the minimum strategy anchor + baselines; if unavailable, produce 2–3 draft OKR options with explicit assumptions and recommend doing North Star/vision first.
-
+- *"Set our Q2 OKRs for the Activation team."* → **Branch A**: one-step alignment map, 1–2 outcome objectives, absolute KRs with baselines/targets, a default-on funnel review, and a weekly-plus-grading loop.
+- *"This KR is 'improve conversion rate to 55%' and I think it's gameable."* → **Branch B**: pair the ratio with an absolute-volume KR and a denominator/segment-parity guardrail, and note how shrinking the denominator would fake progress.
+- *"Write OKRs, but we don't have a company goal or baselines."* → out of scope to finish: gather the minimum anchor and baselines; if unavailable, offer 2–3 draft options on labeled assumptions and recommend North Star/vision work first.

@@ -1,126 +1,97 @@
 ---
 name: "running-effective-meetings"
-description: "Run effective meetings by producing a Meeting Pack (meeting brief, pre-read, agenda, facilitation script, notes + decision log, action-item follow-up). Use for meeting planning, meeting agendas, decision meetings, strategic discussions, operational syncs, and meeting hygiene."
+description: "Prep or run a specific meeting, or design a decision meeting, strategic discussion, or recurring operational sync - and fix meetings that drift. Use when the user mentions meeting agendas, facilitation, decision meetings, strategic discussions, operational syncs or standups, prepping a meeting that's coming up, or recurring meetings that run long, go in circles, or have decayed into status readouts."
 ---
 
 # Running Effective Meetings
 
-## Scope
+## A meeting has to earn its calendar cost
 
-**Covers**
-- Deciding whether a meeting is needed (vs async doc/message)
-- Choosing the right meeting format (operational / strategic / decision / workshop)
-- Preparing a pre-read and “priming” to avoid context-less discussions
-- Facilitating discussion, capturing decisions, and ensuring follow-through
-- Improving recurring meeting hygiene (split/kill/shorten meetings)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Create an agenda and facilitation plan for a decision meeting.”
-- “We need a weekly operational cadence — design the meeting format and templates.”
-- “This meeting keeps going in circles — redesign it so we decide and assign actions.”
-- “Turn this messy invite into a clear meeting brief + pre-read + follow-up.”
+- **If it isn't discussion, don't meet.** Status and broadcasts belong in an async doc. A live meeting earns its cost only when real-time debate changes the outcome.
+- **Discover async, discuss live, decide explicitly.** The three modes fail when crammed into one block. Push context into a pre-read so the room spends its time on trade-offs, then record the call in the open.
+- **Name the decision and its owner.** Every meeting has one primary output; if no one owns the call, you'll re-meet. "Get alignment" is not an output.
+- **Close the loop or it didn't happen.** End with decide / who-does-what-by-when / who-else-needs-to-know, and send it within 24h. An uncaptured decision is one you'll relitigate.
 
-**When NOT to use**
-- The goal is purely status updates (use async updates instead).
-- There is no discussion to be had (you already have the decision and only need to broadcast it).
-- The “decision owner” is not attending and cannot delegate decision rights.
-- The topic is a sensitive HR/legal/medical issue requiring specialist handling.
-- You actually need a multi-day workshop (e.g., a full design sprint) rather than a single meeting.
+## When to use / not
 
-## Inputs
+Use to prep or run a specific upcoming meeting, design a decision / strategic / operational meeting, or fix a recurring meeting that has drifted.
 
-**Minimum required**
-- Meeting objective (what changes after the meeting)
-- Meeting type (or “recommend”): operational / strategic discussion / decision / workshop
-- Attendees (and the decision owner, if any)
-- Time box + date/time constraints (and remote/hybrid details)
-- Context links or a 5–10 bullet background summary
+Do **not** use for: pure status broadcasting (send an async update instead); a decision already made that only needs announcing (broadcast it); a meeting whose decision owner won't attend and can't delegate decision rights (reschedule or get delegation first); a sensitive HR / legal / medical matter (route to your company process; the **having-difficult-conversations** skill prepares the conversation itself); or a multi-day workshop or design sprint (bigger than single-session facilitation).
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md).
-- If answers aren’t available, proceed with explicit assumptions and label unknowns.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To prep or run a meeting that's coming up | **A — Prep a meeting now** |
+| To design or run a decision meeting | **B — Decision meeting** |
+| To design or run a strategic discussion | **C — Strategic discussion** |
+| To design or run a recurring operational sync | **D — Operational sync** |
+| To fix a drifting meeting or audit the calendar | **E — Meeting hygiene** |
 
-Produce a **Meeting Pack** in Markdown (in-chat; or as files if requested), in this order:
-1) **Meeting brief** (goal, type, decision(s), roles, pre-work)
-2) **Pre-read** (context, options, open questions; “discover” happens async)
-3) **Agenda** (timed, discussion-first)
-4) **Facilitation script** (priming, prompts, how to handle stalls)
-5) **Notes template** + **Decision log** + **Action items table**
-6) **Follow-up message** (decisions, owners, deadlines, who-else-needs-to-know)
-7) **Risks / Open questions / Next steps** (always included)
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets.
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)
+Before you ship any branch's output, pass [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
 
-## Workflow (7 steps)
+## Branch A — Prep a meeting now
 
-### 1) Decide if a meeting is needed and pick the format
-- **Inputs:** Request + context + constraints.
-- **Actions:** Clarify objective; decide whether the live meeting is for **discussion** only; pick meeting type (operational vs strategic vs decision vs workshop).
-- **Outputs:** Meeting type recommendation + meeting objective + draft brief header.
-- **Checks:** You can answer: “What will be different after this meeting?”
+The weekly workhorse: a meeting is on the calendar (or about to be) and you need it to land. Produce a prep pack, not a system.
 
-### 2) Define the discussion scope (what is in-room vs async)
-- **Inputs:** Objective; stakeholders; open questions.
-- **Actions:** Separate **Discover / Discuss / Decide**:
-  - Discover (context/data/options) → async pre-read
-  - Discuss (trade-offs, objections, clarifications) → live meeting
-  - Decide (final call + recording) → after discussion, captured explicitly
-- **Outputs:** Pre-read outline + list of discussion questions + decision statement(s).
-- **Checks:** At least 60% of the live time is reserved for discussion, not reading.
+1. **Gut-check meeting vs async.** If there's no live discussion to be had, kill it and draft the async update or decision instead. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+2. **Pin the objective and the one primary output** (decision / plan / list / commitments). If it's a decision, name the owner and confirm they'll attend.
+3. **Split Discover / Discuss / Decide.** Move context into a one-page pre-read; reserve live time for the debate. Prep sheet, brief, and pre-read: [references/TEMPLATES.md](references/TEMPLATES.md).
+4. **Build a timed agenda** — 1–3 topics, ≥60% reserved for discussion — plus a short facilitation script with priming and "if stuck" prompts.
+5. **Draft the close-out and follow-up** — what we decided, who does what by when, who else needs to know.
 
-### 3) Prime participants (pre-work + pre-read)
-- **Inputs:** Pre-read outline; attendee list.
-- **Actions:** Create a priming section (goal, conversation category, decision rights); assign pre-work; send pre-read 24–48h before when possible.
-- **Outputs:** Complete pre-read + pre-work assignments.
-- **Checks:** Every attendee can arrive “ready to discuss” without a live info dump.
+**Done when:** a one-page brief, pre-read, timed agenda, facilitation script, and follow-up stub exist — or you've recommended killing the meeting and drafted the async alternative.
 
-### 4) Build a timed agenda that matches the format
-- **Inputs:** Meeting type; discussion questions; time box.
-- **Actions:** Timebox segments; limit to 1–3 topics; include explicit decision points; reserve time for closing alignment.
-- **Outputs:** Agenda with timing, prompts, and expected outputs per section.
-- **Checks:** Agenda maps each segment to a tangible output (decision, list, owner, next step).
+## Branch B — Decision meeting
 
-### 5) Assign roles and write the facilitation script
-- **Inputs:** Agenda; participants.
-- **Actions:** Assign facilitator, decision owner, note-taker, timekeeper; write prompts and “if stuck” branches; set ground rules (parking lot, stack, time boxing).
-- **Outputs:** Facilitation script + roles list.
-- **Checks:** Roles are named; escalation path is clear if consensus fails.
+Pressure-test options and record a decision.
 
-### 6) Run the meeting and capture decisions/actions in real time
-- **Inputs:** Script; notes template.
-- **Actions:** Start with priming; facilitate discussion; capture decisions and action items as they happen; keep to time boxes.
-- **Outputs:** Filled notes + decision log entries + action items table.
-- **Checks:** No important decision is left implicit or “to be clarified later.”
+1. **Lock the decision statement, owner, and deadline;** confirm the owner attends or has delegated decision rights.
+2. **Build a pre-read** with 2–3 real options (pros / cons / cost) plus a recommendation and "what would change my mind." Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+3. **Timed agenda:** brief pre-read recap (no live reading), trade-off discussion, an explicit decide segment, then commitments.
+4. **Facilitation script** with trade-off prompts and an escalation path if consensus stalls — the owner decides after hearing input.
 
-### 7) Close, follow up, and improve meeting hygiene
-- **Inputs:** Captured notes/decisions/actions.
-- **Actions:** End with: (1) What did we decide? (2) Who does what by when? (3) Who else needs to know? Send follow-up within 24h; propose hygiene changes (split strategic vs operational, cancel/shorten recurring meetings).
-- **Outputs:** Follow-up message + updated trackers + hygiene recommendations + Risks/Open questions/Next steps.
-- **Checks:** Every action item has an owner and due date; stakeholders to inform are named.
+**Done when:** a decision record with owner, rationale, and dated action items exists — or a recorded "no decision, evidence X needed by when."
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+## Branch C — Strategic discussion
+
+Explore direction, evaluate hypotheses, align on principles — deciding today is a bonus, not the bar.
+
+1. **Frame the question and the conversation mode** (divergent / creative, not tactical efficiency); keep topics few.
+2. **Pre-read** with framing, hypotheses, constraints, and open questions — not a status dump.
+3. **Agenda** with generous discussion time and an explicit parking lot; if no decision lands, the output is "what evidence we need, by when."
+4. **Facilitate divergence then convergence;** capture agreed principles/decisions or the evidence plan, and keep strategy out of the operational forum.
+
+**Done when:** aligned principles or decisions are recorded, or open questions have owners and a resolution plan.
+
+## Branch D — Operational sync
+
+A recurring cadence to track priority work, surface blockers, and assign owners — without drifting into strategy.
+
+1. **Set the cadence and time box;** define a standing agenda and a strict, timeboxed update pattern.
+2. **Add a deep-dive off-ramp:** anything needing 30+ minutes gets parked to a follow-up with the right subset.
+3. **Assign standing roles** — facilitator, note-taker, timekeeper; every blocker gets an escalation owner.
+4. **Stand up standing trackers:** an action-item table and a blockers list, both with owners and due dates.
+
+**Done when:** a recurring brief, timed agenda, off-ramp rule, and action/blocker trackers exist, and strategy has a separate home.
+
+## Branch E — Meeting hygiene
+
+Fix a recurring meeting that drifts, or audit the calendar.
+
+1. **Diagnose the drift:** status-in-disguise, mixed strategic + operational, no owner, too many attendees, or no pre-read.
+2. **Apply the fix** — kill / shorten / split / move-async / off-ramp: move status async and split strategy from ops. Anti-patterns: [references/WORKFLOW.md](references/WORKFLOW.md).
+3. **Right-size attendees** to the minimum who must discuss and act.
+4. **Propose a 2–4 week trial** and a re-audit checkpoint.
+
+**Done when:** each drifting meeting has a keep/kill/shorten/split call with a trial period, and status has moved out of the live meeting.
 
 ## Examples
 
-**Example 1 (Operational cadence):** “Design a weekly operational meeting for a product squad to track priority projects without drifting into strategy.”  
-Expected: a structured meeting brief, recurring agenda template, status update pattern, and a hygiene rule to move strategy to a separate forum.
-
-**Example 2 (Decision meeting):** “Create a decision meeting pack for choosing between two onboarding flows (A vs B) with PM/Design/Eng and a decision owner.”  
-Expected: pre-read with options + evidence, timed agenda, facilitation prompts for trade-offs, and a decision record + action items.
-
-**Boundary example:** “Schedule a meeting to ‘get alignment’ but there’s no decision, no owner, and no pre-read.”  
-Response: ask for the decision/outcome; recommend async discovery first; refuse to produce a meeting pack until objective/owner is defined.
-
-## Reference files
-- [references/INTAKE.md](references/INTAKE.md)
-- [references/WORKFLOW.md](references/WORKFLOW.md)
-- [references/TEMPLATES.md](references/TEMPLATES.md)
-- [references/CHECKLISTS.md](references/CHECKLISTS.md)
-- [references/RUBRIC.md](references/RUBRIC.md)
-- [references/SOURCE_SUMMARY.md](references/SOURCE_SUMMARY.md)
-- [references/EXAMPLES.md](references/EXAMPLES.md)
-
+- *"I've got a meeting tomorrow to pick between two onboarding flows."* → **Branch A + B**: a brief, an options pre-read, a timed agenda with an explicit decide segment, and a decision record.
+- *"Our weekly sync always runs long and keeps drifting into strategy."* → **Branch E + D**: split strategy into its own forum, tighten the operational agenda with a deep-dive off-ramp, and trial it for three weeks.
+- *"Schedule a meeting to get alignment — no decision, no owner, no pre-read."* → out of scope: ask for the decision/output, recommend async discovery first, and don't build a pack until the objective and owner exist.

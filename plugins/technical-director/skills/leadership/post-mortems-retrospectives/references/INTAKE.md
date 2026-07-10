@@ -1,13 +1,13 @@
 # Intake (copy/paste question bank)
 
-Ask **3–5 questions at a time**. If answers aren’t available, proceed with explicit assumptions and label unknowns.
+Ask **3–5 questions at a time**. If answers aren't available, proceed with explicit assumptions and label unknowns.
 
 ## A) Quick classification (required)
 1) What are we reviewing: **incident**, **project/initiative**, or **OKR period**?
 2) What is the primary goal: **learning**, **prevention**, **faster recovery**, **quality**, **alignment**, or **culture**?
 3) Who is the **decision owner** for follow-up actions? Who will be **facilitator** and **scribe**?
 4) Who is the intended **audience** for the final write-up (team only vs leadership vs company-wide)?
-5) Any constraints: privacy, legal/HR sensitivities, names to avoid, data that can’t be shared?
+5) Any constraints: privacy, legal/HR sensitivities, names to avoid, data that can't be shared?
 
 ## B) Incident details (if incident)
 1) Severity and impact: who/what was affected, for how long, and how do we know?
@@ -23,9 +23,9 @@ Ask **3–5 questions at a time**. If answers aren’t available, proceed with e
 4) What tradeoffs were made (scope/time/quality)? Which were implicit vs explicit?
 5) What decisions do we need to make for the next cycle (continue, pivot, stop, invest, de-scope)?
 
-## D) Evidence inventory (helps avoid “story time”)
+## D) Evidence inventory (helps avoid "story time")
 - Links to: tickets, incidents, dashboards, documents, PRs, meeting notes, customer/support reports
-- Any known “facts” vs “suspicions”
+- Any known "facts" vs "suspicions"
 - Any pre-existing action items that were missed (repeat failures)
 
 ## E) Desired outputs (choose)

@@ -1,92 +1,60 @@
-# Workflow (Expanded) — Running Decision Processes
+# Decision Process Playbook (Heuristics)
 
-This file expands `../SKILL.md` with extra guidance, heuristics, and failure modes.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## Step 1 — Classify the decision (speed vs rigor)
-Heuristics:
-- **Two-way door:** default to speed; decide with a lightweight memo + short consult loop; set a quick review date.
-- **One-way door:** invest in clarity: explicit criteria, explicit decision rights, explicit assumptions, and explicit comms.
+## Anti-patterns (catch yourself)
 
-Failure modes:
-- Treating every decision as one-way door (“process tax”).
-- Treating an irreversible decision as reversible (“we’ll fix it later”).
+- **Process tax on a two-way door.** Running a heavy, multi-week process for a reversible choice burns trust and time. Reversible? Decide fast, set a quick review.
+- **"We'll fix it later" on a one-way door.** Treating an irreversible decision as reversible is how orgs walk through doors that don't reopen. Name the failure cost first.
+- **Asking for more data to avoid deciding.** When the decision is fundamentally ambiguous, more data won't resolve it — it postpones the tradeoff. Frame the tradeoff and choose.
+- **The strawman option set.** Comparing the preferred option against two obviously-bad alternatives isn't a decision, it's a rationalization. Build 2–4 real options.
+- **Criteria that are all "high priority."** If everything matters, nothing discriminates. That's a wish list, not criteria.
+- **Everyone decides.** Unclear roles diffuse accountability and invite hidden vetoes. One Decider, explicit veto rules.
+- **The shadow decision.** A decision made but not communicated may as well not exist — execution stalls and the debate reopens. Log it and announce it.
+- **"We'll revisit" with no date.** A review without a date never happens, and the assumptions never get tested.
 
-## Step 2 — Make the decision explicit (anti-hesitation)
-Heuristics:
-- If the team is debating forever, the decision is usually **underspecified** (what exactly are we deciding?) or decision rights are unclear.
-- When both options are bad, make the tradeoff explicit: “We accept downside A to avoid downside B.”
+## Classify: speed vs. rigor
 
-Failure modes:
-- Avoiding the decision by asking for “more data” when data cannot resolve it.
-- Confusing a preference conflict with a decision-quality conflict.
+- **Two-way door:** default to speed — a lightweight memo, a short consult loop, and a quick review date.
+- **One-way door:** invest in clarity — explicit criteria, explicit decision rights, explicit assumptions, and explicit comms.
+- If unsure which it is, ask: what's the worst credible failure, and can we walk it back?
 
-## Step 3 — Historian pass (reduce repeating failures)
-Heuristics:
+## Frame the decision (anti-hesitation)
+
+- Endless debate usually means the decision is **underspecified** (what exactly are we deciding?) or decision rights are unclear — fix that before adding data.
+- When both options are bad, make the tradeoff explicit: "We accept downside A to avoid downside B."
+- Distinguish a preference conflict (people want different things) from a decision-quality conflict (people disagree on what's true).
+
+## Historian pass (don't repeat failures)
+
 - Assume the org remembers: old decisions create invisible constraints.
-- Ask tenured folks: “What did we try? What did we learn? What would you never do again?”
+- Ask tenured people: "What did we try? What did we learn? What would you never do again? What baggage should we surface so it doesn't become a hidden veto?"
 
-Failure modes:
-- Re-litigating old battles without acknowledging history.
-- Ignoring “baggage” until it shows up as a hidden veto late in the process.
+## Options, criteria, and explicit assumptions
 
-## Step 4 — Options, criteria, and explicit assumptions
-Heuristics:
 - A good option set is usually **2–4** choices, not 10.
-- Write assumptions as **testable statements** (what must be true).
-- If criteria are all “high priority,” you don’t have criteria—you have a wish list.
+- Write assumptions as **testable statements** — what must be true for this option to work.
+- Don't let the matrix hide disagreement by averaging away concerns; note the dissent.
 
-Failure modes:
-- Only comparing “the preferred option” vs a strawman.
-- Writing a matrix that hides disagreement by averaging away concerns.
+## Decision rights & process design
 
-## Step 5 — Decision rights and process design
-Heuristics:
-- Ensure there is exactly one **Decider** (or a defined decision body).
-- Make veto power explicit. Hidden vetoes create churn.
-- Prefer **async pre-read + short meeting** for busy orgs:
-  - pre-read deadline
-  - consult window
-  - decision meeting (30–60 minutes)
+- Ensure exactly one **Decider** (or a defined decision body); make veto power explicit — hidden vetoes create churn.
+- Prefer **async pre-read + short meeting** for busy orgs: pre-read deadline, consult window, then a 30–60 min decision meeting.
+- Keep the decision meeting tight — too many people turns it into a debate club.
 
-Failure modes:
-- Too many people in the decision meeting (turns into a debate club).
-- Unclear roles (“everyone decides”) → no accountability.
+## Consultation (curiosity) loop
 
-## Step 6 — Curiosity loop (contextual advice, not generic opinions)
-Heuristics:
-- Ask questions that force rationale:
-  - “Pick top 2 options and why.”
-  - “What is the most important missing piece of context?”
-  - “What would change your mind?”
-- Curate a mix of:
-  - domain experts
-  - people who know your org constraints
-  - people who will be impacted
+- Ask questions that force rationale: "pick your top 2 and why," "what's the most important missing context," "what would change your mind?"
+- Curate a mix: domain experts, people who know your org constraints, and people who'll be impacted.
+- Avoid "do you like this?" (weak signal) and broadcasting too broadly (low response, generic feedback).
 
-Failure modes:
-- Asking “Do you like this?” (invites weak signal).
-- Asking too broadly (low response rate; generic feedback).
+## Decide, commit, and communicate
 
-## Step 7 — Decide and commit (document the why)
-Heuristics:
-- The meeting goal is not consensus; it’s **clarity and commitment**.
-- Document:
-  - decision
-  - rationale + tradeoffs
-  - assumptions
-  - owner
-  - what would trigger a revisit
+- The meeting goal is **clarity and commitment**, not consensus.
+- Document: decision, rationale + tradeoffs, assumptions, owner, and what would trigger a revisit.
+- Communicate to everyone who must execute — not just the people in the room.
 
-Failure modes:
-- Decision made but not communicated (“shadow decision”).
-- No owner, so execution diffuses.
+## Review loop (make intuition testable)
 
-## Step 8 — Review loop (make intuition testable)
-Heuristics:
-- Set a review date at decision time (“we’ll revisit” without a date means never).
-- Compare outcomes vs assumptions and capture learning.
-
-Failure modes:
-- No review, so the org never learns (intuition stays implicit).
-- Blame-based retros; keep it decision-quality focused, not ego-focused.
-
+- Set the review date at decision time and compare outcomes against the written assumptions.
+- Keep the review decision-quality focused, not ego-focused — you're grading the process, not the person.

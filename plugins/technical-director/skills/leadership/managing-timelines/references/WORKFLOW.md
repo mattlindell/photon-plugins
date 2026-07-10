@@ -1,111 +1,98 @@
-# Workflow Notes (Managing Timelines)
+# Timeline Playbook (Heuristics)
 
-Use this as expanded guidance for the workflow in `skills/managing-timelines/SKILL.md`.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## Core concepts
+## Anti-patterns (catch yourself)
 
-### 1) Deadline taxonomy (what kind of “date” is this?)
+- **Date soup.** Handing out a single number when you mean a forecast. Always label commit/forecast/target so a promise reads differently from an estimate.
+- **Committing the far horizon.** Promising Build/Launch dates before solutioning and estimation. Commit the next phase output; forecast the rest.
+- **Hero mode.** Answering a slip by adding people or hours instead of trading scope. Late-added people usually slow things further - trade, don't add.
+- **RAG theater.** Reporting red with no ask. A red without a decision request is just anxiety broadcast to stakeholders.
+- **Surprise slips.** Sitting on a risk until it is certain. Surface it while there is still room to act - early amber beats late red.
+- **Demo equals done.** Letting a slick prototype set the ship date. Name the outer loop before anyone celebrates.
+- **Activity milestones.** "Working on X" is not a milestone. Milestones are deliverables with a done bar and an owner.
 
-- **Fixed external deadline:** tied to an external event/contract/regulatory requirement. Date is effectively immovable; scope/resources are the levers.
-- **Fixed internal deadline:** leadership commitment; may still be movable, but requires explicit re-decision.
-- **Target date:** directional date to guide prioritization; can move as uncertainty resolves.
-- **Window:** a range (“late March”) that can tighten over time; useful when uncertainty is high.
+## Deadline taxonomy (what kind of date is this?)
 
-Rule of thumb: if missing details, treat it as a **target/window**, and explicitly say what would be required to turn it into a commitment.
+- **Fixed external deadline:** tied to an external event, contract, or regulatory requirement. Date is effectively immovable; scope and resources are the levers.
+- **Fixed internal deadline:** a leadership commitment; may still be movable, but only via an explicit re-decision.
+- **Target date:** a directional date to guide prioritization; can move as uncertainty resolves.
+- **Window:** a range ("late March") that tightens over time; useful when uncertainty is high.
 
-### 2) Commitment ladder (use precise language)
+Rule of thumb: if details are missing, treat it as a **target/window** and state explicitly what would be required to turn it into a commitment.
 
-Use three date types to avoid “date soup”:
+## Commitment ladder (use precise language)
 
-- **Commitment:** “We will deliver X by D” (only for scoped work within control)
-- **Forecast:** “Based on what we know, we expect D” (subject to change as risks resolve)
-- **Target:** “We want D” (directional; used for prioritization)
+Three date types keep you out of date soup:
 
-Always attach: confidence + top risks + next decision point.
+- **Commitment:** "We will deliver X by D" - only for scoped work within control.
+- **Forecast:** "Based on what we know, we expect D" - subject to change as risks resolve.
+- **Target:** "We want D" - directional, used for prioritization.
 
-### 3) Phase-based planning (commit only within control)
+Always attach: confidence + top risks + the next decision point. Never present a forecast as a commitment.
+
+## Phase-based planning (commit only within control)
 
 Recommended lifecycle:
 
-1) **Discovery** (reduce problem uncertainty)
-   - Outputs: problem framing, user value, success metrics/guardrails, top risks, initial approach options
-2) **Solutioning** (reduce solution uncertainty)
-   - Outputs: chosen approach, UX/tech outline, dependency plan, estimate range, rollout approach
-3) **Build** (execution)
-   - Outputs: working increment(s), QA plan, release readiness checks
-4) **Launch** (safe release)
-   - Outputs: rollout/rollback plan, comms, monitoring, post-launch checks
+1. **Discovery** (reduce problem uncertainty) - problem framing, user value, success metrics/guardrails, top risks, initial approach options.
+2. **Solutioning** (reduce solution uncertainty) - chosen approach, UX/tech outline, dependency plan, estimate range, rollout approach.
+3. **Build** (execution) - working increments, QA plan, release-readiness checks.
+4. **Launch** (safe release) - rollout/rollback plan, comms, monitoring, post-launch checks.
 
-Commitment pattern: commit to **Discovery/Solutioning end dates** first; commit to Build/Launch only after solutioning and estimation.
+Commitment pattern: commit to **Discovery/Solutioning end dates** first; commit to Build/Launch only after solutioning and estimation. Set a "next commitment date" - when you will re-forecast (e.g., "we re-forecast on <date> after solutioning").
 
-### 4) RAG (red/amber/green) is only useful with action
+## RAG that triggers action
 
-Define RAG so it triggers decisions:
+Define RAG so it forces decisions:
 
-- **Green:** on track; no decisions needed
-- **Yellow:** risk emerging; needs a decision/assist within 1 week
-- **Red:** cannot meet committed date without a change (scope/date/resources/quality); needs immediate decision
+- **Green:** on track; no decisions needed.
+- **Yellow:** risk emerging; needs a decision or assist within about a week.
+- **Red:** cannot meet the committed date without a change (scope/date/resources/quality); needs an immediate decision.
 
-RAG should come with:
-- “What changed since last update”
-- “Decision needed” + deadline
-- “Proposed trade-off” (cut/add/shift)
+Every yellow/red should carry: "what changed since last update," "decision needed" + deadline, and a proposed trade-off (cut/add/shift).
 
-### 5) Protecting a real deadline (treat it like P0)
+## Diagnosing a slip (Branch B)
 
-When a deadline is real:
-- Reduce distractions: cancel/defer nonessential work and meetings
-- Reduce WIP: prioritize throughput; avoid parallel half-finished work
-- Enforce change control: **trade, don’t add**
-- Make “cut candidates” explicit early, so you’re not forced into bad last-minute cuts
+Find the real driver before proposing a fix. Common root causes:
+
+- **Scope creep** - work grew quietly; the current scope is not what was estimated.
+- **Optimistic estimates** - the plan never fit; no single event caused it.
+- **Hidden dependency** - another team, vendor, data, or approval is the actual blocker.
+- **Capacity loss** - PTO, attrition, or context-switching drained the assumed capacity.
+- **Quality debt** - defects/rework surfacing late in Build or QA.
+
+The four levers, in usual order of preference:
+
+1. **Cut scope** - fastest, cheapest; needs a pre-agreed cut list to move quickly.
+2. **Move the date** - honest when scope and quality are fixed; do it once, with a new committed date, not a rolling slip.
+3. **Add resources** - rarely helps late (ramp cost, coordination overhead); reserve for early-phase or narrow, parallelizable work.
+4. **Lower quality** - only if explicitly allowed and reversible; never for safety, security, or compliance.
+
+If no cut list exists, building one is the first move - you cannot trade scope fast without it.
+
+## Weekly update + review (Branch C)
+
+Default cadence: weekly. Keep the review short so it runs consistently.
+
+- **Agenda:** RAG (yellow/red only) → decisions/asks (owner + deadline) → scope changes and trades → next week's plan.
+- **Updates lead with "what changed,"** not a re-list of everything. Bury nothing: asks and decisions go up top with dates.
+- **A red has a single escalation path** and one decision owner. If a red produces no ask, it is not ready to report.
+- Prefer shared, async-readable updates; a stakeholder should be able to approve without a meeting.
 
 ## AI/ML uneven cadence (demo vs production)
 
-If AI/ML is involved, separate:
-- **Time to first demo** (often short): prototype to validate direction
-- **Time to production** (often longer): evaluation, safety, reliability, cost/latency, monitoring, fallback behavior, edge cases, compliance
+For AI/ML, separate the two clocks:
+
+- **Time to first demo** (often short): a prototype to validate direction.
+- **Time to production** (often much longer): evaluation, safety, reliability, cost/latency, monitoring, fallback behavior, edge cases, compliance.
 
 Add explicit outer-loop milestones:
-- Evaluation harness + acceptance metrics
-- Data readiness + privacy review
-- Guardrails + fallback plan
-- Monitoring + incident response/runbook
-- Gradual rollout + post-launch calibration
 
-## Step-by-step guidance (matches SKILL workflow)
+- Evaluation harness + acceptance metrics.
+- Data readiness + privacy review.
+- Guardrails + fallback plan.
+- Monitoring + incident response/runbook.
+- Gradual rollout + post-launch calibration.
 
-### Step 1) Intake + deadline classification
-- Confirm “why now”, what is fixed, and who can change the date or scope.
-- If the user says “hard deadline” but can’t name the external constraint, treat it as a target until confirmed.
-
-### Step 2) Commitment model
-- Convert any ambiguous “ship date” language into commit/forecast/target.
-- Add a rule: **never present a forecast as a commitment**.
-
-### Step 3) Phase plan + decision gates
-- Define phase outputs as artifacts a stakeholder can review async.
-- Set a “next commitment date” (e.g., “We will re-forecast on <date> after solutioning”).
-
-### Step 4) Milestones + tracker
-- Milestones should be deliverables (demo, spec sign-off, dependency secured, code complete, beta shipped).
-- Add confidence (H/M/L) and dependency owners.
-
-### Step 5) Governance + escalation
-- Default cadence: weekly review with a short agenda:
-  1) RAG review (what’s yellow/red)
-  2) Decisions/asks
-  3) Scope changes
-  4) Next week plan
-- Ensure “red” has a single escalation path and decision owner.
-
-### Step 6) Scope + change control
-- Define freeze points: scope freeze, code freeze, QA freeze (as appropriate).
-- Pre-create a cut list so you can trade scope quickly without re-litigating.
-
-### Step 7) Stakeholder comms
-- Communicate in the commitment ladder language.
-- Include explicit asks and deadlines for decisions (don’t bury them).
-
-### Step 8) Quality gate
-- Ensure the final pack answers: “What are we committing to, and what must happen next to keep the date true?”
-
+The failure mode is a great demo setting a ship date. Pre-wire the gap in commit/forecast/target language before anyone treats the demo as done.

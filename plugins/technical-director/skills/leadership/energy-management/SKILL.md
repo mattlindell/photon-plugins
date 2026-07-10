@@ -1,121 +1,81 @@
 ---
 name: "energy-management"
-description: "Build an Energy Management Operating System Pack (energy drivers/drains map, calendar energy audit, zone-of-genius expansion plan, energy-aligned weekly schedule, recovery routines, and 2-week experiments). Use for sustainable leadership performance and burnout prevention. Category: Leadership."
+description: "Redesign your week around energy instead of time - audit the calendar, expand zone-of-genius work, set meeting and recovery boundaries, and handle a specific energy or burnout situation (your own or a report's) sustainably."
+disable-model-invocation: true
 ---
 
 # Energy Management
 
-## Scope
+## Manage energy, not hours
 
-**Covers**
-- Managing **energy (cognitive/emotional/attention)**, not just time
-- Identifying **energy drivers** and **energy drains** and redesigning your week accordingly
-- Expanding “**zone of genius**” time via delegation, elimination, automation, and clearer boundaries
-- Creating micro-recovery routines (buffers, transitions, meeting hygiene) and a low-energy-day protocol
-- Running a **2-week pilot** to validate changes and iterate
+Anchor every choice below to four ideas:
 
-**When to use**
-- “I’m exhausted / close to burnout. Help me redesign my week for energy.”
-- “Audit my calendar and help me spend more time in my zone of genius.”
-- “I want a system to track what gives me energy vs drains me after each interaction.”
-- “Create meeting norms and boundaries so I stop hemorrhaging energy.”
+- **Manage energy, not time.** A full calendar is not the problem; a calendar that spends your best hours on low-leverage, draining work is. Design the week around energy, not just the count of hours.
+- **Recovery is a performance input, not a reward.** Buffers, breaks, and a low-energy-day protocol are how sustained output happens - schedule them as calendar objects, do not treat them as something you earn after the crunch.
+- **Protect the team's energy as a first-class resource.** Attention and recovery are finite for the people you lead too. A leader who burns them for short-term velocity is spending capital that is slow and expensive to rebuild.
+- **Persistent low energy is a signal, not a character flaw.** A slow slide toward no-joy or exhaustion is a risk that needs a plan - or a referral - not willpower or a pep talk.
 
-**When NOT to use**
-- You are in an acute physical/mental health crisis or need medical advice. Seek professional help and follow your company policy.
-- You need HR/legal guidance (harassment, discrimination, retaliation, threats, investigations).
-- Your environment is unsafe or coercive; prioritize safety and support systems first. This skill can help document constraints and draft a negotiation plan, but it won’t “optimize” an unsafe situation.
+## When to use / not
 
-## Inputs
+Use to redesign your week for energy, audit your calendar, expand zone-of-genius time, set meeting and recovery boundaries, or handle a specific energy or burnout situation right now - your own or a report's.
 
-**Minimum required**
-- Your role + core responsibilities (and whether you manage people)
-- The time horizon: a **2-week pilot** + what “better” means in **4–8 weeks**
-- Current pain (2–5 concrete examples of what’s draining you) + desired outcome
-- A representative week (calendar text dump, recurring meetings list, or narrative)
-- Constraints/non-negotiables (time zones, caregiving, deadlines, on-call, travel, “can’t move” meetings)
+Do **not** use for: an acute physical or mental-health crisis or clinical burnout - follow company policy and point to professional resources / EAP; this is not therapy or medical advice. An HR/legal matter (harassment, discrimination, retaliation, investigations) - route to HR/legal. An unsafe or coercive environment - prioritize safety and support systems first; this skill can document constraints and draft a negotiation plan, but it will not "optimize" an unsafe situation.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If calendar detail is unavailable, proceed with a **7-day energy log first** and provide a conservative default-week plan with explicit assumptions.
-- Do not request secrets, credentials, or sensitive personal health details.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To redesign their whole energy system | **A — Energy operating system** |
+| To handle a specific energy or burnout situation now (own overload, recovery after a crunch, or a report showing burnout signs) | **B — Energy check / recovery** |
+| To audit the calendar and expand zone-of-genius time | **C — Calendar energy audit** |
+| To redesign the default week and meeting hygiene | **D — Energy-aligned week** |
+| To build recovery rituals and boundaries | **E — Recovery & boundaries** |
 
-Produce an **Energy Management Operating System Pack** (Markdown in-chat; or as files if requested) in this order:
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) - ask ≤5 at a time, then proceed on labeled assumptions; never request secrets or sensitive personal health details.
 
-1) **Context snapshot** (goal, constraints, assumptions, success definition)
-2) **Energy Drivers & Drains Map** (top drivers/drains + levers)
-3) **Calendar Energy Audit** (time buckets + “zone of genius” estimate)
-4) **Zone of Genius Expansion Plan** (stop/delegate/automate/defer list)
-5) **Energy-Aligned Default Week** (time blocks + meeting rules)
-6) **Recovery + Transition Plan** (buffers, micro-breaks, low-energy-day protocol)
-7) **2-Week Pilot + Experiment Tracker** (what changes, how we measure)
-8) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the energy operating system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+1. **Frame the goal and route safety.** Confirm what "better energy" means in 4-8 weeks and set a 2-week pilot; confirm boundaries (not medical/HR/legal). If the request is a crisis, route it.
+   **Done when:** success is observable and any crisis/HR topic is routed away from this skill.
+2. **Capture a baseline** (Branch B's energy log + retro) so the redesign rests on signals, not vibes. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** at least 5 specific drivers/drains are named (not vague labels like "people" or "work").
+3. **Audit the calendar and expand zone of genius** (Branch C).
+   **Done when:** 3-5 top offenders each have a lever and a next action.
+4. **Redesign the default week and meeting hygiene** (Branch D).
+   **Done when:** deep work sits in high-energy windows and high-load blocks have buffers.
+5. **Add recovery, boundaries, and a low-energy-day protocol** (Branch E).
+   **Done when:** recovery is scheduled as calendar objects, not intentions.
+6. **Run a 2-week pilot and finalize.** Pick 2-4 experiments with keep/modify/stop rules, verify against [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
+   **Done when:** experiments have decision rules and the pack passes the checklist.
 
-## Workflow (8 steps)
+Deliverable: an **Energy Management Operating System** - drivers/drains map, calendar audit, zone-of-genius plan, energy-aligned week, recovery + boundaries, and a 2-week pilot.
 
-### 1) Intake + objective + safety boundaries
-- **Inputs:** user context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Clarify the goal in 4–8 weeks (e.g., “end week with energy”, “reduce decision fatigue”, “make space for deep work”). Confirm boundaries (not medical/HR/legal). Choose scope: full OS pack vs subset.
-- **Outputs:** Context snapshot (draft) + assumptions/unknowns.
-- **Checks:** Success is measurable enough to evaluate after 4 weeks (even with qualitative measures).
+## Branch B — Energy check / recovery (the workhorse)
 
-### 2) Capture baseline energy signals (7-day log + quick retro)
-- **Inputs:** last 1–2 weeks memory; calendar if available.
-- **Actions:** Create a lightweight energy log structure. If you have calendar data, do a quick retro: list the top 10 activities/interactions and mark “energized” vs “sapped” after each.
-- **Outputs:** Energy Log (starter) + initial “suspected drivers/drains” list.
-- **Checks:** At least 5 concrete drivers/drains are identified (not vague labels like “people”).
+The frequent, in-the-moment use: triage your own overload, plan recovery after a crunch, or respond to a report showing burnout signs. Name the specific drains (not "I'm tired"), pick the top 1-3 controllable levers, and set a concrete next action. For a report, coach and adjust workload or scope - do not diagnose or play therapist. Working sheet: [references/TEMPLATES.md](references/TEMPLATES.md); heuristics and escalation: [references/WORKFLOW.md](references/WORKFLOW.md).
 
-### 3) Build the Energy Drivers & Drains Map (with levers)
-- **Inputs:** Energy Log + retro list.
-- **Actions:** Consolidate into a map: drivers, drains, triggers, and controllable levers (eliminate, delegate, redesign, time-shift, batch, buffer, prepare, recover).
-- **Outputs:** Drivers & Drains Map + “top 3 change levers” to try first.
-- **Checks:** Each top drain has at least one specific lever and a next action.
+**Done when:** the situation has named drains, 1-3 levers with a next action, and - for a report - a follow-up plus an escalation path (company policy / professional resources) if signs persist.
 
-### 4) Audit the calendar for “zone of genius” vs “energy tax”
-- **Inputs:** representative week calendar (or estimate).
-- **Actions:** Bucket time into: (A) Zone of genius / high leverage, (B) Necessary but neutral, (C) Energy drains, (D) Recovery/admin. Identify the bottom bucket(s) to reduce.
-- **Outputs:** Calendar Energy Audit + zone-of-genius estimate and biggest offenders (meetings, context switching, decision load).
-- **Checks:** The audit produces 3–5 candidate deletions/redesigns with owners and dates.
+## Branch C — Calendar energy audit & zone of genius
 
-### 5) Expand zone of genius via stop/delegate/automate/defer
-- **Inputs:** audit offenders; constraints; stakeholders.
-- **Actions:** Turn drains into an offload plan: what to stop, what to delegate, what to automate, what to defer. For delegation, specify decision rights and guardrails (don’t just “hand it off”).
-- **Outputs:** Zone of Genius Expansion Plan + 2–3 delegation briefs (as needed).
-- **Checks:** At least 2 concrete “energy taxes” are removed or redesigned in the next 2 weeks.
+Bucket a representative week into zone-of-genius / necessary-but-neutral / energy drains / recovery, estimate the current vs target mix, then turn the biggest drains into a stop/delegate/automate/defer plan with decision rights and guardrails (do not just "hand it off"). Bucket guidance: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 6) Design an energy-aligned default week + meeting hygiene
-- **Inputs:** your energy curve (high/medium/low), constraints, offload plan.
-- **Actions:** Create a default week with time blocks aligned to energy (deep work in high-energy windows; admin in low-energy windows). Add meeting hygiene: buffers, batching, agendas/decisions, shorter defaults (25/50), async-first updates.
-- **Outputs:** Energy-Aligned Default Week + Meeting Rules.
-- **Checks:** The plan reduces fragmentation (fewer context switches) and includes buffers between high-load blocks.
+**Done when:** 3-5 drains are removed or redesigned with owners and dates, and at least 2 are actioned in the next 2 weeks.
 
-### 7) Add recovery + transitions (and a low-energy-day protocol)
-- **Inputs:** work patterns; remote/hybrid context.
-- **Actions:** Define micro-recovery routines (between-meeting buffer, decompression, movement, sensory breaks) and “low-energy day” rules (minimum viable day, what to postpone, how to communicate). Include optional “neurological load” aids for remote work (e.g., standing, doodling/fidgeting, walking calls) without making medical claims.
-- **Outputs:** Recovery + Transition Plan + Low-Energy-Day Protocol.
-- **Checks:** Recovery actions are scheduled (not aspirational) and do not rely on willpower alone.
+## Branch D — Energy-aligned week & meeting hygiene
 
-### 8) Run a 2-week pilot + measure + iterate
-- **Inputs:** full draft pack.
-- **Actions:** Define 2–4 experiments (time-shift, reduce meetings, add buffers, delegate, change meeting format). Decide what you’ll measure (daily energy rating, end-of-week energy, number of deep-work blocks, “drain count”). Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**.
-- **Outputs:** Final Energy Management Operating System Pack + 2-week tracking sheet.
-- **Checks:** Experiments have clear decision rules: keep / modify / stop after 2 weeks.
+Build a default week that places deep work in high-energy windows and admin in low-energy ones, then add meeting hygiene: 25/50 defaults, agenda + decision owner, async-first updates, batching, and buffers after high-load meetings. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-## Quality gate (required)
-- Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+**Done when:** the plan reduces context switching and no high-load blocks run back-to-back without a buffer.
+
+## Branch E — Recovery & boundaries
+
+Define micro-recovery routines and a low-energy-day protocol as scheduled calendar objects, and draft the stakeholder boundary message that protects them. If the signals point to burnout or a safety risk, route to company policy and professional resources rather than "optimizing" the load. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** recovery is scheduled (not aspirational), does not rely on willpower alone, and boundaries plus escalation paths are written down.
 
 ## Examples
 
-**Example 1 (meeting overload):** “I’m a product leader in back-to-back meetings and I’m exhausted. Audit my week and give me a default schedule + meeting rules + delegation plan.”  
-Expected: drivers/drains map, calendar audit, offload plan, default week, meeting hygiene rules, 2-week pilot.
-
-**Example 2 (role fit signals):** “After certain calls I feel energized, after others I feel drained. Help me build a tracking system and use it to redesign my scope.”  
-Expected: energy log + drivers/drains map, patterns, specific levers (time-shift/batch/delegate), and a 2-week experiment tracker.
-
-**Boundary example (medical crisis):** “I’m having panic attacks and can’t sleep; fix my energy.”  
-Response: do not provide medical advice; encourage professional help. Offer a minimal work-boundary plan (reduce commitments, document constraints, notify stakeholders) and a tracking template only if appropriate.
+- *"I'm a product leader in back-to-back meetings and I'm exhausted - redesign my week."* → **Branch A**: baseline energy log, calendar audit, energy-aligned week, meeting rules, and a 2-week pilot.
+- *"After our crunch, one of my engineers is showing burnout signs - what do I do?"* → **Branch B**: name the specific drains, adjust workload/scope, coach (do not diagnose), set a follow-up, and hold an escalation path if it does not improve.
+- *"I'm having panic attacks and can't sleep - fix my energy."* → out of scope: no medical advice; point to professional resources / EAP and company policy. Offer only a minimal work-boundary plan (reduce commitments, document constraints, notify stakeholders) if appropriate.

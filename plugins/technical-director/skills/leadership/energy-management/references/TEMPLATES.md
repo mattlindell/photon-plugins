@@ -1,58 +1,79 @@
-# Templates — Energy Management
+# Templates (Copy/Paste)
 
-Copy/paste these templates into your output. Keep them lightweight and directly usable.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to. Keep them lightweight and directly usable.
 
-## 0) Energy Management Operating System Pack (skeleton)
+## 0) Energy Check / Recovery Plan Sheet (Branch B — the workhorse)
 
-### 1) Context snapshot
+Fill this in the few minutes before you triage your own overload, plan recovery after a crunch, or talk with a report showing burnout signs.
+
+**Who / trigger:** ______ (self or report)  **Date:** ______
+
+- **What I'm noticing** (specific signals, not "tired" - missed deadlines, dread, withdrawal, energy 4/10):
+  - …
+- **Top drains right now** (name the specific trigger: format, topic, load, uncertainty, conflict):
+  - …
+- **What's still giving energy** (protect these):
+  - …
+- **Top 1-3 levers I control** (eliminate / delegate / redesign / time-shift / batch+buffer / adjust scope):
+  - …
+- **Next action** (owner + when):
+  - …
+- **Follow-up** (when I check whether it moved):
+  - …
+
+**Boundary + escalation note.** If this points to clinical burnout, a mental-health crisis, or a safety risk (yours or a report's), stop optimizing the schedule - follow company policy and point to professional resources / EAP. Adjust workload and scope where you can; do not diagnose or play therapist.
+
+---
+
+## 1) Energy Management Operating System (skeleton)
+
+### A) Context snapshot
 - Role + scope:
-- Time horizon: 2-week pilot + 4–8 week goal:
+- Time horizon: 2-week pilot + 4-8 week goal:
 - Success definition:
 - Constraints/non-negotiables:
 - Assumptions:
 - Unknowns to validate:
 
-### 2) Energy Drivers & Drains Map
-(table)
+### B) Energy Drivers & Drains Map
+(table - section 3)
 
-### 3) Calendar Energy Audit
-(buckets + summary)
+### C) Calendar Energy Audit
+(buckets + summary - section 4)
 
-### 4) Zone of Genius Expansion Plan
-(stop/delegate/automate/defer)
+### D) Zone of Genius Expansion Plan
+(stop/delegate/automate/defer - section 5)
 
-### 5) Energy-Aligned Default Week + Meeting Rules
-(time blocks + norms)
+### E) Energy-Aligned Default Week + Meeting Rules
+(time blocks + norms - sections 6-7)
 
-### 6) Recovery + Transition Plan
-(buffers + low-energy protocol)
+### F) Recovery + Transition Plan
+(buffers + low-energy protocol - section 8)
 
-### 7) 2-Week Pilot + Experiment Tracker
-(experiments + measures + decision rules)
+### G) 2-Week Pilot + Experiment Tracker
+(experiments + measures + decision rules - section 9)
 
-### 8) Risks / Open questions / Next steps
+### H) Risks / Open questions / Next steps
 
----
+## 2) Energy Log (after-action tracking)
 
-## 1) Energy Log (after-action tracking)
+Use for 7-14 days. Keep it simple.
 
-Use for 7–14 days. Keep it simple.
-
-| Date | Activity / interaction | Context (people + medium) | Before (1–5) | After (1–5) | Δ | Notes (why) | Lever to try |
+| Date | Activity / interaction | Context (people + medium) | Before (1-5) | After (1-5) | Δ | Notes (why) | Lever to try |
 |---|---|---|---:|---:|---:|---|---|
 |  |  |  |  |  |  |  |  |
 
 Quick prompt after an interaction:
-- “Did that **give** me energy or **take** energy?”
-- “What specifically caused it?” (format, topic, uncertainty, conflict, prep level, audience)
+- "Did that **give** me energy or **take** energy?"
+- "What specifically caused it?" (format, topic, uncertainty, conflict, prep level, audience)
 
-## 2) Energy Drivers & Drains Map
+## 3) Energy Drivers & Drains Map
 
 | Item | Driver or drain? | Trigger / pattern | Controllable? (Y/N/Partial) | Lever | Next action (owner + date) |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 3) Calendar Energy Audit (1 representative week)
+## 4) Calendar Energy Audit (1 representative week)
 
 ### A) Bucket definitions
 - **Zone of genius / high leverage:** work that uses your strengths and produces outsized impact.
@@ -68,19 +89,19 @@ Quick prompt after an interaction:
 | Energy drains |  |  |  |
 | Recovery/admin |  |  |  |
 
-### C) “Top offenders” list
-List 3–5 items to remove/redesign in the next 2 weeks.
+### C) "Top offenders" list
+List 3-5 items to remove/redesign in the next 2 weeks.
 | Offender | Why it drains | Lever (delete/delegate/redesign/time-shift/batch/buffer) | Next action |
 |---|---|---|---|
 |  |  |  |  |
 
-## 4) Zone of Genius Expansion Plan (stop/delegate/automate/defer)
+## 5) Zone of Genius Expansion Plan (stop/delegate/automate/defer)
 
 | Item | Current owner | Decision (stop / delegate / automate / defer / redesign) | New owner (if any) | Guardrails / escalation triggers | Next action |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 5) Energy-Aligned Default Week (time blocks)
+## 6) Energy-Aligned Default Week (time blocks)
 
 Assume your day has **high/medium/low** energy windows. Place work accordingly.
 
@@ -92,21 +113,21 @@ Assume your day has **high/medium/low** energy windows. Place work accordingly.
 | Thu |  |  |  |  |
 | Fri |  |  |  |  |
 
-## 6) Meeting Rules (copy/paste)
+## 7) Meeting Rules (copy/paste)
 
 Defaults:
-- 25/50 minute meetings (unless there’s a reason not to)
+- 25/50 minute meetings (unless there's a reason not to)
 - Agenda + desired outcome required
 - Decision owner named (if a decision is needed)
 - Async pre-read for complex topics; meeting is for debate + decision
 - Buffers after high-load meetings (conflict, performance, escalations)
 
 Optional scripts:
-- “What decision are we making by the end of this meeting?”
-- “Can we do this async? If not, what’s the minimum live time needed?”
-- “I can’t make this meeting; please send a summary + decision needed.”
+- "What decision are we making by the end of this meeting?"
+- "Can we do this async? If not, what's the minimum live time needed?"
+- "I can't make this meeting; please send a summary + decision needed."
 
-## 7) Recovery + Transition Plan
+## 8) Recovery + Transition Plan
 
 ### A) Buffers (calendar objects)
 - Between-meeting buffer:
@@ -117,32 +138,42 @@ Optional scripts:
 - Short walk / movement break
 - 2 minutes of breathing + eyes-off-screen
 - Water/snack reset
-- Quick journaling: “what just happened / next thing”
+- Quick journaling: "what just happened / next thing"
 - Optional remote supports: stand, doodle, fidget, walking call (no medical claims)
 
 ### C) Low-energy-day protocol (minimum viable day)
-- Non-negotiable 1–2 outcomes:
+- Non-negotiable 1-2 outcomes:
 - What gets postponed:
 - Stakeholder message (short):
 - Recovery actions:
 
-## 8) 2-Week Pilot + Experiment Tracker
+## 9) 2-Week Pilot + Experiment Tracker
 
-Pick 2–4 experiments max.
+Pick 2-4 experiments max.
 
 | Experiment | Hypothesis | Start date | End date | Measure(s) | Decision rule | Notes |
 |---|---|---|---|---|---|---|
 |  |  |  |  |  |  |  |
 
 Suggested measures (lightweight):
-- End-of-day energy rating (1–5)
-- Meeting hours/week + “meeting satisfaction”
+- End-of-day energy rating (1-5)
+- Meeting hours/week + "meeting satisfaction"
 - Deep-work blocks/week
 - Drain count/day
 
-## 9) Stakeholder boundary message (template)
+## 10) Stakeholder boundary message (template)
 
-> “To protect execution quality and sustainability, I’m making a few changes for the next two weeks: [change].  
-> If you need [urgent topic], use [channel]. For everything else, please [async process].  
-> We’ll review in two weeks and adjust based on outcomes.”
+> "To protect execution quality and sustainability, I'm making a few changes for the next two weeks: [change].
+> If you need [urgent topic], use [channel]. For everything else, please [async process].
+> We'll review in two weeks and adjust based on outcomes."
 
+## 11) Risks / Open questions / Next steps
+
+### Risks
+- …
+
+### Open questions
+- …
+
+### Next steps
+- …

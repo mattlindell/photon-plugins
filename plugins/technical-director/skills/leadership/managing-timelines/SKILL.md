@@ -1,123 +1,102 @@
 ---
 name: "managing-timelines"
-description: "Turn a deadline, launch date, or delivery target into an executable Timeline Management Pack (deadline type + commitments, phase plan, milestone tracker, RAG cadence, scope/change control, stakeholder comms). Use for timeline/deadline/schedule/milestones."
+description: "Manage a deadline, launch date, or delivery target: build the plan, rescue a slipping date, prep a status update, or set commit/forecast/target dates. Use when the user mentions a deadline, launch or ship date, milestone plan, delivery timeline, or schedule; wants to turn a date into phases and milestones; is asked 'when can you ship?' and needs to commit; has a milestone going red or a deadline slipping and needs options; needs a weekly status/RAG update or an exec review cadence; or is planning an AI/ML feature that demos fast but is slow to production."
 ---
 
 # Managing Timelines
 
-## Scope
+## Only commit what you control
 
-**Covers**
-- Turning a deadline or target date into a clear **commitment model** (commit vs forecast vs target)
-- Building a phase-based plan (Discovery → Solutioning → Build → Launch) with **decision gates**
-- Creating a milestone tracker with simple **RAG** (red/amber/green) status and escalation triggers
-- Protecting the team when a deadline is real (treat it like **P0**, reduce distractions, control scope)
-- Setting a governance + comms cadence so stakeholders get **early risk signals**, not surprises
-- Handling “fast demo, slow production” cadence (especially for AI/ML features) via explicit outer-loop work
+Anchor every choice below to four ideas:
 
-**When to use**
-- “We need to ship by <date>. Create a timeline/milestone plan and status cadence.”
-- “We have a launch date; convert this into phases, milestones, and a comms plan.”
-- “Stakeholders keep asking for dates; define what we can actually commit to and when.”
-- “The project feels off-track; set up RAG status + weekly exec review and escalation.”
-- “We can demo quickly, but production will take longer—help set expectations and plan the outer loop.”
+- **Commit only within control.** Use precise date language - commitment, forecast, target - and never present a forecast as a promise. Commit to the next phase output; forecast the rest.
+- **Scope is the lever.** When a real date is at risk, trade scope before you add people or ask for heroics - "trade, don't add." A pre-agreed cut list beats a panicked last-minute cut.
+- **No surprises - surface risk early.** RAG status earns its keep only when a red produces a concrete decision and ask. Stakeholders should hear about a slip while there is still time to act.
+- **Demo is not production.** Especially for AI/ML, "fast demo, slow production" is the trap. Plan the outer loop - evaluation, safety, reliability, rollout - as first-class milestones.
 
-**When NOT to use**
-- You haven’t defined the problem/outcome yet (use `problem-definition`)
-- You need to pick which initiatives matter most (use `prioritizing-roadmap`)
-- You primarily need to cut scope to fit an appetite/timebox (use `scoping-cutting`)
-- You need a decision-ready PRD or build-ready spec/design doc (use `writing-prds` / `writing-specs-designs`)
+## When to use / not
 
-## Inputs
+Use to turn a date into an executable plan, rescue a slipping deadline, prep a status update or review, define what you can actually commit to, or plan a demo-to-production path.
 
-**Minimum required**
-- The deliverable and success bar (“done means…”) + key users/stakeholders
-- The date type: **fixed deadline** (external) vs **target** (internal) vs **window** (e.g., “late March”)
-- Constraints and non-negotiables (quality, compliance, privacy/security, platform, budget)
-- Team shape + capacity assumptions (who’s building; availability; parallel work)
-- Known dependencies and risks (other teams, vendors, data availability, approvals)
+Do **not** use for: defining the problem or outcome (use `problem-definition`); choosing which initiatives matter most (use `prioritizing-roadmap`); cutting scope to fit an appetite or timebox as the primary goal (use `scoping-cutting`); or writing a decision-ready PRD or build-ready spec (use `writing-prds` / `writing-specs-designs`).
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md).
-- If answers aren’t available, proceed with explicit assumptions and list **Open questions** that could change the date or scope.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To turn a deadline or launch into a full plan | **A — Build the plan** |
+| Options for a deadline that is slipping right now | **B — Rescue a slip** |
+| This week's status update or exec review | **C — Status + review** |
+| To answer "when can you ship?" without a full plan | **D — Commitment model** |
+| An AI/ML feature planned demo-to-production | **E — Demo to production** |
 
-Produce a **Timeline Management Pack** in Markdown (in-chat; or as files if the user requests):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets.
 
-1) **Deadline & commitment model** (what’s fixed, what’s variable; commit vs forecast vs target language)
-2) **Phase plan** (Discovery/Solutioning/Build/Launch) with outputs + decision gates + next commitment date
-3) **Milestone tracker** (owners, dependencies, dates, confidence, RAG) + RAG definitions
-4) **Governance cadence** (weekly review agenda, escalation triggers, decision log)
-5) **Scope & change-control plan** (cut list, non-goals, “trade don’t add” rule, freeze points)
-6) **Stakeholder comms pack** (weekly update template + escalation note)
-7) **Risks / Open questions / Next steps** (always included)
+## Branch A — Build the plan
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+The full setup. Produce a **Timeline Management Pack**.
 
-## Workflow (8 steps)
+1. **Classify the date.** Fixed external / fixed internal / target / window; name the "why now" and the variable that can move (scope, resources, quality, or date).
+   **Done when:** you can say "the date is <type> because <reason>; the lever we will trade is <x>."
+2. **Set the commitment model.** Define what you commit to now (usually the next phase output), what you forecast, and what stays a target; attach confidence + top risks + next re-forecast date.
+   **Done when:** every date is labeled commit, forecast, or target.
+3. **Build the phase plan with gates.** Discovery → Solutioning → Build → Launch; each phase ends in an artifact and a go/no-go gate; commit only within control. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** every phase has a concrete output and a decision gate.
+4. **Create the milestone tracker.** Deliverable-based milestones with owners, dependencies, dates, confidence, and RAG; write action-oriented RAG definitions. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** milestones are outcomes (not activities) and critical dependencies are explicit.
+5. **Set governance.** A short weekly review agenda, escalation triggers, and a decision log; a red must yield a concrete ask.
+   **Done when:** a red status produces a decision, not just a warning.
+6. **Protect the date.** If it is real, treat it like P0: reduce WIP, defer nonessential work, and install change control ("trade, don't add") with a pre-ordered cut list and freeze points.
+   **Done when:** new scope cannot enter without an explicit trade and the decision owner's approval.
+7. **Assemble comms + finalize.** Weekly update template + escalation note; close with **Risks / Open questions / Next steps**. Pass [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
+   **Done when:** a stakeholder can approve async and the team executes without re-litigating dates every week.
 
-### 1) Intake + deadline classification
-- **Inputs:** User request; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Identify the deadline type (fixed vs target vs window), the “why now”, and what variable can move (scope, resources, quality, or date).
-- **Outputs:** Deadline classification + constraints snapshot.
-- **Checks:** You can state: “The date is <fixed/target/window> because <reason>. The variable we will trade is <scope/resources/etc>.”
+## Branch B — Rescue a slip
 
-### 2) Define the commitment model (“commit vs forecast vs target”)
-- **Inputs:** Deadline classification; current knowledge of scope/unknowns.
-- **Actions:** Define what you will **commit** to now (usually a phase output), what you will **forecast**, and what remains a **target**. Set confidence levels and language rules for stakeholders.
-- **Outputs:** Commitment model section + communication rules.
-- **Checks:** Stakeholders can tell which dates are promises vs estimates.
+The workhorse. A milestone went yellow/red or the date is at risk right now. Produce a decision-ready escalation note, not a system.
 
-### 3) Build a phase plan with decision gates
-- **Inputs:** Deliverable; known unknowns; constraints.
-- **Actions:** Break the work into Discovery → Solutioning → Build → Launch. Define the output of each phase and the decision gate (what must be true to move forward). Only commit to dates that are within control (near-term).
-- **Outputs:** Phase plan with dates, outputs, and gates; “next commitment date” (when you’ll re-forecast).
-- **Checks:** Every phase ends with a tangible artifact and a go/no-go decision.
+1. **Name the gap.** Which committed date or milestone is at risk, by how much, and what triggered it.
+   **Done when:** the slip is quantified against a specific commitment.
+2. **Diagnose the cause.** Scope creep, under-estimation, a dependency or vendor block, capacity loss, or quality debt surfacing late - pick the real driver, not the symptom. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** the root cause is named, not just "we are behind."
+3. **Lay out the four levers.** Cut scope / move date / add resources / lower quality (only if allowed), each with its cost and impact; use the pre-agreed cut list if one exists. Sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** each option has a concrete trade and consequence.
+4. **Recommend and escalate.** Write the escalation note: what is red, impact if unchanged, options, your recommendation, and the decision needed by a date with an owner.
+   **Done when:** the note names one recommended option and a decision owner + deadline.
 
-### 4) Create the milestone tracker (+ “demo vs production” outer loop when relevant)
-- **Inputs:** Phase plan; dependencies; team capacity.
-- **Actions:** Translate phases into milestones with owners, dependencies, dates, confidence, and RAG. If AI/ML is involved, separate “first demo” from “production-ready” and explicitly add evaluation, data, safety, and reliability work.
-- **Outputs:** Milestone tracker table + RAG definitions.
-- **Checks:** Milestones are outcome-based (deliverables), not just activities; critical dependencies are explicit.
+## Branch C — Status + review
 
-### 5) Set governance: RAG + weekly reviews + escalation
-- **Inputs:** Milestone tracker; stakeholder map.
-- **Actions:** Define update cadence (weekly by default), who reviews, and escalation triggers (what turns yellow/red). Use a simple RAG system and a short weekly review agenda to unblock work.
-- **Outputs:** Governance cadence + weekly review agenda + escalation triggers.
-- **Checks:** A “red” status produces a concrete ask/decision, not just a warning.
+The recurring cadence output. Produce this week's stakeholder update (and a review agenda if you run the meeting).
 
-### 6) Protect the deadline: scope control + distraction shield
-- **Inputs:** Deadline type; milestone risks; incoming requests.
-- **Actions:** If the deadline is real, treat it like P0: define what gets deprioritized, reduce WIP, and implement change control (“trade, don’t add”). Create a cut list and freeze points (e.g., scope freeze, QA freeze).
-- **Outputs:** Scope/change-control plan + cut list + freeze points.
-- **Checks:** New scope cannot enter without an explicit trade-off and decision owner approval.
+1. **Refresh RAG.** Update each milestone's status; a color change must have a reason and an ask.
+2. **Lead with what changed.** Open on movement since the last update, not a re-list of everything. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+3. **Surface decisions.** Pull every decision needed into one place with owner + deadline; never bury them.
+4. **Run the short agenda** (if facilitating): RAG (yellow/red only) → decisions/asks → scope changes → next week.
 
-### 7) Stakeholder comms + expectation management
-- **Inputs:** Commitment model; tracker; risks.
-- **Actions:** Write a weekly update template and an escalation note. Pre-wire stakeholders about uncertainty (especially the demo→production gap). Ensure comms use correct language (commit/forecast/target) and highlight asks/decisions.
-- **Outputs:** Comms pack (templates + initial draft update).
-- **Checks:** Updates include “what changed since last week” and “what decision is needed by when”.
+**Done when:** the update answers "what changed and what do you need from me," every yellow/red has an ask, and the meeting (if any) ends with owned decisions rather than status.
 
-### 8) Quality gate + finalize
-- **Inputs:** Full draft pack.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Ensure **Risks / Open questions / Next steps** exist with owners and dates.
-- **Outputs:** Final Timeline Management Pack.
-- **Checks:** A stakeholder can approve the plan async and the team can execute without re-litigating dates every week.
+## Branch D — Commitment model
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+When stakeholders press for a date and you do not need a full pack. Produce a short commit/forecast/target statement.
+
+1. **Split known from unknown.** Separate the scoped, near-term work from the uncertain remainder.
+2. **Assign the ladder.** Commit to the scoped near-term, forecast the rest with confidence + top risks, keep the far horizon a target. Language snippets: [references/TEMPLATES.md](references/TEMPLATES.md).
+3. **Set the re-forecast checkpoint.** Name when you will firm the next commitment (e.g., "after solutioning on <date>").
+
+**Done when:** each date carries commit/forecast/target language and stakeholders know which dates are promises and when the next one lands.
+
+## Branch E — Demo to production
+
+An AI/ML (or any prototype-first) feature where the demo is fast and production is slow. Produce a plan that separates the two.
+
+1. **Split the two timelines.** Time-to-demo (validate direction) vs time-to-production (make it safe and reliable); state the gap explicitly.
+2. **Add the outer loop.** Evaluation harness + acceptance metrics, data readiness + privacy review, guardrails + fallback, monitoring + runbook, and gradual rollout + rollback - each as a milestone with an owner. Prompts: [references/TEMPLATES.md](references/TEMPLATES.md).
+3. **Pre-wire expectations.** Communicate the demo-to-production gap up front in commit/forecast/target language so a slick demo is not mistaken for a ship date.
+
+**Done when:** demo and production are separate milestones with separate dates, the outer loop is owned, and stakeholders know the demo is a signal, not a commitment.
 
 ## Examples
 
-**Example 1 (fixed external date):** “We’re launching at an industry event on May 15. Create a milestone plan, RAG cadence, and a comms template for Sales/Marketing/Execs.”  
-Expected: a fixed-deadline plan that treats the date as P0, with change control and clear escalation triggers.
-
-**Example 2 (AI uneven cadence):** “We can demo an AI support agent in 2 weeks, but production will be risky. Build a plan that separates first demo vs production-ready and sets expectations.”  
-Expected: milestones that include evaluation, safety/reliability, and rollout steps; explicit commit vs forecast language.
-
-**Boundary example:** “Decide what we should build this quarter and set dates for everything.”  
-Response: use `prioritizing-roadmap` first; then apply this skill to the chosen initiative(s).
-
+- *"We're launching at an industry event on May 15 — build the milestone plan and comms for Sales/Marketing/Execs."* → **Branch A**: fixed date treated as P0, phases + gates, RAG cadence, change control, and clear escalation triggers.
+- *"Our beta milestone just went red and the date's at risk."* → **Branch B**: quantify the slip, diagnose the real cause, lay out cut/shift/add/quality with costs, and hand over one recommendation plus a decision owner and deadline.
+- *"Decide what we should build this quarter and set dates for everything."* → out of scope: use `prioritizing-roadmap` first, then apply this skill to the chosen initiative(s).

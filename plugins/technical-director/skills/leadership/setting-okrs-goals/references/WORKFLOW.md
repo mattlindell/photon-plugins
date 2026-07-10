@@ -1,92 +1,51 @@
-# Workflow (Expanded)
+# OKRs Playbook (Heuristics)
 
-This file expands the steps from `../SKILL.md` with extra guidance and heuristics.
+Topic-keyed heuristics, defaults, and anti-patterns for the branches in `../SKILL.md`. Adjust every default to your context.
 
-## Step 1 — Intake + decision framing
-Goal: set the frame so OKRs become a tool for alignment + learning.
+## Anti-patterns (catch yourself)
 
-Outputs:
-- A **Context snapshot** (cycle, scope, strategy anchor, baselines, constraints, stakeholders)
-- A stated OKR intent: “OKRs are for focus + learning, not performance evaluation.”
+- **Writing KRs before the anchor is real.** Jumping to key results before agreeing on the strategy anchor and baseline reality bakes in the wrong target. Frame first.
+- **Projects wearing an objective's clothes.** "Ship the new onboarding flow" is a project, not an outcome. If it can be marked "done" rather than "moved", it's a task.
+- **Ratio worship.** A percentage that improves by shrinking its denominator is not progress. Lead with absolute counts; treat every lone ratio as a gaming vector.
+- **Goal without a system.** A target with no recurring mechanism behind it is a wish. If no default-on habit produces the number, the OKR will drift.
+- **Grading as a performance score.** The moment KRs feed individual ratings, teams sandbag targets. Grade to learn.
+- **Too many objectives.** More than three objectives per team per cycle means nothing is actually the priority.
 
-Common failure mode: jumping into writing KRs before agreeing on the strategy anchor and baseline reality.
+## Alignment — "one step away"
 
-## Step 2 — Establish alignment (“one step away”)
-Rule of thumb: a team objective should be **no more than one step removed** from the company goal.
+A team objective should be no more than one hop from the company goal. Practical test: if you need a five-layer cascade chart to explain the link, it's too far. The alignment map should trace each objective straight back to the company goal or North Star.
 
-Practical test:
-- If you need a 5-layer goal cascade chart to explain the link, it’s too far.
+## Objectives — what "good" looks like
 
-Output:
-- An **Alignment map** that explicitly traces each objective back to the company goal/North Star.
+Good objectives are outcomes, not project lists; memorable and directional; and they change weekly prioritization. Keep it to 1–3 per team per quarter, and prefer customer-value language over internal activity ("new teams reach first value in week 1", not "revamp onboarding").
 
-## Step 3 — Draft 1–3 Objectives
-Good objectives:
-- Are outcomes, not project lists
-- Are memorable and directional
-- Change weekly prioritization
+## Key results — make measurement unambiguous
 
-Heuristics:
-- Keep it to 1–3 objectives per team per quarter.
-- Prefer “customer value” language over internal activity.
+Good KRs carry a baseline, a target, and a time window; a clear owner and data source; and are hard to game. The test: two analysts would compute the same number.
 
-Output:
-- Objective statements + “why now / why this” rationale.
+Ratio warning (the most common failure mode): conversion rates and percentages can improve by shrinking the denominator. If you include a ratio KR, add at least one of — the absolute numerator (volume), a denominator-health guardrail, a second KR that protects volume or quality — plus a short "how this could be gamed" note.
 
-## Step 4 — Generate candidate KRs (make measurement unambiguous)
-Good KRs:
-- Include a baseline + a target + a time window
-- Have a clear owner and data source
-- Are hard to game
+## Default-on systems
 
-Ratio warning (common failure mode):
-- Conversion rates/percentages can improve by shrinking the denominator.
-- If you include a ratio KR, add:
-  - The **absolute numerator** (volume) and/or
-  - A **denominator health** guardrail, and
-  - A short “how this could be gamed” note.
+Principle: don't be obsessed with the goal; be obsessed with the system that gets you there. Examples of default-on systems:
 
-Output:
-- KR tables with metric specs and anti-gaming notes.
-
-## Step 5 — Add systems/habits (default-on execution)
-Principle: don’t be obsessed with the goal; be obsessed with the system that gets you there.
-
-Examples of “default-on” systems:
 - Weekly customer interviews (fixed slot)
 - Weekly funnel review + experiment selection
 - A release train with a consistent QA gate
-- A recurring “quality debt” allocation
+- A recurring "quality debt" allocation
 
-Output:
-- Systems/habits plan with owners + cadence + evidence captured.
+Each system needs an owner, a cadence, and a defined artifact it captures every time.
 
-## Step 6 — Anti-gaming + guardrails
-Guardrails should prevent:
-- Quality regressions
-- Trust/safety harm
-- Margin destruction
-- Perverse incentives (e.g., shrinking denominator to “improve” a ratio)
+## Guardrails
 
-Output:
-- Guardrails section + per-KR failure modes + detection plan.
+Guardrails should prevent quality regressions, trust/safety harm, margin destruction, and perverse incentives (e.g., shrinking a denominator to "improve" a ratio). For each KR, name 1–2 failure modes and how you'll detect them early.
 
-## Step 7 — Review cadence + grading plan (learning loop)
-Cadence recommendation (quarterly):
-- Weekly: health check (are we on track? what changed?)
-- Mid-cycle: checkpoint (what to stop/start/adjust based on learning?)
-- End: grade KRs + capture what blocked progress + define next-cycle changes
+## Review cadence + grading (the learning loop)
 
-Grading guidance:
-- Use grades to learn, not punish.
-- Write down what you learned and what you’ll change next cycle.
+Quarterly cadence:
 
-Output:
-- A concrete review agenda and grading method.
+- **Weekly:** health check — are we on track, what changed?
+- **Mid-cycle:** checkpoint — what to stop/start/adjust based on learning; drop an unmeasurable KR, fix a wrong baseline (document why), add a guardrail if gaming appears.
+- **End:** grade KRs, capture what blocked progress, define next-cycle changes.
 
-## Step 8 — Quality gate + finalize
-Run [CHECKLISTS.md](CHECKLISTS.md) + [RUBRIC.md](RUBRIC.md), then finalize with:
-- Risks (what could go wrong / what might we be wrong about)
-- Open questions (what would change the OKRs)
-- Next steps (owners + dates if possible)
-
+Grading guidance: use grades to learn, not punish. Write down what you learned and what you'll change next cycle. Scale: 0.0 none / 0.3 some / 0.7 meaningful / 1.0 achieved.

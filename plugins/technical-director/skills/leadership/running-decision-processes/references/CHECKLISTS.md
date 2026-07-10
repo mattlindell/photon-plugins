@@ -12,13 +12,13 @@ Use these checklists before finalizing the Decision Process Pack and at key mome
 - Decision rights are explicit (one Decider or a defined body); veto power is explicit.
 - Consultation plan exists (who is consulted, by when) and is lightweight enough to execute.
 - Decision log entry includes rationale, tradeoffs, owner, and review date.
-- Communication draft states what changes now, who owns next steps, and when we’ll review.
+- Communication draft states what changes now, who owns next steps, and when we'll review.
 - Risks / Open questions / Next steps are included.
 
 ## B) Anti-hesitation checklist
-- The team is not waiting for “perfect data” when the decision is fundamentally ambiguous.
-- The decision is framed as a tradeoff, not as “finding the perfect answer.”
-- A clear “default if we do nothing” is stated (and why it’s unacceptable or acceptable).
+- The team is not waiting for "perfect data" when the decision is fundamentally ambiguous.
+- The decision is framed as a tradeoff, not as "finding the perfect answer."
+- A clear "default if we do nothing" is stated (and why it's unacceptable or acceptable).
 - The Decider is willing to choose between imperfect options and own the outcome.
 
 ## C) Explicit assumptions checklist (Annie Duke test)
@@ -27,9 +27,9 @@ Use these checklists before finalizing the Decision Process Pack and at key mome
 - A review date is set to check assumptions vs reality.
 
 ## D) Curiosity loop checklist
-- Ask is lightweight (2–3 prompts; “pick top 2 and why”).
+- Ask is lightweight (2–3 prompts; "pick top 2 and why").
 - The consult list includes experts + context-aware peers (not only friends).
-- Inputs capture “why” and evidence; disagreements are recorded.
+- Inputs capture "why" and evidence; disagreements are recorded.
 
 ## E) Post-decision follow-through checklist
 - Decision is communicated to everyone who needs to execute (not just attendees).

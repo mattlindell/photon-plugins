@@ -1,6 +1,20 @@
 # Templates (Planning Under Uncertainty)
 
-Copy/paste these templates to produce an Uncertainty Planning Pack.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Experiment Card (Branch A - the workhorse)
+
+Fill this when you need to design a test for one assumption now.
+
+**Assumption:** ______
+**Decision it blocks:** what we'd do differently once we know: ______
+
+- **Hypothesis (falsifiable):** If we do ___ for segment ___, then ___ changes by ___ because ___.
+- **Compass signal** (leading, fast-moving): …
+- **Guardrail** (must not worsen): …
+- **Fastest disproving test** (smoke test / calls / prototype / A/B / drill): …
+- **Owner / sample / duration:** …
+- **Decision rule:** If we see ___ by ___, we scale / pivot / stop.
 
 ## 1) Uncertainty Planning Pack (full outline)
 
@@ -14,7 +28,7 @@ Copy/paste these templates to produce an Uncertainty Planning Pack.
 - Mode: (wartime / peacetime)
 - Decision owner (stop/pivot/scale):
 - Success metrics:
-- Guardrails (“must not worsen”):
+- Guardrails ("must not worsen"):
 - Non-negotiable constraints:
 - What is flexible (scope/time/resources/quality/segment):
 
@@ -26,12 +40,12 @@ Top 5 unknowns (highest impact):
 4)
 5)
 
-| Assumption / unknown | Type (market/user/tech/ops/legal) | Confidence (H/M/L) | Impact (H/M/L) | How we’ll validate | Owner | By when | Decision impacted |
+| Assumption / unknown | Type (market/user/tech/ops/legal) | Confidence (H/M/L) | Impact (H/M/L) | How we'll validate | Owner | By when | Decision impacted |
 |---|---|---|---|---|---|---:|---|
 |  |  |  |  |  |  |  |  |
 
 ## 3) Hypotheses + experiment portfolio
-Principle: “Winning” = learning that changes a decision.
+Principle: "Winning" = learning that changes a decision.
 
 | Hypothesis | If true… | If false… | Experiment / test | Primary signal (compass) | Guardrails | Segment / sample | Duration | Decision rule (stop/pivot/scale) | Owner |
 |---|---|---|---|---|---|---|---:|---|---|
@@ -72,7 +86,7 @@ Learning review agenda:
 
 Stakeholder update template:
 - Status: (green/yellow/red) + what changed
-- This week’s learning:
+- This week's learning:
 - Decisions made / needed (owner + deadline):
 - Next tests and dates:
 - Risks / mitigations:
@@ -93,10 +107,10 @@ Decision log location:
 ## 2) Hypothesis writing patterns (copy/paste)
 
 ```md
-- Hypothesis: “If <we do X for segment Y>, then <metric Z> will change by <amount> because <mechanism>.”
+- Hypothesis: "If <we do X for segment Y>, then <metric Z> will change by <amount> because <mechanism>."
 - Primary signal (compass): <leading indicator that changes quickly>
 - Guardrails: <metrics that must not get worse>
-- Decision rule: “If we see <threshold> by <date>, we will <scale/pivot/stop>.”
+- Decision rule: "If we see <threshold> by <date>, we will <scale/pivot/stop>."
 ```
 
 ## 3) Simple decision log

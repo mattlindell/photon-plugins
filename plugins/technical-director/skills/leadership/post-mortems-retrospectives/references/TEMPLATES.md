@@ -1,8 +1,30 @@
-# Templates (copy/paste)
+# Templates (Copy/Paste)
 
-Use these as sections in a single Markdown doc, or split into separate files if requested.
+Use these as sections in a single Markdown doc, or split into separate files if requested. Grab the one your branch points to.
 
-## 1) Retro brief + agenda (required)
+## 0) Session Prep & Facilitation Sheet (Branch C — the workhorse)
+
+Fill this in the hour before you walk in.
+
+**Review:** ______  **Type:** Incident / Project / OKR  **Date/time:** ______  **Timebox:** ______
+
+- **Roles:** Facilitator ______ | Scribe ______ | Decision owner ______
+- **Evidence pulled** (links so the room debates facts, not memory):
+  - …
+- **Prior action items to check** (repeat-failure watch):
+  - [ ] …
+- **Opening line** (sets the blameless norm): "We are here to improve systems, not judge individuals. Assume everyone acted reasonably given what they knew."
+- **Agenda (timeboxed):**
+  1. Frame goal + ground rules (5 min)
+  2. Facts + timeline walkthrough (15–25 min)
+  3. Contributing factors (20–30 min)
+  4. Learnings + decisions (10–15 min)
+  5. Action tracker (10–15 min)
+  6. Kill criteria / triggers (optional, 5–10 min)
+  7. Wrap: owners, follow-up date, shareout plan (5 min)
+- **Close checklist:** every action has owner + date; follow-up date set; shareout owner named.
+
+## 1) Retro brief + agenda
 
 ### Retro brief
 - **Review type:** Incident / Project / OKR
@@ -17,21 +39,12 @@ Use these as sections in a single Markdown doc, or split into separate files if 
 - **Ground rules:** blameless; assume reasonable intent; focus on systems
 - **Pre-reads / evidence:** <links>
 
-### Agenda (60–90 min)
-1) Frame goal + ground rules (5 min)
-2) Facts + timeline walkthrough (15–25 min)
-3) Contributing factors (20–30 min)
-4) Learnings + decisions (10–15 min)
-5) Action tracker (10–15 min)
-6) Kill criteria / triggers (optional, 5–10 min)
-7) Wrap: owners, follow-up date, shareout plan (5 min)
-
 ## 2) Facts + timeline (required)
 
 ### Impact snapshot
 - **Customer impact:** <who/what/how many>
 - **Business impact:** <revenue, SLA, churn risk, etc. if known>
-- **Internal impact:** <oncall load, support load, incident commander time>
+- **Internal impact:** <on-call load, support load, incident commander time>
 - **How we know:** <dashboards/tickets/alerts>
 
 ### Timeline (table)
@@ -42,13 +55,13 @@ Use these as sections in a single Markdown doc, or split into separate files if 
 ## 3) Contributing factors + root cause hypotheses (required)
 
 ### Contributing factors (clustered)
-| Cluster | Factor | Evidence | “Why it made sense at the time” | Fix direction |
+| Cluster | Factor | Evidence | "Why it made sense at the time" | Fix direction |
 |---|---|---|---|---|
 | People/Process/Tech/... | <factor> | <link> | <context> | <guardrail/process change/etc> |
 
 ### Root cause hypotheses (1–3)
-1) <hypothesis> (confidence: low/med/high)
-2) <hypothesis> (confidence: low/med/high)
+1. <hypothesis> (confidence: low/med/high)
+2. <hypothesis> (confidence: low/med/high)
 
 ## 4) Learnings + decisions (required)
 
@@ -80,16 +93,16 @@ Use these as sections in a single Markdown doc, or split into separate files if 
 ### 1-page shareout
 - **TL;DR (3 bullets):** <what happened / what we learned / what changed>
 - **Top 3 actions (with owners + dates):**
-  1) <action>
-  2) <action>
-  3) <action>
+  1. <action>
+  2. <action>
+  3. <action>
 - **Where to find full doc:** <link>
 
 ### Impact & Learnings Review (recurring ritual)
 - **Cadence:** weekly / biweekly
 - **Attendees:** <who>
 - **Inputs:** this retro doc + ongoing experiments/metrics
-- **Agenda:** top learnings, what changed, what’s next
+- **Agenda:** top learnings, what changed, what's next
 - **Owner:** <name/role>
 
 ## 8) Risks / open questions / next steps (always)
@@ -102,4 +115,3 @@ Use these as sections in a single Markdown doc, or split into separate files if 
 
 ### Next steps
 - <step 1>
-

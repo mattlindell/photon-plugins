@@ -1,8 +1,45 @@
-# Templates (Engineering Culture Operating System Pack)
+# Templates (Copy/Paste)
 
-Use these templates to produce concrete deliverables. Copy/paste and fill in.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
 
-## 1) Culture + Capability Snapshot (template)
+## 0) Blameless Postmortem / Practice-Fix Sheet (Branch F — the workhorse)
+
+Fill this in the few minutes before you address a specific engineering moment (an incident postmortem, a review-norm fix, or a tech-debt call).
+
+**Moment / trigger:** ______  **Date:** ______
+
+- **What happened / what I observed** (specific event or pattern, not a label):
+  - …
+- **Impact** (on users, delivery, reliability, or trust):
+  - …
+- **Principle or metric at stake** (which culture-code principle or DORA/quality metric this touches):
+  - …
+- **Contributing factors** (system, process, tooling, decision — not people):
+  - …
+- **Move** (practice change, norm to write, ritual to run, or tech-debt decision):
+  - …
+- **Kept blameless?** (focus on the system, not fault): yes / no — how:
+  - …
+- **Follow-up** (owner + due date; fixes only, no punishment items):
+  - …
+
+### Blameless postmortem (60 min) — if the moment is an incident
+
+1. Timeline (10 min): what happened, in order, no blame.
+2. Contributing factors (20 min): system, process, tooling, and decision factors — not people.
+3. What we learned (15 min): surprises, gaps, near-misses, detection/response delays.
+4. Fixes (10 min): owner + due date for each; no punishment items.
+5. Close (5 min): restate the learning/reliability principle this reinforces.
+
+### Tech-debt decision (quick) — if the moment is a pay-down-vs-defer call
+
+- Debt item + where it hurts (velocity, reliability, DevEx):
+- Cost of carrying it (per sprint/quarter):
+- Cost/effort to fix (S/M/L):
+- Decision: pay down now / schedule / accept and revisit by <date>:
+- Owner + checkpoint:
+
+## 1) Culture + Capability Snapshot
 
 ### Context
 - Scope (team/org):
@@ -46,12 +83,12 @@ Use these templates to produce concrete deliverables. Copy/paste and fill in.
 | Management/Lean |  |  |  |  |
 
 ### Priority shifts (2–4)
-1) Shift:
+1. Shift:
    - Why now:
    - What changes in behavior:
    - Leading indicators (2–3):
 
-## 2) Engineering Culture Code (v1) (template)
+## 2) Engineering Culture Code (v1)
 
 Write **3–7** principles. Each principle must include observable behaviors.
 
@@ -61,13 +98,13 @@ Write **3–7** principles. Each principle must include observable behaviors.
   - Do:
   - Do:
 - Behaviors we avoid:
-  - Don’t:
-  - Don’t:
+  - Don't:
+  - Don't:
 - Decision rules (how choices get made):
 - Anti-patterns (how this fails):
-- How we’ll know it’s working (signals/metrics):
+- How we'll know it's working (signals/metrics):
 
-## 3) Org ↔ Architecture Alignment Brief (template)
+## 3) Org ↔ Architecture Alignment Brief
 
 ### Current org + operating model
 - Teams and ownership (today):
@@ -79,7 +116,7 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Ownership clarity:
 - Coupling hotspots:
 
-### Conway’s Law findings (misalignments)
+### Conway's Law findings (misalignments)
 - Misalignment:
   - Impact:
   - Evidence:
@@ -91,13 +128,13 @@ Write **3–7** principles. Each principle must include observable behaviors.
   - Trade-offs:
 
 ### Standardization (where consistency matters)
-- Leveling definitions (e.g., “senior” expectations):
+- Leveling definitions (e.g. "senior" expectations):
 - Code review standards:
 - Incident/retro expectations:
 - Release/deploy policy:
 - On-call policy:
 
-## 4) Clock Speed + DevEx Improvement Backlog (template)
+## 4) Clock Speed + DevEx Improvement Backlog
 
 ### Clock speed targets (next 4–12 weeks)
 - Target deploy/release cadence:
@@ -119,7 +156,7 @@ Write **3–7** principles. Each principle must include observable behaviors.
   - Owner:
   - Expected signal:
 
-## 5) Cross-functional Workflow Contract (template)
+## 5) Cross-functional Workflow Contract
 
 ### Toolchain + shared artifacts
 - Source of truth for work tracking:
@@ -127,11 +164,11 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Source of truth for code + changes:
 
 ### Work flow (idea → issue → PR → deploy → learn)
-1) Intake/spec:
-2) Build:
-3) Review:
-4) Release:
-5) Learn:
+1. Intake/spec:
+2. Build:
+3. Review:
+4. Release:
+5. Learn:
 
 ### Working agreements
 - PR expectations (description, tests, rollout notes):
@@ -148,9 +185,9 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Allowed uses:
 - Required human checks:
 - Documentation expectations (specs, PR context):
-- “No silent changes” rule:
+- "No silent changes" rule:
 
-## 6) Rollout + Measurement Plan (template)
+## 6) Rollout + Measurement Plan
 
 ### 30/60/90 plan
 - Next 30 days:
@@ -168,8 +205,13 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Guardrails (2–4):
 - Instrumentation gaps + owners:
 
-### Risks / Open questions / Next steps
-- Risks:
-- Open questions:
-- Next steps (smallest next actions):
+## 7) Risks / Open Questions / Next Steps
 
+### Risks
+- …
+
+### Open questions
+- …
+
+### Next steps (smallest experiments first)
+- …

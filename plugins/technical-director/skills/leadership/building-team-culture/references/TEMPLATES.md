@@ -1,16 +1,43 @@
 # Templates (Copy/Paste)
 
-Use these templates to produce the “Team Culture Operating System Pack”.
+Building blocks for the branches in `../SKILL.md`. Grab the one your branch points to.
+
+## 0) Culture Moment Sheet (Branch E — the workhorse)
+
+Fill this in the few minutes before you address a specific culture moment (a retro, a norm to write, a behavior to respond to).
+
+**Moment / trigger:** ______  **Date:** ______
+
+- **What I observed** (specific behavior or event, not a label):
+  - …
+- **Impact** (on the team, the work, or trust):
+  - …
+- **Principle at stake** (which culture-code principle this touches):
+  - …
+- **Move** (norm to state, ritual to run, or coaching conversation to have):
+  - …
+- **Kept blameless?** (focus on the system and behavior, not fault): yes / no — how:
+  - …
+- **Follow-up** (owner + when):
+  - …
+
+### Blameless retro (60 min) — if the moment is an incident
+
+1. Timeline (10 min): what happened, in order, no blame.
+2. Contributing factors (20 min): system, process, and decision factors — not people.
+3. What we learned (15 min): surprises, gaps, near-misses.
+4. Fixes (10 min): owner + due date for each; no punishment items.
+5. Close (5 min): restate the safety/learning principle this reinforces.
 
 ## 1) Culture Snapshot (Current State)
 
 ### Context
-- Team:  
-- Size/composition:  
-- Working model:  
-- Stage/constraints:  
+- Team:
+- Size/composition:
+- Working model:
+- Stage/constraints:
 
-### What’s true today (lived culture)
+### What's true today (lived culture)
 - **Strengths to preserve (3–5):**
   - …
 - **Friction / gaps (3–7):**
@@ -24,7 +51,7 @@ Use these templates to produce the “Team Culture Operating System Pack”.
 
 ### Diagnosis
 - **Root causes:** (structure, incentives, norms, leadership behaviors)
-- **Sacred cows to examine:** (what’s “untouchable” and why)
+- **Sacred cows to examine:** (what's "untouchable" and why)
 - **Where psychological safety breaks:** (who stays silent, after mistakes, in conflict)
 - **Where stagnation shows up:** (lack of ambition, creativity, visible progress)
 
@@ -36,43 +63,43 @@ Why this culture exists; what outcomes it enables.
 ### Principles (3–7)
 
 #### Principle 1: <Name>
-- **Definition:**  
-- **Do:**  
+- **Definition:**
+- **Do:**
   - …
-- **Don’t:**  
+- **Don't:**
   - …
-- **Decision rules:**  
-  - If <dilemma>, then <default>.  
-- **Anti-patterns:**  
+- **Decision rules:**
+  - If <dilemma>, then <default>.
+- **Anti-patterns:**
   - …
-- **Signals (healthy):**  
+- **Signals (healthy):**
   - …
 
 (Repeat for each principle)
 
 ### How we make decisions here
-- Decision model (DRI/DACI/RAPID):  
-- How we disagree and commit:  
-- Where decisions get documented:  
+- Decision model (DRI/DACI/RAPID):
+- How we disagree and commit:
+- Where decisions get documented:
 
 ## 3) Team Norms
 
 ### Communication
-- Async vs sync defaults:  
-- Response time expectations:  
-- Documentation norms:  
-- Escalation norms:  
+- Async vs sync defaults:
+- Response time expectations:
+- Documentation norms:
+- Escalation norms:
 
 ### Meetings
-- When to schedule a meeting:  
-- Standard agenda template:  
-- Facilitation rules (airtime, safety, timeboxing):  
-- Decision capture (notes + owner):  
+- When to schedule a meeting:
+- Standard agenda template:
+- Facilitation rules (airtime, safety, timeboxing):
+- Decision capture (notes + owner):
 
 ### Feedback & conflict
-- How to challenge ideas:  
-- How to give feedback (format):  
-- Repair after conflict:  
+- How to challenge ideas:
+- How to give feedback (format):
+- Repair after conflict:
 
 ## 4) Rituals & Cadence Map
 
@@ -84,19 +111,19 @@ Why this culture exists; what outcomes it enables.
 ## 5) Rollout + Reinforcement Plan (30/60/90)
 
 ### 0–30 days (listen + draft)
-- Listening plan:  
-- Draft artifacts to produce:  
-- Socialization moments:  
+- Listening plan:
+- Draft artifacts to produce:
+- Socialization moments:
 
 ### 31–60 days (pilot + reinforce)
-- 1–2 rituals to pilot:  
-- Norms to roll out first:  
-- Coaching approach:  
+- 1–2 rituals to pilot:
+- Norms to roll out first:
+- Coaching approach:
 
 ### 61–90 days (embed + iterate)
-- Hiring/onboarding hooks:  
-- Recognition/reward hooks:  
-- Iteration cadence:  
+- Hiring/onboarding hooks:
+- Recognition/reward hooks:
+- Iteration cadence:
 
 ## 6) Measurement Plan
 
@@ -104,11 +131,11 @@ Why this culture exists; what outcomes it enables.
 - Indicator: definition, how measured, target
 
 ### Pulse questions (pick 5–8)
-- “I feel safe raising concerns on this team.” (1–5)
-- “Decisions are made quickly and clearly.” (1–5)
-- “We learn from mistakes without blame.” (1–5)
-- “I understand what ‘great’ looks like here.” (1–5)
-- “We make visible progress week to week.” (1–5)
+- "I feel safe raising concerns on this team." (1–5)
+- "Decisions are made quickly and clearly." (1–5)
+- "We learn from mistakes without blame." (1–5)
+- "I understand what 'great' looks like here." (1–5)
+- "We make visible progress week to week." (1–5)
 
 ## 7) Risks / Open Questions / Next Steps
 
@@ -120,4 +147,3 @@ Why this culture exists; what outcomes it enables.
 
 ### Next steps (smallest experiments first)
 - …
-

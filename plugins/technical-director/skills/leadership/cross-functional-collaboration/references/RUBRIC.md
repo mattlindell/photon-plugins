@@ -13,7 +13,7 @@ Score the Collaboration Pack before finalizing. Total score helps decide whether
 5 = Full map; incentives/concerns clear; no surprise approvers likely
 
 ## 3) Roles, expectations, and decision rights
-1 = “Everyone owns it”; decision rights unclear  
+1 = "Everyone owns it"; decision rights unclear  
 3 = Responsibilities exist; escalation triggers vague  
 5 = Contract is explicit; decision rights + triggers + review cadence are clear
 
@@ -34,6 +34,6 @@ Score the Collaboration Pack before finalizing. Total score helps decide whether
 
 ## Interpreting scores
 - **26–30:** ship as-is
-- **20–25:** ship with explicit assumptions + a short “unknowns” list
+- **20–25:** ship with explicit assumptions + a short "unknowns" list
 - **< 20:** do another intake round (max 5 questions) before finalizing
 

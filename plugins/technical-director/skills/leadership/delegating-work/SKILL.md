@@ -1,115 +1,79 @@
 ---
 name: "delegating-work"
-description: "Create a Delegation Pack (delegation brief, decision rights, context handoff, check-in cadence, review plan, debrief). Use for delegation, letting go, empowering reports, and avoiding micromanagement."
+description: "Delegate a specific task, project, or decision right now — pick the level of authority, write the brief, transfer context, and set check-ins — or design a standing delegation system that grows your team without dropping accountability."
+disable-model-invocation: true
 ---
 
 # Delegating Work
 
-## Scope
+## Delegation is how you build owners, not just how you offload
 
-**Covers**
-- Delegating a specific project/problem/decision to a direct report (or cross-functional owner)
-- Transferring **context without control** (clear outcomes + guardrails, not step-by-step instructions)
-- Setting **decision rights**, check-in cadence, and “in-the-details” quality reviews without micromanaging
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Help me delegate this project/task to someone on my team.”
-- “I’m holding onto too much / I need to give away my Lego.”
-- “I’m worried I’m micromanaging—how do I stay in the details but empower ownership?”
-- “Draft a delegation brief + decision rights + check-in plan.”
+- **Delegate outcomes, not tasks.** Hand over the "what," the "why," and the guardrails, then let the owner choose the "how." Define "done" up front — a handed-over task list is an assignment, not delegation.
+- **Match the level of authority to readiness.** Set an explicit level — recommend, decide-with-guardrails, or fully own — calibrated to the person's experience with this kind of work, and raise it as they earn it.
+- **Delegation grows people, not just your calendar.** Choose work partly for its learning value and pick owners who will stretch. Offloading to clear your plate is a side effect, not the point.
+- **Stay accountable without taking it back.** You remain answerable for the outcome, so review the details through artifacts and criteria — never through dictating the path, and never by letting the work snap back to you.
 
-**When NOT to use**
-- The work is primarily a **performance problem** (use coaching/feedback workflows instead)
-- You need to decide *what* work to do (prioritization/scope first)
-- You lack a clear outcome, constraints, or success criteria (do a quick problem-definition first)
+## When to use / not
 
-## Inputs
+Use to delegate a specific piece of work right now, calibrate decision rights on something already in flight, break a micromanaging habit, design a standing delegation system, or debrief a finished handoff.
 
-**Minimum required**
-- The work item to delegate (project/problem/decision) + why now
-- Desired outcome (definition of done) + success metrics or acceptance criteria
-- Constraints/non-negotiables (timeline, budget, quality bar, policies, stakeholders)
-- Delegatee context (role, current load, experience level, growth goals if relevant)
+Do **not** use for: a **performance problem** — that's coaching/feedback, not a delegation-design question; deciding *what* work should happen at all — do prioritization/scoping first; or a handoff with no clear outcome, constraints, or success criteria — run a quick problem-definition before delegating ambiguity.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md).
-- If details are unavailable, proceed with explicit assumptions and label unknowns.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To delegate a specific task/project/decision now | **A — Delegate this now** |
+| To set decision rights and guardrails on live work | **B — Calibrate authority** |
+| To stop micromanaging / let go of work they're holding | **C — Rebalance & let go** |
+| To design a standing delegation system for the team | **D — Delegation operating system** |
+| To debrief a finished delegation and make ownership stick | **E — Debrief & durable ownership** |
 
-Produce a **Delegation Pack** (Markdown in-chat, or files if requested) in this order:
-1) **Delegation brief** (outcome, context, constraints, stakeholders, timeline)
-2) **Decision rights + guardrails** (what they can decide, escalation triggers, review points)
-3) **Context handoff pack** (links, background, “known gotchas”, example outputs)
-4) **Execution cadence** (check-ins, update format, what “good” looks like)
-5) **Review plan** (how to be in the details without telling them how to do it)
-6) **Debrief plan** (learning capture + ownership updates)
-7) **Risks / Open questions / Next steps** (always included)
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets.
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)
+## Branch A — Delegate this now (the workhorse)
 
-## Workflow (8 steps)
+The frequent, in-the-moment use. Produce a one-page delegation brief, not a system.
 
-### 1) Frame the delegation decision
-- **Inputs:** Work item + why now; constraints.
-- **Actions:** Define the outcome, the “why” (business context), and what must not change (non-negotiables). Decide what “good” looks like.
-- **Outputs:** Draft Delegation Brief (top section).
-- **Checks:** The outcome is measurable/testable (someone can say “done” unambiguously).
+1. **Frame the outcome.** State what "done" looks like (testable), why it matters now, and the non-negotiables that must not change. Levels and defaults: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** someone can say "done" unambiguously and the red lines are written down.
+2. **Pick the owner and set the level of authority.** Choose recommend / decide-with-guardrails / fully own based on their readiness, and name what they decide vs. what you decide.
+   **Done when:** both of you can repeat "which decisions are yours vs. mine."
+3. **Transfer context, not instructions.** Share the background, prior decisions, stakeholders, and known gotchas so the owner can reason independently — resist prescribing the path.
+   **Done when:** the owner can restate the problem, constraints, and success criteria in their own words.
+4. **Set check-ins and hand it off.** Agree the cadence, update format, and escalation triggers; let the owner propose the plan and milestones. Working sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** the brief is filled, a first check-in is booked, and the owner owns the plan.
 
-### 2) Pick the owner + choose the autonomy level
-- **Inputs:** Candidate owner(s); their experience and growth goals.
-- **Actions:** Select the delegatee. Set an explicit autonomy level (e.g., “propose + I approve” vs “you decide, inform me”). Call out which parts are “on assignment” vs “high flexibility.”
-- **Outputs:** Owner + autonomy statement + boundaries.
-- **Checks:** Both of you can repeat: “What decisions are yours vs mine?”
+Deliverable: a completed **Delegation Brief / Handoff Sheet** — outcome, authority level, context, decision rights, and check-in cadence.
 
-### 3) Transfer context (not instructions)
-- **Inputs:** Background docs; prior decisions; stakeholders; constraints.
-- **Actions:** Provide full context so the owner can connect the dots. Share the “why”, the tradeoffs, and known pitfalls. Avoid prescribing the exact path.
-- **Outputs:** Context Handoff Pack.
-- **Checks:** Owner can explain the problem, constraints, and success criteria in their own words.
+## Branch B — Calibrate authority & guardrails
 
-### 4) Define decision rights + guardrails
-- **Inputs:** Non-negotiables; risks; stakeholders.
-- **Actions:** Write decision rights, escalation triggers, and review points. Set “red lines” (quality, policy, safety, customer impact).
-- **Outputs:** Decision Rights + Guardrails.
-- **Checks:** Escalation triggers are specific (not “if it feels risky”).
+Work is already assigned, but decision rights, escalation, and review points are fuzzy. Name the authority level, write the specific escalation triggers (thresholds, not "if it feels risky"), and schedule artifact-based review points. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 5) Align on plan + milestones (owner-led)
-- **Inputs:** Draft Delegation Brief + guardrails.
-- **Actions:** Ask the owner to propose a plan, milestones, and tradeoffs. Act as a thought partner: ask questions instead of giving the answer.
-- **Outputs:** Milestone plan + first-week plan.
-- **Checks:** Plan has milestones tied to outcomes, not just activities.
+**Done when:** the owner knows exactly what they can decide, which thresholds pull you in, and when you'll review which artifacts.
 
-### 6) Set the execution cadence
-- **Inputs:** Timeline; team routines; stakeholder needs.
-- **Actions:** Set check-in frequency, update format, and what you want to see (risks, decisions, asks). Establish how you’ll “refuse to rule” unless a trigger is hit.
-- **Outputs:** Cadence + Update Template.
-- **Checks:** Check-ins focus on outcomes/risks/decisions, not task-by-task status.
+## Branch C — Rebalance & let go
 
-### 7) Review in the details without micromanaging
-- **Inputs:** Work artifacts; review points.
-- **Actions:** Review output quality via artifacts (docs, specs, results) and criteria. When the team is struggling with the *right* problems, step back. When it’s the wrong problem, intervene with clarity on outcome/guardrails.
-- **Outputs:** Review notes + decisions (approve/adjust/escalate).
-- **Checks:** Feedback is framed as “quality bar + constraints” (not “do it my way”).
+For the manager holding too much or hovering. Audit your plate against readiness on the team, decide what to hand off and to whom, raise autonomy where failure cost is low and learning value is high, and get out of the details. Anti-patterns and "context, not control": [references/WORKFLOW.md](references/WORKFLOW.md); self-check: [references/CHECKLISTS.md](references/CHECKLISTS.md).
 
-### 8) Close the loop (debrief + “give away the Lego”)
-- **Inputs:** Final deliverable; what happened; learnings.
-- **Actions:** Debrief what worked/what didn’t, update ownership maps, and explicitly acknowledge the new owner. Capture improvements to templates/guardrails.
-- **Outputs:** Debrief notes + next delegation candidates.
-- **Checks:** Ownership is durable (not “it snaps back to you” after delivery).
+**Done when:** at least one item has a new owner with an explicit authority level, and you've named the review criteria you'll use instead of hovering.
 
-## Quality gate (required)
-- Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+## Branch D — Delegation operating system
+
+The standing approach across your reports so delegation is consistent, not ad hoc: default authority levels by readiness, an ownership map (RACI/DRI), escalation and cadence defaults, and a personal "give away the Legos" plan. Frameworks: [references/WORKFLOW.md](references/WORKFLOW.md); templates: [references/TEMPLATES.md](references/TEMPLATES.md). Finish by passing [references/CHECKLISTS.md](references/CHECKLISTS.md), scoring with [references/RUBRIC.md](references/RUBRIC.md), and closing with **Risks / Open questions / Next steps**.
+
+**Done when:** each report has a default authority level and an ownership map exists, with escalation and cadence defaults written down.
+
+## Branch E — Debrief & durable ownership
+
+After delivery, close the loop so the handoff compounds. Debrief what worked and what didn't, capture wrong assumptions and missing guardrails, improve the templates, and update "who owns what" so the work doesn't snap back to you. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** learnings are captured as concrete changes and ownership is durable — maintenance and the next iteration are assigned, not defaulting back to you.
 
 ## Examples
 
-**Example 1:** “Delegate discovery + recommendation for improving onboarding activation to my PM.”  
-Expected: delegation brief, decision rights (what PM decides vs escalates), context pack (data + constraints), weekly cadence, review plan for the final recommendation doc.
-
-**Example 2:** “Delegate building a lightweight internal tool to an engineer, but I’m worried about security/compliance.”  
-Expected: guardrails + escalation triggers, clear non-negotiables, review points for design + launch readiness, and a debrief plan.
-
-**Boundary example:** “Delegate ‘make the company strategy better.’”  
-Response: require a narrower outcome (decision to support, artifacts, time box) before producing the Delegation Pack.
-
+- *"Help me hand the onboarding-activation project to my PM in six weeks."* → **Branch A**: a delegation brief with the activation metric as the outcome, PM decides the research approach and escalates scope/timeline slips, a context pack, and a weekly artifact review.
+- *"I'm buried and I think I'm micromanaging my leads — help me let go."* → **Branch C**: audit what to hand off, raise autonomy where failure cost is low, and switch from hovering to criteria-based artifact reviews.
+- *"Delegate 'make the company strategy better' to someone."* → out of scope until narrowed: require a concrete decision to support, the artifacts expected, and a time box before delegating — otherwise you're delegating ambiguity.

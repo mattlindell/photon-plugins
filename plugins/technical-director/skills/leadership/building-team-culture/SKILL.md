@@ -1,117 +1,80 @@
 ---
 name: "building-team-culture"
-description: "Build or refresh a team culture and produce a Team Culture Operating System Pack (culture snapshot, culture code, norms, rituals, rollout + measurement plan). Use for team culture, culture code, team values, team norms, psychological safety, and coaching culture. Category: Hiring & Teams."
+description: "Build or refresh a team's culture: diagnose what is real today, articulate it as principles and decision rules, and reinforce it through norms, rituals, hiring, and onboarding."
+disable-model-invocation: true
 ---
 
 # Building Team Culture
 
-## Scope
+## Culture is what the team does when no one is watching
 
-**Covers**
-- Diagnosing the *current* culture (strengths, gaps, “sacred cows”, and where psychological safety breaks)
-- Articulating culture as an **operating system** (principles → behaviors → decision rules)
-- Defining **team norms** (communication, meetings, decisions, feedback, conflict)
-- Designing a lightweight **rituals/cadence** map that reinforces the culture
-- Planning rollout + reinforcement (coaching model, hiring/onboarding hooks, measurement)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “Create a culture code / values and behaviors for my team.”
-- “Our team norms are unclear—write decision-making + communication norms.”
-- “Psychological safety is low—propose concrete practices and rituals to fix it.”
-- “We’re scaling fast—help us preserve what works and change what doesn’t.”
-- “I’m a new leader—help me listen first and then evolve the culture.”
+- **Articulate before you invent.** Name the culture that already exists — what it rewards and punishes — before you design a new one. People must recognize themselves in the snapshot without feeling caricatured.
+- **Culture is a decision-making system.** Values only matter when they change what someone does when the boss is not in the room. For each principle, answer: "What decision does this change?"
+- **Reinforce by coaching, not policing.** Culture spreads through rituals, hiring signals, onboarding, and what leaders model — never through announcing a document. If the plan stops at "publish the culture code," it will not stick.
+- **Listen first, especially when you are new.** Gather concrete, lived evidence before proposing change. Coming in swinging burns the trust you need to change anything.
 
-**When NOT to use**
-- You need an HR/legal investigation, harassment response, or policy/compliance guidance (involve HR/legal)
-- You need to design a full org restructure, comp bands, or performance management system
-- You need to run user/customer research (use `conducting-user-interviews`) or design a full survey instrument (use `designing-surveys`)
+## When to use / not
 
-## Inputs
+Use to stand up or refresh a team culture, diagnose what the culture actually is today, write a culture code, define norms and rituals, or reinforce culture in a specific moment.
 
-**Minimum required**
-- Team context: function, size, seniority mix, reporting line, stage (startup/scale/enterprise)
-- Working model: remote/hybrid/in-office; time zones; any planned org changes
-- Current symptoms with 2–5 examples (e.g., slow decisions, blame, low ownership, stagnation)
-- Desired outcomes: what should be *more true* in 4–12 weeks?
-- Constraints: timeline, leadership support, meeting/time budget, “non-negotiables”
-- Existing artifacts (if any): values, handbook, onboarding, meeting cadences, principles
-- Confidentiality constraints (avoid names/PII; use anonymized examples)
+Do **not** use for: an HR/legal investigation, harassment response, or compliance matter — route to HR/legal and protect safety first (offer to help with culture articulation later); an org restructure, comp bands, or performance-management system — out of scope; or user/customer research (use **conducting-user-interviews**) or a formal survey instrument (use **designing-surveys**).
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md) (3–5 at a time).
-- If specifics are missing, proceed with a **default** culture OS and clearly label assumptions.
-- Do not request secrets or personally identifying details; ask for redacted summaries instead.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To build or refresh the whole culture system | **A — Culture operating system** |
+| To find out what the culture actually is today | **B — Culture snapshot** |
+| To write the culture code (principles → behaviors) | **C — Culture code** |
+| To turn principles into norms and rituals | **D — Norms & rituals** |
+| To reinforce or repair culture in a specific moment | **E — Culture moment** |
 
-Produce a **Team Culture Operating System Pack** in Markdown (in-chat; or as files if requested):
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets or PII, and anonymize examples.
 
-1) **Culture snapshot** (what’s true today; strengths/gaps; root causes; “sacred cows”)
-2) **Culture code (v1)** (3–7 principles, each with behaviors, “do/don’t”, decision rules, anti-patterns)
-3) **Team norms** (communication, meetings, decisions, feedback, conflict)
-4) **Rituals & cadence map** (weekly/monthly/quarterly rituals with purpose + owner)
-5) **Rollout + reinforcement plan** (socialization, coaching model, hiring/onboarding hooks)
-6) **Measurement plan** (leading indicators + pulse questions)
-7) **Risks / Open questions / Next steps** (always)
+## Branch A — Build the culture operating system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)  
-Expanded guidance: [references/WORKFLOW.md](references/WORKFLOW.md)
+1. **Frame goals and route risk.** Confirm what should be more true in 4–12 weeks, the constraints, and the non-negotiables. If the request carries HR/legal risk, pause and route it.
+   **Done when:** the target state is observable and sensitive topics are routed away from this skill.
+2. **Build the culture snapshot** (Branch B) so change rests on evidence, not opinion.
+   **Done when:** the snapshot separates *stated* from *lived* culture with anonymized examples.
+3. **Diagnose the few moves that matter.** Pick 2–4 priority shifts, each with a leading indicator. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** each focus area has observable behaviors to watch within weeks.
+4. **Write the culture code** (Branch C) and **operationalize it into norms and rituals** (Branch D).
+   **Done when:** every principle maps to at least one behavior, decision rule, and reinforcing ritual.
+5. **Plan rollout and reinforcement.** Design onboarding, hiring signals, recognition, and a coaching model across a 30/60/90 view; add a lightweight measurement plan. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** reinforcement exists beyond "announce the doc," with owners and pulse questions.
+6. **Quality gate and finalize.** Pass [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), propose the smallest 1–2 experiments to start, and close with **Risks / Open questions / Next steps**.
 
-## Workflow (7 steps)
+Deliverable: a **Team Culture Operating System** — snapshot, culture code, norms, rituals map, rollout, and measurement plan.
 
-### 1) Intake + constraints + safety
-- **Inputs:** user context; [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Confirm goals, constraints, and what *must not* change. Identify whether the request includes HR/legal risk; if yes, pause and recommend HR/legal involvement. Clarify what artifacts the user wants (culture code only vs full pack).
-- **Outputs:** Context snapshot + assumptions/unknowns list.
-- **Checks:** Decision owner and timeline are explicit; sensitive topics are routed appropriately.
+## Branch B — Culture snapshot (listen first)
 
-### 2) “Listen first”: build a culture snapshot (don’t invent culture yet)
-- **Inputs:** current symptoms; existing artifacts; any examples the user can share.
-- **Actions:** Summarize what the culture rewards/punishes today. Propose a lightweight “listening tour” plan (questions + who to talk to) if the user hasn’t collected input yet.
-- **Outputs:** Draft culture snapshot (strengths, gaps, root causes, tensions, sacred cows).
-- **Checks:** Snapshot is evidence-based (examples), not generic; it distinguishes *stated* vs *lived* culture.
+Capture what is true today before touching anything. Map stated vs lived culture, decision and conflict patterns, ownership, psychological-safety signals, and sacred cows. If the user has no input yet, propose a two-week listening tour (6–8 questions across roles/levels). Listening prompts and snapshot structure: [references/WORKFLOW.md](references/WORKFLOW.md); template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 3) Diagnose the few moves that matter
-- **Inputs:** culture snapshot.
-- **Actions:** Pick 2–4 priority culture shifts. Identify where “stagnation” exists (lack of visible progress/ambition) and what to change to increase creativity and customer impact. List sacred cows to challenge (and why).
-- **Outputs:** Prioritized culture focus areas + success signals.
-- **Checks:** Each focus area has a leading indicator (observable behaviors within weeks).
+**Done when:** the snapshot is evidence-based (anonymized examples), distinguishes stated from lived culture, and names the sacred cows.
 
-### 4) Articulate culture as an operating system (culture code v1)
-- **Inputs:** focus areas; existing values; constraints.
-- **Actions:** Write 3–7 principles. For each: definition, behaviors, do/don’t, decision rules, and anti-patterns. Prefer **articulating what already works** and making gaps explicit.
-- **Outputs:** Culture code (v1) using [references/TEMPLATES.md](references/TEMPLATES.md).
-- **Checks:** Every principle has behavior-level examples; “culture fit” language is replaced with observable standards.
+## Branch C — Culture code
 
-### 5) Turn principles into norms + rituals (make it real)
-- **Inputs:** culture code (v1); team operating reality.
-- **Actions:** Define explicit norms (communication, meetings, decisions, feedback, conflict). Design rituals that reinforce principles (e.g., weekly customer-impact demo, blameless retro, coaching 1:1s). Assign owners and cadences.
-- **Outputs:** Team norms + rituals/cadence map.
-- **Checks:** Rituals have a purpose and an owner; norms reduce ambiguity in common failure modes.
+Write 3–7 principles. For each: definition, do/don't behaviors, decision rules for common dilemmas, anti-patterns, and healthy signals. Prefer articulating what already works; replace vague "culture fit" with observable standards. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 6) Reinforcement plan (coaching > policing)
-- **Inputs:** culture code + norms + rituals.
-- **Actions:** Design how the culture will be taught and reinforced: onboarding, hiring signals, promotion expectations, and a lightweight coaching model (peer or craft coaches, not just managers).
-- **Outputs:** Rollout + reinforcement plan (with a 30/60/90-day view).
-- **Checks:** Reinforcement mechanisms exist beyond “announce the doc”; responsibilities are assigned.
+**Done when:** each principle is behavior-based with a decision rule and at least one anti-pattern.
 
-### 7) Quality gate + finalize
-- **Inputs:** full draft pack.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**. Recommend the smallest next experiment (1–2 rituals or norms) to validate impact.
-- **Outputs:** Final Team Culture Operating System Pack.
-- **Checks:** Pack is actionable and internally consistent; tradeoffs and risks are explicit.
+## Branch D — Norms & rituals
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+Define explicit norms (communication, meetings, decisions, feedback, conflict) that reduce ambiguity in common failure modes, and design rituals that reinforce specific principles — each with a purpose, cadence, owner, and written output. Include at least one "visible progress" ritual to counter stagnation. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** every ritual maps to a principle and has an owner and an output; norms address the team's real failure modes.
+
+## Branch E — Culture moment
+
+The frequent, in-the-moment use: reinforce or repair culture around a specific event — a blameless retro after an incident, writing one norm to fix a recurring friction, or responding to a behavior that violated a principle. Name the behavior observed, tie it to the principle at stake, choose the norm to state or ritual to run, and set a follow-up. Working sheet: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** the moment is handled as coaching (behavior → impact → the principle it touches), not policing, with a concrete follow-up.
 
 ## Examples
 
-**Example 1 (new leader, listen-first):** “I’m a new Head of Product joining a remote team of 14. Culture feels low-trust and decisions are slow. Create a culture snapshot, a culture code, and explicit decision-making + meeting norms. Include a 30/60/90 rollout and measurement plan.”  
-Expected: full pack with clear norms and rituals; no generic values.
-
-**Example 2 (scaling + coaching culture):** “We’re growing from 8 → 25. I want to preserve high ownership while adding more coordination. Draft a culture code and a coaching model, plus rituals that keep ambition and creativity high.”  
-Expected: principles + behaviors, coaching model, rituals/cadence map.
-
-**Boundary example:** “We have a harassment complaint and need to ‘fix our culture’ immediately.”  
-Response: direct to HR/legal for investigation and safety; offer to help later with culture articulation, norms, and reinforcement once appropriate.
+- *"Our 1:1s aside, the team's norms are unclear and decisions stall — build us a real culture."* → **Branch A**: evidence-based snapshot, culture code, decision + meeting norms, and a 30/60/90 rollout.
+- *"We just had a messy incident — help me run the retro so it doesn't turn into blame."* → **Branch E**: a blameless retro tied to the safety/learning principle, with follow-ups limited to fixes, not fault.
+- *"We have a harassment complaint and need to fix our culture now."* → out of scope: route to HR/legal for investigation and safety; offer to help with culture articulation and norms once appropriate.

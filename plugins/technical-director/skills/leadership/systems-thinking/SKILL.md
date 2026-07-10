@@ -1,120 +1,72 @@
 ---
 name: "systems-thinking"
-description: "Apply systems thinking to leadership decisions and produce a Systems Thinking Pack (system boundary, actors & incentives map, feedback loops, second-order effects ledger, leverage points, intervention plan). Use for complex ecosystems, trade-offs, org/process redesign, and preventing unintended consequences."
+description: "Apply systems thinking to a leadership decision: map actors and incentives, find the feedback loops and leverage points, trace second- and third-order effects, and design interventions that don't backfire."
+disable-model-invocation: true
 ---
 
 # Systems Thinking
 
-## Scope
+## Symptoms are downstream of structure
 
-**Covers**
-- Seeing the “whole system” behind a problem (actors, incentives, feedback loops, culture/rules)
-- Anticipating second- and third-order effects (including time delays)
-- Finding leverage points (small changes with outsized impact)
-- Converting recurring pain into a reusable system (process, automation, or operating mechanism)
+Anchor every choice below to four ideas:
 
-**When to use**
-- “This is a complex ecosystem; we’re missing the bigger picture.”
-- “What are the second-order effects if we do X?”
-- “We keep solving symptoms—what’s the system causing this?”
-- “Map the players + incentives and how they interact.”
-- “We need to redesign a process/org without unintended consequences.”
+- **Symptoms are downstream of structure.** Recurring pain is a system producing it on purpose. Treat a symptom as an entry point, not the root cause — fixing it without touching the structure just moves the pain.
+- **Every move ripples.** Other actors adapt, so second- and third-order effects (and their time delays) matter more than the immediate one. For any move, name who wins, who loses, and what constraint tightens over time.
+- **A useful boundary beats a complete one.** Draw the system tight enough to act on and wide enough to catch the externalities that bite. "Everything" prevents decisions; too narrow ignores the incentives and culture that drive behavior.
+- **Leverage over effort.** Hunt for the small change with outsized impact — incentives, information flows, rules — and prefer building a system over solving the same problem again next quarter.
 
-**When NOT to use**
-- The problem is simple/linear and mostly execution (use a project plan/timeline).
-- You need primary user research or data you don’t have (do discovery first).
-- You need deep quantitative forecasting/simulation (this skill produces a qualitative map + risks, not a full model).
-- The decision is low-impact and fully reversible (don’t over-invest).
+## When to use / not
 
-## Inputs
+Use to map a complex system, pressure-test a decision's ripple effects, find leverage points for a systemic pain, or turn recurring pain into a reusable system.
 
-**Minimum required**
-- The focal decision or problem statement (1–2 sentences)
-- Desired outcome + time horizon (default: 6–12 months)
-- Known constraints/guardrails (trust, safety, compliance, budget, headcount)
-- Known actors/stakeholders (teams, users, partners, regulators, vendors)
-- What has been tried already (and what happened)
+Do **not** use when: the problem is simple, linear, and mostly execution (use a project plan/timeline); you need primary research or data you don't have (do discovery first); you need quantitative forecasting or simulation (this produces a qualitative map and risk ledger, not a full model); or the decision is low-impact and fully reversible — don't over-invest in a two-way door.
 
-**Missing-info strategy**
-- Ask up to 5 questions from [references/INTAKE.md](references/INTAKE.md).
-- If answers aren’t available, proceed with clearly labeled assumptions and provide 2–3 alternative system framings/boundaries.
+## Pick the branch
 
-## Outputs (deliverables)
+| The user wants… | Branch |
+|---|---|
+| To map the whole system behind a problem | **A — Map the system** |
+| To pressure-test one decision's ripple effects | **B — Second-order check** |
+| To find leverage points for a known systemic pain | **C — Leverage + intervention** |
+| To turn recurring pain into a reusable system | **D — Build a system** |
 
-Produce a **Systems Thinking Pack** in Markdown (in-chat; or as files if requested) in this order:
+Gather missing context with [references/INTAKE.md](references/INTAKE.md) — ask ≤5 at a time, then proceed on labeled assumptions; never request secrets.
 
-1) **Context + System boundary** (goal, scope, non-scope, time horizon)
-2) **Actors & incentives map** (players, goals, constraints, power, conflicts)
-3) **System map** (key variables + causal links) + **feedback loops** (reinforcing/balancing) + **time delays**
-4) **Second-/third-order effects ledger** for the top 1–3 decisions
-5) **Leverage points** + **intervention plan** (actions, owners, sequencing, guardrails)
-6) **System-build opportunities** (what to automate/standardize to reduce recurring pain)
-7) **Risks / Open questions / Next steps** (required)
+## Branch A — Map the system
 
-Templates: [references/TEMPLATES.md](references/TEMPLATES.md)
+The full diagnostic. Produce a shareable system map a reader can act on without a live meeting.
 
-## Workflow (8 steps)
+1. **Frame the focal problem + boundary.** Restate the decision or problem (not a solution in disguise), the desired outcome, and the time horizon; draw a boundary that's actionable, with 1–3 outcome metrics and a few leading indicators. Template: [references/TEMPLATES.md](references/TEMPLATES.md).
+   **Done when:** scope and non-scope are explicit and the problem isn't a solution in disguise.
+2. **Map actors + incentives.** Enumerate players with what they optimize for, their constraints, their power, and their likely behavior if nothing changes. Include invisible actors — policies, culture, platform constraints — when relevant. Heuristics: [references/WORKFLOW.md](references/WORKFLOW.md).
+   **Done when:** at least one incentive conflict is named and no major actor is missing.
+3. **Build the causal map + loops.** List concrete, observable variables and directional causal links (A increases/decreases B), mark time delays, then extract the reinforcing and balancing loops with a "so what" for each.
+   **Done when:** links are testable (no undefined abstractions like "quality") and 2+ feedback loops each have a stated pattern-over-time.
+4. **Trace effects + choose leverage.** Run the second-/third-order ledger on the top 1–3 candidate moves (branch **B**), then pick leverage points and design interventions (branch **C**), including at least one system-build opportunity (branch **D**). Then run [references/CHECKLISTS.md](references/CHECKLISTS.md), score with [references/RUBRIC.md](references/RUBRIC.md), and close with **Risks / Open questions / Next steps**.
+   **Done when:** each intervention has an owner, a leading indicator, a guardrail, and a rollback condition, and tradeoffs are explicit.
 
-### 1) Intake + pick the focal decision/problem
-- **Inputs:** User context; use [references/INTAKE.md](references/INTAKE.md).
-- **Actions:** Restate the focal decision/problem, desired outcome, and time horizon; list constraints/guardrails.
-- **Outputs:** Draft **Context + System boundary**.
-- **Checks:** The problem is not a solution in disguise; scope and non-scope are explicit.
+## Branch B — Second-order check
 
-### 2) Define the system boundary (what’s “in” vs “out”)
-- **Inputs:** Problem statement + constraints.
-- **Actions:** Choose a boundary that is useful (not everything). Name the primary outcome metric(s) and a few leading indicators.
-- **Outputs:** Boundary statement + success measures.
-- **Checks:** Boundary is tight enough to act on, but wide enough to include key externalities.
+The workhorse. Pressure-test a specific move's ripple effects fast. Ledger template: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 3) Map actors + incentives (multi-agent reality)
-- **Inputs:** Boundary + stakeholder list.
-- **Actions:** Enumerate actors/players; capture incentives, constraints, power, and likely behaviors.
-- **Outputs:** **Actors & incentives map** (table).
-- **Checks:** Includes at least 1–2 “invisible” actors (e.g., policies, culture norms, platform constraints) if relevant.
+For the move, list first-order (immediate/local), second-order (how other actors respond and adapt), and third-order (long-term constraints, norm shifts, path dependence) effects. For each, name who wins, who loses, which constraints tighten or loosen, and what new loop you might create.
 
-### 4) Build a simple system map (variables + causal links)
-- **Inputs:** Actors map + known dynamics.
-- **Actions:** List key variables; map causal links (“A increases B”, “C decreases D”); mark time delays.
-- **Outputs:** **System map** (text/table) with 10–20 high-signal links.
-- **Checks:** Links are directional and testable; avoids buzzwords (“alignment”, “quality”) without definition.
+**Done when:** the move has at least one named unintended consequence and one mitigating action, with winners and losers made explicit.
 
-### 5) Identify feedback loops + time delays
-- **Inputs:** System map.
-- **Actions:** Extract reinforcing and balancing loops; note where delays create overshoot/oscillation; flag common traps.
-- **Outputs:** **Feedback loops** section (2–6 loops) + delays list.
-- **Checks:** Each loop has a short “so what” describing the pattern it creates.
+## Branch C — Leverage + intervention
 
-### 6) Run second-/third-order effects on 1–3 candidate moves
-- **Inputs:** Candidate decisions/actions.
-- **Actions:** For each move, enumerate first-, second-, and third-order effects; include who wins/loses and what constraints tighten over time.
-- **Outputs:** **Second-/third-order effects ledger**.
-- **Checks:** Includes at least one unintended consequence + one mitigating action per move.
+Find leverage points for a diagnosed systemic pain and turn them into a plan. Leverage categories (incentives, information flows, rules/policies, buffers/capacity, tools, interfaces) and design guidance: [references/WORKFLOW.md](references/WORKFLOW.md); plan table: [references/TEMPLATES.md](references/TEMPLATES.md).
 
-### 7) Choose leverage points + design interventions (including “build a system”)
-- **Inputs:** Loops + effects ledger.
-- **Actions:** Identify leverage points (policy, incentives, information flows, tooling, process); propose interventions; include at least one system-build/automation opportunity for recurring pain.
-- **Outputs:** **Leverage points + intervention plan** + **System-build opportunities**.
-- **Checks:** Each intervention has an owner, a measurable leading indicator, and a guardrail.
+**Done when:** 3–7 leverage points are tied to the loops/effects, and each intervention has an owner, sequencing, a leading indicator, a guardrail, and a stop condition.
 
-### 8) Quality gate + finalize pack
-- **Inputs:** All draft sections.
-- **Actions:** Run [references/CHECKLISTS.md](references/CHECKLISTS.md) and score with [references/RUBRIC.md](references/RUBRIC.md). Add **Risks / Open questions / Next steps**.
-- **Outputs:** Final **Systems Thinking Pack**.
-- **Checks:** A reader can act without a live meeting; trade-offs and uncertainties are explicit.
+## Branch D — Build a system
 
-## Quality gate (required)
-- Use [references/CHECKLISTS.md](references/CHECKLISTS.md) and [references/RUBRIC.md](references/RUBRIC.md).
-- Always include: **Risks**, **Open questions**, **Next steps**.
+Convert recurring pain into a reusable process, operating mechanism, or automation instead of re-solving it. Opportunity table: [references/TEMPLATES.md](references/TEMPLATES.md).
+
+**Done when:** the recurring pain, its root-driver hypothesis, the proposed default-on system, and a first small step are written down, with risks named.
 
 ## Examples
 
-**Example 1 (Org/process):** “Our on-call load keeps rising and teams are burned out. Map the system and propose leverage points.”  
-Expected: an actors/incentives map (teams, incidents, incentives), feedback loops (firefighting loop), effects ledger for candidate changes, and an intervention plan with guardrails.
-
-**Example 2 (Product ecosystem):** “We’re changing API pricing; what are the second-order effects across partners and customer segments?”  
-Expected: system boundary + actors map (customers/partners/internal), loops and delays, effects ledger, and a sequencing/mitigation plan.
-
-**Boundary example:** “Write a status update about this week’s tasks.”  
-Response: this skill is for complex systems/decisions. Suggest a project update format instead; only use this skill if there’s a systemic pattern to diagnose.
-
+- *"Our on-call load keeps rising and teams are burned out — map the system and propose leverage points."* → **Branch A** into **C**: actors/incentives map, a firefighting reinforcing loop, an effects ledger for candidate changes, and interventions with guardrails.
+- *"We're changing API pricing — what are the second-order effects across partners and segments?"* → **Branch B**: ledger of first/second/third-order effects with winners, losers, and mitigations across customers and partners.
+- *"Write a status update about this week's tasks."* → out of scope: this is for systemic patterns, not execution reporting; suggest a project-update format unless there's a system to diagnose.
