@@ -7,7 +7,7 @@ A Claude Code plugin marketplace — reusable agents, skills, and commands for a
 | Plugin                                            | Description                                                                                                                                                                                                                                                                                |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [php-development](plugins/php-development/)       | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 3 agents, 12 skills, 4 scaffold commands.                                                                                                                                                               |
-| [technical-director](plugins/technical-director/) | Technical direction across the development lifecycle: diagnosis, domain modeling, planning, specs and tickets, issue triage, TDD, code review, research, codebase design and architecture, prototyping, implementation, and repo-tooling guardrails. 25 skills across engineering, productivity, and misc buckets. |
+| [technical-director](plugins/technical-director/) | Technical direction and engineering leadership: an engineering workflow (diagnosis, domain modeling, planning, PRDs, issue triage, TDD, codebase design and architecture, prototyping, implementation, repo-tooling guardrails) plus a leadership category (1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings, decisions, and org design). 46 skills. |
 | [developer-workflow](plugins/developer-workflow/) | Developer workflow skills for daily tasks: CLAUDE.md authoring/auditing, a conventional-commit + gitmoji commit helper, and a git worktree manager with sibling-placement rules. 3 skills.                                                                                                 |
 | [nonprofit-toolkit](plugins/nonprofit-toolkit/)   | Nonprofit operations skills: a foundational organization profile builder plus grant writing, budget creation, donor thank-you communications, social media content, and volunteer scheduling. 6 skills.                                                                                    |
 | [project-manager](plugins/project-manager/)       | Project management and Atlassian work: Jira, Confluence, Atlassian administration and templates, Scrum Master sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. 8 skills; bundles the Atlassian Remote MCP server. |
@@ -46,8 +46,10 @@ claude --plugin-dir /path/to/photon-plugins/plugins/php-development
 
 ## Acknowledgments
 
-Plugin structure and approach inspired by [wshobson/agents](https://github.com/wshobson/agents).
+- Plugin structure and approach inspired by [wshobson/agents](https://github.com/wshobson/agents).
+- The `technical-director` engineering skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT).
+- The `technical-director` leadership skills are adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten.
 
 ## License
 
-MIT
+Released under the [MIT License](LICENSE) — use these however you want.

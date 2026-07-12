@@ -1,11 +1,18 @@
 # technical-director
 
-A Claude Code plugin for technical direction. Twenty-five skills shamelessly copied from [Matt Pocock's skill
-repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, planning, issue triage, TDD,
-codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
-organized into engineering, productivity, and misc buckets.
+A Claude Code plugin for technical direction and engineering leadership. Forty-six skills across two halves:
 
-**Version:** 3.0.0
+- **Engineering workflow** — twenty-two skills shamelessly copied from [Matt Pocock's skill
+  repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, planning, issue triage, TDD,
+  codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
+  organized into engineering, productivity, and misc buckets.
+- **Leadership** — twenty-four skills for managing a team and working across an organization: 1:1s, difficult
+  conversations, delegation, managing up, cross-functional collaboration, decisions, timelines, meetings, culture, and
+  org design. Six fire on their own; the rest are user-invoked and reachable through the `leadership` router. Adapted
+  from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since
+  substantially rewritten.
+
+**Version:** 3.1.0
 **Author:** Matt Lindell
 **License:** MIT
 
@@ -86,6 +93,33 @@ plugins/technical-director/
       setup-pre-commit/
         SKILL.md
         defaults/prettierrc.json
+    leadership/
+      README.md
+      leadership/SKILL.md               # the router (SKILL.md only)
+      # each skill below: SKILL.md + references/{INTAKE,WORKFLOW,TEMPLATES,CHECKLISTS,RUBRIC}.md
+      building-team-culture/
+      coaching-pms/
+      cross-functional-collaboration/
+      delegating-work/
+      energy-management/
+      engineering-culture/
+      evaluating-trade-offs/
+      having-difficult-conversations/
+      managing-timelines/
+      managing-up/
+      organizational-design/
+      organizational-transformation/
+      planning-under-uncertainty/
+      post-mortems-retrospectives/
+      running-decision-processes/
+      running-design-reviews/
+      running-effective-1-1s/
+      running-effective-meetings/
+      running-offsites/
+      setting-okrs-goals/
+      stakeholder-alignment/
+      systems-thinking/
+      team-rituals/
 ```
 
 ---
@@ -137,6 +171,39 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **git-guardrails-claude-code** | Install a Claude Code `PreToolUse` hook that blocks dangerous git commands (`push`, `reset --hard`, `clean`, `branch -D`, etc.) before they execute. |
 | **setup-pre-commit**           | Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests for JavaScript/TypeScript projects.                               |
+
+### Leadership
+
+Skills for managing a team and working across an organization. Each follows one shape: north-star principles, a branch router (design-a-system vs. a tactical "do this now" path), and reference files (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The six unmarked skills fire on their own; **(user)** skills are user-invoked only and reachable through the **leadership** router.
+
+Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten into the shape above.
+
+| Skill                                     | Description                                                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **leadership**                            | Router over the leadership skills — describe your situation and it points you to the right one.                        |
+| **running-effective-1-1s**                | Design a 1:1 operating system or prep a specific 1:1, skip-level, or career conversation.                              |
+| **having-difficult-conversations**        | Prep and deliver feedback, performance, promotion-denial, or (HR-gated) layoff/termination conversations.              |
+| **managing-timelines**                    | Turn a deadline into a plan or rescue a slipping one — milestones, RAG cadence, scope/change control.                  |
+| **managing-up**                           | Manage your boss: weekly updates, escalations and asks, boundary resets, and exec influence.                           |
+| **running-effective-meetings**            | Prep or run a specific meeting — decision/strategic/operational formats and meeting hygiene.                           |
+| **cross-functional-collaboration**        | Work across teams: defuse a conflict, unblock a dependency, or set decision rights.                                    |
+| **building-team-culture** _(user)_        | Team values, norms, and psychological safety.                                                                          |
+| **coaching-pms** _(user)_                 | Coach and develop product managers; leveling expectations and growth plans.                                            |
+| **delegating-work** _(user)_              | Hand off a task now or design a standing delegation system — decision rights without micromanaging.                    |
+| **energy-management** _(user)_            | Redesign your week around energy; recovery routines and burnout prevention.                                            |
+| **engineering-culture** _(user)_          | DevEx, clock speed, Conway's Law, blameless practices, and tech-debt calls.                                            |
+| **evaluating-trade-offs** _(user)_        | Cost-benefit, build vs buy, opportunity cost, and sunk-cost stop/continue calls.                                       |
+| **organizational-design** _(user)_        | Org structure, reorgs, team topology, and decision centralization.                                                     |
+| **organizational-transformation** _(user)_ | Move to a product operating model — change management and proof pilots.                                              |
+| **planning-under-uncertainty** _(user)_   | Hypotheses, experiments, buffers, and contingencies under ambiguity.                                                   |
+| **post-mortems-retrospectives** _(user)_  | Blameless post-mortems and retros — contributing factors, actions, and learning dissemination.                        |
+| **running-decision-processes** _(user)_   | Decision memos, RAPID/DACI, one-way vs two-way doors, and a decision log.                                              |
+| **running-design-reviews** _(user)_       | Design critique sessions — prioritized feedback and a decision record.                                                 |
+| **running-offsites** _(user)_             | Plan and run a team offsite or retreat — run-of-show and follow-through.                                               |
+| **setting-okrs-goals** _(user)_           | OKRs and goals with anti-gaming guardrails and a review cadence.                                                        |
+| **stakeholder-alignment** _(user)_        | Secure buy-in — pre-briefs, alignment meetings, and decision comms.                                                    |
+| **systems-thinking** _(user)_             | Feedback loops, second-order effects, leverage points, and interventions.                                              |
+| **team-rituals** _(user)_                 | A team's operating cadence of named, templated recurring rituals.                                                      |
 
 ---
 
