@@ -29,6 +29,7 @@ plugins/technical-director/
     engineering/
       README.md
       ask-matt/SKILL.md
+      code-review/SKILL.md
       codebase-design/
         SKILL.md
         DEEPENING.md
@@ -49,6 +50,7 @@ plugins/technical-director/
         SKILL.md
         LOGIC.md
         UI.md
+      research/SKILL.md
       resolve-merge-conflicts/SKILL.md
       setup-matt-pocock-skills/
         SKILL.md
@@ -60,14 +62,14 @@ plugins/technical-director/
       tdd/
         SKILL.md
         mocking.md
-        refactoring.md
         tests.md
-      to-issues/SKILL.md
-      to-prd/SKILL.md
+      to-spec/SKILL.md
+      to-tickets/SKILL.md
       triage/
         SKILL.md
         AGENT-BRIEF.md
         OUT-OF-SCOPE.md
+      wayfinder/SKILL.md
     productivity/
       README.md
       caveman/SKILL.md
@@ -126,7 +128,7 @@ plugins/technical-director/
 
 ### Engineering
 
-The Matt Pocock workflow pattern — design → PRD → issues → implement → refactor, anchored on `CONTEXT.md` and `docs/adr/`. Skills marked **(user)** are user-invoked only (`disable-model-invocation: true`); the rest carry trigger phrasing so the model can reach for them on its own.
+The Matt Pocock workflow pattern — design → spec → tickets → implement → refactor, anchored on `CONTEXT.md` and `docs/adr/`. Skills marked **(user)** are user-invoked only (`disable-model-invocation: true`); the rest carry trigger phrasing so the model can reach for them on its own.
 
 | Skill                                 | Description                                                                                                                                          |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -134,15 +136,18 @@ The Matt Pocock workflow pattern — design → PRD → issues → implement →
 | **grill-with-docs** _(user)_          | Grilling session that also builds the domain model — sharpens terminology and updates `CONTEXT.md` and ADRs as decisions crystallize.                |
 | **improve-codebase-architecture** _(user)_ | Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.                   |
 | **setup-matt-pocock-skills** _(user)_ | Scaffold the per-repo config (issue tracker, triage labels, domain doc layout) the other engineering skills consume. Run once per repo.             |
-| **to-prd** _(user)_                   | Turn the current conversation into a PRD and publish it to the issue tracker — no interview, just synthesis of what you've already discussed.        |
-| **to-issues** _(user)_                | Break any plan, spec, or PRD into independently-grabbable issues using tracer-bullet vertical slices.                                                |
-| **implement** _(user)_                | Implement a piece of work from a PRD or set of issues, leaning on `tdd` at pre-agreed seams, then reviewing the result.                              |
-| **prototype** _(user)_                | Build a throwaway prototype — a runnable terminal app for state/business-logic questions, or several radically different UI variations on one route. |
+| **to-spec** _(user)_                  | Turn the current conversation into a spec and publish it to the issue tracker — no interview, just synthesis of what you've already discussed.        |
+| **to-tickets** _(user)_               | Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — as text in a local file, or native blocking links on a real tracker. |
+| **implement** _(user)_                | Implement a piece of work from a spec or set of tickets, leaning on `tdd` at pre-agreed seams, then reviewing the result.                            |
+| **wayfinder** _(user)_                | Plan a huge chunk of work — more than one agent session can hold — as a shared map of investigation tickets, resolved one at a time until the way to the destination is clear. |
 | **triage** _(user)_                   | Move issues and external PRs through a state machine of triage roles — categorize, verify, grill if needed, and write agent-ready briefs.            |
+| **prototype**                         | Build a throwaway prototype — a runnable terminal app for state/business-logic questions, or several radically different UI variations on one route. |
 | **diagnosing-bugs**                   | Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimize → hypothesize → instrument → fix → regression-test.       |
+| **research**                          | Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.  |
 | **tdd**                               | Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.                                  |
 | **domain-modeling**                   | Actively build and sharpen a project's domain model — challenge terms, stress-test with scenarios, write the glossary and ADRs inline.              |
 | **codebase-design**                   | Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.                          |
+| **code-review**                       | Two-axis review of the diff since a fixed point — Standards (repo coding standards plus a Fowler smell baseline) and Spec (faithful to the originating spec or ticket?) — run as parallel sub-agents. |
 | **resolve-merge-conflicts**           | Resolve an in-progress git merge/rebase conflict by tracing each change to its original intent, then running the project's checks.                   |
 
 ### Productivity
@@ -209,9 +214,9 @@ Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills)
 **Idea → ship (the main flow):**
 
 1. **grill-with-docs** - sharpen the idea by interview against `CONTEXT.md` and ADRs
-2. **to-prd** - synthesize the resolved design into a PRD work item
-3. **to-issues** - break the PRD into independently-grabbable vertical slices
-4. **implement** - build each issue (fresh session per issue), leaning on **tdd** at pre-agreed seams
+2. **to-spec** - synthesize the resolved design into a spec work item
+3. **to-tickets** - break the spec into a set of tracer-bullet tickets, each declaring its blocking edges
+4. **implement** - build each ticket (fresh session per ticket), leaning on **tdd** at pre-agreed seams
 
 **Bug → fix:**
 
@@ -223,14 +228,14 @@ Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills)
 
 1. **improve-codebase-architecture** - find deepening opportunities, pick one, grill it
 2. **codebase-design** - apply the deep-module vocabulary to the chosen refactor
-3. **to-issues** → **implement** - land each refactor incrementally, behind tests
+3. **to-tickets** → **implement** - land each refactor incrementally, behind tests
 
 ---
 
 ## Issue Tracker
 
-Skills that publish artifacts (PRDs, work items, fix plans) - `to-prd`, `to-issues`, `triage-issue`, plus the deprecated
-`qa` and `request-refactor-plan` - read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
+Skills that publish artifacts (specs, work items, fix plans) - `to-spec`, `to-tickets`, `wayfinder`, and `triage` -
+read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
 publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown
 files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run
 **setup-matt-pocock-skills** to generate the config in one shot.
