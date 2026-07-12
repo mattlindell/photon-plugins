@@ -112,6 +112,7 @@ Create 2–3 options. Keep each option concrete and comparable.
 -  
 
 **Teams + charters (proposed):**
+
 | Team | Charter | Interfaces | Dependencies | Leadership roles |
 |---|---|---|---|---|
 |  |  |  |  |  |
@@ -172,6 +173,7 @@ Create 2–3 options. Keep each option concrete and comparable.
 **Guiding approach:** (pilot vs phased rollout vs big-bang; rationale)  
 
 ### A) Sequencing (phases)
+
 | Phase | Dates | What changes | Owners | Success checks |
 |---|---|---|---|---|
 |  |  |  |  |  |

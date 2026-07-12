@@ -78,6 +78,7 @@ Facilitation prompts:
 - "If we ship this, what might we regret?"
 
 ## 3) Feedback log (copy/paste table)
+
 | ID | Area/screen | Observation | Impact on user/business | Category (Value/Ease/Delight) | Severity (P0/P1/P2) | Suggested change | Owner | Due | Status |
 |---:|-------------|------------|--------------------------|-------------------------------|---------------------|------------------|-------|-----|--------|
 | 1 | | | | | | | | | |

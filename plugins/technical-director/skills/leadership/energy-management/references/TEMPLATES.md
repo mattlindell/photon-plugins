@@ -82,6 +82,7 @@ Quick prompt after an interaction:
 - **Recovery/admin:** buffers, transitions, breaks, decompression.
 
 ### B) Time bucket table
+
 | Bucket | Examples from your week | Hours/week | Keep / change |
 |---|---|---:|---|
 | Zone of genius |  |  |  |
@@ -91,6 +92,7 @@ Quick prompt after an interaction:
 
 ### C) "Top offenders" list
 List 3-5 items to remove/redesign in the next 2 weeks.
+
 | Offender | Why it drains | Lever (delete/delegate/redesign/time-shift/batch/buffer) | Next action |
 |---|---|---|---|
 |  |  |  |  |

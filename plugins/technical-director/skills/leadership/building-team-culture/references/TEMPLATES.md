@@ -44,6 +44,7 @@ Fill this in the few minutes before you address a specific culture moment (a ret
   - …
 
 ### Evidence (anonymized examples)
+
 | Example | What happened | What behavior was rewarded/punished? | Impact |
 |---|---|---|---|
 | 1 |  |  |  |

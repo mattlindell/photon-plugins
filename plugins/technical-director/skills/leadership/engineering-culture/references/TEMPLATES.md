@@ -75,6 +75,7 @@ Fill this in the few minutes before you address a specific engineering moment (a
 - Missing instrumentation:
 
 ### Capability map (evidence-based)
+
 | Capability bucket | Current state | Evidence | Gap | Candidate initiative |
 |---|---|---|---|---|
 | Technical |  |  |  |  |
@@ -147,6 +148,7 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Root causes:
 
 ### Prioritized backlog
+
 | Initiative | Lever (tech/arch/culture/lean) | Impact | Effort (S/M/L) | Dependencies | Owner | Metric/leading indicator |
 |---|---|---|---|---|---|---|
 |  |  |  |  |  |  |  |
@@ -195,6 +197,7 @@ Write **3–7** principles. Each principle must include observable behaviors.
 - Days 61–90:
 
 ### Rituals + cadence (reinforcement)
+
 | Ritual | Cadence | Purpose | Owner | Output artifact |
 |---|---|---|---|---|
 |  |  |  |  |  |

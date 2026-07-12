@@ -29,6 +29,7 @@ Fill this in the few minutes before you commit to a move.
 - What has been tried already:
 
 ## 2) Actors & incentives map
+
 | Actor / player | Incentives (optimizes for) | Constraints | Power / levers | Likely behavior | Notes |
 |---|---|---|---|---|---|
 | | | | | | |
@@ -39,6 +40,7 @@ List 8–15 key variables:
 - V2:
 
 Then capture causal links:
+
 | From (cause) | Direction | To (effect) | Time delay? | Evidence / confidence | Notes |
 |---|---:|---|---|---|---|
 | A | + / - | B | none / short / long | low / med / high | |
@@ -53,11 +55,13 @@ Describe 2–6 loops:
 - What would weaken/strengthen it:
 
 ## 5) Second-/third-order effects ledger (top 1–3 moves)
+
 | Candidate move | 1st order (immediate) | 2nd order (responses/adaptations) | 3rd order (long-term constraints/norms) | Who wins/loses | Mitigations |
 |---|---|---|---|---|---|
 | | | | | | |
 
 ## 6) Leverage points + intervention plan
+
 | Leverage point | Intervention | Owner | Sequence (now/next/later) | Leading indicator(s) | Guardrail(s) | Rollback/stop condition |
 |---|---|---|---|---|---|---|
 | | | | | | | |

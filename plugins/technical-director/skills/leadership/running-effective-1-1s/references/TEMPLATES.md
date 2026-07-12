@@ -42,6 +42,7 @@ What these meetings are for (and what they are not for).
 - Skip-level:
 
 ### Cadence + meeting types plan
+
 | Relationship type | Default cadence | Meeting types | Notes |
 |---|---|---|---|
 | New report |  |  |  |
@@ -65,6 +66,7 @@ What these meetings are for (and what they are not for).
 - What's shared vs private:
 
 ### Running topics backlog
+
 | Topic | Owner | Why it matters | Next action | Target date |
 |---|---|---|---|---|
 |  |  |  |  |  |
@@ -84,6 +86,7 @@ What these meetings are for (and what they are not for).
 - Follow-ups:
 
 ### Action items (end of meeting)
+
 | Action | Owner | Due | Status |
 |---|---|---|---|
 |  |  |  |  |

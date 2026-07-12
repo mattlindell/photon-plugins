@@ -32,6 +32,7 @@ Use this to repair a single objective or KR in the five minutes before you circu
 - Notes / assumptions:
 
 ## 2) Alignment map (company goal -> team objectives)
+
 | Company goal / North Star | Team objective | Why this is "one step away" | Primary metric(s) it should influence | Notes |
 |---|---|---|---|---|
 | | | | | |
@@ -45,6 +46,7 @@ Use this to repair a single objective or KR in the five minutes before you circu
 **Primary owner:** <team/person>
 
 ### Key Results table (per objective)
+
 | KR | Metric definition (unambiguous) | Baseline | Target | Window | Owner | Data source | Type (absolute/ratio) | Anti-gaming note | Guardrails |
 |---|---|---:|---:|---|---|---|---|---|---|
 | | | | | | | | | | |

@@ -48,6 +48,7 @@ Fill this in the hour before you walk in.
 - **How we know:** <dashboards/tickets/alerts>
 
 ### Timeline (table)
+
 | Time (with TZ) | Event | Evidence/link | Notes (fact vs hypothesis) |
 |---|---|---|---|
 | <timestamp> | <what happened> | <link> | <fact/hypothesis> |
@@ -55,6 +56,7 @@ Fill this in the hour before you walk in.
 ## 3) Contributing factors + root cause hypotheses (required)
 
 ### Contributing factors (clustered)
+
 | Cluster | Factor | Evidence | "Why it made sense at the time" | Fix direction |
 |---|---|---|---|---|
 | People/Process/Tech/... | <factor> | <link> | <context> | <guardrail/process change/etc> |

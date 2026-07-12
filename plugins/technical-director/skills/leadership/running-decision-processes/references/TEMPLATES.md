@@ -111,9 +111,9 @@ Fill this table; keep notes concise. Add columns if needed (e.g., reversibility,
 - Review date:  
 
 **Escalation / veto rules (make explicit):**
-- What requires Legal/Security/Finance sign-off:  
-- What counts as a veto vs input:  
-- If no response by <date>, default is: (approve / no veto / proceed)  
+- Mandatory sign-offs (e.g., Legal/Security/Finance): who must approve, and by when.  
+- Advisory input vs. binding veto: who can block a decision vs. who is only consulted.  
+- Timeout defaults (distinguish the two): advisory input not received by <date> -> proceed and note the gap; a **mandatory sign-off** not received -> **no-go / blocked** (never auto-approved) unless a documented policy explicitly authorizes timeout approval.  
 
 ## 4) Decision Meeting Agenda (template)
 
@@ -175,6 +175,7 @@ Options:
 Reply in bullets; short is perfect. Thank you.
 
 **Input capture table**
+
 | Person | Top choice(s) | Why | Biggest concern | Missing consideration | Evidence/link |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |

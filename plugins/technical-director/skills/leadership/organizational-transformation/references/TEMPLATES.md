@@ -78,6 +78,7 @@ List the mechanisms that force feature delivery (e.g., annual commitments, outpu
 -  
 
 ### D) Capability gaps (what's missing)
+
 | Capability | Current maturity (low/med/high) | Evidence | What would "good" look like |
 |---|---|---|---|
 | Discovery |  |  |  |
@@ -87,6 +88,7 @@ List the mechanisms that force feature delivery (e.g., annual commitments, outpu
 | Technical platform |  |  |  |
 
 ### E) Resistance map
+
 | Stakeholder group | Likely concerns | What they need to believe | Mitigation |
 |---|---|---|---|
 |  |  |  |  |
@@ -105,6 +107,7 @@ List the mechanisms that force feature delivery (e.g., annual commitments, outpu
 Define expectations for leaders and teams (PM, EM/TL, Design, Data, Exec sponsor).
 
 ### C) Decision rights (Day 1)
+
 | Decision | DRI (decider) | Consulted | Guardrails | Notes |
 |---|---|---|---|---|
 | Priorities within a product area |  |  |  |  |
@@ -146,6 +149,7 @@ How insights from pilots update the target operating model and roadmap.
 ## 6) Change + Comms Plan (template)
 
 ### A) Stakeholder map
+
 | Stakeholder | Influence | Current stance | Key concerns | Ask |
 |---|---|---|---|---|
 |  |  |  |  |  |

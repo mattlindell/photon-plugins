@@ -117,11 +117,13 @@ Fill this in the five minutes before you send the invite or walk into the room.
 - …
 
 ### Decisions
+
 | Decision | Owner | Date | Rationale | Status |
 |---|---|---|---|---|
 |  |  |  |  | Proposed / Decided |
 
 ### Action items
+
 | Action | Owner | Due | Notes |
 |---|---|---|---|
 |  |  |  |  |

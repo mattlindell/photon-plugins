@@ -180,11 +180,13 @@ Notes:
 ## 6) Post-Offsite Output Pack
 
 ### Decisions log
+
 | Decision | Rationale | Tradeoffs | Owner | Next step | Review date/trigger |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
 ### Action plan
+
 | Action | Owner | Due date | Dependencies | Status |
 |---|---|---|---|---|
 |  |  |  |  |  |
