@@ -95,8 +95,8 @@ The plugin bundles the [Atlassian Remote MCP server](https://www.atlassian.com/p
 {
   "mcpServers": {
     "atlassian": {
-      "type": "http",
-      "url": "https://mcp.atlassian.com/v1/mcp"
+      "type": "sse",
+      "url": "https://mcp.atlassian.com/v1/sse"
     }
   }
 }

@@ -1,7 +1,7 @@
 # Atlassian Remote MCP — Canonical Tool Reference
 
 **This is the single source of truth for Atlassian MCP tool names in the project-management domain.** Tool names
-verified live against the production Atlassian Remote MCP server (`https://mcp.atlassian.com/v1/mcp`, bundled via this
+verified live against the production Atlassian Remote MCP server (`https://mcp.atlassian.com/v1/sse`, bundled via this
 plugin's `.mcp.json`) on 2026-06-10.
 
 ## How tools are addressed
