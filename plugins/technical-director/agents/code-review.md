@@ -22,15 +22,19 @@ Your deliverable is the report. Leave the working tree exactly as you found it: 
 
 ## Process
 
-### 1. Derive the fixed point
+### 1. Derive the fixed point and the head
 
-`/code-review` asks the user for a fixed point. Resolve it yourself instead:
+`/code-review` asks the user for a fixed point. Resolve it yourself instead — and resolve the **head** alongside it, because the `HEAD` of a task thread is frequently not the commit under review:
 
-- **From a PR** — read the PR's base ref (`gh pr view <n> --json baseRefName,headRefName,title,body,url` or the GitLab equivalent). The fixed point is that base branch.
-- **From a branch** — use the repo's default branch.
-- **From a tag or SHA** — use it as given.
+- **From a PR** — read `gh pr view <n> --json baseRefName,headRefName,title,body,url` (or the GitLab equivalent). The base ref is the fixed point. Fetch the head into a named ref without checking it out: `git fetch origin pull/<n>/head:refs/pr/<n>`.
+- **From a branch** — the repo's default branch is the fixed point; the branch's own ref is the head.
+- **From a tag or SHA** — use it as the fixed point, with `HEAD` as the head.
 
-Check out or fetch the head under review so the diff is real, then confirm the ref resolves with `git rev-parse` and that `git diff <fixed-point>...HEAD` is non-empty. A bad ref or an empty diff fails here, before you spend two sub-agents on it.
+Fetching rather than checking out is deliberate: it leaves the caller's working tree untouched.
+
+Confirm both refs resolve with `git rev-parse`, then that `git diff <fixed-point>...<head>` is non-empty. A bad ref or an empty diff fails here, before you spend two sub-agents on it.
+
+Carry **both** refs into every later step. The skill's examples write `...HEAD` because it assumes a human already checked the branch out; pass it your explicit head ref instead.
 
 ### 2. Find the spec
 

@@ -33,7 +33,11 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
 ### Frontmatter
 
 - **Agents** require `name`, `description`, `model` in YAML frontmatter
-- **Skills** require `name`, `description` in YAML frontmatter — description is critical for agent routing (max 1024 chars, starts with "Use when..." triggering conditions only — do not summarize the skill's workflow)
+- **Skills** require `name`, `description` in YAML frontmatter (max 1024 chars). What belongs in it depends on how the skill is invoked:
+  - **Model-invoked** (no `disable-model-invocation`) — the description is the skill's always-loaded context pointer, so it must carry trigger conditions. House style is a short identity clause, then the triggers: `Test-driven development. Use when the user wants to build features or fix bugs test-first…`. One trigger per distinct branch; collapse synonyms that rename a single branch.
+  - **User-invoked** (`disable-model-invocation: true`) — the description is human-facing only. Write a one-line summary with trigger lists **stripped**: nothing but the human can invoke the skill, so triggers are dead weight in every context window.
+
+  See `technical-director`'s `writing-for-agents` skill (and its `SKILL-MECHANICS.md`) for the reasoning behind both.
 - **Commands** use no frontmatter — they start with a markdown heading and prose instructions
 - `disable-model-invocation: true` on a skill makes it user-invoked only (typed as `/skill-name`); omit it when the description carries enough trigger phrasing for the model to reach for the skill on its own
 
@@ -55,8 +59,10 @@ policy:
 
 ### Naming
 
-- Directories and files: kebab-case
-- Skill content that exceeds ~500 lines should split into SKILL.md (overview) + REFERENCE.md (deep reference)
+- Directories: kebab-case
+- Files carrying data or seed content: kebab-case (`issue-tracker-github.md`, `triage-labels.md`, `mocking.md`)
+- **Reference companions to a `SKILL.md` are UPPERCASE**: `DEEPENING.md`, `ADR-FORMAT.md`, `PHASE-BOUNDARIES.md`, `SKILL-MECHANICS.md`, and the leadership set (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The case is the signal — uppercase means "reference reached by a pointer from `SKILL.md`", which is why it doesn't follow the kebab-case rule above.
+- Skill content that exceeds ~500 lines should split into `SKILL.md` (overview) + an uppercase reference file
 - Utility scripts go in a `scripts/` subdirectory within the skill
 
 ### Plugin Registry

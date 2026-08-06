@@ -67,6 +67,8 @@ say()  { printf '  %s\n' "$1"; }
 step() { printf '  %s•%s %s\n' "$BLUE" "$RESET" "$1"; }
 note() { printf '  %s%s%s\n' "$DIM" "$1" "$RESET"; }
 warn() { printf '  %s⚠ %s%s\n' "$YELLOW" "$1" "$RESET"; }
+# die "..." — fatal: report and stop before anything worse happens.
+die()  { printf '  %s✗ %s%s\n' "$RED" "$1" "$RESET" >&2; exit 1; }
 
 # open_url URL — open in the human's browser, cross-platform incl. WSL.
 open_url() {
@@ -131,10 +133,28 @@ ask_secret() {
   printf -v "$key" '%s' "$input"
 }
 
+# _assert_env_private — refuse to write anywhere git would capture the value.
+# Wizards collect live secrets, so a tracked or un-ignored ENV_FILE is a leak
+# waiting for the next commit. Checked once per run.
+_ENV_CHECKED=0
+_assert_env_private() {
+  if (( _ENV_CHECKED )); then return 0; fi
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    if git ls-files --error-unmatch "$ENV_FILE" >/dev/null 2>&1; then
+      die "$ENV_FILE is tracked by git — run 'git rm --cached $ENV_FILE' and gitignore it before storing secrets."
+    fi
+    if ! git check-ignore -q "$ENV_FILE" >/dev/null 2>&1; then
+      die "$ENV_FILE is not gitignored — add it to .gitignore before storing secrets."
+    fi
+  fi
+  _ENV_CHECKED=1
+}
+
 # write_env KEY VALUE — upsert KEY=VALUE into ENV_FILE (creates it; replaces
-# any existing line). Idempotent.
+# any existing line). Idempotent. Stops unless ENV_FILE is outside git's reach.
 write_env() {
   local key="$1" value="$2" tmp
+  _assert_env_private
   touch "$ENV_FILE"
   tmp=$(mktemp)
   grep -vE "^${key}=" "$ENV_FILE" > "$tmp" || true
@@ -144,31 +164,60 @@ write_env() {
   printf '  %s✓ wrote%s %s → %s\n' "$GREEN" "$RESET" "$key" "$ENV_FILE"
 }
 
-# set_secret NAME VALUE — set a GitHub Actions repo secret via gh. Falls back
-# to a warning (and records it) if gh is unavailable or unauthenticated.
+# _gh_ready — gh installed and authenticated.
+_gh_ready() { command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; }
+
+# _gh_repo — resolve the target repository once, show it, and have the human
+# confirm before any write. gh infers the repo from the working directory, so
+# without this a wizard run from the wrong checkout ships secrets to the wrong
+# repository. Sets GH_REPO; returns non-zero when unresolved or declined.
+GH_REPO="${GH_REPO:-}"
+_GH_REPO_RESOLVED=0
+_gh_repo() {
+  if (( _GH_REPO_RESOLVED )); then
+    if [[ -n "$GH_REPO" ]]; then return 0; else return 1; fi
+  fi
+  _GH_REPO_RESOLVED=1
+  if [[ -z "$GH_REPO" ]]; then
+    GH_REPO=$(gh repo view --json nameWithOwner --jq .nameWithOwner 2>/dev/null || true)
+  fi
+  if [[ -z "$GH_REPO" ]]; then
+    warn "couldn't determine the GitHub repository — set GH_REPO=owner/name and re-run"
+    return 1
+  fi
+  if confirm "Write GitHub secrets and variables to $GH_REPO?"; then
+    return 0
+  fi
+  note "skipping GitHub writes"
+  GH_REPO=""
+  return 1
+}
+
+# set_secret NAME VALUE — set a GitHub Actions repo secret via gh, against the
+# confirmed repo. Falls back to a warning (and records it) when gh isn't ready.
 set_secret() {
   local name="$1" value="$2"
-  if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
-    if printf '%s' "$value" | gh secret set "$name" >/dev/null 2>&1; then
+  if _gh_ready && _gh_repo; then
+    if printf '%s' "$value" | gh secret set "$name" --repo "$GH_REPO" >/dev/null 2>&1; then
       WRITTEN_SECRET+=("$name")
-      printf '  %s✓ set%s GitHub secret %s\n' "$GREEN" "$RESET" "$name"
+      printf '  %s✓ set%s GitHub secret %s → %s\n' "$GREEN" "$RESET" "$name" "$GH_REPO"
       return
     fi
   fi
-  SKIPPED+=("GitHub secret $name (set it manually: gh secret set $name)")
+  SKIPPED+=("GitHub secret $name (set it manually: gh secret set $name --repo <owner/name>)")
   warn "skipped GitHub secret $name — gh not ready; set it later"
 }
 
 # set_var NAME VALUE — set a GitHub Actions repo variable (non-secret).
 set_var() {
   local name="$1" value="$2"
-  if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
-    if gh variable set "$name" --body "$value" >/dev/null 2>&1; then
-      printf '  %s✓ set%s GitHub variable %s\n' "$GREEN" "$RESET" "$name"
+  if _gh_ready && _gh_repo; then
+    if gh variable set "$name" --body "$value" --repo "$GH_REPO" >/dev/null 2>&1; then
+      printf '  %s✓ set%s GitHub variable %s → %s\n' "$GREEN" "$RESET" "$name" "$GH_REPO"
       return
     fi
   fi
-  SKIPPED+=("GitHub variable $name")
+  SKIPPED+=("GitHub variable $name (set it manually: gh variable set $name --repo <owner/name>)")
   warn "skipped GitHub variable $name — gh not ready; set it later"
 }
 
@@ -176,8 +225,10 @@ set_var() {
 finish() {
   _clear
   printf '\n%s%s  ✓ Setup complete%s\n' "$BOLD" "$GREEN" "$RESET"
-  (( ${#WRITTEN_ENV[@]} ))    && note "wrote ${#WRITTEN_ENV[@]} value(s) to $ENV_FILE: ${WRITTEN_ENV[*]}"
-  (( ${#WRITTEN_SECRET[@]} )) && note "set ${#WRITTEN_SECRET[@]} GitHub secret(s): ${WRITTEN_SECRET[*]}"
+  # if/fi rather than `(( … )) && …`: under `set -e` a false arithmetic test
+  # exits the whole wizard, so an empty list would kill the summary here.
+  if (( ${#WRITTEN_ENV[@]} )); then note "wrote ${#WRITTEN_ENV[@]} value(s) to $ENV_FILE: ${WRITTEN_ENV[*]}"; fi
+  if (( ${#WRITTEN_SECRET[@]} )); then note "set ${#WRITTEN_SECRET[@]} GitHub secret(s): ${WRITTEN_SECRET[*]}"; fi
   if (( ${#SKIPPED[@]} )); then
     printf '\n'; warn "still to do by hand:"
     for s in "${SKIPPED[@]}"; do note "  - $s"; done

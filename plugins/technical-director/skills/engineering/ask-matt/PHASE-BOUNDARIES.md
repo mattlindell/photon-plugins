@@ -18,7 +18,7 @@ The **phase boundary** is the gap between two phases, and it is the only place t
 
 Work top to bottom at the boundary. The first **yes** wins.
 
-**1. Can you continue in this session?** Two things make the answer yes: the next phase needs this phase as a **primary source**, or you have enough [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) left (~150k tokens) for the next phase to fit. Grilling → implementation is the standard yes: the implementation wants the reasoning verbatim, not a summary of it. Continue costs nothing and loses nothing, so rule it out before anything else.
+**1. Can you continue in this session?** Two things make the answer yes: the next phase needs this phase as a **primary source**, or you have enough [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) left (~150k tokens) for the next phase to fit. Grilling → implementation is the standard yes: the implementation wants the reasoning verbatim, not a summary of it. Continue costs nothing and loses nothing, so check it first.
 
 **2. Is the context irrelevant to what comes next?** Is everything in this session - the exploration, the decisions, the dead ends - disposable? If so, **`/clear`**. It is the cheapest move on the board: it takes no time and hands back the whole window. `/clear` also isn't terminal - the old session stays resumable.
 
@@ -41,7 +41,7 @@ That list is the whole clause. What `/handoff` buys is **portability** - a file 
 
 ## Primary and secondary sources
 
-Every move except **Continue** turns a **primary source** into a **secondary source** - the session as it happened, replaced by a summary of it. The trade is always the same shape:
+**`/compact`** and **`/handoff`** turn a **primary source** into a **secondary source** - the session as it happened, replaced by a summary of it. The other two moves don't summarize anything: **`/clear`** starts the next phase without this context at all (and the old session stays resumable), while a **subagent** leaves this session primary and reports back into it. The trade `/compact` and `/handoff` make is always the same shape:
 
 | Source                            | Information | Noise | Room to move |
 | --------------------------------- | ----------- | ----- | ------------ |
