@@ -1,18 +1,18 @@
 # technical-director
 
-A Claude Code plugin for technical direction and engineering leadership. Forty-six skills across two halves:
+A Claude Code plugin for technical direction and engineering leadership. Fifty-two skills across two halves:
 
-- **Engineering workflow** — twenty-two skills shamelessly copied from [Matt Pocock's skill
-  repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, planning, issue triage, TDD,
+- **Engineering workflow** — twenty-eight skills adapted from [Matt Pocock's skill
+  repository](https://github.com/mattpocock/skills) covering diagnosis, domain modeling, specs, issue triage, TDD,
   codebase design and architecture, prototyping, implementation, and the meta-tools that keep a project's process tight —
-  organized into engineering, productivity, and misc buckets.
+  organized into engineering (18), productivity (8), and misc (2) buckets.
 - **Leadership** — twenty-four skills for managing a team and working across an organization: 1:1s, difficult
   conversations, delegation, managing up, cross-functional collaboration, decisions, timelines, meetings, culture, and
-  org design. Six fire on their own; the rest are user-invoked and reachable through the `leadership` router. Adapted
-  from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since
-  substantially rewritten.
+  org design. Seven fire on their own (including the router); the rest are user-invoked and reachable through the
+  `leadership` router. Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled
+  from Lenny's Podcast — since substantially rewritten.
 
-**Version:** 3.1.0
+**Version:** 4.0.0
 **Author:** Matt Lindell
 **License:** MIT
 
@@ -28,7 +28,10 @@ plugins/technical-director/
   skills/
     engineering/
       README.md
-      ask-matt/SKILL.md
+      # every skill below also carries agents/openai.yaml (see Portability)
+      ask-matt/
+        SKILL.md
+        PHASE-BOUNDARIES.md
       code-review/SKILL.md
       codebase-design/
         SKILL.md
@@ -70,6 +73,9 @@ plugins/technical-director/
         AGENT-BRIEF.md
         OUT-OF-SCOPE.md
       wayfinder/SKILL.md
+      wizard/
+        SKILL.md
+        template.sh
     productivity/
       README.md
       caveman/SKILL.md
@@ -82,17 +88,17 @@ plugins/technical-director/
         LEARNING-RECORD-FORMAT.md
         MISSION-FORMAT.md
         RESOURCES-FORMAT.md
-      writing-great-skills/
+      to-questionnaire/SKILL.md
+      wait-what/SKILL.md
+      writing-for-agents/
         SKILL.md
-        GLOSSARY.md
+        SKILL-MECHANICS.md
     misc/
       README.md
       git-guardrails-claude-code/
         SKILL.md
         scripts/block-dangerous-git.sh
-      setup-pre-commit/
-        SKILL.md
-        defaults/prettierrc.json
+      setup-pre-commit/SKILL.md
     leadership/
       README.md
       leadership/SKILL.md               # the router (SKILL.md only)
@@ -122,6 +128,13 @@ plugins/technical-director/
       team-rituals/
 ```
 
+### Portability
+
+Every skill outside `leadership/` carries an `agents/openai.yaml` sidecar giving it a display name, a short description,
+and — for user-invoked skills — `policy.allow_implicit_invocation: false`, the OpenAI-side mirror of Claude Code's
+`disable-model-invocation: true`. Claude Code ignores these files; they let the same skill folder be consumed by an
+OpenAI-based agent harness without a second copy. The `leadership/` skills don't carry them.
+
 ---
 
 ## Skills
@@ -149,6 +162,7 @@ The Matt Pocock workflow pattern — design → spec → tickets → implement �
 | **codebase-design**                   | Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.                          |
 | **code-review**                       | Two-axis review of the diff since a fixed point — Standards (repo coding standards plus a Fowler smell baseline) and Spec (faithful to the originating spec or ticket?) — run as parallel sub-agents. |
 | **resolve-merge-conflicts**           | Resolve an in-progress git merge/rebase conflict by tracing each change to its original intent, then running the project's checks.                   |
+| **wizard**                            | Generate an interactive bash wizard for the steps only a human can take — provisioning infrastructure, credentials and CI secrets, an unfamiliar third-party dashboard, a one-off migration or cutover. |
 
 ### Productivity
 
@@ -156,12 +170,14 @@ General workflow tools, not code-specific. **(user)** marks user-invoked-only sk
 
 | Skill                            | Description                                                                                                                        |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **caveman** _(user)_             | Ultra-compressed communication mode that drops filler and pleasantries while keeping full technical accuracy (~75% fewer tokens).  |
 | **grill-me** _(user)_            | Get relentlessly interviewed about a plan or design — the stateless sibling of `grill-with-docs`, for plans that don't live in a repo. |
 | **handoff** _(user)_             | Compact the current conversation into a handoff document so another agent can continue the work.                                  |
 | **teach** _(user)_               | Learn a concept over multiple sessions, using the current directory as a stateful workspace.                                       |
-| **writing-great-skills** _(user)_ | Reference for writing and editing skills well: the vocabulary and principles that make a skill predictable.                       |
-| **caveman**                      | Ultra-compressed communication mode that drops filler and pleasantries while keeping full technical accuracy (~75% fewer tokens).  |
+| **to-questionnaire** _(user)_    | Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can — filled in async, or together over a meeting. |
+| **wait-what** _(user)_           | Fire this the moment a message doesn't land — the agent re-pitches it in plain English with the context you were missing, using your `CONTEXT.md` vocabulary. |
 | **grilling**                     | Interview the user relentlessly about a plan or design, resolving each branch of the decision tree one question at a time.         |
+| **writing-for-agents**           | Reference for writing documents agents consume: skills, `AGENTS.md` / `CLAUDE.md`, and any doc an agent reaches by a pointer.      |
 
 ### Misc
 
@@ -174,7 +190,7 @@ Repo and tooling guardrails that don't fit the engineering workflow.
 
 ### Leadership
 
-Skills for managing a team and working across an organization. Each follows one shape: north-star principles, a branch router (design-a-system vs. a tactical "do this now" path), and reference files (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The six unmarked skills fire on their own; **(user)** skills are user-invoked only and reachable through the **leadership** router.
+Skills for managing a team and working across an organization. Each follows one shape: north-star principles, a branch router (design-a-system vs. a tactical "do this now" path), and reference files (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The seven unmarked skills fire on their own; **(user)** skills are user-invoked only and reachable through the **leadership** router.
 
 Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten into the shape above.
 
@@ -232,41 +248,26 @@ Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills)
 
 ---
 
-## Issue Tracker
+## Per-repo Setup
 
-Skills that publish artifacts (specs, work items, fix plans) - `to-spec`, `to-tickets`, `wayfinder`, and `triage` -
-read the project's `CLAUDE.md` for an "Issue Tracker" section to determine where to
-publish. Supported trackers: GitHub (`gh`), GitLab (`glab`), Jira (Atlassian MCP), Beads (`bd`), or local Markdown
-files. If no configuration is found, the skill asks the user and offers to record the choice in `CLAUDE.md`. Run
-**setup-matt-pocock-skills** to generate the config in one shot.
+The engineering skills read their per-repo configuration from `docs/agents/`, not from inline `CLAUDE.md` prose. Run
+**setup-matt-pocock-skills** once per repo to generate it:
 
-Example `CLAUDE.md` entries:
+| File                            | What it configures                                                     | Consumed by                                  |
+| ------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------- |
+| `docs/agents/issue-tracker.md`  | Where issues live and how to create, read, and close them              | `to-spec`, `to-tickets`, `wayfinder`, `triage`, `code-review` |
+| `docs/agents/triage-labels.md`  | The label strings for the five canonical triage roles                  | `triage` (written only when `triage` is installed) |
+| `docs/agents/domain.md`         | Where `CONTEXT.md` and ADRs live, plus the consumer rules for reading them | `domain-modeling`, `grill-with-docs`      |
 
-```markdown
-## Issue Tracker
+Setup also adds an `## Agent skills` block to whichever of `CLAUDE.md` / `AGENTS.md` already exists, pointing at those
+three files — it never creates the one that isn't there.
 
-GitHub - use `gh` for all work items. Repo inferred from `git remote`.
-```
+Issue trackers supported out of the box: **GitHub** (`gh`), **GitLab** (`glab`), and **local Markdown** under
+`.scratch/<feature>/`. Anything else (Jira, Linear, …) is handled as **Other** — describe the workflow in a paragraph
+and setup records it as freeform prose in `docs/agents/issue-tracker.md`.
 
-```markdown
-## Issue Tracker
-
-- **Documents (PRDs)**: Confluence via Atlassian MCP - space: PROJ
-- **Work items**: Jira via Atlassian MCP - project: PROJ
-- Link work items back to their parent Confluence document
-```
-
-```markdown
-## Issue Tracker
-
-Beads - use `bd create` / `bd ready` / `bd close`. The agent's `bd prime` context covers the full command surface.
-```
-
-```markdown
-## Issue Tracker
-
-Local - append work items as Markdown files under `./issues/<slug>.md`.
-```
+Edit `docs/agents/*.md` directly to adjust things later; re-run **setup-matt-pocock-skills** only to switch trackers or
+start over.
 
 ---
 

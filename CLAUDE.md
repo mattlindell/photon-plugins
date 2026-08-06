@@ -8,9 +8,10 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
-  technical-director/            — diagnosis, domain modeling, planning, specs/tickets, issue triage, TDD, code review, research, codebase design, and process skills
+  technical-director/            — engineering (diagnosis, domain modeling, specs/tickets, triage, TDD, code review, research, codebase design, wizards), leadership, productivity, and misc skills
   developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
   nonprofit-toolkit/             — nonprofit operations skills (org profile, grants, budgets, donor comms, social media, volunteers)
+  project-manager/               — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
 ```
 
 Each plugin follows this structure:
@@ -21,6 +22,7 @@ plugin-name/
   agents/                                    — strategic decision-makers with YAML frontmatter (name, description, model)
   skills/skill-name/SKILL.md                 — implementation patterns with YAML frontmatter (name, description)
   skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see technical-director)
+  skills/<...>/skill-name/agents/openai.yaml — optional portability sidecar (see below)
   commands/command-name.md                   — interactive scaffolding workflows (no frontmatter)
 ```
 
@@ -33,6 +35,21 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
 - **Agents** require `name`, `description`, `model` in YAML frontmatter
 - **Skills** require `name`, `description` in YAML frontmatter — description is critical for agent routing (max 1024 chars, starts with "Use when..." triggering conditions only — do not summarize the skill's workflow)
 - **Commands** use no frontmatter — they start with a markdown heading and prose instructions
+- `disable-model-invocation: true` on a skill makes it user-invoked only (typed as `/skill-name`); omit it when the description carries enough trigger phrasing for the model to reach for the skill on its own
+
+### Portability Sidecars (`agents/openai.yaml`)
+
+A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file. Every `technical-director` skill outside `skills/leadership/` has one.
+
+```yaml
+interface:
+  display_name: "Ask Matt"
+  short_description: "Find the right skill or workflow"
+policy:
+  allow_implicit_invocation: false # mirrors disable-model-invocation: true
+```
+
+**IMPORTANT: `policy.allow_implicit_invocation: false` and `disable-model-invocation: true` must agree.** When a skill has a sidecar and you change one flag, change the other — omit the whole `policy` block for model-invocable skills.
 
 ### Naming
 
@@ -45,6 +62,19 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
 **IMPORTANT: When adding or removing a plugin, you MUST update both the plugin's own `plugin.json` AND `.claude-plugin/marketplace.json` at the root.** Also update the root `README.md` plugin table.
 
 **IMPORTANT: When adding or removing a skill within an existing plugin, bump the plugin's minor version in both `plugin.json` and `.claude-plugin/marketplace.json`, and update the marketplace `description` if the new/removed skill changes the plugin's surface area.** Update the plugin's own `README.md` skills table and structure tree.
+
+**Renaming or removing a skill is a breaking change** — anyone invoking `/old-name` loses it. Bump the plugin's **major** version, not the minor.
+
+Some plugins (`technical-director`, `project-manager`) pin an explicit `skills` array in `plugin.json`. **When that array is present it must list every skill directory exactly** — a stale or missing path silently drops the skill from the plugin. After adding, removing, or renaming a skill in one of those plugins, verify with:
+
+```bash
+# every SKILL.md on disk vs. every path in the skills array — output should be empty
+cd plugins/<plugin-name>
+diff <(find skills -name SKILL.md | xargs -n1 dirname | sed 's|^|./|' | sort) \
+     <(python -c "import json;[print(p) for p in json.load(open('.claude-plugin/plugin.json'))['skills']]" | tr -d '\r' | sort)
+```
+
+Docs to update on any skill change, in this order: the category `README.md` → the plugin `README.md` (skills table, structure tree, skill count, version) → the root `README.md` plugin table → `.claude-plugin/marketplace.json`. Skill counts appear in four places — plugin `description` (both files), plugin `README.md` intro, and the root `README.md` table.
 
 ## Testing Locally
 

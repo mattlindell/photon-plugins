@@ -1,7 +1,7 @@
 {
   "name": "technical-director",
-  "version": "3.1.0",
-  "description": "Forty-six skills for technical direction and engineering leadership: an engineering workflow (diagnosis, domain modeling, planning, PRDs, issue triage, TDD, codebase design and architecture, prototyping, implementation, repo-tooling guardrails) plus a leadership category (1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings, decisions, and org design)",
+  "version": "4.0.0",
+  "description": "Fifty-two skills for technical direction and engineering leadership: an engineering workflow (diagnosis, domain modeling, specs, issue triage, TDD, codebase design and architecture, prototyping, implementation, human-in-the-loop setup wizards, repo-tooling guardrails), a leadership category (1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings, decisions, and org design), and productivity tools (grilling, handoffs, teaching, questionnaires, and writing for agents)",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"
@@ -24,6 +24,7 @@
     "./skills/engineering/to-tickets",
     "./skills/engineering/triage",
     "./skills/engineering/wayfinder",
+    "./skills/engineering/wizard",
     "./skills/leadership/building-team-culture",
     "./skills/leadership/coaching-pms",
     "./skills/leadership/cross-functional-collaboration",
@@ -55,6 +56,8 @@
     "./skills/productivity/grilling",
     "./skills/productivity/handoff",
     "./skills/productivity/teach",
-    "./skills/productivity/writing-great-skills"
+    "./skills/productivity/to-questionnaire",
+    "./skills/productivity/wait-what",
+    "./skills/productivity/writing-for-agents"
   ]
 }
