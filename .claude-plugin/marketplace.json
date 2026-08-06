@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.7.0"
+    "version": "1.7.1"
   },
   "plugins": [
     {
@@ -26,7 +26,7 @@
       "name": "technical-director",
       "source": "./plugins/technical-director",
       "description": "Fifty-two skills and two autonomous agents for technical direction and engineering leadership: an engineering workflow (diagnosis, domain modeling, specs, issue triage, TDD, codebase design and architecture, prototyping, implementation, human-in-the-loop setup wizards, repo-tooling guardrails), a leadership category (1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings, decisions, and org design), productivity tools (grilling, handoffs, teaching, questionnaires, and writing for agents), plus ticket-to-implementation and PR-review agents for agent-thread harnesses",
-      "version": "4.0.0",
+      "version": "4.0.1",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"

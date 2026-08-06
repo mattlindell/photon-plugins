@@ -15,7 +15,7 @@ A Claude Code plugin for technical direction and engineering leadership. Fifty-t
 Plus **two autonomous agents** — `implement` and `code-review` — for harnesses that spin up an agent thread from a bare
 ticket or PR (Kepler, and similar). See [Agents](#agents).
 
-**Version:** 4.0.0
+**Version:** 4.0.1
 **Author:** Matt Lindell
 **License:** MIT
 
