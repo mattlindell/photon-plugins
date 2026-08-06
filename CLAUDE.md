@@ -8,7 +8,7 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
-  technical-director/            — engineering (diagnosis, domain modeling, specs/tickets, triage, TDD, code review, research, codebase design, wizards), leadership, productivity, and misc skills
+  technical-director/            — engineering (diagnosis, domain modeling, specs/tickets, triage, TDD, code review, research, codebase design, wizards), leadership, productivity, and misc skills + implement/code-review agents
   developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
   nonprofit-toolkit/             — nonprofit operations skills (org profile, grants, budgets, donor comms, social media, volunteers)
   project-manager/               — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
@@ -19,7 +19,7 @@ Each plugin follows this structure:
 ```text
 plugin-name/
   .claude-plugin/plugin.json                 — plugin metadata (name, version, description, author)
-  agents/                                    — strategic decision-makers with YAML frontmatter (name, description, model)
+  agents/                                    — plugin-level agents with YAML frontmatter (name, description, model, color); auto-discovered, never listed in plugin.json
   skills/skill-name/SKILL.md                 — implementation patterns with YAML frontmatter (name, description)
   skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see technical-director)
   skills/<...>/skill-name/agents/openai.yaml — optional portability sidecar (see below)
@@ -40,6 +40,8 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
 ### Portability Sidecars (`agents/openai.yaml`)
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file. Every `technical-director` skill outside `skills/leadership/` has one.
+
+**Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `technical-director` has both.
 
 ```yaml
 interface:

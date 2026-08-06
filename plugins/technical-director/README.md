@@ -12,6 +12,9 @@ A Claude Code plugin for technical direction and engineering leadership. Fifty-t
   `leadership` router. Adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled
   from Lenny's Podcast — since substantially rewritten.
 
+Plus **two autonomous agents** — `implement` and `code-review` — for harnesses that spin up an agent thread from a bare
+ticket or PR (Kepler, and similar). See [Agents](#agents).
+
 **Version:** 4.0.0
 **Author:** Matt Lindell
 **License:** MIT
@@ -25,6 +28,9 @@ plugins/technical-director/
   .claude-plugin/
     plugin.json
   README.md
+  agents/                             # plugin-level agents (auto-discovered)
+    implement.md
+    code-review.md
   skills/
     engineering/
       README.md
@@ -136,6 +142,27 @@ and — for user-invoked skills — `policy.allow_implicit_invocation: false`, t
 OpenAI-based agent harness without a second copy. The `leadership/` skills don't carry them.
 
 ---
+
+## Agents
+
+Two agents for **agent-thread harnesses** — Kepler, and anything else that opens a task thread from a bare Jira/Linear
+ticket or a PR with no room for instruction up front. Each derives the setup the underlying skill would otherwise open by
+asking for, then runs that skill unchanged.
+
+| Agent           | Input                             | Drives                      | Derives for itself                                                     |
+| --------------- | --------------------------------- | --------------------------- | ---------------------------------------------------------------------- |
+| **implement**   | A ticket key, issue, or spec file | `/tdd`, then `/code-review` | The tracker fetch, the domain grounding from `CONTEXT.md` and ADRs, and the working branch |
+| **code-review** | A PR, branch, tag, or SHA         | `/code-review`              | The **fixed point** (from the PR base) and the **spec source** (from the PR's linked ticket) |
+
+They hold no method of their own — `/tdd` and `/code-review` stay the single source of truth, so editing a skill changes
+both the interactive flow and the agent. The agent files carry only the kickoff steps and a checkable definition of done.
+
+Deriving is not the same as never asking. Both agents assume a reachable human and spend that reach on decisions that
+change the work and can't be looked up. `implement` still stops at `/tdd`'s **pre-agreed seams** gate — proposing a
+concrete list to confirm before the first test, since the seams decide where the testing effort lands.
+
+`implement` writes code and commits to the working branch; it does not push or open PRs. `code-review` leaves the
+working tree untouched and returns its report in the thread rather than posting to the PR.
 
 ## Skills
 
