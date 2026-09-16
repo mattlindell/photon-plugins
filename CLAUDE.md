@@ -89,3 +89,17 @@ Docs to update on any skill change, in this order: the category `README.md` → 
 ```bash
 claude --plugin-dir plugins/plugin-name
 ```
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in **Linear**. Use the `linearis` CLI first, the Linear MCP as fallback. The team and project identifiers are not committed (this repo is public) — resolve them from `docs/agents/linear-ids.local.md`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical roles are Linear labels under the workspace-level "Agentic State Machine" group, each label string equal to its role name. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
