@@ -2,3 +2,6 @@
 .claude/settings.local.json
 .claude/settings.json
 .vscode
+
+# ignore all files intended for local consumption only
+*.local.*
