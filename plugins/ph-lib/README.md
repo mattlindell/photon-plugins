@@ -51,13 +51,14 @@ Claude Code has no plugin dependency mechanism — `plugin.json` has no
 `dependencies` field — so the requirement is enforced at runtime by `ph-build`'s
 `SessionStart` hook, which degrades loudly when `ph-lib` is missing.
 
-Two skills here reference material in a hat plugin. Both are optional with a
-defined fallback, so the library never hard-depends on a consumer:
+One skill here reaches into a hat plugin, and it does so optionally: `recall`
+uses `ph-build:why`'s source investigators when they are installed, and runs the
+sweep itself when they are not. The library never hard-depends on a consumer.
 
-- `recall` uses `ph-build:why`'s source investigators when installed, and runs
-  the sweep itself when not.
-- `reflect` reads the shared fan-out policy when one exists, and uses its own
-  documented ceilings when not.
+`reflect` is the one library skill that spawns subagents, but its four agents are
+hard-coded — three reviewers on distinct prompt templates plus a synthesizer that
+expects all three. It reads no configuration, so it needs nothing from
+`ph-build` either.
 
 ## Structure
 

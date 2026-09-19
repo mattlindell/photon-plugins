@@ -227,6 +227,12 @@ budget bounds the composition. All three are needed.
 Caps are hard ceilings. Language like arena's "spawn more when the arena covers
 multiple design directions" is removed, not softened.
 
+One skill is exempt. `reflect` (in `ph-lib`) spawns exactly four agents and reads
+no configuration: its three reviewers run distinct prompt templates against
+different lenses and the synthesizer expects all three, so the count is a
+structural property, not a budget. Configurability there would only let you break
+it. This is also what keeps `ph-lib` from depending on `ph-build`'s config.
+
 ### Proposed defaults
 
 | Skill | Tier | Cap |
@@ -237,7 +243,7 @@ multiple design directions" is removed, not softened.
 | swarm | scoped | 6 workers |
 | why | scan | 4 investigators + 1 synthesizer |
 | how | scan | 3 explorers + 1 explainer |
-| reflect | judgment | 3 reviewers + 1 synthesizer |
+| reflect *(ph-lib)* | judgment | 3 reviewers + 1 synthesizer — **fixed, not configurable** |
 | maintain-verification-skill | scan | 5 |
 | show-me-your-work | scan | 1, conditional |
 | thermo-nuclear-code-quality-review | — | inherits the swarm cap |

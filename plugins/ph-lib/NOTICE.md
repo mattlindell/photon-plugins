@@ -43,8 +43,10 @@ in this plugin:
   human-facing one-liners with trigger lists stripped, per this repository's
   convention for user-invoked skills.
 - `reflect`: the stamped `## Models` section, which named Claude model slugs and
-  pointed at upstream's generator, was replaced with a tier-and-cap table. Tiers
-  name an effort rung rather than a model, so the skill ports across harnesses.
+  pointed at upstream's generator, was replaced with a `## Fan-out` section
+  stating a fixed four agents on the `judgment` tier. Tiers name an effort rung
+  rather than a model, so the skill ports across harnesses. The four in-body
+  links to the old `#models` anchor were repointed.
 - `recall`: its dependency on the `why` skill was made optional with a defined
   fallback, so the library does not depend on a consumer.
 - `automate-me`: its pointer to the `poteto-mode` skill, which this fork does not

@@ -30,17 +30,17 @@ It covers the three layouts (flat `<id>.jsonl`, nested `<id>/<id>.jsonl`, subage
 
 One message, three `Agent` calls, `subagent_type: "general-purpose"`, explicit `model:` on each. Reviewers need MCP access for context lookups (tickets, chat threads, observability traces referenced in the transcript); pick a subagent_type that retains MCP access. The prompt forbids file writes; the parent applies edits.
 
-| Lens | `model` | Prompt template |
+| Lens | Tier | Prompt template |
 |---|---|---|
-| Judgment | your configured reflect-judgment model (default in [Models](#models)) | `references/judgment-reviewer.md` |
-| Tooling | your configured reflect-tooling model (default in [Models](#models)) | `references/tooling-reviewer.md` |
-| Divergent | your configured reflect-judgment model (default in [Models](#models)) | `references/divergent-reviewer.md` |
+| Judgment | `judgment` (see [Fan-out](#fan-out)) | `references/judgment-reviewer.md` |
+| Tooling | `judgment` (see [Fan-out](#fan-out)) | `references/tooling-reviewer.md` |
+| Divergent | `judgment` (see [Fan-out](#fan-out)) | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in the `Agent` response body.
 
 ### 3. Synthesize
 
-One `Agent` call, `subagent_type: "general-purpose"`, using your configured reflect-judgment model (default in [Models](#models)). Pick a subagent_type that retains MCP access — the synthesizer's quality check includes spot-verifying citations, which can require MCP access. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
+One `Agent` call, `subagent_type: "general-purpose"`, on the `judgment` tier (see [Fan-out](#fan-out)). Pick a subagent_type that retains MCP access — the synthesizer's quality check includes spot-verifying citations, which can require MCP access. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
 
 ### 4. Structural enforcement check
 
@@ -72,13 +72,17 @@ Short list, no preamble:
 
 ## Fan-out
 
-Ceilings, not targets. Do not scale the reviewer count to the size of the transcript.
+**Fixed at four agents. Not configurable.**
 
-| Role | Tier | Cap |
+| Role | Count | Tier |
 | --- | --- | --- |
-| Reviewers (tooling, judgment, divergent) | `judgment` | 3 |
-| Synthesizer | `judgment` | 1 |
+| Reviewers — judgment, tooling, divergent | 3 | `judgment` |
+| Synthesizer | 1 | `judgment` |
 
-Tiers name an effort rung, never a model — the tier-to-model mapping is
-per-harness. When a shared fan-out policy exists, it overrides both columns. When
-none exists, use the table above rather than falling back to unbounded.
+The three reviewers are not interchangeable workers whose count you tune. Each
+runs a distinct prompt template against a different lens, and the synthesizer
+expects all three. Dropping one loses that lens; adding a fourth has no template
+to run. Never scale the count to the size of the transcript.
+
+`judgment` names an effort rung, never a specific model — the tier-to-model
+mapping is per-harness.
