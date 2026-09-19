@@ -205,12 +205,63 @@ skip-with-reason escape."
 Unchanged and outside this table: `ph-pm` (8), `ph-php` (12 + 4 commands + 3
 agents), `ph-npo` (7), `product-team` (17, deferred).
 
+## Fan-out policy
+
+Caps are **configuration, not skill content**. `setup-ph-build` writes one file
+holding the whole cost picture, so the answer to "what will this cost me" is one
+read rather than an audit of every skill body. Upstream had no equivalent —
+`models.json` maps roles to models and contains no counts anywhere.
+
+Three sections:
+
+1. **tier → model** — harness-specific, detected and confirmed at setup.
+2. **skill → tier + cap** — the per-skill fan-out ceiling.
+3. **playbook → total budget** — the composition ceiling.
+
+Section 3 exists because per-skill caps do not bound nesting. `architect`
+internally runs `how` + `why` + `arena`; capping each at 3 still leaves
+`architect` near 9 and the `feature` playbook near 22. Per-skill caps bound the
+worst case; the one-way-door gate makes the common case cheap; the playbook
+budget bounds the composition. All three are needed.
+
+Caps are hard ceilings. Language like arena's "spawn more when the arena covers
+multiple design directions" is removed, not softened.
+
+### Proposed defaults
+
+| Skill | Tier | Cap |
+|---|---|---|
+| architect | judgment | 3 runners |
+| arena | divergent | 3 candidates + 1 judge |
+| interrogate | panel | 3 reviewers |
+| swarm | scoped | 6 workers |
+| why | scan | 4 investigators + 1 synthesizer |
+| how | scan | 3 explorers + 1 explainer |
+| reflect | judgment | 3 reviewers + 1 synthesizer |
+| maintain-verification-skill | scan | 5 |
+| show-me-your-work | scan | 1, conditional |
+| thermo-nuclear-code-quality-review | — | inherits the swarm cap |
+
+| Playbook | Total budget |
+|---|---|
+| investigation | 8 |
+| refactoring | 8 |
+| bug-fix | 10 |
+| perf-issue | 10 |
+| feature | 14 |
+
+Open judgment calls: `swarm` at 6 (the dropped `multi-phase-plan` used 10–13),
+and `feature` at 14 against today's 20–36.
+
 ## Open items carried into implementation
 
 - `nonprofit-toolkit`: the marketplace says 6 skills, disk has 7
   (`givebutter-integration`). Fix during its rename.
-- The three `developer-workflow` skills are dual-published to the internal
-  Caffelli marketplace with different author metadata. Folding them into
-  `ph-build` means deciding what happens to that copy.
-- Every capped skill needs its cap chosen, not merely marked. Defaults proposed
-  at implementation time.
+
+Closed:
+
+- ~~`developer-workflow` dual-publishing~~ — the internal Caffelli marketplace is
+  being deprecated, so the three skills fold into `ph-build` with no mirror to
+  maintain.
+- ~~Nine dangling leadership references~~ — deferred to separate `ph-lead`
+  improvement work, not this reorg. Leave them as-is during the move.
