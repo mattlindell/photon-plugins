@@ -7,9 +7,21 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.8.0"
+    "version": "1.9.0"
   },
   "plugins": [
+    {
+      "name": "ph-plan",
+      "source": "./plugins/ph-plan",
+      "description": "Middle-down planning: decide and write down what gets built. Thirteen skills and six principles for an interactive session — intake routing, relentless grilling, domain modeling, frontier scouting, triage, specs and tickets. Every session ends in a written artifact carrying which of the four dimensions it closed. Requires ph-lib.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
+    },
     {
       "name": "ph-lib",
       "source": "./plugins/ph-lib",

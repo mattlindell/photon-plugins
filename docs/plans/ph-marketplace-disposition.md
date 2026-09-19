@@ -33,7 +33,7 @@ Review this before any file moves.
 | to-spec | ph-plan | edit | user | Closes `problem`; emits the `settled:` block; embeds `define-done` methodology when present |
 | to-tickets | ph-plan | edit | user | Closes `problem`; emits a `settled:` block per ticket |
 | triage | ph-plan | move | user | Closes `problem`. Stays user-invoked — this is what keeps it from competing with `intake` |
-| wayfinder | ph-plan | rename | user | → `scout`. Drops its research/prototype/grilling ticket taxonomy for `closes: <dimension>` |
+| wayfinder | ph-plan | rename | user | → `scout`. **Keeps** its ticket taxonomy and *adds* `closes: <dimension>` — see the deviation note below |
 | wizard | ph-build | move | model | |
 
 ## technical-director → leadership (24)
@@ -259,8 +259,24 @@ it. This is also what keeps `ph-lib` from depending on `ph-build`'s config.
 Open judgment calls: `swarm` at 6 (the dropped `multi-phase-plan` used 10–13),
 and `feature` at 14 against today's 20–36.
 
+## Deviations from plan, made during implementation
+
+**`scout` keeps its ticket taxonomy.** The plan said the dimension model replaces
+it, on the reasoning that they were two names for one thing. Reading the actual
+skill shows they are not: the type (`research` / `prototype` / `grilling` /
+`task`) encodes **how** a ticket is resolved and critically whether a human must
+be present — the HITL/AFK distinction — while `closes:` encodes **what it
+unblocks**. Replacing one with the other would have silently dropped HITL/AFK.
+Both now travel on the ticket. A `task` ticket usually closes no dimension.
+
 ## Open items carried into implementation
 
+- **Linear label migration.** The workspace has a live `Wayfinder` label group
+  (`wayfinder:map`, `:research`, `:prototype`, `:grilling`, `:task`) applied to
+  existing issues. `ph-plan` now documents `scout:*`. The labels were not
+  renamed — that is a change to live workspace state and to the local
+  identifiers file, and it should be done deliberately rather than as a side
+  effect of a rename. Until then the skill text and the tracker disagree.
 - `nonprofit-toolkit`: the marketplace says 6 skills, disk has 7
   (`givebutter-integration`). Fix during its rename.
 
