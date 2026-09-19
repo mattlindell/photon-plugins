@@ -194,7 +194,7 @@ skip-with-reason escape."
 
 | | Count |
 |---|---|
-| ph-build | 32 skills + 23 principles + 19 playbooks + 3 agents |
+| ph-build | 33 skills (32 moved + `dispatch`) + 23 principles + 19 playbooks + 3 agents |
 | ph-plan | 11 moved + 2 new + 6 new principles |
 | ph-lib | 4 primitives + 9 operator tools |
 | ph-lead | 24 |
@@ -261,6 +261,16 @@ and `feature` at 14 against today's 20–36.
 
 ## Deviations from plan, made during implementation
 
+**`dispatch` is a new skill, making ph-build 33 rather than 32.** The plan
+recorded `poteto-mode` as dropped without counting its replacement. The router
+had to be rewritten rather than edited: its triggers were unconditional by
+design, which is the behavior being fixed.
+
+**`feature` step 4 delegation is conditional, not removed.** It now delegates
+when the change is large enough that reviewing a diff beats writing it, or when
+it touches a one-way door, and skips with a logged reason when `shape` and
+`approach` are settled and the change is small.
+
 **`scout` keeps its ticket taxonomy.** The plan said the dimension model replaces
 it, on the reasoning that they were two names for one thing. Reading the actual
 skill shows they are not: the type (`research` / `prototype` / `grilling` /
@@ -271,12 +281,11 @@ Both now travel on the ticket. A `task` ticket usually closes no dimension.
 
 ## Open items carried into implementation
 
-- **Linear label migration.** The workspace has a live `Wayfinder` label group
-  (`wayfinder:map`, `:research`, `:prototype`, `:grilling`, `:task`) applied to
-  existing issues. `ph-plan` now documents `scout:*`. The labels were not
-  renamed — that is a change to live workspace state and to the local
-  identifiers file, and it should be done deliberately rather than as a side
-  effect of a rename. Until then the skill text and the tracker disagree.
+- ~~Linear label migration~~ — **done.** A `Scout` label group with all five
+  children now exists in the workspace, and the local identifiers file records
+  the new IDs. The `Wayfinder` group remains for issues labeled before the
+  rename and is marked superseded; retiring it is optional and only worth doing
+  once no open issue carries one.
 - `nonprofit-toolkit`: the marketplace says 6 skills, disk has 7
   (`givebutter-integration`). Fix during its rename.
 
