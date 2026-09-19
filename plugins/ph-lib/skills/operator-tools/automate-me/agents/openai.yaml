@@ -1,0 +1,5 @@
+interface:
+  display_name: "Automate Me"
+  short_description: "Capture how you work as a skill"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,35 @@
+{
+  "name": "ph-lib",
+  "version": "1.0.0",
+  "description": "Shared library for the photon plugins: four primitives that ph-plan and ph-build reference and require, plus nine operator tools you invoke directly. Not a hat — nobody installs this because of the work they are doing.",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "homepage": "https://github.com/mattlindell/photon-plugins",
+  "repository": "https://github.com/mattlindell/photon-plugins.git",
+  "license": "MIT",
+  "keywords": [
+    "library",
+    "primitives",
+    "operator-tools",
+    "writing",
+    "unslop",
+    "codebase-design"
+  ],
+  "skills": [
+    "./skills/primitives/codebase-design",
+    "./skills/primitives/technical-writing",
+    "./skills/primitives/unslop",
+    "./skills/primitives/writing-for-agents",
+    "./skills/operator-tools/automate-me",
+    "./skills/operator-tools/bro",
+    "./skills/operator-tools/caveman",
+    "./skills/operator-tools/handoff",
+    "./skills/operator-tools/recall",
+    "./skills/operator-tools/reflect",
+    "./skills/operator-tools/teach",
+    "./skills/operator-tools/wait-what",
+    "./skills/operator-tools/what-did-i-get-done"
+  ]
+}

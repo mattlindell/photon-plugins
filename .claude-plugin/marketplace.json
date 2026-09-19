@@ -7,9 +7,21 @@
   },
   "metadata": {
     "description": "Claude Code plugins for a variety of projects and tasks",
-    "version": "1.7.1"
+    "version": "1.8.0"
   },
   "plugins": [
+    {
+      "name": "ph-lib",
+      "source": "./plugins/ph-lib",
+      "description": "Shared library for the photon plugins: four primitives that ph-plan and ph-build reference and require (codebase-design, technical-writing, unslop, writing-for-agents), plus nine operator tools you invoke directly (automate-me, bro, caveman, handoff, recall, reflect, teach, wait-what, what-did-i-get-done). Not a hat — nobody installs this because of the work they are doing.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Matt Lindell",
+        "email": "misterphoton@gmail.com"
+      },
+      "homepage": "https://github.com/mattlindell/photon-plugins",
+      "category": "workflow"
+    },
     {
       "name": "php-development",
       "source": "./plugins/php-development",

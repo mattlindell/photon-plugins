@@ -67,6 +67,15 @@ policy:
 
 ### Plugin Registry
 
+**IMPORTANT: In `plugin.json`, `repository` must be a string URL, never an object.** The `{"type": "git", "url": "…"}` form — which the official `plugin-dev` manifest reference documents in its "complete plugin" example — causes Claude Code to **silently discover zero skills** from that plugin. No error, no warning; the plugin loads and every skill vanishes. Verified against `ph-lib` on 2026-09-19: with the object form, 0 skills; with the string form, all of them. After editing any `plugin.json`, confirm skills still resolve:
+
+```bash
+claude -p --plugin-dir plugins/<name> --model haiku --max-turns 1 \
+  "Without using any tools: list your available skills starting with '<name>:'." < /dev/null
+```
+
+Only model-invocable skills appear in that listing — skills with `disable-model-invocation: true` are correctly absent. Check those with `claude -p --plugin-dir plugins/<name> --max-turns 2 "/<name>:<skill>"`.
+
 **IMPORTANT: When adding or removing a plugin, you MUST update both the plugin's own `plugin.json` AND `.claude-plugin/marketplace.json` at the root.** Also update the root `README.md` plugin table.
 
 **IMPORTANT: When adding or removing a skill within an existing plugin, bump the plugin's minor version in both `plugin.json` and `.claude-plugin/marketplace.json`, and update the marketplace `description` if the new/removed skill changes the plugin's surface area.** Update the plugin's own `README.md` skills table and structure tree.
