@@ -8,6 +8,8 @@ Checks:
   - every registered plugin source exists and its plugin.json name matches
   - no plugin.json uses the object form of `repository`, which makes Claude Code
     silently discover zero skills from that plugin
+  - no plugin.json points `hooks` at the standard hooks/hooks.json, which is
+    already auto-loaded; the duplicate makes Claude Code reject the hooks file
   - every pinned `skills` array matches the SKILL.md files on disk exactly
   - no plugin directory is unregistered (product-team is a known exception)
   - every SKILL.md carries name and description
@@ -33,6 +35,10 @@ from _manifest import (
 
 FRONTMATTER_WINDOW = 2000
 
+# Auto-loaded by convention. Naming it in the manifest loads it twice, and
+# Claude Code then refuses the whole file.
+STANDARD_HOOKS = "hooks/hooks.json"
+
 
 def check_registered(failures: list[str]) -> set[str]:
     """Validate each registry entry; return the set of registered directories."""
@@ -56,7 +62,15 @@ def check_registered(failures: list[str]) -> set[str]:
             failures.append(f"name mismatch: {manifest.get('name')} vs {name}")
 
         if isinstance(manifest.get("repository"), dict):
-            failures.append(f"{name}: repository is an object — this silently drops every skill")
+            failures.append(f"{name}: repository is an object - this silently drops every skill")
+
+        hooks = manifest.get("hooks")
+        if hooks is not None and Path(str(hooks)).as_posix().lstrip("./") == STANDARD_HOOKS:
+            failures.append(
+                f"{name}: manifest points hooks at {STANDARD_HOOKS}, which is already "
+                f"loaded automatically - the duplicate makes Claude Code reject the file. "
+                f"Name only additional hook files here, or drop the key."
+            )
 
         pinned = manifest.get("skills")
         if pinned is not None:

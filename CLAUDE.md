@@ -168,6 +168,8 @@ claude -p --plugin-dir plugins/<name> --model haiku --max-turns 1 \
 
 Only model-invocable skills appear in that listing — skills with `disable-model-invocation: true` are correctly absent. Check those with `claude -p --plugin-dir plugins/<name> --max-turns 2 "/<name>:<skill>"`.
 
+**IMPORTANT: Do not set `hooks` in `plugin.json` when the file is at the standard `hooks/hooks.json` path.** That path is loaded automatically, so naming it in the manifest loads it twice and Claude Code rejects the whole hooks file with `Duplicate hooksfile detected`. The key is only for *additional* hook files. `validate-marketplace.py` checks this.
+
 **IMPORTANT: When adding or removing a plugin, you MUST update both the plugin's own `plugin.json` AND `.claude-plugin/marketplace.json` at the root.** Also update the root `README.md` plugin table.
 
 **IMPORTANT: When adding or removing a skill within an existing plugin, bump the plugin's minor version in both `plugin.json` and `.claude-plugin/marketplace.json`, and update the marketplace `description` if the new/removed skill changes the plugin's surface area.** Update the plugin's own `README.md` skills table and structure tree.
