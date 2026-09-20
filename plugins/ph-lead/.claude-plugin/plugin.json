@@ -1,0 +1,46 @@
+{
+  "name": "ph-lead",
+  "version": "1.0.0",
+  "description": "Engineering leadership and people management: 1:1s and skip-levels, difficult conversations, delegation, managing up, cross-functional collaboration, timelines and status, meetings and offsites, decision processes, OKRs, org design and transformation, team culture and rituals, post-mortems, and systems thinking. Twenty-four skills with a router.",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "homepage": "https://github.com/mattlindell/photon-plugins",
+  "repository": "https://github.com/mattlindell/photon-plugins.git",
+  "license": "MIT",
+  "keywords": [
+    "leadership",
+    "management",
+    "1-1s",
+    "org-design",
+    "okrs",
+    "culture"
+  ],
+  "skills": [
+    "./skills/building-team-culture",
+    "./skills/coaching-pms",
+    "./skills/cross-functional-collaboration",
+    "./skills/delegating-work",
+    "./skills/energy-management",
+    "./skills/engineering-culture",
+    "./skills/evaluating-trade-offs",
+    "./skills/having-difficult-conversations",
+    "./skills/leadership",
+    "./skills/managing-timelines",
+    "./skills/managing-up",
+    "./skills/organizational-design",
+    "./skills/organizational-transformation",
+    "./skills/planning-under-uncertainty",
+    "./skills/post-mortems-retrospectives",
+    "./skills/running-decision-processes",
+    "./skills/running-design-reviews",
+    "./skills/running-effective-1-1s",
+    "./skills/running-effective-meetings",
+    "./skills/running-offsites",
+    "./skills/setting-okrs-goals",
+    "./skills/stakeholder-alignment",
+    "./skills/systems-thinking",
+    "./skills/team-rituals"
+  ]
+}
