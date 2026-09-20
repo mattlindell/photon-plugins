@@ -1,6 +1,6 @@
 {
   "name": "ph-php",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "PHP development with WordPress, Laravel, Sage/Roots, and legacy CI3 maintenance",
   "author": {
     "name": "Matt Lindell",

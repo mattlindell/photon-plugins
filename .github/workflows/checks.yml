@@ -1,0 +1,86 @@
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    name: Marketplace structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Registry matches disk
+        run: python scripts/validate-marketplace.py
+
+      - name: Links and anchors resolve
+        run: python scripts/lint-links.py --exclude product-team
+
+  versioning:
+    name: Semver floor
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so the merge base with the target branch is reachable.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compute required bumps
+        id: bump
+        run: |
+          set +e
+          BASE="origin/${{ github.base_ref }}"
+          git fetch --no-tags --depth=0 origin "${{ github.base_ref }}" || true
+
+          {
+            echo '## Semver floor'
+            echo
+            echo 'Impact is read from structure, not diff size. A version at or'
+            echo 'above the floor passes — bumping higher is always fine.'
+            echo
+            echo '```'
+            python scripts/bump-versions.py --base "$BASE" --format github
+            echo '```'
+          } | tee /tmp/report.txt >> "$GITHUB_STEP_SUMMARY"
+
+          # Re-run for the exit code alone; the annotations are already emitted.
+          python scripts/bump-versions.py --base "$BASE" --format github > /dev/null
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Enforce
+        run: |
+          CODE="${{ steps.bump.outputs.code }}"
+          case "$CODE" in
+            0)
+              echo "All plugin versions are at or above the floor."
+              ;;
+            1)
+              echo "::warning::A minor or patch bump is missing. Advisory only —"\
+                   "run 'python scripts/bump-versions.py --apply' to fix."
+              ;;
+            2)
+              echo "::error::A breaking change is missing its major bump."
+              echo "A skill or plugin was removed or renamed, or a skill stopped"
+              echo "being model-invocable. That breaks existing invocations."
+              echo "Fix: python scripts/bump-versions.py --apply"
+              exit 1
+              ;;
+            *)
+              echo "::error::bump-versions.py failed to run (exit $CODE)."
+              exit 1
+              ;;
+          esac

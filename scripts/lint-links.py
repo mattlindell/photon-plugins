@@ -2,7 +2,8 @@
 """Check that every relative markdown link and heading anchor resolves.
 
 Usage:
-    python scripts/lint-links.py [path ...]     # defaults to plugins/ and docs/
+    python scripts/lint-links.py [path ...]            # defaults to plugins/ and docs/
+    python scripts/lint-links.py --exclude product-team
 
 Skips fenced code blocks and template placeholders, both of which legitimately
 contain example links that point nowhere.
@@ -66,16 +67,36 @@ def check(path: str) -> list:
     return problems
 
 
-def main(roots) -> int:
+def main(argv) -> int:
+    excluded = set()
+    roots = []
+    it = iter(argv)
+    for arg in it:
+        if arg == '--exclude':
+            excluded.update(next(it, '').split(','))
+        elif arg.startswith('--exclude='):
+            excluded.update(arg.split('=', 1)[1].split(','))
+        else:
+            roots.append(arg)
+    roots = roots or ['plugins', 'docs']
+
+    def skip(path):
+        parts = path.replace(os.sep, '/').split('/')
+        return any(e and e in parts for e in excluded)
+
     problems = []
     for root in roots:
         if os.path.isfile(root):
-            problems += check(root)
+            if not skip(root):
+                problems += check(root)
             continue
-        for dirpath, _, filenames in os.walk(root):
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames if not skip(os.path.join(dirpath, d))]
             for name in sorted(filenames):
                 if name.endswith('.md'):
                     problems += check(os.path.join(dirpath, name))
+    if excluded:
+        print('(excluded: %s)' % ', '.join(sorted(excluded)))
     if problems:
         print('Broken links (%d):' % len(problems))
         for path, lineno, target, why in problems:
@@ -87,4 +108,4 @@ def main(roots) -> int:
 
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:] or ['plugins', 'docs']))
+    sys.exit(main(sys.argv[1:]))

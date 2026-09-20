@@ -62,7 +62,7 @@
       "name": "ph-php",
       "source": "./plugins/ph-php",
       "description": "Comprehensive PHP development covering WordPress, Laravel, Sage/Roots, WooCommerce, as well as CodeIgniter 3 legacy maintenance",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
@@ -74,7 +74,7 @@
       "name": "ph-npo",
       "source": "./plugins/ph-npo",
       "description": "Seven skills for nonprofit operations: a foundational organization profile builder that personalizes the rest, plus grant writing, budget creation, donor thank-you communications, social media content, volunteer scheduling, and Givebutter integration.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
@@ -86,7 +86,7 @@
       "name": "ph-pm",
       "source": "./plugins/ph-pm",
       "description": "Atlassian and scrum operations: Jira, Confluence, Atlassian administration and templates, sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Eight skills; bundles the Atlassian Remote MCP server.",
-      "version": "1.0.2",
+      "version": "2.0.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"

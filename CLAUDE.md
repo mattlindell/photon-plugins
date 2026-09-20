@@ -50,17 +50,42 @@ decisions there; those go in `docs/adr/`.
 ## Checks
 
 ```bash
-python scripts/validate-marketplace.py  # registry vs disk, pinned arrays, manifest traps
-python scripts/lint-links.py            # relative links + heading anchors
+python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
+python scripts/lint-links.py --exclude product-team # relative links + heading anchors
+python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-Run both before any commit that touches plugin structure. `lint-links.py`
+All three run in CI on every PR (`.github/workflows/checks.yml`).
+
+Run all three before any commit that touches plugin structure. `lint-links.py`
 matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization.
 
-`lint-links.py` currently reports 5 pre-existing failures in `product-team`,
-which is unregistered and awaiting cleanup. Scope it to the plugins you touched
-(`python scripts/lint-links.py plugins/ph-build`) until that is fixed.
+`lint-links.py` reports 5 pre-existing failures in `product-team`, which is
+unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
+that plugin is fixed.
+
+### Versioning
+
+Bumps are derived from **structure, not diff size**. A one-line change can be
+breaking (adding `disable-model-invocation` removes the model's reach) while a
+500-line deletion in a reference file is a patch.
+
+| Change | Bump |
+| --- | --- |
+| Skill or plugin removed or renamed; skill `name:` changed; `disable-model-invocation` added; agent or command removed | **major** |
+| Skill, plugin, agent, or command added; `disable-model-invocation` removed | **minor** |
+| Everything else | **patch** |
+
+A `feat:` commit or a `!` / `BREAKING CHANGE:` footer can raise that floor but
+never lower it. The check only requires the committed version to be **at or
+above** the floor, so bumping higher — or pre-bumping locally — always passes.
+
+CI **blocks** on a missing major and warns on the rest: a removed or renamed
+skill is unambiguous and actually breaks someone, while minor-versus-patch
+carries real judgment. Fix any complaint with
+`python scripts/bump-versions.py --apply`, which writes `plugin.json` and the
+matching `marketplace.json` entry together so the two cannot drift.
 
 ## Conventions
 

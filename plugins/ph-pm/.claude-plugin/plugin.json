@@ -1,6 +1,6 @@
 {
   "name": "ph-pm",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Atlassian and scrum operations: Jira, Confluence, Atlassian administration and templates, sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Eight skills; bundles the Atlassian Remote MCP server.",
   "author": {
     "name": "Matt Lindell",
