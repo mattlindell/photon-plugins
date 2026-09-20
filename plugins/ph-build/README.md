@@ -1,7 +1,7 @@
 # ph-build
 
 **Unattended implementation** — building what was decided, at a cost that tracks
-what is still unknown. 33 skills, 23 principles, 19 playbooks, 3 agents.
+what is still unknown. 34 skills, 23 principles, 18 playbooks, 3 agents.
 
 Its counterpart, [`ph-plan`](../ph-plan/), is the hat you wear when deciding
 *what* gets built. **Requires [`ph-lib`](../ph-lib/).**
@@ -85,7 +85,7 @@ inside itself. That is what the **playbook budgets** are for.
 ## Entry points
 
 **`dispatch`** is the router, and the `SessionStart` hook points at it. It reads
-the rigor signal, applies the gate, and routes to one of 19 playbooks.
+the rigor signal, applies the gate, and routes to one of 18 playbooks.
 
 Direct entry when the intent is specific: `how`, `why`, `tdd`, `babysit`.
 
@@ -123,10 +123,10 @@ ph-build/
   agents/                       — implement, code-review, comment-sicko
   skills/
     dispatch/
-      playbooks/                — 19
+      playbooks/                — 18
       references/               — bugbot triage
       scripts/                  — watch-pr, worktree-audit
-    <32 skills>
+    <33 skills>
     principles/                 — 23 leaf skills
 ```
 

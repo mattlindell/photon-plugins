@@ -1,0 +1,5 @@
+interface:
+  display_name: "Open PR"
+  short_description: "Take a finished branch to an open pull request"
+policy:
+  allow_implicit_invocation: false

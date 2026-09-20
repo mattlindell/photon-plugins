@@ -1,7 +1,7 @@
 {
   "name": "ph-build",
-  "version": "1.0.0",
-  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-three skills, twenty-three principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
+  "version": "1.1.0",
+  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-four skills, twenty-three principles, eighteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"
@@ -42,6 +42,7 @@
     "./skills/maintain-verification-skill",
     "./skills/make-pr-easy-to-review",
     "./skills/no-comments",
+    "./skills/open-pr",
     "./skills/principles/principle-attack-the-premise",
     "./skills/principles/principle-boundary-discipline",
     "./skills/principles/principle-build-the-lever",

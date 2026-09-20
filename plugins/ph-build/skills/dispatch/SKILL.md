@@ -115,7 +115,7 @@ covers the whole composition including nested fan-out, and it is a ceiling.
 - **Session pickup.** Resuming a prior agent's in-flight work. `playbooks/session-pickup.md`
 - **Pause safely.** Suspending in-flight work cleanly. `playbooks/pause-safely.md`
 - **Worktree cleanup.** Pruning merged or abandoned worktrees. `playbooks/worktree-cleanup.md`
-- **Opening a PR.** Invoked at the end of every other playbook. `playbooks/opening-a-pr.md`
+- **Opening a PR.** Invoked at the end of every other playbook. `../open-pr/SKILL.md`
 
 No bundled playbook fits, or the effort is large and cross-cutting → the
 **figure-it-out** skill, which designs a bespoke one. It is still bound by a
