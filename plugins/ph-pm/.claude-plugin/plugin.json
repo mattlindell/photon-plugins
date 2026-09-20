@@ -1,0 +1,20 @@
+{
+  "name": "ph-pm",
+  "version": "2.0.0",
+  "description": "Atlassian and scrum operations: Jira, Confluence, Atlassian administration and templates, sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Eight skills; bundles the Atlassian Remote MCP server.",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "skills": [
+    "./skills/atlassian-admin",
+    "./skills/atlassian-templates",
+    "./skills/confluence-expert",
+    "./skills/jira-expert",
+    "./skills/meeting-analyzer",
+    "./skills/scrum-master",
+    "./skills/senior-pm",
+    "./skills/team-communications"
+  ],
+  "homepage": "https://github.com/mattlindell/photon-plugins"
+}

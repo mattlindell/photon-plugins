@@ -1,0 +1,35 @@
+[project]
+name = "photon-plugins-scripts"
+version = "0.1.0"
+description = "Repository checks for the photon-plugins marketplace"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+include = ["scripts/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle
+    "F",      # pyflakes
+    "I",      # import sorting
+    "UP",     # pyupgrade
+    "B",      # bugbear
+    "SIM",    # simplify
+    "PL",     # pylint
+    "RUF",    # ruff-specific
+    "FURB",   # refurb
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Checks are CLI tools: printing is the interface, and main() branches a lot.
+"scripts/*.py" = ["PLR0912", "PLR0915", "PLR0911"]
+
+[tool.basedpyright]
+include = ["scripts"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+reportMissingTypeArgument = "error"
+reportUnusedVariable = "error"
+reportUnusedImport = "error"

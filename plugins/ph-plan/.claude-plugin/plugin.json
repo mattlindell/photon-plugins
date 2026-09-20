@@ -1,0 +1,41 @@
+{
+  "name": "ph-plan",
+  "version": "1.0.0",
+  "description": "Middle-down planning: decide and write down what gets built. Thirteen skills and six principles for an interactive session - intake routing, relentless grilling, domain modeling, frontier scouting, triage, specs and tickets. Every session ends in a written artifact carrying which of the four dimensions it closed. Requires ph-lib.",
+  "author": {
+    "name": "Matt Lindell",
+    "email": "misterphoton@gmail.com"
+  },
+  "homepage": "https://github.com/mattlindell/photon-plugins",
+  "repository": "https://github.com/mattlindell/photon-plugins.git",
+  "license": "MIT",
+  "keywords": [
+    "planning",
+    "specs",
+    "tickets",
+    "grilling",
+    "domain-modeling",
+    "triage"
+  ],
+  "skills": [
+    "./skills/define-done",
+    "./skills/domain-modeling",
+    "./skills/grilling",
+    "./skills/improve-codebase-architecture",
+    "./skills/intake",
+    "./skills/principles/principle-block-on-the-human",
+    "./skills/principles/principle-close-or-block-the-dimension",
+    "./skills/principles/principle-name-the-destination",
+    "./skills/principles/principle-one-way-doors-first",
+    "./skills/principles/principle-walk-the-tree",
+    "./skills/principles/principle-write-it-down",
+    "./skills/prototype",
+    "./skills/research",
+    "./skills/scout",
+    "./skills/setup-ph-plan",
+    "./skills/to-questionnaire",
+    "./skills/to-spec",
+    "./skills/to-tickets",
+    "./skills/triage"
+  ]
+}

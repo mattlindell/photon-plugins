@@ -1,0 +1,16 @@
+version: 2
+
+updates:
+  # Actions are pinned to commit SHAs, which does not expire on its own.
+  # Dependabot understands the `# vX.Y.Z` trailing comment and bumps both the
+  # SHA and the comment together, so pins stay current without losing the
+  # supply-chain guarantee that pinning buys.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "👷 ci"
+    groups:
+      actions:
+        patterns: ["*"]
