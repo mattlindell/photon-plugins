@@ -19,6 +19,18 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install lint tooling
+        run: pipx install ruff==0.16.8 basedpyright==1.39.8
+
+      - name: Lint
+        run: ruff check scripts/
+
+      - name: Format
+        run: ruff format --check scripts/
+
+      - name: Type check
+        run: basedpyright scripts/
+
       - name: Registry matches disk
         run: python scripts/validate-marketplace.py
 

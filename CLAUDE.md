@@ -55,10 +55,20 @@ python scripts/lint-links.py --exclude product-team # relative links + heading a
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-All three run in CI on every PR (`.github/workflows/checks.yml`).
+All three run in CI on every PR (`.github/workflows/checks.yml`), alongside
+`ruff check`, `ruff format --check`, and `basedpyright` over `scripts/`.
 
-Run all three before any commit that touches plugin structure. `lint-links.py`
-matters most after a rename — a renamed heading silently orphans every anchor
+The scripts are typed and must stay clean at both. `pyproject.toml` holds the
+config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
+the manifests so JSON is shaped once at the boundary rather than leaking `Any`
+through every caller.
+
+```bash
+uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
+```
+
+Run the three repo checks before any commit that touches plugin structure.
+`lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization.
 
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is

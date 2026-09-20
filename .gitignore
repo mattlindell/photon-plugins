@@ -5,3 +5,8 @@
 
 # ignore all files intended for local consumption only
 *.local.*
+
+# Python
+__pycache__/
+*.py[cod]
+.ruff_cache/

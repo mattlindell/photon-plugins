@@ -10,102 +10,122 @@ contain example links that point nowhere.
 
 Exits 1 if anything is broken, so it works as a pre-commit or CI gate.
 """
-import os
+
+from __future__ import annotations
+
+import argparse
 import re
 import sys
+from pathlib import Path
+from typing import NamedTuple
 
-FENCE = re.compile(r'^\s*(```|~~~)')
-LINK = re.compile(r'\]\((?!https?:|mailto:)([^)]+)\)')
-# Placeholder targets that are illustrative, not real: (link), (<some thing>),
-# (path/to/x). A target containing < or > is a template slot by convention.
-PLACEHOLDER = re.compile(r'^(link|url|path|\.\.\.)$|[<>]')
+FENCE = re.compile(r"^\s*(```|~~~)")
+LINK = re.compile(r"\]\((?!https?:|mailto:)([^)]+)\)")
+# Illustrative targets: (link), (<some thing>), (path/to/x). A target containing
+# < or > is a template slot by convention.
+PLACEHOLDER = re.compile(r"^(link|url|path|\.\.\.)$|[<>]")
+HEADING = re.compile(r"^#{1,6}\s+(.*)$", re.MULTILINE)
+
+
+class Problem(NamedTuple):
+    path: Path
+    line: int
+    target: str
+    reason: str
 
 
 def slugify(heading: str) -> str:
-    s = re.sub(r'`|\*|_', '', heading.strip().lower())
-    s = re.sub(r'[^\w\s-]', '', s)
-    return re.sub(r'\s+', '-', s).strip('-')
+    text = re.sub(r"[`*_]", "", heading.strip().lower())
+    text = re.sub(r"[^\w\s-]", "", text)
+    return re.sub(r"\s+", "-", text).strip("-")
 
 
-def headings(path: str) -> set:
+def headings(path: Path) -> set[str]:
     try:
-        text = open(path, encoding='utf-8').read()
+        text = path.read_text(encoding="utf-8", errors="replace")
     except OSError:
         return set()
-    return {slugify(h) for h in re.findall(r'^#{1,6}\s+(.*)$', text, re.M)}
+    return {slugify(h) for h in HEADING.findall(text)}
 
 
-def unfenced_lines(text: str):
-    """Yield (lineno, line) for lines outside fenced code blocks."""
+def unfenced_lines(text: str) -> list[tuple[int, str]]:
+    """Lines outside fenced code blocks, as (1-based lineno, line)."""
+    out: list[tuple[int, str]] = []
     in_fence = False
-    for i, line in enumerate(text.splitlines(), 1):
+    for lineno, line in enumerate(text.splitlines(), 1):
         if FENCE.match(line):
             in_fence = not in_fence
             continue
         if not in_fence:
-            yield i, line
+            out.append((lineno, line))
+    return out
 
 
-def check(path: str) -> list:
-    problems = []
-    text = open(path, encoding='utf-8').read()
-    base = os.path.dirname(path)
+def check(path: Path) -> list[Problem]:
+    problems: list[Problem] = []
+    text = path.read_text(encoding="utf-8", errors="replace")
+
     for lineno, line in unfenced_lines(text):
-        for m in LINK.finditer(line):
-            target = m.group(1).strip()
+        for match in LINK.finditer(line):
+            target = match.group(1).strip()
             if PLACEHOLDER.search(target):
                 continue
-            filepart, _, fragment = target.partition('#')
-            resolved = path if not filepart else os.path.normpath(
-                os.path.join(base, filepart))
-            if filepart and not os.path.exists(resolved):
-                problems.append((path, lineno, target, 'missing file'))
+
+            filepart, _, fragment = target.partition("#")
+            resolved = (path.parent / filepart).resolve() if filepart else path
+
+            if filepart and not resolved.exists():
+                problems.append(Problem(path, lineno, target, "missing file"))
                 continue
-            if fragment and resolved.endswith('.md'):
-                if slugify(fragment) not in headings(resolved):
-                    problems.append((path, lineno, target, 'no such anchor'))
+            if (
+                fragment
+                and resolved.suffix == ".md"
+                and slugify(fragment) not in headings(resolved)
+            ):
+                problems.append(Problem(path, lineno, target, "no such anchor"))
     return problems
 
 
-def main(argv) -> int:
-    excluded = set()
-    roots = []
-    it = iter(argv)
-    for arg in it:
-        if arg == '--exclude':
-            excluded.update(next(it, '').split(','))
-        elif arg.startswith('--exclude='):
-            excluded.update(arg.split('=', 1)[1].split(','))
-        else:
-            roots.append(arg)
-    roots = roots or ['plugins', 'docs']
+def markdown_files(root: Path, excluded: set[str]) -> list[Path]:
+    if root.is_file():
+        return [] if any(part in excluded for part in root.parts) else [root]
+    return sorted(
+        p
+        for p in root.rglob("*.md")
+        if p.is_file() and not any(part in excluded for part in p.parts)
+    )
 
-    def skip(path):
-        parts = path.replace(os.sep, '/').split('/')
-        return any(e and e in parts for e in excluded)
 
-    problems = []
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    _ = parser.add_argument("paths", nargs="*", default=None)
+    _ = parser.add_argument(
+        "--exclude", action="append", default=[], help="directory name to skip (repeatable)"
+    )
+    args = parser.parse_args(argv)
+
+    excluded: set[str] = {e for spec in args.exclude for e in str(spec).split(",") if e}
+    roots = [Path(p) for p in (args.paths or ["plugins", "docs"])]
+
+    problems: list[Problem] = []
     for root in roots:
-        if os.path.isfile(root):
-            if not skip(root):
-                problems += check(root)
-            continue
-        for dirpath, dirnames, filenames in os.walk(root):
-            dirnames[:] = [d for d in dirnames if not skip(os.path.join(dirpath, d))]
-            for name in sorted(filenames):
-                if name.endswith('.md'):
-                    problems += check(os.path.join(dirpath, name))
+        for path in markdown_files(root, excluded):
+            problems.extend(check(path))
+
     if excluded:
-        print('(excluded: %s)' % ', '.join(sorted(excluded)))
+        print(f"(excluded: {', '.join(sorted(excluded))})")
+
     if problems:
-        print('Broken links (%d):' % len(problems))
-        for path, lineno, target, why in problems:
-            print('  %s:%d  %s  (%s)' % (path.replace(os.sep, '/'), lineno,
-                                         target, why))
+        print(f"Broken links ({len(problems)}):")
+        for problem in problems:
+            print(
+                f"  {problem.path.as_posix()}:{problem.line}  {problem.target}  ({problem.reason})"
+            )
         return 1
-    print('All relative links and anchors resolve.')
+
+    print("All relative links and anchors resolve.")
     return 0
 
 
-if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:]))
+if __name__ == "__main__":
+    sys.exit(main())

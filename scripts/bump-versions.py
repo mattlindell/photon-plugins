@@ -13,9 +13,9 @@ breaking (adding `disable-model-invocation` removes the model's reach) while a
 500-line deletion inside a reference file is a patch, so line counts are not
 used at all.
 
-  major  skill removed or renamed · skill `name:` changed · plugin removed or
-         renamed · `disable-model-invocation` added · agent or command removed
-  minor  skill, agent, command, or plugin added · `disable-model-invocation`
+  major  skill removed or renamed - skill `name:` changed - plugin removed or
+         renamed - `disable-model-invocation` added - agent or command removed
+  minor  skill, agent, command, or plugin added - `disable-model-invocation`
          removed
   patch  everything else
 
@@ -27,296 +27,363 @@ from what someone remembered to type.
 The committed version only has to be *at or above* the floor. Bumping higher
 than the tool asks is always fine, so pre-bumping locally never trips the check.
 
-Exit codes: 0 satisfied · 1 below floor · 2 below floor on a major.
+Exit codes: 0 satisfied - 1 below floor - 2 below floor on a major - 3 bad ref.
 """
+
+from __future__ import annotations
+
 import argparse
-import io
 import json
 import os
 import re
 import subprocess
 import sys
+from pathlib import Path
+from typing import Literal, NamedTuple, cast
 
-LEVELS = ('patch', 'minor', 'major')
-PLUGINS_DIR = 'plugins'
-UNREGISTERED = {'product-team'}
+from _manifest import (
+    MARKETPLACE_PATH,
+    PLUGINS_DIR,
+    UNREGISTERED,
+    Marketplace,
+    PluginManifest,
+    entries,
+    load_marketplace,
+    plugin_manifest_path,
+    write_json,
+)
+
+Level = Literal["patch", "minor", "major"]
+LEVELS: tuple[Level, ...] = ("patch", "minor", "major")
+
+WORKTREE = "WORKTREE"  # sentinel: read from disk, not from a git ref
+
+FRONTMATTER = re.compile(r"^---\n(.*?)\n---", re.DOTALL)
+CONVENTIONAL = re.compile(r"\b(feat|fix|refactor|chore|docs|perf|test)(\(([^)]*)\))?(!)?:")
 
 
-def sh(*args):
-    r = subprocess.run(args, capture_output=True, text=True,
-                       encoding='utf-8', errors='replace')
-    return r.stdout if r.returncode == 0 else None
+class Row(NamedTuple):
+    plugin: str
+    previous: str
+    current: str
+    level: Level | None  # None marks a newly added plugin
+    why: str
+    satisfied: bool
 
 
-def higher(a, b):
+def sh(*args: str) -> str | None:
+    """Run a git command, returning stdout or None when it fails.
+
+    Output is decoded as UTF-8 explicitly: the default on Windows is the ANSI
+    codepage, which raises on the em dashes and arrows in these skills and makes
+    every read look like an absent file.
+    """
+    result = subprocess.run(
+        args, capture_output=True, text=True, encoding="utf-8", errors="replace", check=False
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def higher(a: Level, b: Level) -> Level:
     return a if LEVELS.index(a) >= LEVELS.index(b) else b
 
 
-def parse_version(v):
-    parts = (v or '0.0.0').split('.')
-    while len(parts) < 3:
-        parts.append('0')
+def parse_version(version: str) -> tuple[int, int, int]:
+    parts = (version or "0.0.0").split(".")
+    parts += ["0"] * (3 - len(parts))
     try:
-        return tuple(int(x) for x in parts[:3])
+        return (int(parts[0]), int(parts[1]), int(parts[2]))
     except ValueError:
         return (0, 0, 0)
 
 
-def bump(version, level):
+def bump(version: str, level: Level) -> str:
     major, minor, patch = parse_version(version)
-    if level == 'major':
-        return '%d.0.0' % (major + 1)
-    if level == 'minor':
-        return '%d.%d.0' % (major, minor + 1)
-    return '%d.%d.%d' % (major, minor, patch + 1)
+    if level == "major":
+        return f"{major + 1}.0.0"
+    if level == "minor":
+        return f"{major}.{minor + 1}.0"
+    return f"{major}.{minor}.{patch + 1}"
 
 
-WORKTREE = 'WORKTREE'  # sentinel: read from disk, not from a git ref
-
-
-def read_at(ref, path):
+def read_at(ref: str, path: str) -> str | None:
     """File content at a ref, or None if it did not exist there.
 
-    The WORKTREE sentinel reads the working tree instead, so the check can run
-    on uncommitted changes before a PR exists.
+    The WORKTREE sentinel reads the working tree instead, so the check can run on
+    uncommitted changes before a PR exists.
     """
-    path = path.replace(os.sep, '/')
+    posix = path.replace(os.sep, "/")
     if ref == WORKTREE:
-        if not os.path.exists(path):
-            return None
-        return io.open(path, encoding='utf-8', errors='replace').read()
-    return sh('git', 'show', '%s:%s' % (ref, path))
+        target = Path(posix)
+        return target.read_text(encoding="utf-8", errors="replace") if target.exists() else None
+    return sh("git", "show", f"{ref}:{posix}")
 
 
-def frontmatter(text):
+def frontmatter(text: str | None) -> dict[str, str]:
     if not text:
         return {}
-    m = re.match(r'^---\n(.*?)\n---', text, re.S)
-    if not m:
+    match = FRONTMATTER.match(text)
+    if not match:
         return {}
-    out = {}
-    for line in m.group(1).splitlines():
-        if ':' in line and not line.startswith(' '):
-            k, _, v = line.partition(':')
-            out[k.strip()] = v.strip().strip('"\'')
-    return out
+    fields: dict[str, str] = {}
+    for line in match.group(1).splitlines():
+        if ":" in line and not line.startswith(" "):
+            key, _, value = line.partition(":")
+            fields[key.strip()] = value.strip().strip("\"'")
+    return fields
 
 
-def tree_files(ref, prefix):
+def tree_files(ref: str, prefix: str) -> set[str]:
     """Paths under prefix at ref. Empty when the prefix does not exist."""
     if ref == WORKTREE:
-        found = set()
-        root = prefix.rstrip('/')
-        for dirpath, dirnames, filenames in os.walk(root):
-            dirnames[:] = [d for d in dirnames if d != '.git']
-            for f in filenames:
-                found.add(os.path.join(dirpath, f).replace(os.sep, '/'))
-        return found
-    out = sh('git', 'ls-tree', '-r', '--name-only', ref, '--', prefix)
+        root = Path(prefix.rstrip("/"))
+        if not root.exists():
+            return set()
+        return {p.as_posix() for p in root.rglob("*") if p.is_file()}
+    out = sh("git", "ls-tree", "-r", "--name-only", ref, "--", prefix)
     return set(out.splitlines()) if out else set()
 
 
-def skill_map(ref, plugin):
-    """skill directory -> frontmatter, at a ref."""
-    prefix = '%s/%s/' % (PLUGINS_DIR, plugin)
-    out = {}
-    for p in tree_files(ref, prefix):
-        if p.endswith('/SKILL.md'):
-            out[os.path.dirname(p)] = frontmatter(read_at(ref, p))
-    return out
+def skill_map(ref: str, plugin: str) -> dict[str, dict[str, str]]:
+    """Skill directory -> frontmatter fields, at a ref."""
+    prefix = f"{PLUGINS_DIR}/{plugin}/"
+    return {
+        path.rsplit("/", 1)[0]: frontmatter(read_at(ref, path))
+        for path in tree_files(ref, prefix)
+        if path.endswith("/SKILL.md")
+    }
 
 
-def component_files(ref, plugin, kind):
-    prefix = '%s/%s/%s/' % (PLUGINS_DIR, plugin, kind)
-    return {p for p in tree_files(ref, prefix) if p.endswith('.md')}
+def component_files(ref: str, plugin: str, kind: str) -> set[str]:
+    prefix = f"{PLUGINS_DIR}/{plugin}/{kind}/"
+    return {p for p in tree_files(ref, prefix) if p.endswith(".md")}
 
 
-def plugins_at(ref):
-    names = set()
-    for p in tree_files(ref, PLUGINS_DIR + '/'):
-        parts = p.split('/')
-        if len(parts) > 2:
-            names.add(parts[1])
-    return names - UNREGISTERED
+def plugins_at(ref: str) -> set[str]:
+    """Plugin directory names at a ref, excluding unregistered ones."""
+    # plugins/<name>/<something> — anything shallower is not inside a plugin.
+    depth_inside_a_plugin = 3
+    names = {
+        parts[1]
+        for parts in (p.split("/") for p in tree_files(ref, f"{PLUGINS_DIR}/"))
+        if len(parts) >= depth_inside_a_plugin
+    }
+    return names - set(UNREGISTERED)
 
 
-def is_hidden(fm):
-    return str(fm.get('disable-model-invocation', '')).lower() == 'true'
+def is_hidden(fields: dict[str, str]) -> bool:
+    return fields.get("disable-model-invocation", "").lower() == "true"
 
 
-def content_changed(base, head, path):
+def content_changed(base: str, head: str, path: str) -> bool:
     """Whether anything under path differs, in one git call."""
     if head == WORKTREE:
-        out = sh('git', 'status', '--porcelain', '--', path)
-        if out and out.strip():
+        status = sh("git", "status", "--porcelain", "--", path)
+        if status and status.strip():
             return True
-        out = sh('git', 'diff', '--name-only', base, '--', path)
+        diff = sh("git", "diff", "--name-only", base, "--", path)
     else:
-        out = sh('git', 'diff', '--name-only', base, head, '--', path)
-    return bool(out and out.strip())
+        diff = sh("git", "diff", "--name-only", base, head, "--", path)
+    return bool(diff and diff.strip())
 
 
-def classify(plugin, base, head):
+def classify(plugin: str, base: str, head: str) -> tuple[Level | None, list[str]]:
     """Structural bump level for one plugin, with human-readable reasons."""
-    level, reasons = 'patch', []
-    b_skills, h_skills = skill_map(base, plugin), skill_map(head, plugin)
+    level: Level = "patch"
+    reasons: list[str] = []
+    before, after = skill_map(base, plugin), skill_map(head, plugin)
 
-    for gone in sorted(set(b_skills) - set(h_skills)):
-        level = higher(level, 'major')
-        reasons.append('skill removed: %s' % os.path.basename(gone))
-    for new in sorted(set(h_skills) - set(b_skills)):
-        level = higher(level, 'minor')
-        reasons.append('skill added: %s' % os.path.basename(new))
+    for gone in sorted(set(before) - set(after)):
+        level = higher(level, "major")
+        reasons.append(f"skill removed: {gone.rsplit('/', 1)[-1]}")
+    for added in sorted(set(after) - set(before)):
+        level = higher(level, "minor")
+        reasons.append(f"skill added: {added.rsplit('/', 1)[-1]}")
 
-    for both in sorted(set(b_skills) & set(h_skills)):
-        bf, hf = b_skills[both], h_skills[both]
-        if bf.get('name') != hf.get('name'):
-            level = higher(level, 'major')
-            reasons.append('skill renamed: %s -> %s' % (bf.get('name'), hf.get('name')))
-        if not is_hidden(bf) and is_hidden(hf):
-            level = higher(level, 'major')
-            reasons.append('no longer model-invocable: %s' % hf.get('name'))
-        elif is_hidden(bf) and not is_hidden(hf):
-            level = higher(level, 'minor')
-            reasons.append('now model-invocable: %s' % hf.get('name'))
+    for path in sorted(set(before) & set(after)):
+        old, new = before[path], after[path]
+        if old.get("name") != new.get("name"):
+            level = higher(level, "major")
+            reasons.append(f"skill renamed: {old.get('name')} -> {new.get('name')}")
+        if not is_hidden(old) and is_hidden(new):
+            level = higher(level, "major")
+            reasons.append(f"no longer model-invocable: {new.get('name')}")
+        elif is_hidden(old) and not is_hidden(new):
+            level = higher(level, "minor")
+            reasons.append(f"now model-invocable: {new.get('name')}")
 
-    for kind in ('agents', 'commands'):
-        b, h = component_files(base, plugin, kind), component_files(head, plugin, kind)
-        for gone in sorted(b - h):
-            level = higher(level, 'major')
-            reasons.append('%s removed: %s' % (kind[:-1], os.path.basename(gone)))
-        for new in sorted(h - b):
-            level = higher(level, 'minor')
-            reasons.append('%s added: %s' % (kind[:-1], os.path.basename(new)))
+    for kind in ("agents", "commands"):
+        old_files = component_files(base, plugin, kind)
+        new_files = component_files(head, plugin, kind)
+        for gone in sorted(old_files - new_files):
+            level = higher(level, "major")
+            reasons.append(f"{kind[:-1]} removed: {gone.rsplit('/', 1)[-1]}")
+        for added in sorted(new_files - old_files):
+            level = higher(level, "minor")
+            reasons.append(f"{kind[:-1]} added: {added.rsplit('/', 1)[-1]}")
 
     if not reasons:
-        if content_changed(base, head, '%s/%s' % (PLUGINS_DIR, plugin)):
-            reasons.append('content changed')
-        else:
+        if not content_changed(base, head, f"{PLUGINS_DIR}/{plugin}"):
             return None, []
+        reasons.append("content changed")
     return level, reasons
 
 
-def commit_floor(base, head, plugin):
+def commit_floor(base: str, head: str, plugin: str) -> Level:
     """Highest level implied by conventional-commit subjects touching a plugin."""
-    log = sh('git', 'log', '--format=%s%n%b%n--',
-             '%s..%s' % (base, 'HEAD' if head == WORKTREE else head))
+    rev = "HEAD" if head == WORKTREE else head
+    log = sh("git", "log", "--format=%s%n%b%n--", f"{base}..{rev}")
     if not log:
-        return 'patch'
-    level = 'patch'
-    for msg in log.split('\n--\n'):
-        if not msg.strip():
+        return "patch"
+
+    level: Level = "patch"
+    for message in log.split("\n--\n"):
+        if not message.strip():
             continue
-        subject = msg.strip().splitlines()[0]
-        m = re.search(r'\b(feat|fix|refactor|chore|docs|perf|test)(\(([^)]*)\))?(!)?:', subject)
-        if not m:
+        match = CONVENTIONAL.search(message.strip().splitlines()[0])
+        if not match:
             continue
-        scope = (m.group(3) or '').strip()
-        if scope and scope not in (plugin, 'marketplace', '*'):
+        scope = (match.group(3) or "").strip()
+        if scope and scope not in (plugin, "marketplace", "*"):
             continue
-        if m.group(4) or 'BREAKING CHANGE' in msg:
-            level = higher(level, 'major')
-        elif m.group(1) == 'feat':
-            level = higher(level, 'minor')
+        if match.group(4) or "BREAKING CHANGE" in message:
+            level = higher(level, "major")
+        elif match.group(1) == "feat":
+            level = higher(level, "minor")
     return level
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--base', default='origin/main')
-    ap.add_argument('--head', default='HEAD')
-    ap.add_argument('--worktree', action='store_true',
-                    help='compare the working tree, including uncommitted changes')
-    ap.add_argument('--apply', action='store_true', help='write the bumps')
-    ap.add_argument('--format', choices=('text', 'github'), default='text')
-    a = ap.parse_args()
-    if a.worktree:
-        a.head = WORKTREE
+def manifest_version(ref: str, plugin: str) -> str | None:
+    raw = read_at(ref, plugin_manifest_path(plugin))
+    if not raw:
+        return None
+    return cast(PluginManifest, json.loads(raw)).get("version", "0.0.0")
 
-    if sh('git', 'rev-parse', '--verify', a.base) is None:
-        print('base ref not found: %s' % a.base, file=sys.stderr)
-        return 3
 
-    mkt_path = '.claude-plugin/marketplace.json'
-    mkt = json.load(io.open(mkt_path, encoding='utf-8'))
-    entries = {e['name']: e for e in mkt['plugins']}
-
-    base_plugins, head_plugins = plugins_at(a.base), plugins_at(a.head)
-    roster_changed = base_plugins != head_plugins
-
-    rows, worst_shortfall = [], 'patch'
-    for name in sorted(head_plugins):
-        mf = '%s/%s/.claude-plugin/plugin.json' % (PLUGINS_DIR, name)
-        cur_raw = read_at(a.head, mf)
-        if not cur_raw:
-            continue
-        current = json.loads(cur_raw).get('version', '0.0.0')
-
-        base_raw = read_at(a.base, mf)
-        if not base_raw:
-            rows.append((name, '-', current, 'new', 'new plugin', True))
+def build_rows(base: str, head: str) -> list[Row]:
+    rows: list[Row] = []
+    for plugin in sorted(plugins_at(head)):
+        current = manifest_version(head, plugin)
+        if current is None:
             continue
 
-        previous = json.loads(base_raw).get('version', '0.0.0')
-        level, reasons = classify(name, a.base, a.head)
+        previous = manifest_version(base, plugin)
+        if previous is None:
+            rows.append(Row(plugin, "-", current, None, "new plugin", True))
+            continue
+
+        level, reasons = classify(plugin, base, head)
         if level is None:
             continue
-        level = higher(level, commit_floor(a.base, a.head, name))
+        level = higher(level, commit_floor(base, head, plugin))
         floor = bump(previous, level)
-        ok = parse_version(current) >= parse_version(floor)
-        if not ok:
-            worst_shortfall = higher(worst_shortfall, level)
-        rows.append((name, previous, current, level, '; '.join(reasons[:4]), ok))
+        satisfied = parse_version(current) >= parse_version(floor)
+        rows.append(Row(plugin, previous, current, level, "; ".join(reasons[:4]), satisfied))
+    return rows
 
-    if not rows:
-        print('No plugin changes against %s.' % a.base)
-        return 0
 
-    width = max(len(r[0]) for r in rows)
-    print('%-*s  %-8s  %-8s  %-6s  %s' % (width, 'plugin', 'base', 'current', 'needs', 'why'))
-    failures = []
-    for name, prev, cur, level, why, ok in rows:
-        if level == 'new':
-            print('%-*s  %-8s  %-8s  %-6s  %s' % (width, name, prev, cur, '-', why))
+def report(rows: list[Row]) -> list[Row]:
+    width = max(len(r.plugin) for r in rows)
+    print(f"{'plugin':<{width}}  {'base':<8}  {'current':<8}  {'needs':<6}  why")
+
+    shortfalls: list[Row] = []
+    for row in rows:
+        if row.level is None:
+            print(
+                f"{row.plugin:<{width}}  {row.previous:<8}  {row.current:<8}  {'-':<6}  {row.why}"
+            )
             continue
-        floor = bump(prev, level)
-        mark = 'ok' if ok else 'BELOW -> needs >= %s' % floor
-        print('%-*s  %-8s  %-8s  %-6s  %s  [%s]' % (width, name, prev, cur, level, why, mark))
-        if not ok:
-            failures.append((name, floor, level))
+        floor = bump(row.previous, row.level)
+        mark = "ok" if row.satisfied else f"BELOW -> needs >= {floor}"
+        print(
+            f"{row.plugin:<{width}}  {row.previous:<8}  {row.current:<8}  "
+            f"{row.level:<6}  {row.why}  [{mark}]"
+        )
+        if not row.satisfied:
+            shortfalls.append(row)
+    return shortfalls
 
-    if a.apply:
-        for name, floor, _ in failures:
-            mf = '%s/%s/.claude-plugin/plugin.json' % (PLUGINS_DIR, name)
-            d = json.load(io.open(mf, encoding='utf-8'))
-            d['version'] = floor
-            io.open(mf, 'w', encoding='utf-8', newline='\n').write(
-                json.dumps(d, indent=2, ensure_ascii=False) + '\n')
-            entries[name]['version'] = floor
-            print('applied: %s -> %s' % (name, floor))
-        if failures or roster_changed:
-            prev_mkt = json.loads(read_at(a.base, mkt_path) or '{}')
-            mkt['metadata']['version'] = bump(
-                prev_mkt.get('metadata', {}).get('version', '0.0.0'),
-                'minor' if roster_changed else 'patch')
-            io.open(mkt_path, 'w', encoding='utf-8', newline='\n').write(
-                json.dumps(mkt, indent=2, ensure_ascii=False) + '\n')
-            print('marketplace -> %s' % mkt['metadata']['version'])
+
+def apply_bumps(shortfalls: list[Row], base: str, roster_changed: bool) -> None:
+    marketplace: Marketplace = load_marketplace()
+    by_name = {e.get("name", ""): e for e in entries(marketplace)}
+
+    for row in shortfalls:
+        if row.level is None:
+            continue
+        floor = bump(row.previous, row.level)
+        path = plugin_manifest_path(row.plugin)
+        manifest = cast(PluginManifest, json.loads(Path(path).read_text(encoding="utf-8")))
+        manifest["version"] = floor
+        write_json(path, manifest)
+        if row.plugin in by_name:
+            by_name[row.plugin]["version"] = floor
+        print(f"applied: {row.plugin} -> {floor}")
+
+    if shortfalls or roster_changed:
+        raw = read_at(base, MARKETPLACE_PATH)
+        previous_meta = "0.0.0"
+        if raw:
+            previous_meta = (
+                cast(Marketplace, json.loads(raw)).get("metadata", {}).get("version", "0.0.0")
+            )
+        metadata = marketplace.setdefault("metadata", {})
+        metadata["version"] = bump(previous_meta, "minor" if roster_changed else "patch")
+        write_json(MARKETPLACE_PATH, marketplace)
+        print(f"marketplace -> {metadata['version']}")
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    _ = parser.add_argument("--base", default="origin/main")
+    _ = parser.add_argument("--head", default="HEAD")
+    _ = parser.add_argument("--worktree", action="store_true", help="include uncommitted changes")
+    _ = parser.add_argument("--apply", action="store_true", help="write the bumps")
+    _ = parser.add_argument("--format", choices=("text", "github"), default="text")
+    args = parser.parse_args(argv)
+
+    base = str(args.base)
+    head = WORKTREE if bool(args.worktree) else str(args.head)
+
+    if sh("git", "rev-parse", "--verify", base) is None:
+        print(f"base ref not found: {base}", file=sys.stderr)
+        return 3
+
+    rows = build_rows(base, head)
+    if not rows:
+        print(f"No plugin changes against {base}.")
         return 0
 
-    if not failures:
-        print('\nAll plugin versions are at or above the required floor.')
+    shortfalls = report(rows)
+
+    if bool(args.apply):
+        apply_bumps(shortfalls, base, plugins_at(base) != plugins_at(head))
         return 0
 
-    print('\n%d plugin(s) below the floor. Fix with:\n  python scripts/bump-versions.py --base %s --apply'
-          % (len(failures), a.base))
-    if a.format == 'github':
-        for name, floor, level in failures:
-            kind = 'error' if level == 'major' else 'warning'
-            print('::%s file=plugins/%s/.claude-plugin/plugin.json::%s needs version >= %s (%s change)'
-                  % (kind, name, name, floor, level))
-    return 2 if worst_shortfall == 'major' else 1
+    if not shortfalls:
+        print("\nAll plugin versions are at or above the required floor.")
+        return 0
+
+    print(
+        f"\n{len(shortfalls)} plugin(s) below the floor. Fix with:"
+        f"\n  python scripts/bump-versions.py --base {base} --apply"
+    )
+
+    worst: Level = "patch"
+    for row in shortfalls:
+        if row.level is None:
+            continue
+        worst = higher(worst, row.level)
+        if str(args.format) == "github":
+            kind = "error" if row.level == "major" else "warning"
+            print(
+                f"::{kind} file={plugin_manifest_path(row.plugin)}::"
+                f"{row.plugin} needs version >= {bump(row.previous, row.level)} "
+                f"({row.level} change)"
+            )
+
+    return 2 if worst == "major" else 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())
