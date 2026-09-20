@@ -75,6 +75,27 @@ pointing at it, which is how two bugs shipped during the reorganization.
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
 
+### CI
+
+`.github/workflows/checks.yml` is the only workflow. **Every action is pinned to
+a commit SHA with the version in a trailing comment**, not to a tag — a tag is
+mutable, so `@v7` is a promise the upstream owner can silently rewrite.
+
+```yaml
+- uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+```
+
+Dependabot (`.github/dependabot.yml`) bumps the SHA and the comment together
+each month, so pinning does not mean going stale. Resolve a tag to its commit
+SHA — dereferenced, since annotated tags point at a tag object — with:
+
+```bash
+gh api repos/actions/checkout/commits/v7.0.1 --jq .sha
+```
+
+Lint tooling is version-pinned in the workflow for the same reason. Bump it
+alongside whatever you use locally so CI and the editor never disagree.
+
 ### Versioning
 
 Bumps are derived from **structure, not diff size**. A one-line change can be
