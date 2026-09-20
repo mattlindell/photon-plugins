@@ -3,7 +3,9 @@
 Every skill in `technical-director` (52), `pstack` (54), and `developer-workflow`
 (3) — 109 in total — with its destination, action, and invocation flag.
 
-Review this before any file moves.
+**Status: complete.** All five PRs are on `feat/ph-marketplace`. Every row below
+was executed and verified; `technical-director` and `developer-workflow` are
+removed. Kept as the record of what moved where.
 
 **Actions:** `move` (relocate unchanged) · `edit` (relocate with changes) ·
 `rename` · `merge` · `drop` · `new`
@@ -296,3 +298,27 @@ Closed:
   maintain.
 - ~~Nine dangling leadership references~~ — deferred to separate `ph-lead`
   improvement work, not this reorg. Leave them as-is during the move.
+
+## Completion check
+
+Run before trusting the teardown, and after any later change to plugin structure:
+
+```bash
+python scripts/validate-marketplace.py
+python scripts/lint-links.py plugins/ph-lib plugins/ph-plan plugins/ph-build                              plugins/ph-lead plugins/ph-pm plugins/ph-php plugins/ph-npo docs
+```
+
+Verified at teardown:
+
+- 139 skills across 7 registered plugins, **all names unique** — the original
+  `tdd` / `teach` collision is gone.
+- Every pinned `skills` array matches disk exactly.
+- The 24 leadership skills moved byte-identical apart from the intended router
+  prefix; `claude-md`, `commit`, `worktree`, `wizard`,
+  `git-guardrails-claude-code`, `setup-pre-commit` and `implement` moved
+  byte-identical.
+- Loading `ph-lib` + `ph-plan` + `ph-build` together resolves 4 + 11 + 48
+  model-invocable skills with no collisions.
+
+Remaining known failures, both pre-existing and deferred with `product-team`:
+5 broken links in `code-to-prd`, and that plugin's own internal inconsistencies.

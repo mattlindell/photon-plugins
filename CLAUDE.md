@@ -7,11 +7,14 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 ```text
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
-  php-development/               — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
-  technical-director/            — engineering (diagnosis, domain modeling, specs/tickets, triage, TDD, code review, research, codebase design, wizards), leadership, productivity, and misc skills + implement/code-review agents
-  developer-workflow/            — daily-workflow skills (CLAUDE.md, commit, worktree)
-  nonprofit-toolkit/             — nonprofit operations skills (org profile, grants, budgets, donor comms, social media, volunteers)
-  project-manager/               — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
+  ph-plan/                       — middle-down planning: intake, grilling, domain modeling, scout, triage, to-spec/to-tickets, define-done + 6 principles
+  ph-build/                      — unattended implementation, forked from pstack: dispatch router, playbooks, tdd, code-review + 23 principles + 3 agents + SessionStart hook
+  ph-lib/                        — shared library: 4 primitives that ph-plan/ph-build require, 9 operator tools. Not a hat
+  ph-lead/                       — engineering leadership and people management (24 skills + router)
+  ph-pm/                         — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
+  ph-php/                        — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
+  ph-npo/                        — nonprofit operations (org profile, grants, budgets, donor comms, social media, volunteers, Givebutter)
+  product-team/                  — unregistered, awaiting cleanup
 ```
 
 Each plugin follows this structure:
@@ -21,12 +24,43 @@ plugin-name/
   .claude-plugin/plugin.json                 — plugin metadata (name, version, description, author)
   agents/                                    — plugin-level agents with YAML frontmatter (name, description, model, color); auto-discovered, never listed in plugin.json
   skills/skill-name/SKILL.md                 — implementation patterns with YAML frontmatter (name, description)
-  skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see technical-director)
+  skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see ph-lib, ph-build)
   skills/<...>/skill-name/agents/openai.yaml — optional portability sidecar (see below)
   commands/command-name.md                   — interactive scaffolding workflows (no frontmatter)
 ```
 
 Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are optional. When used, each category folder should contain a `README.md` listing its skills. Claude Code discovers skills regardless of nesting depth.
+
+## Seams
+
+One plugin per **hat** — the role someone is wearing when they install it — with
+one deliberate exception, `ph-lib`, which is a library other plugins require.
+See [ADR-0002](docs/adr/0002-ph-lib-is-a-library-not-a-hat.md).
+
+The two development plugins split on **harness**, not phase. `ph-plan` is
+interactive and its skills block on the human; `ph-build` is unattended and its
+skills proceed. Rules that look contradictory across them are usually the same
+rule correctly inverted. The handoff is a written `settled:` block naming which
+of the four dimensions (`problem`, `shape`, `approach`, `verification`) are
+closed — that is what lets `ph-build` price work by what is still unknown.
+
+Vocabulary is defined in [CONTEXT.md](CONTEXT.md). Do not add implementation
+decisions there; those go in `docs/adr/`.
+
+## Checks
+
+```bash
+python scripts/validate-marketplace.py  # registry vs disk, pinned arrays, manifest traps
+python scripts/lint-links.py            # relative links + heading anchors
+```
+
+Run both before any commit that touches plugin structure. `lint-links.py`
+matters most after a rename — a renamed heading silently orphans every anchor
+pointing at it, which is how two bugs shipped during the reorganization.
+
+`lint-links.py` currently reports 5 pre-existing failures in `product-team`,
+which is unregistered and awaiting cleanup. Scope it to the plugins you touched
+(`python scripts/lint-links.py plugins/ph-build`) until that is fixed.
 
 ## Conventions
 
@@ -37,15 +71,17 @@ Skill category folders (e.g. `skills/engineering/`, `skills/productivity/`) are 
   - **Model-invoked** (no `disable-model-invocation`) — the description is the skill's always-loaded context pointer, so it must carry trigger conditions. House style is a short identity clause, then the triggers: `Test-driven development. Use when the user wants to build features or fix bugs test-first…`. One trigger per distinct branch; collapse synonyms that rename a single branch.
   - **User-invoked** (`disable-model-invocation: true`) — the description is human-facing only. Write a one-line summary with trigger lists **stripped**: nothing but the human can invoke the skill, so triggers are dead weight in every context window.
 
-  See `technical-director`'s `writing-for-agents` skill (and its `SKILL-MECHANICS.md`) for the reasoning behind both.
+  See `ph-lib`'s `writing-for-agents` skill (and its `SKILL-MECHANICS.md`) for the reasoning behind both.
 - **Commands** use no frontmatter — they start with a markdown heading and prose instructions
 - `disable-model-invocation: true` on a skill makes it user-invoked only (typed as `/skill-name`); omit it when the description carries enough trigger phrasing for the model to reach for the skill on its own
 
 ### Portability Sidecars (`agents/openai.yaml`)
 
-A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file. Every `technical-director` skill outside `skills/leadership/` has one.
+A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-**Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `technical-director` has both.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 11/19, `ph-build` 7/56, `ph-lead` 0/24. The skills that have one are those carried over from the old `technical-director`; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
+
+**Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 
 ```yaml
 interface:
@@ -82,7 +118,7 @@ Only model-invocable skills appear in that listing — skills with `disable-mode
 
 **Renaming or removing a skill is a breaking change** — anyone invoking `/old-name` loses it. Bump the plugin's **major** version, not the minor.
 
-Some plugins (`technical-director`, `project-manager`) pin an explicit `skills` array in `plugin.json`. **When that array is present it must list every skill directory exactly** — a stale or missing path silently drops the skill from the plugin. After adding, removing, or renaming a skill in one of those plugins, verify with:
+Some plugins (`ph-plan`, `ph-build`, `ph-lib`, `ph-lead`, `ph-pm`) pin an explicit `skills` array in `plugin.json`. **When that array is present it must list every skill directory exactly** — a stale or missing path silently drops the skill from the plugin. After adding, removing, or renaming a skill in one of those plugins, verify with:
 
 ```bash
 # every SKILL.md on disk vs. every path in the skills array — output should be empty

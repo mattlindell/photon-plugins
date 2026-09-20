@@ -14,10 +14,7 @@ A Claude Code plugin marketplace — reusable agents, skills, and commands for a
 | [ph-php](plugins/ph-php/) | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 12 skills, 3 agents, 4 scaffold commands. |
 | [ph-npo](plugins/ph-npo/) | Nonprofit operations: an organization profile builder that personalizes the rest, plus grant writing, budgets, donor thank-yous, social media, volunteer scheduling, and Givebutter integration. 7 skills. |
 
-`technical-director` and `developer-workflow` are still present on disk but
-superseded — their contents now live in `ph-plan`, `ph-build`, `ph-lib`, and
-`ph-lead`. They are removed in the final step of the reorganization.
-`product-team` is unregistered and awaiting its own cleanup.
+`product-team` is present but unregistered, awaiting its own cleanup.
 
 ### Seams
 
