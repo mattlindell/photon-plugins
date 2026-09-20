@@ -57,6 +57,27 @@ Each operation lists the **CLI (default)** then the **MCP (fallback)**.
 - **Apply / change labels or status**: `linearis issues update <TEAM>-<n> --labels <names> [--label-mode add] [--status "<name>"]` · MCP `save_issue` with the new `labels`/`state`. (Use `--label-mode add` to append rather than overwrite.)
 - **Close**: `linearis issues update <TEAM>-<n> --status Done` (or `Canceled`) · MCP `save_issue` transitioning `state`.
 
+## Branch naming
+
+When a skill or playbook says "get onto a working branch", name it by this
+precedence, stopping at the first that answers:
+
+1. **A pattern the repo states.** A rule in `CLAUDE.md`, `CONTRIBUTING.md`, or a
+   lint check beats everything below it.
+2. **The tracker's generated name.** Linear returns `branchName` on the issue —
+   `linearis issues read <TEAM>-<n> | jq -r .branchName` gives you
+   `feature/pv-132-reconcile-…`. Use it as-is.
+3. **The ticket key and title**, slugified: `pv-132-reconcile-dispatch`.
+
+**Rename an inherited branch only when it does not already carry the ticket
+key.** Orchestrators create worktrees and bind tasks to branch names, so
+renaming a branch that already reads `pv-132-…` to add a `feature/` prefix
+risks breaking that binding and buys nothing.
+
+The key reaches Linear through the branch name **or** the PR body, and one of
+the two must carry it. Where the branch cannot safely be renamed, name the
+ticket in the PR's `## Why` section instead.
+
 ## When a skill says "publish to the issue tracker"
 
 Create a Linear issue in the project — `linearis issues create … --team <TEAM> --project "<PROJECT>"` (MCP `save_issue` fallback).

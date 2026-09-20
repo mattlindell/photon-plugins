@@ -38,9 +38,11 @@ See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking g
 
 A **seam** is the public boundary you test at: the interface where you observe behavior without reaching inside. Tests live at seams, never against internals.
 
-**Test only at pre-agreed seams.** Before writing any test, write down the seams under test and confirm them with the user. No test is written at an unconfirmed seam. You can't test everything — agreeing the seams up front is how testing effort lands on the critical paths and complex logic instead of every edge case.
+**Test only at named seams.** Before writing any test, write down the seams under test and the reasoning that picked them, then proceed. No test is written at an unnamed seam. You can't test everything — naming the seams up front is how testing effort lands on the critical paths and complex logic instead of every edge case. The written list is what a reviewer checks the result against.
 
-Ask: "What's the public interface, and which seams should we test?"
+Naming is not asking. Nobody is watching this run (**principle-never-block-on-the-human**), so the list is a record, not a request. Revising a seam later is fine; record the revision and the reason alongside the original.
+
+Answer in writing: what is the public interface, and which seams are under test?
 
 When the shape of that interface is itself in question — how deep the module is, where the seam belongs, what the interface should expose — use the `ph-lib:codebase-design` skill for the vocabulary. It is the shared source of the module, interface, depth, seam, adapter, leverage and locality terms, and it is a reference to consult, not a session to run.
 

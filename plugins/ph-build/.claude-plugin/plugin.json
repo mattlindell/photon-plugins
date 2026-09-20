@@ -1,7 +1,7 @@
 {
   "name": "ph-build",
-  "version": "1.0.1",
-  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-three skills, twenty-three principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
+  "version": "2.0.0",
+  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-two skills, twenty-three principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"
@@ -36,7 +36,6 @@
     "./skills/get-pr-comments",
     "./skills/git-guardrails-claude-code",
     "./skills/how",
-    "./skills/implement",
     "./skills/interrogate",
     "./skills/maintain-verification-skill",
     "./skills/make-pr-easy-to-review",
