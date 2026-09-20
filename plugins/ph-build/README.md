@@ -1,7 +1,7 @@
 # ph-build
 
 **Unattended implementation** — building what was decided, at a cost that tracks
-what is still unknown. 33 skills, 23 principles, 19 playbooks, 3 agents.
+what is still unknown. 32 skills, 23 principles, 19 playbooks, 3 agents.
 
 Its counterpart, [`ph-plan`](../ph-plan/), is the hat you wear when deciding
 *what* gets built. **Requires [`ph-lib`](../ph-lib/).**
@@ -85,7 +85,15 @@ inside itself. That is what the **playbook budgets** are for.
 ## Entry points
 
 **`dispatch`** is the router, and the `SessionStart` hook points at it. It reads
-the rigor signal, applies the gate, and routes to one of 19 playbooks.
+the rigor signal, applies the gate, and routes to one of 19 playbooks. Type
+`/ph-build:dispatch` to enter it by hand; the `implement` agent enters the same
+router when a connector hands over a ticket. Work that arrives as a bare tracker
+reference passes through the **Implement a ticket** entry adapter first, which
+resolves the ticket and picks the playbook.
+
+One method, every entry point. The three surfaces above used to be three
+documents that disagreed — see
+[ADR-0003](../../docs/adr/0003-agents-are-connector-wrappers-not-method-holders.md).
 
 Direct entry when the intent is specific: `how`, `why`, `tdd`, `babysit`.
 
@@ -96,8 +104,11 @@ every upstream skill being model-invocable is why the machinery fired unprompted
 
 ## Agents
 
-- `implement` — a ticket handed over with no further instruction: built
-  test-first, reviewed, committed
+Each one is a wrapper: it names the entry condition and points at the skill that
+holds the method.
+
+- `implement` — a ticket handed over with no further instruction; enters
+  `dispatch`
 - `code-review` — a PR or branch reviewed against repo standards and the
   originating spec
 - `comment-sicko` — invoked by `no-comments`
@@ -123,10 +134,10 @@ ph-build/
   agents/                       — implement, code-review, comment-sicko
   skills/
     dispatch/
-      playbooks/                — 19
+      playbooks/                — 19, plus the implement-a-ticket entry adapter
       references/               — bugbot triage
       scripts/                  — watch-pr, worktree-audit
-    <32 skills>
+    <31 skills>
     principles/                 — 23 leaf skills
 ```
 

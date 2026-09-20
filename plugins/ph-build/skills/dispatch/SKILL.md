@@ -39,6 +39,30 @@ wrote down.
 `verification: open` means *use the standard test-first default* — it never
 means tests are optional.
 
+### Resolving a bare ticket reference
+
+Work sometimes arrives as a reference and nothing else — `PROJ-412`, an issue
+link, a spec path. Fetch it before you look for the `settled:` block; a
+reference you have not fetched carries no rigor signal to read.
+
+`docs/agents/issue-tracker.md` names this repo's tracker and its fetch workflow,
+and it is the authority. Only when that file is missing does the reference's
+shape stand in: `#123` is GitHub, `!123` is GitLab, and a path is a spec file.
+
+`ABC-123` settles nothing — Jira and Linear share that shape. Resolve it from
+something the repo owns: the tracker config, a full ticket URL, the git remote,
+or an existing ticket link in the commit history. When none of those decide it,
+try each candidate and confirm the ticket you get back is the one you were sent;
+record which tracker answered. A fetch against the wrong tracker either fails
+loudly or, worse, returns a real ticket that is not yours.
+
+Fetch the whole ticket — title, body, acceptance criteria, comments, linked
+issues, and any attached spec. Comments frequently carry the real constraints,
+and the `settled:` block written during triage often lives in one rather than in
+the ticket body.
+
+A bare reference then runs the **Implement a ticket** entry adapter below.
+
 ### The bounded orientation pass
 
 When nothing is settled, you get **one** pass to orient: a single `how` run, no
@@ -117,6 +141,11 @@ covers the whole composition including nested fan-out, and it is a ceiling.
 - **Worktree cleanup.** Pruning merged or abandoned worktrees. `playbooks/worktree-cleanup.md`
 - **Opening a PR.** Invoked at the end of every other playbook. `playbooks/opening-a-pr.md`
 
+One more file sits in that directory and is **not** one of the nineteen. It is
+an **entry adapter**, the bookend to Opening a PR:
+
+- **Implement a ticket.** Run first, before you match a playbook, when the work arrives as a bare tracker reference and nothing else. It resolves the ticket, grounds you in the domain, and hands off to Feature, Bug fix, or Refactoring. `playbooks/implement-a-ticket.md`
+
 No bundled playbook fits, or the effort is large and cross-cutting → the
 **figure-it-out** skill, which designs a bespoke one. It is still bound by a
 playbook budget.
@@ -171,6 +200,11 @@ keep going.
 the work turns out to need an architectural rebuild nobody planned for, stop and
 flag it. An unattended agent walking through an unplanned one-way door is the
 one case where stopping beats proceeding.
+
+**Escalate rather than pick a side when the ticket contradicts a live ADR.**
+Halt and name both the ADR and the line of the ticket that collides with it. You
+cannot tell from here whether the ticket is wrong or the ADR is stale, and
+building on either answer bakes the wrong one into the codebase.
 
 **No is an acceptable answer.** Reply with your real judgment. Decline or push
 back when true. Candor over sycophancy.

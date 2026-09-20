@@ -35,7 +35,7 @@ same MIT terms.
 ## Own work
 
 **(c) 2026 Matt Lindell, MIT.** `dispatch` (new — replaces upstream's
-`poteto-mode` router), `code-review`, `diagnosing-bugs`, `implement`, `wizard`,
+`poteto-mode` router), `code-review`, `diagnosing-bugs`, `wizard`,
 `git-guardrails-claude-code`, `setup-pre-commit`, `claude-md`, `commit`,
 `worktree`, `agents/implement.md`, `agents/code-review.md`, and
 `hooks/session-start-context.md`. `tdd` is own work that absorbed upstream's
