@@ -7,7 +7,7 @@ A Claude Code plugin marketplace — reusable agents, skills, and commands for a
 | Plugin | Description |
 | --- | --- |
 | [ph-plan](plugins/ph-plan/) | **Middle-down planning** — deciding and writing down what gets built, in an interactive session. Intake routing, grilling, domain modeling, scouting, triage, specs and tickets. Ends in an artifact carrying the four-dimension rigor signal. 13 skills, 6 principles. Requires `ph-lib`. |
-| [ph-build](plugins/ph-build/) | **Unattended implementation** — building what was decided, at a cost that tracks what is still unknown. Forked from pstack: reads the rigor signal, gates expensive multi-agent work behind one-way doors, caps every fan-out. 33 skills, 23 principles, 19 playbooks, 3 agents. Requires `ph-lib`. |
+| [ph-build](plugins/ph-build/) | **Unattended implementation** — building what was decided, at a cost that tracks what is still unknown. Forked from pstack: reads the rigor signal, gates expensive multi-agent work behind one-way doors, caps every fan-out. 32 skills, 23 principles, 19 playbooks, 3 agents. Requires `ph-lib`. |
 | [ph-lib](plugins/ph-lib/) | Shared library. Four primitives that `ph-plan` and `ph-build` reference and require, plus nine operator tools you invoke directly. Not a hat — a dependency. 13 skills. |
 | [ph-lead](plugins/ph-lead/) | Engineering leadership and people management: 1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings and offsites, decision processes, OKRs, org design, culture and rituals. 24 skills with a router. |
 | [ph-pm](plugins/ph-pm/) | Atlassian and scrum operations: Jira, Confluence, administration and templates, sprint analytics, portfolio and risk management, meeting-transcript analysis, team communications. 8 skills; bundles the Atlassian Remote MCP server. |
@@ -73,8 +73,8 @@ claude --plugin-dir /path/to/photon-plugins/plugins/ph-build
 ## Acknowledgments
 
 - Plugin structure and approach inspired by [wshobson/agents](https://github.com/wshobson/agents).
-- The `ph-plan` skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT).
-- Most of `ph-build` and seven `ph-lib` skills are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) (MIT) at `a0a531f`, itself a port of Lauren Tan's Cursor `pstack` and Cursor's `cursor-team-kit`. See [plugins/ph-build/NOTICE.md](plugins/ph-build/NOTICE.md), [plugins/ph-lib/NOTICE.md](plugins/ph-lib/NOTICE.md), [LICENSE-pstack](LICENSE-pstack), and [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit).
+- The `ph-plan` skills, six `ph-build` skills, and six `ph-lib` skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT). See [LICENSE-pocock-skills](LICENSE-pocock-skills).
+- Most of `ph-build` and seven `ph-lib` skills are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) (MIT) at `a0a531f`, Michael Denyer's port of Lauren Tan's (poteto) Cursor `pstack` and Cursor's `cursor-team-kit`. See [plugins/ph-build/NOTICE.md](plugins/ph-build/NOTICE.md), [plugins/ph-lib/NOTICE.md](plugins/ph-lib/NOTICE.md), [LICENSE-pstack](LICENSE-pstack), and [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit).
 - The `ph-lead` skills are adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten.
 
 ## License

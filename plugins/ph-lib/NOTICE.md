@@ -1,11 +1,12 @@
 # NOTICE
 
-Seven of the thirteen skills in `ph-lib` derive from MIT-licensed upstream work.
-All upstream copyright notices and license terms are preserved.
+All thirteen skills in `ph-lib` derive from MIT-licensed upstream work. All
+upstream copyright notices and license terms are preserved.
 
-Forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) at
-`a0a531f0e341144d12f0a26218b295ad5e8453a1` (v0.9.27), which is itself a port of
-Lauren Tan's Cursor `pstack` plus skills from Cursor's `cursor-team-kit`.
+Seven are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude)
+at `a0a531f0e341144d12f0a26218b295ad5e8453a1` (v0.9.27), Michael Denyer's port of
+Lauren Tan's (poteto) Cursor `pstack` plus skills from Cursor's `cursor-team-kit`.
+The other six derive from [Matt Pocock's skills](https://github.com/mattpocock/skills).
 
 This is a hard fork. We do not track upstream — the SHA above is pinned so that
 anyone can answer what this diverged from. See
@@ -27,11 +28,17 @@ anyone can answer what this diverged from. See
 documents it as an import with a transcript-path substitution applied. It is
 attributed to Lauren Tan here on that basis.
 
-## Own work
+Port-authored changes from pstack-claude synced into `reflect`, `recall`, and
+`automate-me` (the transcript-directory helper and its callers) are (c) 2026
+Michael Denyer, MIT — [LICENSE-pstack](../../LICENSE-pstack).
+
+### Pocock lineage
 
 `codebase-design`, `writing-for-agents`, `caveman`, `handoff`, `teach`, and
-`wait-what` are (c) 2026 Matt Lindell, MIT, and carry no upstream lineage. They
-were moved here from the `technical-director` plugin.
+`wait-what` are (c) 2026 Matt Pocock, MIT —
+[LICENSE-pocock-skills](../../LICENSE-pocock-skills). They were moved here from
+the `technical-director` plugin, whose skills were all taken from Pocock's
+repository, and have since been edited in this repository.
 
 ## Modifications
 

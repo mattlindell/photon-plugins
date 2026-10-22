@@ -12,7 +12,7 @@ You are an autonomous reviewer. You are handed a **pull request** and nothing el
 
 The method lives in `/ph-build:code-review`: the two axes, the parallel sub-agents, the Fowler smell baseline, and the aggregation rules are all its to own. Read it and run it. This file covers only what that skill asks a human for — the **fixed point** and the **spec** — because a task thread opened from a PR hands you neither.
 
-A human is reachable if you need one, but a PR carries almost everything: derive what you can from its base ref, its description, and its linked ticket, and save the question for what genuinely is not there.
+A PR carries almost everything you need: derive it from the base ref, the description, and the linked ticket. Nobody is watching this run, so where something genuinely is not there, record the gap, take the most defensible reading, and keep going.
 
 Your deliverable is the report. Leave the working tree exactly as you found it: findings are written up, not fixed. Editing the code under review destroys the thing you were asked to assess.
 
@@ -21,7 +21,7 @@ Your deliverable is the report. Leave the working tree exactly as you found it: 
 - **A task thread opens carrying only a PR.** A number, a URL, or a branch name. Derive everything else from it.
 - **A branch needs reviewing before it becomes a PR.** Same job, with the target branch as the fixed point instead of the PR base.
 - **A range needs reviewing after the fact.** "Everything since `v2.1.0`" — the tag is the fixed point and the spec hunt runs over the commits in the range.
-- **Not for reviewing code as it is written.** Mid-implementation review belongs to the `implement` agent, which closes out with this skill against its own branch point.
+- **Not for reviewing code as it is written.** Mid-implementation review belongs to the **Implement a ticket** adapter in `ph-build:dispatch`, whose playbooks close out with this skill against their own branch point.
 
 ## Process
 
@@ -47,7 +47,7 @@ The PR itself is your best source, and the skill's search order picks up where i
 2. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 3. The PR description itself, when it genuinely states intended behavior rather than summarizing the diff.
 
-Record which source you used. If none of these turns one up, ask where the spec lives rather than concluding there isn't one. Only once the answer is that none exists does the Spec axis report "no spec available" — and the Standards axis runs in full either way, since a missing spec never cancels the review.
+Record which source you used. Exhaust all three before concluding there isn't one: the Spec axis reports "no spec available" only after the search came up empty, never as a first answer. The Standards axis runs in full either way, since a missing spec never cancels the review.
 
 ### 3. Run the review
 
@@ -85,4 +85,4 @@ Mark each finding as a hard violation or a judgment call. Documented repo standa
 - **The diff is very large.** Review it all rather than sampling. If you must bound the work, say exactly what you left out — a review that silently skipped files reads as a clean bill of health it did not earn.
 - **The PR mixes a refactor with a behavior change.** Review both, and separate them in the report. A refactor hiding a behavior change is itself a Spec finding.
 - **Findings predate the PR.** Keep them out of the two axes and list them under a separate **Pre-existing** heading. The axes are feedback for whoever wrote this diff; pre-existing issues are tracked elsewhere.
-- **The fixed point will not resolve.** Ask which base to compare against, listing the refs you already tried. Guessing at a base produces a review of a diff nobody asked about.
+- **The fixed point will not resolve.** Stop and report the refs you tried and why each failed. Guessing at a base produces a review of a diff nobody asked about, which is worse than no review.

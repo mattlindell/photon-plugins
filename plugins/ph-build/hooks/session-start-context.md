@@ -31,8 +31,13 @@ skills. If they are not, say so plainly in your first reply and continue
 degraded — `ph-lib:unslop` and `ph-lib:codebase-design` are referenced by these
 skills and will be missing.
 
-If you were dispatched as a subagent for a specific task, ignore this block —
-the orchestrating session already applied it when shaping your dispatch.
+If you were dispatched as a subagent with a **scoped brief** — file paths, a
+named change, stated success criteria — ignore this block. The orchestrating
+session already applied it when shaping your dispatch, and re-entering the
+router would multiply the fan-out it already priced.
+
+If you were handed a **ticket reference** instead, this block applies to you:
+you are the entry point, not a delegate inside one.
 
 User instructions (CLAUDE.md, AGENTS.md, direct requests) take precedence.
 </EXTREMELY_IMPORTANT>

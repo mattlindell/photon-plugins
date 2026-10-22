@@ -3,7 +3,8 @@
 Names for the concepts this repo's design discussions keep reaching for. If a
 discussion needs a concept that isn't here, add it.
 
-This file is a glossary. It holds no implementation decisions — those live in
+This file is the domain model: the concepts, how they relate, and where the
+boundaries sit. It holds no implementation decisions — those live in
 `docs/adr/`.
 
 ## Marketplace
@@ -63,9 +64,26 @@ mechanically detectable rather than a matter of reading comprehension.
 
 ## Upstream
 
-`pstack-claude`, which is itself a port of Lauren Tan's Cursor `pstack` plus seven
-skills from Cursor's `cursor-team-kit`. Both MIT. Anything taken from it carries
-two copyright lineages that must travel with it.
+The two MIT sources this marketplace hard-forks from. Nothing tracks them
+automatically: improvements arrive when someone reads their changelogs and ports
+what fits, and a `NOTICE.md` records the upstream commit last reviewed. Entries
+below that say "Upstream" without qualification mean the pstack upstream; that
+is where those concepts come from.
+
+### pstack upstream
+
+`pstack-claude`, Michael Denyer's port of Lauren Tan's (poteto) Cursor `pstack`
+plus seven skills from Cursor's `cursor-team-kit`. The source of `ph-build` and
+seven `ph-lib` skills. Anything taken from it carries three copyright lineages
+that must travel with it: Lauren Tan, Cursor, and Michael Denyer for
+port-authored work.
+
+### Pocock upstream
+
+Matt Pocock's `skills` repo. The source of `ph-plan` and of several
+`ph-build` and `ph-lib` skills, among them `tdd`, `diagnosing-bugs`, `wizard`,
+`codebase-design`, and `writing-for-agents`. Its domain doc is
+named `GLOSSARY.md`; ours stays `CONTEXT.md` deliberately.
 
 ## Fan-out
 
@@ -93,6 +111,15 @@ Upstream has no equivalent; it begins at "here is a task, now be rigorous."
 An Upstream unit larger than a skill: a named end-to-end procedure for a kind of
 work (a feature, a bug fix, a migration) that sequences skills and decides how
 much fan-out each step gets. Playbooks are where cost is actually committed.
+
+## Agent wrapper
+
+A file in a plugin's `agents/` directory. It exists so a third-party ACP
+connector can trigger a Skill automatically, and it holds no method of its own —
+it names the entry condition and points at the skill or Playbook that does the
+work. `ph-build/agents/code-review.md` is the reference shape. A wrapper that
+starts carrying its own process has drifted, and the drift shows up as the same
+work being done differently depending on which entry point reached it.
 
 ## Non-negotiable
 
@@ -157,6 +184,16 @@ Primitives are the reason the dependency is hard.
 A skill the human invokes directly, belonging to no hat's workflow — it acts on
 the conversation or on the agent system rather than on any work product. Shares
 the Library plugin with Primitives but is not a dependency of anything.
+
+## Assumed provenance
+
+Work reaching `ph-build` is assumed to have come through `ph-plan`, even though
+the two are separate Plugins with no hard dependency between them. `ph-build` may
+therefore rely on what `ph-plan` leaves behind — `docs/agents/`, `CONTEXT.md`, a
+Rigor signal on the ticket — without requiring that `ph-plan` be installed.
+Absence degrades a run rather than stopping it. This is weaker than the Library
+plugin relationship, where the dependency is hard and the material is shared
+rather than produced.
 
 ## Dimension
 

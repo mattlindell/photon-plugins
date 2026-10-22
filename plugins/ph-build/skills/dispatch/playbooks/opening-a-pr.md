@@ -14,7 +14,7 @@ Invoked at the end of every other playbook.
 
 Use these sections in order. Drop a section when it has nothing to say.
 
-- `## Why`. State the intent and approach in one or two short paragraphs. Do not list SHAs or rebase genealogy. Do not add a "based on main" preamble.
+- `## Why`. State the intent and approach in one or two short paragraphs. Name the ticket by key when the work came from one — the tracker links the PR through the branch name or through this section, and a branch that does not carry the key leaves this as the only channel. Do not list SHAs or rebase genealogy. Do not add a "based on main" preamble.
 - `## Scope`. Use bullets to list real symbols and paths. Name both sides of a rename or retarget. State what is in and out only when the boundary matters. Do not write a file-by-file essay.
 - `## Tradeoffs`. Name only rejected alternatives that a reviewer would otherwise ask about. Skip this section when there was no real choice.
 - `## Blast Radius`. In one to three sentences, name who or what the change touches and why the change is safe or risky. State the continuing cost if main stays red without the fix.
