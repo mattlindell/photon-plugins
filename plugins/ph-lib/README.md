@@ -75,5 +75,6 @@ Each skill carries an `agents/openai.yaml` portability sidecar.
 
 ## Attribution
 
-Seven skills derive from MIT-licensed upstream work by Lauren Tan and Cursor. See
+Every skill derives from MIT-licensed upstream work: seven from pstack-claude
+(Lauren Tan, Cursor, and Michael Denyer) and six from Matt Pocock's skills. See
 [NOTICE.md](NOTICE.md), and the license files at the repository root.

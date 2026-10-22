@@ -4,8 +4,10 @@ Most of `ph-build` derives from MIT-licensed upstream work. All upstream
 copyright notices and license terms are preserved.
 
 Forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) at
-`a0a531f0e341144d12f0a26218b295ad5e8453a1` (v0.9.27), which is itself a port of
-Lauren Tan's Cursor `pstack` plus seven skills from Cursor's `cursor-team-kit`.
+`a0a531f0e341144d12f0a26218b295ad5e8453a1` (v0.9.27), Michael Denyer's port of
+Lauren Tan's (poteto) Cursor `pstack` plus seven skills from Cursor's
+`cursor-team-kit`. A further six skills derive from
+[Matt Pocock's skills](https://github.com/mattpocock/skills).
 
 This is a **hard fork**. We do not track upstream and carry none of its sync
 tooling — the SHA above is pinned so anyone can answer what this diverged from.
@@ -23,9 +25,20 @@ See [ADR-0001](../../docs/adr/0001-fork-pstack-rather-than-depend-on-it.md).
 under `skills/dispatch/playbooks/`, `skills/dispatch/references/bugbot-triage.md`,
 and `skills/dispatch/scripts/`.
 
-Upstream's `babysit` skill is noted there as independently authored by the
-pstack-claude port rather than taken from Cursor's pstack; it travels under the
-same MIT terms.
+**(c) 2026 Michael Denyer, MIT — [LICENSE-pstack](../../LICENSE-pstack)**
+
+The pstack-claude port's own additions, carried alongside Lauren Tan's work:
+the `babysit` skill, which upstream notes as independently authored by the port
+rather than taken from Cursor's pstack, and port-authored changes synced into
+the files above, including the `watch-pr` and `worktree-audit` scripts under
+`skills/dispatch/scripts/` and the `show-me-your-work` log script.
+
+**(c) 2026 Matt Pocock, MIT — [LICENSE-pocock-skills](../../LICENSE-pocock-skills)**
+
+`code-review`, `diagnosing-bugs`, `git-guardrails-claude-code`,
+`setup-pre-commit`, `tdd`, and `wizard`. These came in through the old
+`technical-director` plugin, whose skills were all taken from Pocock's
+repository. `tdd` also absorbed upstream pstack's escape-hatch conditions.
 
 **(c) 2026 Cursor, MIT — [LICENSE-cursor-team-kit](../../LICENSE-cursor-team-kit)**
 
@@ -35,11 +48,8 @@ same MIT terms.
 ## Own work
 
 **(c) 2026 Matt Lindell, MIT.** `dispatch` (new — replaces upstream's
-`poteto-mode` router), `code-review`, `diagnosing-bugs`, `wizard`,
-`git-guardrails-claude-code`, `setup-pre-commit`, `claude-md`, `commit`,
-`worktree`, `agents/implement.md`, `agents/code-review.md`, and
-`hooks/session-start-context.md`. `tdd` is own work that absorbed upstream's
-escape-hatch conditions.
+`poteto-mode` router), `claude-md`, `commit`, `worktree`, `agents/implement.md`,
+`agents/code-review.md`, and `hooks/session-start-context.md`.
 
 ## Modifications
 

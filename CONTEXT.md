@@ -3,7 +3,8 @@
 Names for the concepts this repo's design discussions keep reaching for. If a
 discussion needs a concept that isn't here, add it.
 
-This file is a glossary. It holds no implementation decisions — those live in
+This file is the domain model: the concepts, how they relate, and where the
+boundaries sit. It holds no implementation decisions — those live in
 `docs/adr/`.
 
 ## Marketplace
@@ -33,9 +34,26 @@ not automatically a plugin; clusters may span plugins.
 
 ## Upstream
 
-`pstack-claude`, which is itself a port of Lauren Tan's Cursor `pstack` plus seven
-skills from Cursor's `cursor-team-kit`. Both MIT. Anything taken from it carries
-two copyright lineages that must travel with it.
+The two MIT sources this marketplace hard-forks from. Nothing tracks them
+automatically: improvements arrive when someone reads their changelogs and ports
+what fits, and a `NOTICE.md` records the upstream commit last reviewed. Entries
+below that say "Upstream" without qualification mean the pstack upstream; that
+is where those concepts come from.
+
+### pstack upstream
+
+`pstack-claude`, Michael Denyer's port of Lauren Tan's (poteto) Cursor `pstack`
+plus seven skills from Cursor's `cursor-team-kit`. The source of `ph-build` and
+seven `ph-lib` skills. Anything taken from it carries three copyright lineages
+that must travel with it: Lauren Tan, Cursor, and Michael Denyer for
+port-authored work.
+
+### Pocock upstream
+
+Matt Pocock's `skills` repo. The source of `ph-plan` and of several
+`ph-build` and `ph-lib` skills, among them `tdd`, `diagnosing-bugs`, `wizard`,
+`codebase-design`, and `writing-for-agents`. Its domain doc is
+named `GLOSSARY.md`; ours stays `CONTEXT.md` deliberately.
 
 ## Fan-out
 

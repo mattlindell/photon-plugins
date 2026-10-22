@@ -10,3 +10,6 @@
 __pycache__/
 *.py[cod]
 .ruff_cache/
+
+# Node / bun
+node_modules/

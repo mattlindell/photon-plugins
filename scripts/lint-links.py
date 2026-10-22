@@ -104,7 +104,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    excluded: set[str] = {e for spec in args.exclude for e in str(spec).split(",") if e}
+    # Installed dependencies carry their own markdown, which is not ours to lint.
+    excluded: set[str] = {"node_modules"} | {
+        e for spec in args.exclude for e in str(spec).split(",") if e
+    }
     roots = [Path(p) for p in (args.paths or ["plugins", "docs"])]
 
     problems: list[Problem] = []
