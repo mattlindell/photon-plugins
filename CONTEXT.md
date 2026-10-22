@@ -34,8 +34,9 @@ not automatically a plugin; clusters may span plugins.
 
 ## Upstream
 
-The two MIT sources this marketplace forks from and periodically syncs against
-by reading their changelogs. Each is pinned to a commit in a `NOTICE.md`. Entries
+The two MIT sources this marketplace hard-forks from. Nothing tracks them
+automatically: improvements arrive when someone reads their changelogs and ports
+what fits, and a `NOTICE.md` records the upstream commit last reviewed. Entries
 below that say "Upstream" without qualification mean the pstack upstream; that
 is where those concepts come from.
 
