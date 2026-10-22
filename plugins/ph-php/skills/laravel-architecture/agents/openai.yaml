@@ -1,0 +1,3 @@
+interface:
+  display_name: "Laravel Architecture"
+  short_description: "Decide Laravel and Sage structure and strategy"

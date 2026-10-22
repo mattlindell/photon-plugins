@@ -1,0 +1,3 @@
+interface:
+  display_name: "WordPress Architecture"
+  short_description: "Decide WordPress caching, scaling, and hosting"

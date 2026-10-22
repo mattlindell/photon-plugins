@@ -1,0 +1,3 @@
+interface:
+  display_name: "PHP Architecture"
+  short_description: "Decide PHP types, patterns, and runtime"

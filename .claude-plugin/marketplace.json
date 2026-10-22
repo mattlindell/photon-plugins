@@ -61,8 +61,8 @@
     {
       "name": "ph-php",
       "source": "./plugins/ph-php",
-      "description": "Comprehensive PHP development covering WordPress, Laravel, Sage/Roots, WooCommerce, as well as CodeIgniter 3 legacy maintenance",
-      "version": "2.0.0",
+      "description": "Comprehensive PHP development covering WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 16 skills for architecture decisions, troubleshooting, and implementation patterns, plus 4 scaffold commands.",
+      "version": "3.0.0",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
