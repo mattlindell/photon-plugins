@@ -4,9 +4,9 @@ import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { projectDir, projectDirName } from "../plugins/ph-lib/skills/operator-tools/reflect/scripts/claude-project-dir.mjs";
+import { projectDir, projectDirName } from "./claude-project-dir.mjs";
 
-const script = join(import.meta.dir, "../plugins/ph-lib/skills/operator-tools/reflect/scripts/claude-project-dir.mjs");
+const script = join(import.meta.dir, "./claude-project-dir.mjs");
 const noNode = spawnSync("node", ["--version"]).status !== 0;
 
 // Claude Code 2.1.296 created this directory for a session started in LONG.

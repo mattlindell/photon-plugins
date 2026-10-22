@@ -5,10 +5,10 @@ import { homedir, tmpdir } from "node:os";
 import { dirname, join, sep } from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { audit, classify, defaultTranscriptRoots, duSize, lastChats, pathSpellings, symlinkTargets } from "../plugins/ph-build/skills/dispatch/scripts/worktree-audit.mjs";
-import { removeDuring } from "./remove-during.mjs";
+import { audit, classify, defaultTranscriptRoots, duSize, lastChats, pathSpellings, symlinkTargets } from "./worktree-audit.mjs";
+import { removeDuring } from "./remove-during.test-helper.mjs";
 
-const script = join(import.meta.dir, "../plugins/ph-build/skills/dispatch/scripts/worktree-audit.mjs");
+const script = join(import.meta.dir, "./worktree-audit.mjs");
 // node's ESM loader takes a file URL, not a drive-lettered path.
 const scriptUrl = pathToFileURL(script).href;
 const noNode = spawnSync("node", ["--version"]).status !== 0;

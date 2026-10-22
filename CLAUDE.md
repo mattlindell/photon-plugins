@@ -12,7 +12,7 @@ plugins/
   ph-lib/                        — shared library: 4 primitives that ph-plan/ph-build require, 9 operator tools. Not a hat
   ph-lead/                       — engineering leadership and people management (24 skills + router)
   ph-pm/                         — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
-  ph-php/                        — WordPress, Laravel, Sage, WooCommerce, CI3 (agents + skills + commands)
+  ph-php/                        — WordPress, Laravel, Sage, WooCommerce, CI3 (skills + commands)
   ph-npo/                        — nonprofit operations (org profile, grants, budgets, donor comms, social media, volunteers, Givebutter)
   product-team/                  — unregistered, awaiting cleanup
 ```
@@ -81,6 +81,23 @@ that plugin is fixed.
 entry when its skill stops handing off to a human-only one. A stale entry fails
 the check.
 
+### Script tests
+
+Scripts that ship inside a plugin are tested with `bun test`. **Each test lives
+beside the script it covers, inside the skill that owns it** — never in a
+repo-level `tests/` directory. Removing a skill then removes its tests with it,
+so nothing is left orphaned. Test helpers follow the `*.test-helper.*` naming;
+a helper two plugins need is copied into each, because plugins install
+separately and cannot import across each other.
+
+```bash
+bun test --timeout 30000 plugins/   # every suite; CI runs the same command
+```
+
+`watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
+first. `transport.test.ts` fails on Windows because its fake `gh` is a shebang
+script; CI runs on Linux.
+
 ### CI
 
 `.github/workflows/checks.yml` is the only workflow. **Every action is pinned to
@@ -141,7 +158,7 @@ matching `marketplace.json` entry together so the two cannot drift.
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 6/55, `ph-lead` 0/24. The skills that have one are those carried over from the old `technical-director`; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 11/19, `ph-build` 6/55, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
 
 **Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 

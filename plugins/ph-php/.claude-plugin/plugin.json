@@ -1,7 +1,7 @@
 {
   "name": "ph-php",
-  "version": "2.0.0",
-  "description": "PHP development with WordPress, Laravel, Sage/Roots, and legacy CI3 maintenance",
+  "version": "3.0.0",
+  "description": "PHP development with WordPress, Laravel, Sage/Roots, WooCommerce, and legacy CI3 maintenance. 16 skills, 4 scaffold commands.",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"

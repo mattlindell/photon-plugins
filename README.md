@@ -11,7 +11,7 @@ A Claude Code plugin marketplace — reusable agents, skills, and commands for a
 | [ph-lib](plugins/ph-lib/) | Shared library. Four primitives that `ph-plan` and `ph-build` reference and require, plus nine operator tools you invoke directly. Not a hat — a dependency. 13 skills. |
 | [ph-lead](plugins/ph-lead/) | Engineering leadership and people management: 1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings and offsites, decision processes, OKRs, org design, culture and rituals. 24 skills with a router. |
 | [ph-pm](plugins/ph-pm/) | Atlassian and scrum operations: Jira, Confluence, administration and templates, sprint analytics, portfolio and risk management, meeting-transcript analysis, team communications. 8 skills; bundles the Atlassian Remote MCP server. |
-| [ph-php](plugins/ph-php/) | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 12 skills, 3 agents, 4 scaffold commands. |
+| [ph-php](plugins/ph-php/) | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 16 skills, 4 scaffold commands. |
 | [ph-npo](plugins/ph-npo/) | Nonprofit operations: an organization profile builder that personalizes the rest, plus grant writing, budgets, donor thank-yous, social media, volunteer scheduling, and Givebutter integration. 7 skills. |
 
 `product-team` is present but unregistered, awaiting its own cleanup.
