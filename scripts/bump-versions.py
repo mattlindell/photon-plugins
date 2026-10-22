@@ -52,13 +52,13 @@ from _manifest import (
     plugin_manifest_path,
     write_json,
 )
+from _markdown import frontmatter_scalars
 
 Level = Literal["patch", "minor", "major"]
 LEVELS: tuple[Level, ...] = ("patch", "minor", "major")
 
 WORKTREE = "WORKTREE"  # sentinel: read from disk, not from a git ref
 
-FRONTMATTER = re.compile(r"^---\n(.*?)\n---", re.DOTALL)
 CONVENTIONAL = re.compile(r"\b(feat|fix|refactor|chore|docs|perf|test)(\(([^)]*)\))?(!)?:")
 
 
@@ -119,20 +119,6 @@ def read_at(ref: str, path: str) -> str | None:
     return sh("git", "show", f"{ref}:{posix}")
 
 
-def frontmatter(text: str | None) -> dict[str, str]:
-    if not text:
-        return {}
-    match = FRONTMATTER.match(text)
-    if not match:
-        return {}
-    fields: dict[str, str] = {}
-    for line in match.group(1).splitlines():
-        if ":" in line and not line.startswith(" "):
-            key, _, value = line.partition(":")
-            fields[key.strip()] = value.strip().strip("\"'")
-    return fields
-
-
 def tree_files(ref: str, prefix: str) -> set[str]:
     """Paths under prefix at ref. Empty when the prefix does not exist."""
     if ref == WORKTREE:
@@ -148,7 +134,7 @@ def skill_map(ref: str, plugin: str) -> dict[str, dict[str, str]]:
     """Skill directory -> frontmatter fields, at a ref."""
     prefix = f"{PLUGINS_DIR}/{plugin}/"
     return {
-        path.rsplit("/", 1)[0]: frontmatter(read_at(ref, path))
+        path.rsplit("/", 1)[0]: frontmatter_scalars(read_at(ref, path))
         for path in tree_files(ref, prefix)
         if path.endswith("/SKILL.md")
     }

@@ -1,7 +1,6 @@
 ---
 name: to-spec
-description: Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
-disable-model-invocation: true
+description: Turn the current conversation into a spec carrying a settled block and publish it to the project issue tracker — synthesis of what was already discussed, not a new interview. Use when a grilling or planning session has reached shared understanding and should end in a spec, or when the user asks to write up, capture, or publish the plan as a spec or PRD.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user — just synthesize what you already know.

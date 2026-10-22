@@ -57,15 +57,15 @@ binary decision and hands off.
 | --- | --- | --- |
 | `intake` | model | Entry point for work that does not exist yet. Routes to `grilling` or `scout` |
 | `grilling` | model | Relentless interview over a design tree, in rounds, until the frontier is empty. Maintains the domain model inline and ends in a spec or tickets |
-| `scout` | user | Map an effort too big for one session as decision tickets on the tracker, resolved one at a time |
+| `scout` | model | Map an effort too big for one session as decision tickets on the tracker, resolved one at a time |
 | `domain-modeling` | model | Build and sharpen the glossary and ADRs |
 | `prototype` | model | Throwaway artifact to answer a design question. Closes `approach` |
 | `research` | model | Investigate against primary sources, capture findings in the repo |
 | `improve-codebase-architecture` | user | Scan for deepening opportunities, report, grill through them |
-| `triage` | user | Move issues and external PRs through the triage state machine. Closes `problem` |
-| `to-spec` | user | Turn the conversation into a spec on the tracker |
-| `to-tickets` | user | Break a plan into tracer-bullet tickets with blocking edges |
-| `define-done` | user | Decide one verification methodology and attach it to every ticket in the set |
+| `triage` | model | Move issues and external PRs through the triage state machine. Closes `problem` |
+| `to-spec` | model | Turn the conversation into a spec on the tracker |
+| `to-tickets` | model | Break a plan into tracer-bullet tickets with blocking edges |
+| `define-done` | model | Decide one verification methodology and attach it to the session, spec, or tickets that carry the work |
 | `to-questionnaire` | user | Turn a decision you cannot answer into a questionnaire for someone else |
 | `setup-ph-plan` | user | Configure a repo: issue tracker, triage labels, doc layout |
 

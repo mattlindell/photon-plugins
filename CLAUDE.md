@@ -52,28 +52,34 @@ decisions there; those go in `docs/adr/`.
 ```bash
 python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
 python scripts/lint-links.py --exclude product-team # relative links + heading anchors
+python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-All three run in CI on every PR (`.github/workflows/checks.yml`), alongside
+All four run in CI on every PR (`.github/workflows/checks.yml`), alongside
 `ruff check`, `ruff format --check`, and `basedpyright` over `scripts/`.
 
 The scripts are typed and must stay clean at both. `pyproject.toml` holds the
 config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
 the manifests so JSON is shaped once at the boundary rather than leaking `Any`
-through every caller.
+through every caller, and `scripts/_markdown.py` reads frontmatter and skips
+fenced code the same way for every check.
 
 ```bash
 uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
 ```
 
-Run the three repo checks before any commit that touches plugin structure.
+Run the four repo checks before any commit that touches plugin structure.
 `lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization.
 
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
+
+`lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
+entry when its skill stops handing off to a human-only one. A stale entry fails
+the check.
 
 ### Script tests
 

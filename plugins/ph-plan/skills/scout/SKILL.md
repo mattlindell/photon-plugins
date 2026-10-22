@@ -1,7 +1,6 @@
 ---
 name: scout
-description: Plan a huge chunk of work — more than one agent session can hold — as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.
-disable-model-invocation: true
+description: Chart work too big for one agent session as a shared map of decision tickets on the issue tracker, then resolve them one at a time until the way to the destination is clear. Use when intake finds the frontier unmapped, when the work is a rewrite, migration, or other effort whose open questions cannot yet be listed, or when the user wants to resume or advance an existing scout map.
 ---
 
 A loose idea has arrived — too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Scouting is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its **decision tickets** — questions whose resolution is a decision, not slices of a build to execute — one at a time until the route is clear.

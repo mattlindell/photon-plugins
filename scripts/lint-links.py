@@ -19,7 +19,8 @@ import sys
 from pathlib import Path
 from typing import NamedTuple
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+from _markdown import unfenced_lines
+
 LINK = re.compile(r"\]\((?!https?:|mailto:)([^)]+)\)")
 # Illustrative targets: (link), (<some thing>), (path/to/x). A target containing
 # < or > is a template slot by convention.
@@ -46,19 +47,6 @@ def headings(path: Path) -> set[str]:
     except OSError:
         return set()
     return {slugify(h) for h in HEADING.findall(text)}
-
-
-def unfenced_lines(text: str) -> list[tuple[int, str]]:
-    """Lines outside fenced code blocks, as (1-based lineno, line)."""
-    out: list[tuple[int, str]] = []
-    in_fence = False
-    for lineno, line in enumerate(text.splitlines(), 1):
-        if FENCE.match(line):
-            in_fence = not in_fence
-            continue
-        if not in_fence:
-            out.append((lineno, line))
-    return out
 
 
 def check(path: Path) -> list[Problem]:

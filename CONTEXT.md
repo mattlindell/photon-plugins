@@ -32,6 +32,40 @@ A set of skills that point at each other — preconditions, hand-offs, shared
 vocabulary. A cluster is evidence about where a seam could go, but a cluster is
 not automatically a plugin; clusters may span plugins.
 
+## Reach
+
+Which invokers can fire a skill: the model, the human, or both. Model-invocation
+always includes the human, so the two states that matter are **agent-reachable** (a
+description is present, and any skill can fire it) and **human-only**
+(`disable-model-invocation: true`, and nothing but a typed command reaches it).
+Human-only buys zero context load and spends cognitive load instead — the human
+becomes the index that has to remember the skill exists.
+
+Reach is a property of the skill, not of its procedure. A skill that belongs in a
+pipeline another skill drives must be agent-reachable however interactive it is:
+asking the human questions is not the same as needing the human to launch it.
+
+## Handoff
+
+One Skill cluster member naming another that the *agent* is expected to fire. A
+Handoff into a human-only skill is a defect, and a silent one — the agent reaches
+for a skill that is not there, with no error to say why. Written in backticks:
+`` `define-done` ``.
+
+## Pointer
+
+One skill naming another that the *human* is expected to type. Correct prose about a
+step outside the agent's reach, and indifferent to the target's Reach. Written with a
+slash: `/setup-ph-build`.
+
+A skill Pointer names a skill. It is not the *file* pointer that a `SKILL.md` uses to
+reach an uppercase companion, nor the "context pointer" of `writing-for-agents`; both
+of those name a document.
+
+The spelling is the signal, the same way an uppercase filename means "reference
+reached by a pointer". It is what makes a Handoff into a human-only skill
+mechanically detectable rather than a matter of reading comprehension.
+
 ## Upstream
 
 The two MIT sources this marketplace hard-forks from. Nothing tracks them
