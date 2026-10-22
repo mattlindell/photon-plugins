@@ -41,7 +41,6 @@ Make the decisions in this order; each depends on the one before it.
    release tolerates (expand, deploy, then contract). Restart queue workers after
    every deploy (`queue:restart`, or `horizon:terminate`); they keep the old code
    in memory.
-7. **Record the decisions** as ADRs when the repo keeps them.
 
 ## Eloquent model design
 
@@ -75,8 +74,6 @@ jobs, and commands alike. Add the others when their pressure is present.
 
 - **Indexes** come from the hot-path queries: every `WHERE` and `ORDER BY`
   column. In a composite index, put equality columns before range columns.
-- **N+1 queries.** `Model::preventLazyLoading()` outside production turns them
-  into exceptions.
 - **Caching.** Cache tags work only on the Redis and Memcached drivers. Cache
   whole responses for anonymous GET pages; cache query results with
   `Cache::remember`; invalidate from model events or with a short TTL.
@@ -85,9 +82,9 @@ jobs, and commands alike. Add the others when their pressure is present.
   through `config()` only.
 - **Octane.** Adopt it when bootstrap time dominates request latency and the app
   is safe for a long-running process: no request state in singletons, static
-  properties, or package globals. Never under Sage or Acorn.
-- **Read/write split.** Configure `read` and `write` hosts with
-  `'sticky' => true`, so a request reads its own writes.
+  properties, or package globals. Sage and Acorn run inside WordPress's request
+  lifecycle, so Octane does not apply to them.
+- **Read/write split.** See [references/enterprise.md](references/enterprise.md#readwrite-splitting).
 - **Connection pooling.** Past a few hundred PHP-FPM workers, put ProxySQL or
   PgBouncer (transaction mode) in front of the database.
 - **Assets.** Ship Vite's hashed build output through a CDN with immutable

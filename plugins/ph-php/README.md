@@ -50,7 +50,7 @@ Every skill is model-invoked: Claude reaches for it when a task matches its desc
 
 ### Decision skills
 
-These skills choose an approach and state its tradeoffs. They hold no code; they point at the pattern skills for it.
+These skills choose an approach and state its tradeoffs. They hold almost no code; they point at the pattern skills for it.
 
 | Skill | Description |
 | --- | --- |

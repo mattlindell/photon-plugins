@@ -66,8 +66,10 @@ Also read:
 - **403 inside WordPress** ("Sorry, you are not allowed…"): a capability check.
   Compare the user's capabilities (`wp user list-caps <user>`) with the one the
   code checks.
-- **403 `rest_cookie_invalid_nonce` from the REST API:** the request is missing
-  the `X-WP-Nonce` header.
+- **403 `rest_cookie_invalid_nonce` from the REST API:** the `X-WP-Nonce` header
+  is invalid or expired, often a stale nonce from a cached page. A request with
+  the login cookie but no nonce is treated as logged out and fails with
+  `rest_forbidden` (401) instead.
 
 #### Database connection error
 
@@ -104,7 +106,8 @@ Raising the limit is a stopgap. Find the consumer:
   batches, call `wp_cache_flush_runtime()` between batches, and keep
   `SAVEQUERIES` off.
 - **A full persistent object cache**: with `maxmemory-policy noeviction`, Redis
-  rejects writes once full. Use `allkeys-lru` for a cache-only Redis.
+  rejects writes once full. Set the eviction policy per
+  [performance.md](../wordpress-architecture/references/performance.md#choose-the-caching-layer).
 
 #### Plugin or theme conflict
 
@@ -161,11 +164,9 @@ To diagnose:
 
 #### Slow site
 
-Profile it instead of guessing: follow `wordpress-architecture` →
+Follow `wordpress-architecture` →
 [performance.md](../wordpress-architecture/references/performance.md#profile-before-optimizing).
 
-### 3. Fix and confirm
+### 3. Restore production settings
 
-Fix the root cause, then run the original reproduction and confirm it passes.
-Restore production settings afterward: logging back to its normal path, and
-`SAVEQUERIES` off.
+After the fix, return logging to its normal path and turn `SAVEQUERIES` off.

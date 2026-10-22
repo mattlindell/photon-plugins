@@ -79,7 +79,7 @@ autoloading. Add a pattern when its pressure is present.
 
 ## Runtime performance
 
-Profile first (Xdebug profiler, Blackfire, Tideways, or SPX), and change one
+Measure with the Xdebug profiler, Blackfire, Tideways, or SPX, and change one
 setting at a time against the measurement.
 
 - **OPcache** in production: `opcache.enable=1`; `memory_consumption` of 128–256
@@ -93,7 +93,8 @@ setting at a time against the measurement.
   on shared FPM pools.
 - **JIT** helps CPU-bound code (math, image processing, parsers). Typical web
   requests are I/O-bound and gain little. Turn it on only when the profiler shows
-  CPU-bound hot loops, and check the target PHP version's JIT defaults.
+  CPU-bound hot loops. From PHP 8.4, JIT ships disabled (`opcache.jit=disable`)
+  and must be turned on explicitly.
 - **Autoloader** optimization is in `composer-dependency-management` (§11).
 - **Caching.** APCu for hot data shared by the processes of one server; it is not
   shared across servers and clears on FPM restart. Redis for cache and locks
