@@ -158,7 +158,7 @@ matching `marketplace.json` entry together so the two cannot drift.
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 11/19, `ph-build` 6/55, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 19/55, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; the rest were added as their skills were touched. Most pstack forks and principle leaves still lack one. Add a sidecar when you touch a skill that lacks one.
 
 **Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 
