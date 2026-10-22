@@ -1,7 +1,6 @@
 ---
 name: triage
-description: Move issues and external PRs through a state machine of triage roles — categorize, verify, grill if needed, and write agent-ready briefs.
-disable-model-invocation: true
+description: Move issues and external PRs through a state machine of triage roles — categorize, verify, grill if needed, and write agent-ready briefs. Use when intake finds the work already exists as an issue or PR, when the user asks what needs attention or what is ready for an agent, or names an issue or PR to triage, label, or brief.
 ---
 
 # Triage
@@ -46,7 +45,7 @@ State transitions: an unlabeled issue normally goes to `needs-triage` first; fro
 
 ## Invocation
 
-The maintainer invokes `/triage` and describes what they want in natural language. Interpret the request and act. Examples:
+The maintainer invokes `/triage`, or `intake` hands off here, with a request in natural language. Interpret the request and act. Examples:
 
 - "Show me anything that needs my attention"
 - "Let's look at #42" (issue or PR)

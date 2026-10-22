@@ -1,7 +1,6 @@
 ---
 name: to-tickets
-description: Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker — edges as text in one file per ticket locally, or native blocking links on a real tracker.
-disable-model-invocation: true
+description: Break a plan, spec, or the current conversation into tracer-bullet tickets, each declaring its blocking edges, and publish them to the configured tracker. Use when a planning session should end in tickets rather than a spec, when a spec needs splitting into slices an agent can build, or when the user asks to break work down into tickets or issues.
 ---
 
 # To Tickets
@@ -64,7 +63,7 @@ Publish the approved tickets. **How** depends on the tracker `/setup-ph-plan` co
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 
-Every ticket carries its own `settled:` block naming which of the four dimensions are closed for *that ticket* — `problem`, `shape`, `approach`, `verification`. Tickets in one set often differ: the slice you argued through in detail may be settled on `shape` while its neighbour is not. An agent picks up one ticket, not the plan, so the block has to travel on each one rather than only on the spec.
+Every ticket carries its own `settled:` block naming which of the four dimensions are closed for *that ticket* — `problem`, `shape`, `approach`, `verification`. Tickets in one set often differ: the slice you argued through in detail may be settled on `shape` while its neighbour is not. An agent picks up one ticket, not the plan, so the block has to travel on each one rather than only on the spec. Where `define-done` settled `verification`, its methodology travels the same way: write it onto every ticket, below the acceptance criteria.
 
 Where a dimension is open because a decision ticket will close it, make that decision ticket a blocker of the ticket waiting on it. Whoever closes it updates the blocked tickets' `settled:` blocks — see the `close-or-block-the-dimension` principle.
 

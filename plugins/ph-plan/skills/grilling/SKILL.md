@@ -38,6 +38,8 @@ Every task carries four axes of uncertainty. Know which one each round is workin
 
 A dimension is either **settled** or **open**. There is no partial state — "mostly agreed" is open.
 
+Keep a running `settled:` block in the session and restate it each time a dimension closes. It is what `define-done` reads mid-session, and what `to-spec` or `to-tickets` writes down at the end, together with any methodology `define-done` attached.
+
 Grilling can close any of them, and usually closes `problem`, `shape`, and `approach` on its own. `verification` is normally closed by the `define-done` skill once the other three are settled.
 
 ## Close or block — never leave a dimension merely discussed

@@ -25,8 +25,7 @@ Neither route writes code.
 
 ## Not this skill
 
-- Work that **already exists** as an issue or PR → `triage`, which the human
-  invokes deliberately.
+- Work that **already exists** as an issue or PR → `triage`.
 - Work that is **already specified** and just needs building → `ph-build`, not
   here. Check for a spec with a `settled:` block before assuming otherwise.
 - A question about how existing code works → `ph-build:how`, or `ph-build:why`
