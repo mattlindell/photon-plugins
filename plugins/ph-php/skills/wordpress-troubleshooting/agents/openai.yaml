@@ -1,0 +1,3 @@
+interface:
+  display_name: "WordPress Troubleshooting"
+  short_description: "Diagnose a broken WordPress site"
