@@ -8,7 +8,7 @@ Claude Code plugin marketplace — reusable agents, skills, and commands distrib
 .claude-plugin/marketplace.json  — marketplace metadata and plugin registry
 plugins/
   ph-plan/                       — middle-down planning: intake, grilling, domain modeling, scout, triage, to-spec/to-tickets, define-done + 6 principles
-  ph-build/                      — unattended implementation, forked from pstack: dispatch router, playbooks, tdd, code-review + 23 principles + 3 agents + SessionStart hook
+  ph-build/                      — unattended implementation, forked from pstack: dispatch router, playbooks, tdd, code-review + 24 principles + 3 agents + SessionStart hook
   ph-lib/                        — shared library: 4 primitives that ph-plan/ph-build require, 9 operator tools. Not a hat
   ph-lead/                       — engineering leadership and people management (24 skills + router)
   ph-pm/                         — Jira, Confluence, Atlassian admin/templates, scrum, portfolio, meeting analysis, team comms (bundles the Atlassian MCP)
@@ -158,7 +158,7 @@ matching `marketplace.json` entry together so the two cannot drift.
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 19/55, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; the rest were added as their skills were touched. Most pstack forks and principle leaves still lack one. Add a sidecar when you touch a skill that lacks one.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 23/59, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; the rest were added as their skills were touched. Most pstack forks and principle leaves still lack one. Add a sidecar when you touch a skill that lacks one.
 
 **Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 

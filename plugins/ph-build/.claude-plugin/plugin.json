@@ -1,7 +1,7 @@
 {
   "name": "ph-build",
-  "version": "2.0.3",
-  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-two skills, twenty-three principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
+  "version": "2.1.0",
+  "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-five skills, twenty-four principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
   "author": {
     "name": "Matt Lindell",
     "email": "misterphoton@gmail.com"
@@ -21,10 +21,12 @@
     "./skills/architect",
     "./skills/arena",
     "./skills/babysit",
+    "./skills/benchmark-checklist",
     "./skills/blast-radius",
     "./skills/claude-md",
     "./skills/code-review",
     "./skills/commit",
+    "./skills/correct",
     "./skills/create-verification-skill",
     "./skills/deslop",
     "./skills/diagnosing-bugs",
@@ -45,6 +47,7 @@
     "./skills/principles/principle-build-the-lever",
     "./skills/principles/principle-encode-lessons-in-structure",
     "./skills/principles/principle-exhaust-the-design-space",
+    "./skills/principles/principle-explain-the-number",
     "./skills/principles/principle-experience-first",
     "./skills/principles/principle-fix-root-causes",
     "./skills/principles/principle-foundational-thinking",
@@ -69,6 +72,7 @@
     "./skills/swarm",
     "./skills/tdd",
     "./skills/thermo-nuclear-code-quality-review",
+    "./skills/thermo-nuclear-review",
     "./skills/typescript-best-practices",
     "./skills/why",
     "./skills/wizard",

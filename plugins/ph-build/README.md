@@ -1,7 +1,7 @@
 # ph-build
 
 **Unattended implementation** — building what was decided, at a cost that tracks
-what is still unknown. 32 skills, 23 principles, 19 playbooks, 3 agents.
+what is still unknown. 35 skills, 24 principles, 19 playbooks, 3 agents.
 
 Its counterpart, [`ph-plan`](../ph-plan/), is the hat you wear when deciding
 *what* gets built. **Requires [`ph-lib`](../ph-lib/).**
@@ -98,10 +98,14 @@ documents that disagreed — see
 
 Direct entry when the intent is specific: `how`, `why`, `tdd`, `babysit`.
 
-The six expensive skills are **user-invoked only** — `architect`, `arena`,
-`interrogate`, `swarm`, `thermo-nuclear-code-quality-review`,
-`maintain-verification-skill`. Capability kept; auto-invocation removed, because
-every upstream skill being model-invocable is why the machinery fired unprompted.
+The seven expensive skills are **user-invoked only** — `architect`, `arena`,
+`interrogate`, `swarm`, `thermo-nuclear-review`,
+`thermo-nuclear-code-quality-review`, `maintain-verification-skill`. Capability
+kept; auto-invocation removed, because every upstream skill being
+model-invocable is why the machinery fired unprompted.
+
+`correct` is user-invoked too. It runs when the operator says agents keep
+repeating a mistake, and it rewrites the repo's guardrails to stop it.
 
 ## Agents
 
@@ -138,8 +142,8 @@ ph-build/
       playbooks/                — 19, plus the implement-a-ticket entry adapter
       references/               — bugbot triage
       scripts/                  — watch-pr, worktree-audit
-    <31 skills>
-    principles/                 — 23 leaf skills
+    <34 skills>
+    principles/                 — 24 leaf skills
 ```
 
 ## Setup

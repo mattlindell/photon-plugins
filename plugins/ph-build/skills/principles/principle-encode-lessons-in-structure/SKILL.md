@@ -25,6 +25,8 @@ When you catch yourself writing the same instruction a second time:
 - **Route to the right layer.** One-off -> brain note. Recurring fix -> skill or lint rule. Systemic issue -> principle.
 - **Close the loop.** Don't just record. Apply now or create a concrete todo.
 
+When the same corrections keep recurring across sessions, tell the user to run `/ph-build:correct`. It sweeps the repo for repeated mistake classes and encodes each at the highest level that works.
+
 **Anti-patterns:**
 - Acknowledging without recording ("I'll keep that in mind" does not persist)
 - Recording without routing (a brain note about a lint rule that should exist is wasted unless the lint rule gets implemented)
