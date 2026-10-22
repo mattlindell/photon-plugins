@@ -4,11 +4,11 @@ import { mkdirSync, mkdtempSync, rmSync, symlinkSync, utimesSync, writeFileSync 
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 
-import { candidates, findTranscript, openingPrompt } from "../plugins/ph-lib/skills/operator-tools/reflect/scripts/find-transcript.mjs";
+import { candidates, findTranscript, openingPrompt } from "./find-transcript.mjs";
 import { pathToFileURL } from "node:url";
-import { removeDuring } from "./remove-during.mjs";
+import { removeDuring } from "./remove-during.test-helper.mjs";
 
-const script = join(import.meta.dir, "../plugins/ph-lib/skills/operator-tools/reflect/scripts/find-transcript.mjs");
+const script = join(import.meta.dir, "./find-transcript.mjs");
 // node's ESM loader takes a file URL, not a drive-lettered path.
 const scriptUrl = pathToFileURL(script).href;
 const noNode = spawnSync("node", ["--version"]).status !== 0;
