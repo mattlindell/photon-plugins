@@ -75,6 +75,23 @@ pointing at it, which is how two bugs shipped during the reorganization.
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
 
+### Script tests
+
+Scripts that ship inside a plugin are tested with `bun test`. **Each test lives
+beside the script it covers, inside the skill that owns it** — never in a
+repo-level `tests/` directory. Removing a skill then removes its tests with it,
+so nothing is left orphaned. Test helpers follow the `*.test-helper.*` naming;
+a helper two plugins need is copied into each, because plugins install
+separately and cannot import across each other.
+
+```bash
+bun test --timeout 30000 plugins/   # every suite; CI runs the same command
+```
+
+`watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
+first. `transport.test.ts` fails on Windows because its fake `gh` is a shebang
+script; CI runs on Linux.
+
 ### CI
 
 `.github/workflows/checks.yml` is the only workflow. **Every action is pinned to
