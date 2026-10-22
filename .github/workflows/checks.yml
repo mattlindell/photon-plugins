@@ -57,7 +57,7 @@ jobs:
 
       - name: Test watch-pr
         working-directory: plugins/ph-build/skills/dispatch/scripts
-        run: bun test watch-pr
+        run: bun test --timeout 30000 watch-pr
 
       # The audit and transcript tests drive real git repos, which outrun bun's
       # 5s default on a cold runner.

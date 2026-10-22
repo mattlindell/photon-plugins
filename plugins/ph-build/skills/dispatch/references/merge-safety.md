@@ -7,7 +7,7 @@ Use this reference with [Shipping](../playbooks/shipping.md) and before any topo
 A PR can carry two pending-merge mechanisms: GitHub auto-merge and merge-queue membership. The watcher and these reads share one landing revision: the repository, PR number, head OID, base branch, and base OID. Record it with the verification evidence.
 
 ```sh
-gh pr view "$pr" --repo "$owner/$repo"   --json state,headRefOid,baseRefName,autoMergeRequest,mergeCommit > "$record_file"
+gh pr view "$pr" --repo "$owner/$repo" --json state,headRefOid,baseRefName,autoMergeRequest,mergeCommit > "$record_file"
 ```
 
 Read queue membership through GraphQL `pullRequest.mergeQueueEntry`, which `gh pr view --json` may not expose. Treat a missing field or an unsupported API as unknown, never as an absent request. Read the base branch OID separately (`gh api repos/$owner/$repo/git/ref/heads/$base --jq .object.sha`) and add it to the record.
