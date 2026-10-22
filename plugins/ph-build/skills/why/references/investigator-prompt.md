@@ -13,6 +13,7 @@ Other investigators search different sources in parallel. Don't try to cover eve
 Work like a careful, cautious, precise investigator. Don't produce a narrative; surface evidence and describe it accurately, including the parts that don't fit a tidy story. The more boring and exact your output, the more useful it is. A single verbatim quote with a precise citation beats a paragraph of plausible-sounding summary.
 
 - **Quote, don't paraphrase** when the exact wording matters. Citations should let the reader jump to the source and confirm the claim in seconds.
+- **Human rulings need the original words.** Follow [Claims about human decisions](epistemics.md#claims-about-human-decisions): return the attributable original wording and its source, label agent interpretations as such, and flag missing originals and copied summaries.
 - **Go wide before going deep.** Cast a broad first net so you don't miss related context. Only then narrow in.
 - **Track what you searched, not just what you found.** An absence is only useful if the reader knows what was looked for. Record queries verbatim.
 - **Resist the story.** If three pieces of evidence line up neatly and a fourth contradicts them, the contradiction is the most interesting finding. Don't file it away.
