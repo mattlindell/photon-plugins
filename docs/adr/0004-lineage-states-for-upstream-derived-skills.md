@@ -31,6 +31,11 @@ that change, and demoting on one would drop skills whose upstream still has
 useful fixes coming. Two in a row means the skill and its upstream no longer
 share a shape.
 
+A tracked skill whose upstream file is deleted becomes derived at the review
+that finds the deletion, with the last upstream commit carrying the file as its
+"forked from" SHA. There is nothing left to compare against. `ph-lib`'s
+`caveman` is the first case.
+
 ## Copyright is a separate obligation
 
 The lineage state governs syncing. It does not govern attribution. Under MIT,
@@ -59,7 +64,8 @@ about whether its text still derives from it.
   "tracked" here means a human reads the changelog and ports by hand, which is
   the cost ADR-0001 accepted.
 - A tracked pin claims "reviewed through here", so pins move last in a sync,
-  after every port they vouch for has landed.
-- A skill can carry two lineages with different states. `tdd` is tracked
+  after every port the pin covers has landed.
+- A skill can carry two lineages, each with its own state. `tdd` is tracked
   against Pocock's `tdd` and derived from pstack's for the escape-hatch
-  conditions it absorbed.
+  conditions it absorbed. `correct` is tracked against both pstack's `correct`
+  and Pocock's `retro`.

@@ -11,7 +11,7 @@ Lauren Tan's (poteto) Cursor `pstack` plus seven skills from Cursor's
 
 This is a **hard fork**. We carry none of upstream's sync tooling
 ([ADR-0001](../../docs/adr/0001-fork-pstack-rather-than-depend-on-it.md));
-changes are ported by hand at each sync review. Each upstream-derived file
+we port upstream changes by hand at each sync review. Each upstream-derived file
 carries a lineage state, defined in
 [ADR-0004](../../docs/adr/0004-lineage-states-for-upstream-derived-skills.md):
 **tracked** files are reviewed through the pin, **derived** files keep their

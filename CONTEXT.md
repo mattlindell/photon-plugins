@@ -71,8 +71,8 @@ mechanically detectable rather than a matter of reading comprehension.
 The two MIT sources this marketplace hard-forks from. Nothing syncs them
 automatically: improvements arrive when someone reads their changelogs and ports
 what fits, and a `NOTICE.md` records the upstream commit last reviewed. Every
-upstream-derived skill carries a lineage state: Tracked, Derived, or own work
-once no upstream text remains. Entries
+upstream-derived skill carries a lineage state: Tracked, Derived, or Own once
+no upstream text remains. Entries
 below that say "Upstream" without qualification mean the pstack upstream; that
 is where those concepts come from.
 
@@ -93,19 +93,13 @@ named `GLOSSARY.md`; ours stays `CONTEXT.md` deliberately.
 
 ### Tracked
 
-A lineage state: upstream changes to the skill's source are still ported into
-it, by hand, at each sync review. Its `NOTICE.md` entry names the upstream path
-and reads "reviewed through `<sha>`". Sync reviews compare Tracked skills only.
-Tracked is not the sync tooling ADR-0001 rejected; nothing merges
-automatically.
+A lineage state: a skill whose upstream changes are still ported into it, by
+hand, at each sync review. Not the automatic sync tooling ADR-0001 rejected.
 
 ### Derived
 
-A lineage state: the skill keeps its upstream lineage but is no longer synced.
-Its `NOTICE.md` entry names the upstream path and reads "forked from `<sha>`". A
-Tracked skill becomes Derived after two consecutive sync reviews skip its
-upstream changes as diverged. The upstream copyright stays on a Derived skill
-exactly as on a Tracked one; lineage state governs syncing, not attribution.
+A lineage state: a skill that keeps its upstream lineage and its upstream
+copyright, but is no longer synced.
 
 ## Fan-out
 

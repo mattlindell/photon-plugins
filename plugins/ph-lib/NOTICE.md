@@ -10,7 +10,7 @@ The other six derive from [Matt Pocock's skills](https://github.com/mattpocock/s
 
 This is a hard fork. We carry none of upstream's sync tooling
 ([ADR-0001](../../docs/adr/0001-fork-pstack-rather-than-depend-on-it.md));
-changes are ported by hand at each sync review. Each skill carries a lineage
+we port upstream changes by hand at each sync review. Each skill carries a lineage
 state, defined in
 [ADR-0004](../../docs/adr/0004-lineage-states-for-upstream-derived-skills.md):
 **tracked** skills are reviewed through the pin, **derived** skills keep their

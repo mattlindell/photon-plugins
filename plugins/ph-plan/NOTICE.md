@@ -6,7 +6,7 @@ upstream copyright notices and license terms are preserved.
 
 **(c) 2026 Matt Pocock, MIT — [LICENSE-pocock-skills](../../LICENSE-pocock-skills)**
 
-This is a hard fork. Nothing syncs upstream automatically; changes are ported by
+This is a hard fork. Nothing syncs upstream automatically; we port changes by
 hand at each sync review. Each skill below carries a lineage state, defined in
 [ADR-0004](../../docs/adr/0004-lineage-states-for-upstream-derived-skills.md):
 **tracked** skills are reviewed through the pin, **derived** skills keep their
