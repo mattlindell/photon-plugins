@@ -43,7 +43,7 @@ Carry **both** refs into every later step. The skill's examples write `...HEAD` 
 
 The PR itself is your best source, and the skill's search order picks up where it leaves off:
 
-1. Ticket references in the PR title, body, or commit messages (`PROJ-88`, `Closes #45`, `!67`) — fetch through the workflow in the tracker doc.
+1. Ticket references in the PR title, body, or commit messages (`PROJ-88`, `Closes #45`, `!67`) — fetch through the workflow in the repo's tracker doc (usually `docs/agents/issue-tracker.md`).
 2. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 3. The PR description itself, when it genuinely states intended behavior rather than summarizing the diff.
 

@@ -253,8 +253,7 @@ and CI never count as the independent verdict. Record
 closed, and report which reviewers ran and which are missing. Work that does not
 depend on the review continues. A finished reviewer may be reused only through
 the runtime's own follow-up action, only if it did not write the change, and
-only with the full current brief and head revision. Two-way-door work has no
-such gate: your own review of the diff is enough.
+only with the full current brief and head revision.
 
 ## 8. Writing the reply
 

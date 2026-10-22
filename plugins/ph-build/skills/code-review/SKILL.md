@@ -10,7 +10,7 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-The issue tracker should have been provided to you. If not, tell the user to run `/ph-plan:setup-ph-plan` where it is installed; otherwise ask which tracker this repo uses rather than guessing.
+The issue tracker should have been provided to you, usually as a tracker doc at `docs/agents/issue-tracker.md`. If not, ask which tracker this repo uses rather than guessing, and tell the user to run `/ph-plan:setup-ph-plan` where it is installed.
 
 ## Process
 

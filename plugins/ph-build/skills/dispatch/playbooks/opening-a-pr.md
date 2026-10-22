@@ -6,7 +6,7 @@ Invoked at the end of every other playbook.
 
 **Commits.** Commit liberally; rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit; new commit when separable.
 
-**PRs.** Call the Skill tool with `deslop` over the diff before commit, and with `no-comments` before review. Write every PR title, PR description, and commit body with `ph-lib:technical-writing`, then call the Skill tool again with `ph-lib:unslop`. Apply every technical-writing layer except Diátaxis. Use one word for each action, keep articles, and avoid `-ing` when a plain verb works.
+**PRs.** Call the Skill tool with `deslop` over the diff before commit, and with `no-comments` before review. Write every PR title, PR description, and commit body with `ph-lib:technical-writing`, then apply `ph-lib:unslop`. Call the Skill tool once for each. Apply every technical-writing layer except Diátaxis. Use one word for each action, keep articles, and avoid `-ing` when a plain verb works.
 
 **Titles.** Use Conventional Commits in the form `type(scope): subject`. Use `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf` as the type. Use the changed area, such as `ph-build` or `dispatch`, as the scope. Keep the subject short and imperative. Name a real symbol when one carries the change. For example, `fix(ph-build): retarget opening-a-pr babysit trigger`. Do not add a trailing period.
 
