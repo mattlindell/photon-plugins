@@ -58,6 +58,10 @@ One skill naming another that the *human* is expected to type. Correct prose abo
 step outside the agent's reach, and indifferent to the target's Reach. Written with a
 slash: `/setup-ph-build`.
 
+A skill Pointer names a skill. It is not the *file* pointer that a `SKILL.md` uses to
+reach an uppercase companion, nor the "context pointer" of `writing-for-agents`; both
+of those name a document.
+
 The spelling is the signal, the same way an uppercase filename means "reference
 reached by a pointer". It is what makes a Handoff into a human-only skill
 mechanically detectable rather than a matter of reading comprehension.

@@ -1,6 +1,6 @@
 # Skill mechanics
 
-The skill-specific branch of [`writing-for-agents`](SKILL.md): what changes when the document is a skill — frontmatter, the invocation choice, and router skills. Everything else about writing it is the universal reference in `SKILL.md`.
+The skill-specific branch of [`writing-for-agents`](SKILL.md): what changes when the document is a skill — frontmatter, the invocation choice, router skills, and how to name another skill. Everything else about writing it is the universal reference in `SKILL.md`.
 
 ## Invocation
 
@@ -19,4 +19,15 @@ The invocation cut of splitting (the sequence cut lives in `SKILL.md`): split of
 
 ## Router skills
 
-When user-invoked skills multiply past what you can remember, that piled-up cognitive load is cured by a **router skill**: one user-invoked skill that names the others and when to reach for each, so the human has one skill to remember instead of many. It can only hint, never fire them: user-invoked skills have no description, so nothing but the human can reach them.
+When user-invoked skills multiply past what you can remember, that piled-up cognitive load is cured by a **router skill**: one user-invoked skill that names the others and when to reach for each, so the human has one skill to remember instead of many. A user-invoked router listing user-invoked skills can only hint, never fire them: user-invoked skills have no description, so nothing but the human can reach them.
+
+A **model-invoked** router is the other case. The agent reaches it on its own and then fires its targets itself, so every target must be model-invoked too. A model-invoked router that routes to a user-invoked skill is pointing the agent at something it cannot reach, and nothing reports the failure. The same holds for any model-invoked skill whose procedure hands off to another: every skill it fires must be model-invoked as well.
+
+## Naming another skill
+
+The spelling of a skill name says who is expected to act on it:
+
+- **Handoff**: backticks, `` `define-done` ``. The agent fires it, so the target must be model-invoked.
+- **Pointer**: a leading slash, `` `/setup-ph-build` ``. The human types it, so it is correct whatever the target's invocation.
+
+Write a step the agent takes as a Handoff and a step the human takes as a Pointer. The spelling makes a Handoff into a user-invoked skill detectable by a check rather than by a careful reader.

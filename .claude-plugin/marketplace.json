@@ -38,7 +38,7 @@
       "name": "ph-lib",
       "source": "./plugins/ph-lib",
       "description": "Shared library for the photon plugins: four primitives that ph-plan and ph-build reference and require (codebase-design, technical-writing, unslop, writing-for-agents), plus nine operator tools you invoke directly (automate-me, bro, caveman, handoff, recall, reflect, teach, wait-what, what-did-i-get-done). Not a hat — nobody installs this because of the work they are doing.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
