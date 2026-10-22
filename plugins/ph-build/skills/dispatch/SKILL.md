@@ -108,6 +108,7 @@ Conditional on the gate above. None of these is unconditional.
 - **Any code** → name the data shape first (**principle-model-the-domain**).
 - **Any prose surface, including your reply** → `ph-lib:unslop`. Docs, RFCs, PR descriptions, commit messages also take `ph-lib:technical-writing`.
 - **Before commit** → the **deslop** skill. **Before review** → **no-comments**.
+- **Running a benchmark, or reporting a speedup or regression you measured** → the **benchmark-checklist** skill before you report or act on the number.
 - **Shipping UI or CLI** → drive the real surface. For bug fixes, reproduce it yourself first.
 - **Any PR-status request** → the **Babysit** playbook, not the `babysit` skill.
 - **A review bot commented** → skeptical posture, triage per `references/bugbot-triage.md`.
@@ -177,7 +178,8 @@ whose leaf you actually read this session.
 `separate-before-serializing-shared-state`
 
 **Verification** — `prove-it-works`, `fix-root-causes`,
-`sequence-verifiable-units`, `test-behavior-not-implementation`
+`sequence-verifiable-units`, `test-behavior-not-implementation`,
+`explain-the-number`
 
 **Delegation** — `guard-the-context-window`, `never-block-on-the-human`
 
