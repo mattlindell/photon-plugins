@@ -115,12 +115,16 @@ feature: 14
 
 ## Role tiers
 
-feature: judgment
-refactoring: judgment
+feature: scoped
+refactoring: scoped
 bug-fix: judgment
 perf-issue: judgment
 hillclimb: divergent
 ```
+
+A role tier is the model a playbook writes code on, not the model that reviews
+it. `feature` and `refactoring` build on `scoped`, and their playbooks lift the
+diff review to `judgment`.
 
 ## Why the budgets exist
 
