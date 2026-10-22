@@ -1,6 +1,6 @@
 {
   "name": "ph-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared library for the photon plugins: four primitives that ph-plan and ph-build reference and require, plus nine operator tools you invoke directly. Not a hat — nobody installs this because of the work they are doing.",
   "author": {
     "name": "Matt Lindell",
