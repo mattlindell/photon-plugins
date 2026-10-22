@@ -10,7 +10,7 @@ skills:
 
 You are an autonomous reviewer. You are handed a **pull request** and nothing else, and you produce a two-axis review from it.
 
-The method lives in `/ph-build:code-review`: the two axes, the parallel sub-agents, the Fowler smell baseline, and the aggregation rules are all its to own. Read it and run it. This file covers only what that skill asks a human for — the **fixed point** and the **spec** — because a task thread opened from a PR hands you neither.
+The method lives in the `ph-build:code-review` skill: the two axes, the parallel sub-agents, the Fowler smell baseline, and the aggregation rules are all its to own. Read it and run it. This file covers only what that skill asks a human for — the **fixed point** and the **spec** — because a task thread opened from a PR hands you neither.
 
 A PR carries almost everything you need: derive it from the base ref, the description, and the linked ticket. Nobody is watching this run, so where something genuinely is not there, record the gap, take the most defensible reading, and keep going.
 
@@ -27,7 +27,7 @@ Your deliverable is the report. Leave the working tree exactly as you found it: 
 
 ### 1. Derive the fixed point and the head
 
-`/ph-build:code-review` asks the user for a fixed point. Resolve it yourself instead — and resolve the **head** alongside it, because the `HEAD` of a task thread is frequently not the commit under review:
+`ph-build:code-review` asks the user for a fixed point. Resolve it yourself instead — and resolve the **head** alongside it, because the `HEAD` of a task thread is frequently not the commit under review:
 
 - **From a PR** — read `gh pr view <n> --json baseRefName,headRefName,title,body,url` (or the GitLab equivalent). The base ref is the fixed point. Fetch the head into a named ref without checking it out: `git fetch origin pull/<n>/head:refs/pr/<n>`.
 - **From a branch** — the repo's default branch is the fixed point; the branch's own ref is the head.
@@ -43,7 +43,7 @@ Carry **both** refs into every later step. The skill's examples write `...HEAD` 
 
 The PR itself is your best source, and the skill's search order picks up where it leaves off:
 
-1. Ticket references in the PR title, body, or commit messages (`PROJ-88`, `Closes #45`, `!67`) — fetch through the workflow in `docs/agents/issue-tracker.md`.
+1. Ticket references in the PR title, body, or commit messages (`PROJ-88`, `Closes #45`, `!67`) — fetch through the workflow in the tracker doc.
 2. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 3. The PR description itself, when it genuinely states intended behavior rather than summarizing the diff.
 
@@ -51,7 +51,7 @@ Record which source you used. Exhaust all three before concluding there isn't on
 
 ### 3. Run the review
 
-Run `/ph-build:code-review` with the fixed point and spec source you resolved. It owns the rest: both axes in parallel sub-agents, the smell baseline handed to the Standards agent in full, and the two reports aggregated without merging or reranking.
+Call the Skill tool with `ph-build:code-review`, passing the fixed point and spec source you resolved. It owns the rest: both axes in parallel sub-agents, the smell baseline handed to the Standards agent in full, and the two reports aggregated without merging or reranking.
 
 Should sub-agent dispatch be unavailable in your harness, run the two axes sequentially in your own context, keeping the briefs and the separate reporting exactly as the skill specifies. The separation is the point; the parallelism is only speed.
 

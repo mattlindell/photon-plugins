@@ -7,7 +7,7 @@ skills:
   - ph-build:dispatch
 ---
 
-You are handed a **ticket** and nothing else. Run `/ph-build:dispatch` and follow it.
+You are handed a **ticket** and nothing else. Call the Skill tool with `ph-build:dispatch` and follow it.
 
 The method is entirely `dispatch`'s. It resolves the reference, reads the rigor signal the ticket carries, sizes the work to whatever is still open, and routes. A bare tracker reference enters through its **Implement a ticket** adapter, which grounds you in the domain, gets you onto a working branch, and hands off to Feature, Bug fix, or Refactoring — each of which ends in Opening a PR.
 
