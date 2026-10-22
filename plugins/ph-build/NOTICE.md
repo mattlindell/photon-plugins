@@ -17,11 +17,12 @@ See [ADR-0001](../../docs/adr/0001-fork-pstack-rather-than-depend-on-it.md).
 
 **(c) 2026 Lauren Tan, MIT — [LICENSE-pstack](../../LICENSE-pstack)**
 
-`architect`, `arena`, `babysit`, `blast-radius`, `create-verification-skill`,
-`explain` (upstream `teach`), `figure-it-out`, `how`, `interrogate`,
+`architect`, `arena`, `babysit`, `benchmark-checklist`, `blast-radius`,
+`correct`, `create-verification-skill`, `explain` (upstream `teach`),
+`figure-it-out`, `how`, `interrogate`,
 `maintain-verification-skill`, `no-comments`, `setup-ph-build` (upstream
 `setup-pstack`), `show-me-your-work`, `swarm`, `typescript-best-practices`,
-`why`, all 23 `principles/principle-*`, `agents/comment-sicko.md`, every file
+`why`, all 24 `principles/principle-*`, `agents/comment-sicko.md`, every file
 under `skills/dispatch/playbooks/`, `skills/dispatch/references/bugbot-triage.md`,
 and `skills/dispatch/scripts/`.
 
@@ -39,11 +40,15 @@ the files above, including the `watch-pr` and `worktree-audit` scripts under
 `setup-pre-commit`, `tdd`, and `wizard`. These came in through the old
 `technical-director` plugin, whose skills were all taken from Pocock's
 repository. `tdd` also absorbed upstream pstack's escape-hatch conditions.
+`correct` merges in the categories from Pocock's `retro` skill: navigation
+pointers, tool economy, information access, and no-ops.
 
 **(c) 2026 Cursor, MIT — [LICENSE-cursor-team-kit](../../LICENSE-cursor-team-kit)**
 
 `deslop`, `fix-ci`, `fix-merge-conflicts`, `get-pr-comments`,
 `make-pr-easy-to-review`, `thermo-nuclear-code-quality-review`.
+`thermo-nuclear-review` comes from Cursor's `thermos` plugin, whose MIT license
+text is identical to `cursor-team-kit`'s.
 
 ## Own work
 
@@ -93,8 +98,10 @@ platform-mapping pointers and the `.codex-plugin` build are not carried.
 
 **Invocation.** Every upstream skill was model-invocable, which is why the
 machinery fired unprompted. `architect`, `arena`, `interrogate`, `swarm`,
-`thermo-nuclear-code-quality-review`, and `maintain-verification-skill` are now
-user-invoked only. Capability retained; auto-invocation removed.
+`thermo-nuclear-review`, `thermo-nuclear-code-quality-review`, and
+`maintain-verification-skill` are now user-invoked only, as is `correct`.
+Capability retained; auto-invocation removed. `thermo-nuclear-review` runs
+inline; upstream's `thermo-nuclear-review-subagent` agent is not carried.
 
 **Cross-plugin.** References to skills that moved to `ph-lib` are namespaced.
 References into `ph-plan` are optional with a defined fallback, so `ph-build`
