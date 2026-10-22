@@ -73,8 +73,8 @@ claude --plugin-dir /path/to/photon-plugins/plugins/ph-build
 ## Acknowledgments
 
 - Plugin structure and approach inspired by [wshobson/agents](https://github.com/wshobson/agents).
-- The `ph-plan` skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT).
-- Most of `ph-build` and seven `ph-lib` skills are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) (MIT) at `a0a531f`, itself a port of Lauren Tan's Cursor `pstack` and Cursor's `cursor-team-kit`. See [plugins/ph-build/NOTICE.md](plugins/ph-build/NOTICE.md), [plugins/ph-lib/NOTICE.md](plugins/ph-lib/NOTICE.md), [LICENSE-pstack](LICENSE-pstack), and [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit).
+- The `ph-plan` skills, six `ph-build` skills, and six `ph-lib` skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT). See [LICENSE-pocock-skills](LICENSE-pocock-skills).
+- Most of `ph-build` and seven `ph-lib` skills are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) (MIT) at `a0a531f`, Michael Denyer's port of Lauren Tan's (poteto) Cursor `pstack` and Cursor's `cursor-team-kit`. See [plugins/ph-build/NOTICE.md](plugins/ph-build/NOTICE.md), [plugins/ph-lib/NOTICE.md](plugins/ph-lib/NOTICE.md), [LICENSE-pstack](LICENSE-pstack), and [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit).
 - The `ph-lead` skills are adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten.
 
 ## License

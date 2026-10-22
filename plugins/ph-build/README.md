@@ -6,8 +6,9 @@ what is still unknown. 32 skills, 23 principles, 19 playbooks, 3 agents.
 Its counterpart, [`ph-plan`](../ph-plan/), is the hat you wear when deciding
 *what* gets built. **Requires [`ph-lib`](../ph-lib/).**
 
-Forked from [pstack](https://github.com/michael-denyer/pstack-claude) — see
-[NOTICE.md](NOTICE.md).
+Forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude),
+with six skills from [Matt Pocock's skills](https://github.com/mattpocock/skills)
+— see [NOTICE.md](NOTICE.md).
 
 ## The problem this solves
 
