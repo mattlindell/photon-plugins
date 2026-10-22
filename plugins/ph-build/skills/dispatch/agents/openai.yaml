@@ -1,0 +1,3 @@
+interface:
+  display_name: "Dispatch"
+  short_description: "Size the rigor and route to a playbook"

@@ -61,6 +61,9 @@ issues, and any attached spec. Comments frequently carry the real constraints,
 and the `settled:` block written during triage often lives in one rather than in
 the ticket body.
 
+State the ticket's key and title before you start. A fetch that returned the
+wrong ticket shows up there, before any work is built on it.
+
 A bare reference then runs the **Implement a ticket** entry adapter below.
 
 ### The bounded orientation pass
@@ -117,6 +120,12 @@ Conditional on the gate above. None of these is unconditional.
 Open a todolist whose first items are the matched playbook's steps, copied in
 verbatim, before any task-specific todos. A step you skip stays in the list with
 a one-line `skip: <reason>`.
+
+Keep the todolist in the session's task tools. When none is available, keep an
+uncommitted `todo.md` checklist in the work dir, beside the decision trail, with
+the same verbatim steps and `skip:` lines. When several sessions share the
+checkout, name it `.audit/<task-slug>.todo.md`, next to that session's
+`.audit/<task-slug>.tsv` trail, so no two sessions write one file.
 
 Each playbook has a **total agent budget** in the fan-out policy. That budget
 covers the whole composition including nested fan-out, and it is a ceiling.
@@ -221,11 +230,30 @@ Tier ladder, strictly ordered: `scan` < `scoped` < `judgment` < `divergent` <
 on work whose thinking is done.
 
 You own every subagent's work. Review the diff and write your own summary; do
-not pass through what it said. Fire a fresh subagent with consolidated scope
-rather than trusting a "done" summary from an interrupt-chained resume. Stop
-abandoned agents explicitly and confirm they stopped — `completed` in the agent
-listing means *notified*, not exited. The tell that one is still running is a
-claim about the working tree that `git status` contradicts.
+not pass through what it said. Every claim, in a subagent's report and in your
+summary of it, carries its evidence or its label in the same sentence:
+measured, inferred, or guess. A prediction or an unseen cause is a guess.
+
+**Fresh subagents by default.** Give each fix round, follow-up, retry, and next
+queue item to a fresh subagent with consolidated scope: the original brief,
+every later directive, and the prior agent's report and branch. Reuse an
+existing agent only when the work strictly needs state that lives in it and is
+costly to move: its checkout, its uncommitted changes, or a process it still
+runs. Interrupt-chained resumes silently drop directives, so never trust a
+"done" summary from one. Stop abandoned agents explicitly and confirm they
+stopped — `completed` in the agent listing means *notified*, not exited. The
+tell that one is still running is a claim about the working tree that
+`git status` contradicts.
+
+**At a one-way door, a review gate stays closed when no independent reviewer
+can run.** An agent limit, disabled subagent dispatch, or a skills-only install
+can leave the required review with no reviewer. Your own review, passing tests,
+and CI never count as the independent verdict. Record
+`BLOCKED: independent review` in the todolist, keep merge-ready and shipping
+closed, and report which reviewers ran and which are missing. Work that does not
+depend on the review continues. A finished reviewer may be reused only through
+the runtime's own follow-up action, only if it did not write the change, and
+only with the full current brief and head revision.
 
 ## 8. Writing the reply
 
