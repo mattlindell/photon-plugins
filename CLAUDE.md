@@ -52,28 +52,34 @@ decisions there; those go in `docs/adr/`.
 ```bash
 python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
 python scripts/lint-links.py --exclude product-team # relative links + heading anchors
+python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-All three run in CI on every PR (`.github/workflows/checks.yml`), alongside
+All four run in CI on every PR (`.github/workflows/checks.yml`), alongside
 `ruff check`, `ruff format --check`, and `basedpyright` over `scripts/`.
 
 The scripts are typed and must stay clean at both. `pyproject.toml` holds the
 config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
 the manifests so JSON is shaped once at the boundary rather than leaking `Any`
-through every caller.
+through every caller, and `scripts/_markdown.py` reads frontmatter and skips
+fenced code the same way for every check.
 
 ```bash
 uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
 ```
 
-Run the three repo checks before any commit that touches plugin structure.
+Run the four repo checks before any commit that touches plugin structure.
 `lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization.
 
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
+
+`lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
+entry when its skill stops handing off to a human-only one. A stale entry fails
+the check.
 
 ### CI
 
@@ -135,7 +141,7 @@ matching `marketplace.json` entry together so the two cannot drift.
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 11/19, `ph-build` 6/55, `ph-lead` 0/24. The skills that have one are those carried over from the old `technical-director`; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 6/55, `ph-lead` 0/24. The skills that have one are those carried over from the old `technical-director`; everything forked from pstack, plus the new skills and principle leaves, does not have one yet. Add a sidecar when you touch a skill that lacks one.
 
 **Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 

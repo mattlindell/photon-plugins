@@ -37,6 +37,9 @@ jobs:
       - name: Links and anchors resolve
         run: python scripts/lint-links.py --exclude product-team
 
+      - name: Handoffs reach their targets
+        run: python scripts/lint-handoffs.py
+
   scripts:
     name: Vendored script tests
     runs-on: ubuntu-latest
