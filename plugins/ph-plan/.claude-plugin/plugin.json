@@ -1,6 +1,6 @@
 {
   "name": "ph-plan",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Middle-down planning: decide and write down what gets built. Thirteen skills and six principles for an interactive session - intake routing, relentless grilling, domain modeling, frontier scouting, triage, specs and tickets. Every session ends in a written artifact carrying which of the four dimensions it closed. Requires ph-lib.",
   "author": {
     "name": "Matt Lindell",

@@ -68,9 +68,11 @@ mechanically detectable rather than a matter of reading comprehension.
 
 ## Upstream
 
-The two MIT sources this marketplace hard-forks from. Nothing tracks them
+The two MIT sources this marketplace hard-forks from. Nothing syncs them
 automatically: improvements arrive when someone reads their changelogs and ports
-what fits, and a `NOTICE.md` records the upstream commit last reviewed. Entries
+what fits, and a `NOTICE.md` records the upstream commit last reviewed. Every
+upstream-derived skill carries a lineage state: Tracked, Derived, or Own once
+no upstream text remains. Entries
 below that say "Upstream" without qualification mean the pstack upstream; that
 is where those concepts come from.
 
@@ -88,6 +90,16 @@ Matt Pocock's `skills` repo. The source of `ph-plan` and of several
 `ph-build` and `ph-lib` skills, among them `tdd`, `diagnosing-bugs`, `wizard`,
 `codebase-design`, and `writing-for-agents`. Its domain doc is
 named `GLOSSARY.md`; ours stays `CONTEXT.md` deliberately.
+
+### Tracked
+
+A lineage state: a skill whose upstream changes are still ported into it, by
+hand, at each sync review. Not the automatic sync tooling ADR-0001 rejected.
+
+### Derived
+
+A lineage state: a skill that keeps its upstream lineage and its upstream
+copyright, but is no longer synced.
 
 ## Fan-out
 

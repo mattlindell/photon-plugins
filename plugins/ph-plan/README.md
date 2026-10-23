@@ -86,6 +86,7 @@ deliberate inverse of `ph-build`'s set.
 ```text
 ph-plan/
   .claude-plugin/plugin.json
+  NOTICE.md               — upstream attribution and lineage
   skills/
     <13 skills>
     principles/           — 6 leaf skills
@@ -96,3 +97,10 @@ ph-plan/
 Run `/ph-plan:setup-ph-plan` once per repo. It configures the issue tracker, the
 triage label vocabulary, and the domain-doc layout that `to-spec`, `to-tickets`,
 `triage`, and `scout` all read.
+
+## Attribution
+
+Eleven of the thirteen skills derive from
+[Matt Pocock's skills](https://github.com/mattpocock/skills). [NOTICE.md](NOTICE.md)
+maps each one to its upstream source and records the commit it was reviewed
+through. See [LICENSE-pocock-skills](../../LICENSE-pocock-skills).
