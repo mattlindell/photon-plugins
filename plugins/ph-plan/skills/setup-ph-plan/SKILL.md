@@ -105,11 +105,11 @@ When Section B ran on GitHub or GitLab, create each configured label the tracker
 
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
-- [issue-tracker-github.md](./issue-tracker-github.md) — GitHub issue tracker
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab issue tracker
-- [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
-- [triage-labels.md](./triage-labels.md) — label mapping (only if `triage` is installed)
-- [domain.md](./domain.md) — domain doc consumer rules + layout
+- [references/issue-tracker-github.md](references/issue-tracker-github.md) — GitHub issue tracker
+- [references/issue-tracker-gitlab.md](references/issue-tracker-gitlab.md) — GitLab issue tracker
+- [references/issue-tracker-local.md](references/issue-tracker-local.md) — local-markdown issue tracker
+- [references/triage-labels.md](references/triage-labels.md) — label mapping (only if `triage` is installed)
+- [references/domain.md](references/domain.md) — domain doc consumer rules + layout
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 

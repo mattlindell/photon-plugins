@@ -47,7 +47,7 @@ This informs deduplication. Never repeat what's already inherited.
 1. **200-line target, 300 max** — every line consumes context budget
 2. **The removal test** — "If I remove this, will Claude make mistakes?" No → cut it.
 3. **No noise** — no standard conventions, linter-enforced rules, obvious instructions, file-by-file descriptions
-4. **Section order** — follow the structure template in `best-practices-reference.md` (project context → commands → directory structure → conventions → reference docs)
+4. **Section order** — follow the structure template in `references/best-practices-reference.md` (project context → commands → directory structure → conventions → reference docs)
 5. **Progressive disclosure** — reference detailed docs by plain path with a "Read when" trigger so Claude loads them on demand; `.claude/rules/` for team rules (note: `@imports` eager-load at session start — they are *not* lazy loading)
 6. **Deduplication** — never repeat what's in `~/.claude/CLAUDE.md` or `.claude/rules/`
 7. **IMPORTANT/YOU MUST** for critical rules to improve adherence
@@ -59,8 +59,8 @@ When no project CLAUDE.md exists (or existing one is empty):
 1. **Analyze the project** — read config files, scan directory structure, check README, CI config, `.claude/rules/`, `~/.claude/CLAUDE.md`
 2. **Identify what matters** — extract: project description, tech stack, essential commands, directory structure, non-obvious conventions, gotchas
 3. **Filter against inherited context** — remove anything already in `~/.claude/CLAUDE.md` or `.claude/rules/`
-4. **Apply the removal test** — consult `best-practices-reference.md` include/exclude checklists. Cut anything that fails.
-5. **Draft using structure template** from `best-practices-reference.md`: project context → commands → directory structure → conventions → reference docs
+4. **Apply the removal test** — consult `references/best-practices-reference.md` include/exclude checklists. Cut anything that fails.
+5. **Draft using structure template** from `references/best-practices-reference.md`: project context → commands → directory structure → conventions → reference docs
 6. **Present draft to user** — show proposed CLAUDE.md, explain what was included/excluded and why
 7. **Write on approval** — create the file
 
@@ -69,7 +69,7 @@ When no project CLAUDE.md exists (or existing one is empty):
 When CLAUDE.md exists and user wants to improve it:
 
 1. **Read all context** — existing CLAUDE.md, `~/.claude/CLAUDE.md`, `.claude/rules/`, project config files
-2. **Evaluate against best practices** — consult `best-practices-reference.md` for full evaluation criteria (line count, duplication, staleness, noise, structure, progressive disclosure)
+2. **Evaluate against best practices** — consult `references/best-practices-reference.md` for full evaluation criteria (line count, duplication, staleness, noise, structure, progressive disclosure)
 3. **Apply the removal test** — for each line: "If removed, will Claude make mistakes?"
 4. **Present findings** — what to remove, restructure, or add, with reasoning
 5. **User approves changes** — apply only what user accepts
@@ -80,7 +80,7 @@ When CLAUDE.md exists and user wants to improve it:
 When the user wants to capture session learnings:
 
 1. **Gather candidates** — review conversation for insights, corrections, conventions, gotchas, patterns
-2. **Propose destinations** — consult `best-practices-reference.md` destination bias table. Bias toward memory/rules over CLAUDE.md. For each candidate, propose one of:
+2. **Propose destinations** — consult `references/best-practices-reference.md` destination bias table. Bias toward memory/rules over CLAUDE.md. For each candidate, propose one of:
    - **CLAUDE.md** — only project-level gotchas that pass the removal test
    - **`.claude/rules/`** — team-wide coding rules (create directory if needed)
    - **Memory** — personal preferences, user context, external references → write to `~/.claude/projects/<project>/memory/` with standard frontmatter. If no memory system, fall back to `.claude/rules/` or suggest user note manually.
