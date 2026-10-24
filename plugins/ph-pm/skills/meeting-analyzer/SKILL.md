@@ -12,7 +12,7 @@ description: >
 Surface the signal in meeting transcripts: behavioral patterns, communication anti-patterns, and evidence-backed
 coaching feedback.
 
-Load [`REFERENCE.md`](REFERENCE.md) at the start of Step 3 — it contains the analysis module definitions, edge-case
+Load [`references/REFERENCE.md`](references/REFERENCE.md) at the start of Step 3 — it contains the analysis module definitions, edge-case
 rules, anti-patterns, and transcript source tips needed to run the analysis.
 
 ## Steps
@@ -57,9 +57,9 @@ flagged; files without timestamps are noted with skipped metrics listed.
 
 ### 3. Analyze
 
-Load [`REFERENCE.md`](REFERENCE.md) — the module definitions, edge-case rules, and anti-pattern guide are there.
+Load [`references/REFERENCE.md`](references/REFERENCE.md) — the module definitions, edge-case rules, and anti-pattern guide are there.
 
-Run every applicable analysis module from REFERENCE.md. Skip any module that doesn't apply (e.g., skip Speaking Dynamics
+Run every applicable analysis module from references/REFERENCE.md. Skip any module that doesn't apply (e.g., skip Speaking Dynamics
 if there are no speaker labels; skip Facilitation if the user is not the organizer).
 
 **Completion criterion:** Every applicable module has been run and its findings recorded; each skipped module is listed

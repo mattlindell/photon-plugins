@@ -19,7 +19,7 @@ Generate atomic, well-formatted commits using conventional commits with gitmoji.
    - Ambiguous groupings → propose the split and ask for confirmation.
 
 4. **Generate commit message** for each commit:
-   - Select gitmoji from `gitmoji-reference.md`
+   - Select gitmoji from `references/gitmoji-reference.md`
    - Determine conventional commit type and scope
    - Write 1-line summary: imperative mood, under 50 characters, no trailing period
    - Add body only when the change warrants explanation (the "why", not the "what")

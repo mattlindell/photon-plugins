@@ -86,3 +86,8 @@ in this plugin:
 - `automate-me`, `reflect`: Codex platform-mapping links were removed; the
   referenced file is not part of this fork.
 - Portability sidecars (`agents/openai.yaml`) were added to all seven.
+- Layout: companion files that Pocock's upstream keeps beside `SKILL.md` live in
+  each skill's `references/` directory here, under their upstream filenames:
+  `codebase-design`'s `DEEPENING.md` and `DESIGN-IT-TWICE.md`,
+  `writing-for-agents`' `SKILL-MECHANICS.md`, and `teach`'s four `*-FORMAT.md`
+  files. Port upstream changes to them at the new path.

@@ -25,6 +25,7 @@ plugin-name/
   agents/                                    — plugin-level agents with YAML frontmatter (name, description, model, color); auto-discovered, never listed in plugin.json
   skills/skill-name/SKILL.md                 — implementation patterns with YAML frontmatter (name, description)
   skills/<category>/skill-name/SKILL.md      — skills may be grouped under a category folder (see ph-lib, ph-build)
+  skills/<...>/skill-name/references/        — companion files SKILL.md points to (see Naming)
   skills/<...>/skill-name/agents/openai.yaml — optional portability sidecar (see below)
   commands/command-name.md                   — interactive scaffolding workflows (no frontmatter)
 ```
@@ -50,7 +51,7 @@ decisions there; those go in `docs/adr/`.
 ## Checks
 
 ```bash
-python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
+python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, flat companion files
 python scripts/lint-links.py --exclude product-team # relative links + heading anchors
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
@@ -150,7 +151,7 @@ matching `marketplace.json` entry together so the two cannot drift.
   - **Model-invoked** (no `disable-model-invocation`) — the description is the skill's always-loaded context pointer, so it must carry trigger conditions. House style is a short identity clause, then the triggers: `Test-driven development. Use when the user wants to build features or fix bugs test-first…`. One trigger per distinct branch; collapse synonyms that rename a single branch.
   - **User-invoked** (`disable-model-invocation: true`) — the description is human-facing only. Write a one-line summary with trigger lists **stripped**: nothing but the human can invoke the skill, so triggers are dead weight in every context window.
 
-  See `ph-lib`'s `writing-for-agents` skill (and its `SKILL-MECHANICS.md`) for the reasoning behind both.
+  See `ph-lib`'s `writing-for-agents` skill (and its `references/SKILL-MECHANICS.md`) for the reasoning behind both.
 - **Commands** use no frontmatter — they start with a markdown heading and prose instructions
 - `disable-model-invocation: true` on a skill makes it user-invoked only (typed as `/skill-name`); omit it when the description carries enough trigger phrasing for the model to reach for the skill on its own
 
@@ -175,9 +176,10 @@ policy:
 ### Naming
 
 - Directories: kebab-case
-- Files carrying data or seed content: kebab-case (`issue-tracker-github.md`, `triage-labels.md`, `mocking.md`)
-- **Reference companions to a `SKILL.md` are UPPERCASE**: `DEEPENING.md`, `ADR-FORMAT.md`, `PHASE-BOUNDARIES.md`, `SKILL-MECHANICS.md`, and the leadership set (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The case is the signal — uppercase means "reference reached by a pointer from `SKILL.md`", which is why it doesn't follow the kebab-case rule above.
-- Skill content that exceeds ~500 lines should split into `SKILL.md` (overview) + an uppercase reference file
+- Files carrying data or seed content: kebab-case (`issue-tracker-github.md`, `triage-labels.md`)
+- **Companion files live in the skill's `references/` directory**, whatever their case. `SKILL.md` is the only markdown file at a skill's root, and `validate-marketplace.py` fails on any other.
+- **Reference companions to a `SKILL.md` are UPPERCASE**: `DEEPENING.md`, `ADR-FORMAT.md`, `PHASE-BOUNDARIES.md`, `SKILL-MECHANICS.md`, and the leadership set (`INTAKE`, `WORKFLOW`, `TEMPLATES`, `CHECKLISTS`, `RUBRIC`). The case is the signal — uppercase means "reference reached by a pointer from `SKILL.md`", which is why it doesn't follow the kebab-case rule above. A few lowercase companions predate the convention (`tdd`'s `tests.md` and `mocking.md`); the directory, not the case, is what locates them.
+- Skill content that exceeds ~500 lines should split into `SKILL.md` (overview) + an uppercase reference file in `references/`
 - Utility scripts go in a `scripts/` subdirectory within the skill
 
 ### Plugin Registry

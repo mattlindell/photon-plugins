@@ -178,3 +178,8 @@ inline; upstream's `thermo-nuclear-review-subagent` agent is not carried.
 **Cross-plugin.** References to skills that moved to `ph-lib` are namespaced.
 References into `ph-plan` are optional with a defined fallback, so `ph-build`
 runs standalone.
+
+**Layout.** Companion files that upstream keeps beside `SKILL.md` live in each
+skill's `references/` directory here, under their upstream filenames. In `tdd`
+that is `tests.md` and `mocking.md`. Port upstream changes to them at the new
+path.
