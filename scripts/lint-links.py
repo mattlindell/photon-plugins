@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Check that every relative markdown link and heading anchor resolves.
+"""Check that every relative markdown link, heading anchor, and backtick path resolves.
+
+A backtick path such as `playbooks/feature.md` is checked only when its first
+segment is a directory beside the file, at its skill root, or at its plugin root.
+Anything else names a file the consumer owns.
 
 Usage:
     python scripts/lint-links.py [path ...]            # defaults to plugins/ and docs/
@@ -26,6 +30,8 @@ LINK = re.compile(r"\]\((?!https?:|mailto:)([^)]+)\)")
 # < or > is a template slot by convention.
 PLACEHOLDER = re.compile(r"^(link|url|path|\.\.\.)$|[<>]")
 HEADING = re.compile(r"^#{1,6}\s+(.*)$", re.MULTILINE)
+BACKTICK = re.compile(r"(?<!`)`([^`\s]+/[^`\s]*\.(?:md|json|ya?ml|py|sh))`(?!`)")
+CONSUMER_PREFIXES = ("~", "@", "/", "./")
 
 
 class Problem(NamedTuple):
@@ -49,11 +55,33 @@ def headings(path: Path) -> set[str]:
     return {slugify(h) for h in HEADING.findall(text)}
 
 
+def resolution_bases(path: Path, first_segment: str) -> list[Path]:
+    path = path.resolve()
+    if first_segment == "..":
+        return [path.parent]
+    skill = next((p for p in path.parents if (p / "SKILL.md").is_file()), None)
+    plugin = next((p for p in path.parents if p.parent.name == "plugins"), None)
+    bases = dict.fromkeys(b for b in (path.parent, skill, plugin) if b)
+    return [base for base in bases if (base / first_segment).is_dir()]
+
+
+def check_backtick(path: Path, lineno: int, target: str) -> Problem | None:
+    if target.startswith(CONSUMER_PREFIXES) or "*" in target or PLACEHOLDER.search(target):
+        return None
+    bases = resolution_bases(path, target.split("/", 1)[0])
+    if not bases or any((base / target).exists() for base in bases):
+        return None
+    return Problem(path, lineno, target, "backtick path not found")
+
+
 def check(path: Path) -> list[Problem]:
     problems: list[Problem] = []
     text = path.read_text(encoding="utf-8", errors="replace")
 
     for lineno, line in unfenced_lines(text):
+        for match in BACKTICK.finditer(line):
+            if problem := check_backtick(path, lineno, match.group(1)):
+                problems.append(problem)
         for match in LINK.finditer(line):
             target = match.group(1).strip()
             if PLACEHOLDER.search(target):
@@ -114,7 +142,7 @@ def main(argv: list[str] | None = None) -> int:
             )
         return 1
 
-    print("All relative links and anchors resolve.")
+    print("All relative links, anchors, and backtick paths resolve.")
     return 0
 
 
