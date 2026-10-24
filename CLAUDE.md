@@ -51,13 +51,14 @@ decisions there; those go in `docs/adr/`.
 
 ```bash
 python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
-python scripts/lint-links.py --exclude product-team # relative links + heading anchors
+python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
 All four run in CI on every PR (`.github/workflows/checks.yml`), alongside
-`ruff check`, `ruff format --check`, and `basedpyright` over `scripts/`.
+`ruff check`, `ruff format --check`, `basedpyright` over `scripts/`, and the
+repo-check tests (see Script tests).
 
 The scripts are typed and must stay clean at both. `pyproject.toml` holds the
 config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
@@ -71,7 +72,11 @@ uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
 
 Run the four repo checks before any commit that touches plugin structure.
 `lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
-pointing at it, which is how two bugs shipped during the reorganization.
+pointing at it, which is how two bugs shipped during the reorganization. It also checks
+backtick-quoted paths such as `` `playbooks/feature.md` ``, but only when the first segment is
+a directory beside the file, at its skill root, or at its plugin root; anything else is taken to
+name a file the consumer owns. Bare filenames go uncaught, and so does deleting the whole
+directory a path starts with.
 
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
@@ -97,6 +102,13 @@ bun test --timeout 30000 plugins/   # every suite; CI runs the same command
 `watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
 first. `transport.test.ts` fails on Windows because its fake `gh` is a shebang
 script; CI runs on Linux.
+
+The repo checks in `scripts/` don't ship in a plugin, so they use stdlib
+`unittest` instead, with each test beside its check as `scripts/test_<check>.py`.
+
+```bash
+python -m unittest discover -s scripts
+```
 
 ### CI
 

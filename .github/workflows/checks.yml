@@ -31,6 +31,9 @@ jobs:
       - name: Type check
         run: basedpyright scripts/
 
+      - name: Test repo checks
+        run: python -m unittest discover -s scripts
+
       - name: Registry matches disk
         run: python scripts/validate-marketplace.py
 
