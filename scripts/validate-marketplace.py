@@ -15,6 +15,8 @@ Checks:
     companion files belong in that skill's references/
   - no plugin directory is unregistered (product-team is a known exception)
   - every SKILL.md carries name and description
+  - no SKILL.md in a registered plugin carries a frontmatter key Claude Code
+    does not recognize; it ignores unknown keys silently, so a typo goes unseen
 
 Exits 1 on any failure, so it works as a pre-commit or CI gate.
 """
@@ -34,8 +36,36 @@ from _manifest import (
     skill_dirs,
     source_dir,
 )
+from _markdown import frontmatter_keys
 
 FRONTMATTER_WINDOW = 2000
+
+# The SKILL.md frontmatter reference at https://code.claude.com/docs/en/skills,
+# as of 2026-10-24. Add a field here when Claude Code documents a new one.
+SKILL_FRONTMATTER_KEYS: frozenset[str] = frozenset(
+    {
+        "name",
+        "description",
+        "when_to_use",
+        "argument-hint",
+        "arguments",
+        "disable-model-invocation",
+        "user-invocable",
+        "allowed-tools",
+        "disallowed-tools",
+        "model",
+        "effort",
+        "context",
+        "agent",
+        "background",
+        "hooks",
+        "paths",
+        "shell",
+        "metadata",
+        "license",
+        "compatibility",
+    }
+)
 
 # Auto-loaded by convention. Naming it in the manifest loads it twice, and
 # Claude Code then refuses the whole file.
@@ -107,11 +137,17 @@ def check_frontmatter(failures: list[str]) -> int:
     count = 0
     for skill in Path(PLUGINS_DIR).rglob("SKILL.md"):
         count += 1
-        head = skill.read_text(encoding="utf-8", errors="replace")[:FRONTMATTER_WINDOW]
+        text = skill.read_text(encoding="utf-8", errors="replace")
+        head = text[:FRONTMATTER_WINDOW]
         if "\nname:" not in head:
             failures.append(f"no name: {skill.as_posix()}")
         if "description:" not in head:
             failures.append(f"no description: {skill.as_posix()}")
+        if skill.relative_to(PLUGINS_DIR).parts[0] in UNREGISTERED:
+            continue
+        for key in frontmatter_keys(text):
+            if key not in SKILL_FRONTMATTER_KEYS:
+                failures.append(f"unknown frontmatter key {key!r}: {skill.as_posix()}")
     return count
 
 
