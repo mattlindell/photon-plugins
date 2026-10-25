@@ -50,7 +50,7 @@ decisions there; those go in `docs/adr/`.
 ## Checks
 
 ```bash
-python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps
+python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, unknown SKILL.md keys
 python scripts/lint-links.py --exclude product-team # relative links + heading anchors
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
