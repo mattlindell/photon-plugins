@@ -11,6 +11,8 @@ Checks:
   - no plugin.json points `hooks` at the standard hooks/hooks.json, which is
     already auto-loaded; the duplicate makes Claude Code reject the hooks file
   - every pinned `skills` array matches the SKILL.md files on disk exactly
+  - no markdown file other than SKILL.md sits directly in a skill directory;
+    companion files belong in that skill's references/
   - no plugin directory is unregistered (product-team is a known exception)
   - every SKILL.md carries name and description
   - no SKILL.md in a registered plugin carries a frontmatter key Claude Code
@@ -110,7 +112,18 @@ def check_registered(failures: list[str]) -> set[str]:
                     f"{name}: pinned skills array does not match disk "
                     f"({len(pinned)} pinned vs {len(on_disk)} on disk)"
                 )
+
+        check_flat_companions(name, src, failures)
     return registered
+
+
+def check_flat_companions(name: str, src: str, failures: list[str]) -> None:
+    for directory in skill_dirs(src):
+        for flat in sorted(Path(directory).iterdir()):
+            if flat.suffix.lower() == ".md" and flat.name != "SKILL.md":
+                failures.append(
+                    f"{name}: {flat.as_posix()} sits beside SKILL.md - move it into references/"
+                )
 
 
 def check_unregistered(registered: set[str], failures: list[str]) -> None:

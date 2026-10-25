@@ -53,3 +53,8 @@ reason this plugin exists, and the imported skills were reshaped around it:
 - `wayfinder` became `scout` and `setup-matt-pocock-skills` became
   `setup-ph-plan`.
 - The domain doc stays `CONTEXT.md`, where upstream uses `GLOSSARY.md`.
+- Companion files that upstream keeps beside `SKILL.md` live in each skill's
+  `references/` directory here, under their upstream filenames. That covers
+  `domain-modeling`, `improve-codebase-architecture`, `prototype`,
+  `setup-ph-plan`'s seed templates, and `triage`. Port upstream changes to them
+  at the new path.
