@@ -34,6 +34,14 @@ jobs:
       - name: Test repo checks
         run: python -m unittest discover -s scripts
 
+      # Plugin and skill folders are hyphenated, so they cannot be packages and
+      # one discover run from plugins/ would never descend into them. Start a
+      # run in each folder that holds a test instead.
+      - name: Test plugin Python scripts
+        run: |
+          find plugins -name 'test_*.py' -exec dirname {} \; | sort -u |
+            while read -r dir; do python -m unittest discover -s "$dir" || exit 1; done
+
       - name: Registry matches disk
         run: python scripts/validate-marketplace.py
 
