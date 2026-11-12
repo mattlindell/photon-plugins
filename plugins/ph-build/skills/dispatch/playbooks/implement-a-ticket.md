@@ -6,7 +6,9 @@ reference and nothing else. Run it before the playbook table, then follow the
 playbook it picks to the end.
 
 1. **Resolve the reference.** Fetch the ticket per *Read the rigor signal first*.
-   A reference you have not fetched carries no rigor signal to read.
+   A reference you have not fetched carries no rigor signal to read. If the
+   ticket carries a Claim role, take it to `agent-working` now, before any other
+   write (see [Tracker writeback](#tracker-writeback)).
 2. **Ground yourself in the domain.** Read `CONTEXT.md` (or the layout named in
    `docs/agents/domain.md`) so your test names and interface vocabulary use the
    project's words, and read the ADRs covering the area you are about to touch.
@@ -23,7 +25,42 @@ playbook it picks to the end.
 5. **Hand off.** Open the todolist with that playbook's steps and run it. It
    ends in **Opening a PR**, and the ticket key reaches the tracker through
    either the branch name or the `## Why` section — confirm one of the two
-   carries it.
+   carries it. Once the PR is open, write back per
+   [Tracker writeback](#tracker-writeback).
+
+## Tracker writeback
+
+Every unattended ticket run reports to the tracker the same way, whether a
+Foreman started it or someone ran `implement` by hand. Read the repo's
+`docs/agents/triage-labels.md` for how roles are written. Its "Claim roles"
+section maps `agent-claimed`, `agent-working`, and `agent-stalled`. With no such
+section, each Claim role is a plain label named after the role.
+
+A role change replaces the previous role in one update, so a ticket never
+carries two Claim roles. Where the tracker does not enforce that (Jira labels),
+remove the old role and add the new one in the same call. The same goes for the
+triage roles.
+
+- **Start.** Only when the ticket already carries a Claim role, replace it with
+  `agent-working` as the run's first write. A ticket with no Claim role was not
+  claimed, so leave Claim roles alone for the whole run.
+- **PR opened.** Remove any Claim role, whichever one is set. A ticket reaped to
+  `agent-stalled` while the run was still going counts too. Move the ticket to
+  the review status `docs/agents/issue-tracker.md` names, or leave it In
+  Progress when it names none. Post no comment: the ticket key in the branch
+  name links the PR.
+- **Halt.** A run that stops without a PR, for any reason, hands the ticket back
+  to a human:
+  1. Remove any Claim role.
+  2. Apply `needs-triage` as `triage-labels.md` records it, replacing
+     `ready-for-agent`.
+  3. Unassign the ticket and move it to To Do.
+  4. Post one comment that names the blocker.
+  5. Notify through the harness's notification tool when it has one. Otherwise,
+     put the blocker in your reply.
+
+  When `triage-labels.md` is missing, skip steps 1 through 3, and still comment
+  and notify.
 
 ## Definition of done
 
