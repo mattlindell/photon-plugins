@@ -1,7 +1,7 @@
 # ph-build
 
 **Unattended implementation** — building what was decided, at a cost that tracks
-what is still unknown. 35 skills, 24 principles, 19 playbooks, 3 agents.
+what is still unknown. 36 skills, 24 principles, 19 playbooks, 3 agents.
 
 Its counterpart, [`ph-plan`](../ph-plan/), is the hat you wear when deciding
 *what* gets built. **Requires [`ph-lib`](../ph-lib/).**
@@ -107,6 +107,14 @@ model-invocable is why the machinery fired unprompted.
 `correct` is user-invoked too. It runs when the operator says agents keep
 repeating a mistake, and it rewrites the repo's guardrails to stop it.
 
+`foreman` is user-invoked too, and a harness driver invokes it by typing
+`/ph-build:foreman` on a schedule. It drains `ready-for-agent` tickets with
+nobody watching: it reconciles live Claims on the tracker, claims new tickets
+up to the free Worker slots, and hands each one to a top-level Worker session
+that runs its own `dispatch`. See
+[ADR-0005](../../docs/adr/0005-the-tracker-holds-the-claim.md) and
+[the driver contract](skills/foreman/references/DRIVERS.md).
+
 ## Agents
 
 Each one is a wrapper: it names the entry condition and points at the skill that
@@ -142,6 +150,9 @@ ph-build/
       playbooks/                — 19, plus the implement-a-ticket entry adapter
       references/               — bugbot triage
       scripts/                  — watch-pr, worktree-audit
+    foreman/
+      references/               — DRIVERS.md, the driver contract
+      scripts/                  — Kiro Crew driver
     <34 skills>
     principles/                 — 24 leaf skills
 ```

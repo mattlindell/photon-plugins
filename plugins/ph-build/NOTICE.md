@@ -126,7 +126,8 @@ under it stay tracked against `poteto-mode`'s.
 **(c) 2026 Matt Lindell, MIT.** `skills/dispatch/SKILL.md` (new — replaces
 upstream's `poteto-mode` router), `skills/dispatch/playbooks/implement-a-ticket.md`,
 `claude-md`, `commit`, `worktree`, `agents/implement.md`,
-`agents/code-review.md`, and `hooks/session-start-context.md`.
+`foreman` (including its Kiro Crew driver), `agents/code-review.md`, and
+`hooks/session-start-context.md`.
 
 ## Modifications
 
