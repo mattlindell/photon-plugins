@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins on one seam: one plugin per hat, plus a shared library. Development splits by harness — ph-plan for interactive planning, ph-build for unattended implementation — and hands off a written rigor signal between them.",
-    "version": "2.0.6"
+    "version": "2.0.7"
   },
   "plugins": [
     {
@@ -86,7 +86,7 @@
       "name": "ph-pm",
       "source": "./plugins/ph-pm",
       "description": "Atlassian and scrum operations: Jira, Confluence, Atlassian administration and templates, sprint analytics, senior-PM portfolio and risk management, meeting-transcript analysis, and internal team communications. Eight skills; bundles the Atlassian Remote MCP server.",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
