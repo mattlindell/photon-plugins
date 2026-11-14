@@ -1,0 +1,5 @@
+interface:
+  display_name: "Foreman"
+  short_description: "Claim ready tickets and hand them to Workers"
+policy:
+  allow_implicit_invocation: false

@@ -167,6 +167,47 @@ interactive work, implementation is unattended work. Rules that look contradicto
 across the two plugins are usually the same rule, correctly inverted for its
 harness.
 
+## Foreman
+
+An Unattended run that decides *which* work gets built and never builds any
+of it. Each run picks tickets already marked `ready-for-agent`, claims them,
+and hands each one to a Worker. The Foreman never triages, grills, or writes
+code. It sits downstream of triage and does not replace it.
+
+## Worker
+
+A top-level, Unattended session that a Foreman starts for exactly one claimed
+ticket. It runs its own `dispatch` from the start, so it can fan out to
+whatever subagents the playbook calls for. It is never a subagent of the
+Foreman. A Worker started as a subagent could not spawn subagents of its own,
+because nesting is not reliable across Harnesses.
+
+## Claim
+
+The record on a tracker ticket that a Foreman has taken it. A Claim is made of
+three things: the assignee, the time the ticket entered In Progress, and one
+Claim role. It lives only on the tracker, never in local files (see
+[ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md)). Taking the role off
+the ticket releases the Claim.
+
+## Claim role
+
+The state a Claim is in. There are three: `agent-claimed` (the Foreman has the
+ticket and no Worker has started), `agent-working` (a Worker has started), and
+`agent-stalled` (the reaper gave up waiting). Each repo maps the roles in
+`docs/agents/triage-labels.md`, the same way it maps the triage roles. A Claim
+role sits alongside the triage state machine and does not belong to it: a
+ticket enters the machine at `ready-for-agent` and leaves it, or returns to it,
+only through triage.
+
+## Reconcile
+
+The first step of every Foreman run. It reads each live Claim from the tracker
+and repairs it before any new Claim is made. An orphaned Claim is requeued. A
+stalled Claim is flagged and its Worker slot is freed. A Claim whose ticket
+already has a PR, or has halted, is confirmed as released. Reconcile is what
+lets a Foreman run after any crash and still reach the correct state.
+
 ## Middle-up planning
 
 Planning that starts from ideas and works toward a gestalt — deciding what the

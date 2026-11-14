@@ -58,8 +58,8 @@ python scripts/bump-versions.py --worktree          # semver floor for what you 
 ```
 
 All four run in CI on every PR (`.github/workflows/checks.yml`), alongside
-`ruff check`, `ruff format --check`, `basedpyright` over `scripts/`, and the
-repo-check tests (see Script tests).
+`ruff check`, `ruff format --check`, `basedpyright` over `scripts/`, the
+repo-check tests, and the plugin Python tests (see Script tests).
 
 The scripts are typed and must stay clean at both. `pyproject.toml` holds the
 config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
@@ -89,7 +89,8 @@ the check.
 
 ### Script tests
 
-Scripts that ship inside a plugin are tested with `bun test`. **Each test lives
+Scripts that ship inside a plugin are tested with `bun test`, or with stdlib
+`unittest` when the script is Python. **Each test lives
 beside the script it covers, inside the skill that owns it** — never in a
 repo-level `tests/` directory. Removing a skill then removes its tests with it,
 so nothing is left orphaned. Test helpers follow the `*.test-helper.*` naming;
@@ -103,6 +104,16 @@ bun test --timeout 30000 plugins/   # every suite; CI runs the same command
 `watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
 first. `transport.test.ts` fails on Windows because its fake `gh` is a shebang
 script; CI runs on Linux.
+
+A Python script's test sits beside it as `test_<script>.py`. Plugin and skill
+folders are hyphenated, so they cannot be packages, and a single `unittest`
+run from `plugins/` finds nothing. Run discovery in each folder that holds a
+test, as CI does:
+
+```bash
+find plugins -name 'test_*.py' -exec dirname {} \; | sort -u |
+  while read -r dir; do python -m unittest discover -s "$dir" || exit 1; done
+```
 
 The repo checks in `scripts/` don't ship in a plugin, so they use stdlib
 `unittest` instead, with each test beside its check as `scripts/test_<check>.py`.
@@ -171,7 +182,7 @@ matching `marketplace.json` entry together so the two cannot drift.
 
 A skill may carry an `agents/openai.yaml` alongside its `SKILL.md` so the same folder can be consumed by an OpenAI-based agent harness. Claude Code ignores the file.
 
-Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 23/59, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; the rest were added as their skills were touched. Most pstack forks and principle leaves still lack one. Add a sidecar when you touch a skill that lacks one.
+Coverage is currently partial, and that is a known gap rather than a rule: `ph-lib` 13/13, `ph-plan` 12/19, `ph-build` 24/60, `ph-lead` 0/24, `ph-php` 4/16. The skills that have one are those carried over from the old `technical-director`, plus the four `ph-php` decision skills; the rest were added as their skills were touched. Most pstack forks and principle leaves still lack one. Add a sidecar when you touch a skill that lacks one.
 
 **Two unrelated things are both called `agents/`.** A plugin-level `agents/` holds Claude Code agents (`.md` with `name`/`description`/`model`); a skill-level `skills/<...>/<skill>/agents/` holds only the `openai.yaml` sidecar. `ph-build` has both.
 
