@@ -1,35 +1,42 @@
 # photon-plugins
 
-Claude Code plugins built around one idea: **planning and building are
-different jobs, and an agent should know which one it's doing.**
+Claude Code plugins built on one idea. Planning and building are different
+jobs, and an agent should know which one it's doing.
 
 - **`ph-plan`** runs with a human present. It interviews, models the domain,
-  and ends every session in a written spec that records which of four
-  dimensions (`problem`, `shape`, `approach`, `verification`) are settled.
-- **`ph-build`** runs unattended. It reads that spec and spends rigor only on
-  what's still open. Fully settled work goes straight to implementation.
-  Multi-agent panels (architecture runners, competing candidates, cross-model
-  review) turn on only for one-way doors such as schema changes, public APIs,
-  auth, billing, or data deletion, and every fan-out has a hard cap.
+  and ends every session in a written spec. The spec records which of four
+  dimensions are settled: `problem`, `shape`, `approach`, and `verification`.
+- **`ph-build`** runs unattended. It reads that spec and spends effort only on
+  the dimensions still open. Fully settled work goes straight to
+  implementation. Multi-agent panels, such as parallel architecture drafts,
+  competing implementations, and cross-model review, run only for changes
+  that are hard to undo. Those are schema changes, public APIs, auth, billing,
+  and data deletion. Every fan-out has a hard cap on how many agents it
+  starts.
 
-Thinking done up front makes execution cheaper, and the contract that
-carries it is a few lines of YAML.
+The spec hands this off in a `settled:` block of a few lines of YAML. Each
+dimension closed during planning is one that `ph-build` doesn't pay to
+explore again.
 
 ## What's in here
 
-- **Unattended ticket draining.** `ph-build:foreman` picks up
-  `ready-for-agent` tickets from the tracker and builds them test-first,
-  reviewed, and shipped as PRs, with the tracker holding the claim
-  ([ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md)).
-- **Rules that look contradictory are the same rule, inverted per harness.**
-  `ph-plan` has `block-on-the-human`; `ph-build` has `never-block-on-the-human`.
-- **The marketplace is checked like code.** Four validators run in CI (registry
-  vs. disk, link and anchor integrity, handoff rules, semver floors derived
-  from structural change), the check scripts are type-checked, and every
-  Action is SHA-pinned.
-- **Upstream lineage is tracked per skill.** Each adapted skill records the
-  commit it was reviewed through and whether it's still synced
-  ([ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md)).
+- **Unattended ticket draining.** `ph-build:foreman` claims `ready-for-agent`
+  tickets and hands each one to a worker that builds it test-first, reviews
+  it, and opens a PR. The claim is stored on the ticket, never in a local
+  file, so a crashed run recovers by rereading the tracker. See
+  [ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md).
+- **Rules that look contradictory are one rule applied in two settings.**
+  `ph-plan` has a human to ask, so it follows `block-on-the-human`. `ph-build`
+  has no one to ask, so it follows `never-block-on-the-human`.
+- **CI validates the marketplace.** Four checks run on every PR. They compare
+  the plugin registry against the files on disk, resolve every link and
+  anchor, enforce handoff rules between plugins, and compute the minimum
+  semver bump from structural changes. The check scripts pass type checking
+  with basedpyright, and every GitHub Action is pinned to a commit SHA.
+- **Each adapted skill tracks its upstream.** A NOTICE file records the
+  upstream commit each skill was last reviewed against and whether the skill
+  still syncs with it. See
+  [ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md).
 
 ## Plugins
 
@@ -69,7 +76,7 @@ This makes all plugins available for installation but does not load anything int
 
 Use the Discover tab to see all available plugins from installed marketplaces.
 
-## Local Development
+## Local development
 
 To test a plugin locally without installing from the marketplace:
 
@@ -82,9 +89,8 @@ claude --plugin-dir /path/to/photon-plugins/plugins/ph-build
 - The structure of `ph-php` was inspired by the [wshobson/agents](https://github.com/wshobson/agents) marketplace. The other plugins follow a different design.
 - Eleven `ph-plan` skills, six `ph-build` skills, and six `ph-lib` skills are adapted from [Matt Pocock's skills](https://github.com/mattpocock/skills). See [plugins/ph-plan/NOTICE.md](plugins/ph-plan/NOTICE.md) and [LICENSE-pocock-skills](LICENSE-pocock-skills).
 - Most of `ph-build` and seven `ph-lib` skills are forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude), Michael Denyer's port of Lauren Tan's (poteto) Cursor `pstack` and Cursor's `cursor-team-kit`. See [plugins/ph-build/NOTICE.md](plugins/ph-build/NOTICE.md), [plugins/ph-lib/NOTICE.md](plugins/ph-lib/NOTICE.md), [LICENSE-pstack](LICENSE-pstack), and [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit).
-- Each NOTICE records which upstream commit its skills were reviewed through and whether each skill is still synced. See [ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md).
-- The `ph-lead` skills are adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast — since substantially rewritten.
+- The `ph-lead` skills are adapted from [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) (MIT), distilled from Lenny's Podcast. They have since been mostly rewritten.
 
 ## License
 
-Released under the [MIT License](LICENSE) — use these however you want.
+Released under the [MIT License](LICENSE). Use these however you want.
