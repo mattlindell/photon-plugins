@@ -1,42 +1,49 @@
 # photon-plugins
 
-A Claude Code plugin marketplace — reusable agents, skills, and commands for a variety of projects and tasks.
+Claude Code plugins built around one idea: **planning and building are
+different jobs, and an agent should know which one it's doing.**
 
-## Available Plugins
+- **`ph-plan`** runs with a human present. It interviews, models the domain,
+  and ends every session in a written spec that records which of four
+  dimensions (`problem`, `shape`, `approach`, `verification`) are settled.
+- **`ph-build`** runs unattended. It reads that spec and spends rigor only on
+  what's still open. Fully settled work goes straight to implementation.
+  Multi-agent panels (architecture runners, competing candidates, cross-model
+  review) turn on only for one-way doors such as schema changes, public APIs,
+  auth, billing, or data deletion, and every fan-out has a hard cap.
 
-| Plugin | Description |
+Thinking done up front makes execution cheaper, and the contract that
+carries it is a few lines of YAML.
+
+## What's in here
+
+- **Unattended ticket draining.** `ph-build:foreman` picks up
+  `ready-for-agent` tickets from the tracker and builds them test-first,
+  reviewed, and shipped as PRs, with the tracker holding the claim
+  ([ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md)).
+- **Rules that look contradictory are the same rule, inverted per harness.**
+  `ph-plan` has `block-on-the-human`; `ph-build` has `never-block-on-the-human`.
+- **The marketplace is checked like code.** Four validators run in CI (registry
+  vs. disk, link and anchor integrity, handoff rules, semver floors derived
+  from structural change), the check scripts are type-checked, and every
+  Action is SHA-pinned.
+- **Upstream lineage is tracked per skill.** Each adapted skill records the
+  commit it was reviewed through and whether it's still synced
+  ([ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md)).
+
+## Plugins
+
+| Plugin | What it's for |
 | --- | --- |
-| [ph-plan](plugins/ph-plan/) | **Middle-down planning** — deciding and writing down what gets built, in an interactive session. Intake routing, grilling, domain modeling, scouting, triage, specs and tickets. Ends in an artifact carrying the four-dimension rigor signal. 13 skills, 6 principles. Requires `ph-lib`. |
-| [ph-build](plugins/ph-build/) | **Unattended implementation** — building what was decided, at a cost that tracks what is still unknown. Forked from pstack: reads the rigor signal, gates expensive multi-agent work behind one-way doors, caps every fan-out. 36 skills, 24 principles, 19 playbooks, 3 agents. Requires `ph-lib`. |
-| [ph-lib](plugins/ph-lib/) | Shared library. Four primitives that `ph-plan` and `ph-build` reference and require, plus nine operator tools you invoke directly. Not a hat — a dependency. 13 skills. |
-| [ph-lead](plugins/ph-lead/) | Engineering leadership and people management: 1:1s, difficult conversations, delegation, managing up, cross-functional collaboration, timelines, meetings and offsites, decision processes, OKRs, org design, culture and rituals. 24 skills with a router. |
-| [ph-pm](plugins/ph-pm/) | Atlassian and scrum operations: Jira, Confluence, administration and templates, sprint analytics, portfolio and risk management, meeting-transcript analysis, team communications. 8 skills; bundles the Atlassian Remote MCP server. |
-| [ph-php](plugins/ph-php/) | WordPress, Laravel, Sage/Roots, WooCommerce, and CodeIgniter 3 legacy maintenance. 16 skills, 4 scaffold commands. |
-| [ph-npo](plugins/ph-npo/) | Nonprofit operations: an organization profile builder that personalizes the rest, plus grant writing, budgets, donor thank-yous, social media, volunteer scheduling, and Givebutter integration. 7 skills. |
+| [ph-plan](plugins/ph-plan/) | Interactive planning: intake, grilling, domain modeling, scouting, triage, specs and tickets. 13 skills, 6 principles. Requires `ph-lib`. |
+| [ph-build](plugins/ph-build/) | Unattended implementation: a dispatch router, 19 playbooks, TDD, code review, PR babysitting, and `foreman`. 36 skills, 24 principles, 3 agents. Requires `ph-lib`. |
+| [ph-lib](plugins/ph-lib/) | Shared library `ph-plan` and `ph-build` require: deep-module design, technical writing, `unslop`, writing for agents, plus 9 operator tools. 13 skills. |
+| [ph-lead](plugins/ph-lead/) | Engineering leadership: 1:1s, hard conversations, delegation, managing up, OKRs, org design. 24 skills with a router. |
+| [ph-pm](plugins/ph-pm/) | Jira, Confluence, scrum analytics, portfolio risk, meeting-transcript analysis. 8 skills; bundles the Atlassian MCP. |
+| [ph-php](plugins/ph-php/) | WordPress, Laravel, Sage/Roots, WooCommerce, CodeIgniter 3. 16 skills, 4 scaffold commands. |
+| [ph-npo](plugins/ph-npo/) | Nonprofit operations: grants, budgets, donor comms, volunteers, Givebutter. 7 skills. |
 
-`product-team` is present but unregistered, awaiting its own cleanup.
-
-### Seams
-
-Each plugin is **one hat** — the role you are wearing when you install it —
-with one deliberate exception. `ph-lib` is a library: nobody installs it for
-the work they are doing, they install it because `ph-plan` and `ph-build`
-require it.
-
-The two development plugins split on **harness**, not on phase. `ph-plan` is
-interactive: a human is present, so its skills ask and wait. `ph-build` is
-unattended: nobody is there, so its skills proceed and you course-correct on
-review. Rules that look contradictory across the two are usually the same rule,
-correctly inverted — `ph-plan:principle-block-on-the-human` against
-`ph-build:principle-never-block-on-the-human` is the clearest pair.
-
-The handoff between them is a written artifact carrying a `settled:` block: the
-four dimensions of a task (`problem`, `shape`, `approach`, `verification`), each
-closed or open. `ph-build` reads it to decide how much rigor the work still
-needs, so thinking done up front actually buys cheaper execution.
-
-Concepts are defined in [CONTEXT.md](CONTEXT.md); the reorganization is recorded
-in [docs/adr/](docs/adr/).
+Design decisions are in [docs/adr/](docs/adr/); vocabulary is in [CONTEXT.md](CONTEXT.md).
 
 ## Installation
 
