@@ -6,8 +6,8 @@
     "url": "https://github.com/mattlindell"
   },
   "metadata": {
-    "description": "Claude Code plugins on one seam: one plugin per hat, plus a shared library. Development splits by harness — ph-plan for interactive planning, ph-build for unattended implementation — and hands off a written rigor signal between them.",
-    "version": "2.0.8"
+    "description": "Claude Code plugins that split agent work into interactive planning and unattended building, joined by a written spec that sets how much rigor the build still needs.",
+    "version": "2.0.9"
   },
   "plugins": [
     {
