@@ -71,8 +71,9 @@ checkable; report the work complete only when all of them hold:
   of those tests was observed **red** before it went green.
 - The full test suite passes on a final run.
 - Typechecking and the repo's linter pass.
-- The **code-review** skill has run, and every finding is either fixed or listed
-  with a reason it was left.
+- The **code-review** skill has run, and neither axis returned
+  `CHANGES REQUIRED`: every blocking finding is fixed. Non-blocking notes may
+  stand as they are, with no fix and no justification required.
 - The work is committed and the PR is open.
 
 ## Edge cases

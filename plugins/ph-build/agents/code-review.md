@@ -64,10 +64,13 @@ Return the review as your response. Posting it to the PR is a separate, outward-
 Every item here is checkable. Report the review complete only when all of them hold:
 
 - Every file in the diff has been examined on the Standards axis.
-- Every requirement in the spec is accounted for on the Spec axis as implemented, partial, or missing — or the report states plainly that no spec was found.
+- Every requirement in the spec is accounted for on the Spec axis as implemented, partial, missing, or wrong — or the report states plainly that no spec was found.
 - Both axes appear under their own headings, unmerged and unranked against each other.
+- Each axis opens with a verdict: `PASS`, `PASS WITH NOTES`, or `CHANGES REQUIRED`.
 - Every finding cites its evidence: a file and hunk for Standards, a quoted spec line for Spec.
 - The working tree is as you found it.
+
+A `PASS` with no findings meets this definition in full. Do not pad a clean review to make it look thorough.
 
 ## Report
 
@@ -75,10 +78,10 @@ Lead with the frame, then hand over to the skill's output:
 
 - **Under review** — PR or branch, the fixed point you derived, commit count, files changed.
 - **Spec source** — what you found and where, or that nothing was found.
-- **`## Standards`** and **`## Spec`** — the two reports, as the skill produces them.
-- **Summary** — findings per axis and the worst issue *within each axis*. Do not name a single worst finding across both; that is the reranking the two-axis split exists to prevent.
+- **`## Standards`** and **`## Spec`** — the two reports, as the skill produces them, each led by its verdict.
+- **Summary** — the verdict per axis, then the worst blocking issue *within each axis*, if any. Do not name a single worst finding across both; that is the reranking the two-axis split exists to prevent. When both axes pass, say so and stop.
 
-Mark each finding as a hard violation or a judgment call. Documented repo standards can be breached hard; smell-baseline findings are always judgment calls.
+Mark each finding **blocking** or **note**, using the skill's blocking bar. Documented repo standards can block. Smell-baseline findings are always notes.
 
 ## Edge cases
 
