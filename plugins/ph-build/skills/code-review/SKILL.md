@@ -72,7 +72,7 @@ Send a single message with two `Agent` tool calls, in the foreground, and aggreg
 
 - The diff command and commit list.
 - The path or fetched contents of the spec.
-- The brief: "Start with a verdict: `PASS`, `PASS WITH NOTES`, or `CHANGES REQUIRED`. Then give a requirement checklist: each requirement in the spec, quoted, marked **implemented**, **partial**, **missing**, or **wrong** (looks implemented, but the implementation doesn't do what the line asks). Partial, missing, and wrong are **blocking**. After the checklist, list behavior in the diff that the spec didn't ask for (scope creep). Scope creep is blocking when it changes user-facing behavior, public API, or data. Otherwise it's a **note**. Any blocking item makes the verdict `CHANGES REQUIRED`. Notes alone make it `PASS WITH NOTES`. If every requirement is implemented and nothing extra was added, return `PASS` with the checklist and stop. That is a correct, expected result, so don't search for something to add. Report what the diff warrants and nothing more."
+- The brief: "Start with a verdict: `PASS`, `PASS WITH NOTES`, or `CHANGES REQUIRED`. Then give a requirement checklist: each requirement in the spec, quoted, marked **implemented**, **partial**, **missing**, or **wrong** (looks implemented, but the implementation doesn't do what the line asks). Partial, missing, and wrong are **blocking**. After the checklist, list behavior in the diff that the spec didn't ask for (scope creep). Scope creep is blocking when it walks through a one-way door the spec didn't open: a schema change or data migration; public API surface, or anything external consumers depend on; anything that deletes or irreversibly rewrites data; or auth, billing, or a security boundary. Name the door. Reversible scope creep is a **note**. Any blocking item makes the verdict `CHANGES REQUIRED`. Notes alone make it `PASS WITH NOTES`. If every requirement is implemented and nothing extra was added, return `PASS` with the checklist and stop. That is a correct, expected result, so don't search for something to add. Report what the diff warrants and nothing more."
 
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 
@@ -95,7 +95,7 @@ The change is **done** when neither axis returns `CHANGES REQUIRED`. Notes go to
 What blocks:
 
 - **Standards:** a breach of a documented repo standard.
-- **Spec:** a requirement that is partial, missing, or wrong, or scope creep that changes user-facing behavior, public API, or data.
+- **Spec:** a requirement that is partial, missing, or wrong, or scope creep through a **one-way door** the spec didn't open. The doors are the same list `dispatch` escalates on: schema changes and data migrations; public API surface, or anything external consumers depend on; anything that deletes or irreversibly rewrites data; auth, billing, and security boundaries. Unrequested reversible changes are notes. They cost a review comment to undo, while an unplanned one-way door can't be undone.
 
 Smells, style preferences, and "could also" suggestions never block. A note has to name a concrete cost in this diff. Without one, leave it out of the report.
 
