@@ -28,7 +28,9 @@ nothing that applies.
 A tracked skill becomes derived after **two consecutive sync reviews** in which
 its upstream changes were skipped as "diverged" rather than ported. The sync
 review makes the move and records it in the NOTICE, with the skill's last
-"reviewed through" SHA becoming its "forked from" SHA.
+"reviewed through" SHA becoming its "forked from" SHA. Under ADR-0006 that is
+the Pin the demoting review started from, not the one it moves to: the last Pin
+a completed review vouches for.
 
 One skip is not enough. A single review can skip a change for reasons local to
 that change, and demoting on one would drop skills whose upstream still has
@@ -38,7 +40,8 @@ share a shape.
 A tracked skill whose upstream file is deleted becomes derived at the review
 that finds the deletion, with the last upstream commit carrying the file as its
 "forked from" SHA. There is nothing left to compare against. `ph-lib`'s
-`caveman` is the first case.
+`caveman` is the first case. That review records the skill's outcome as
+`diverged`: upstream changed it in a way that cannot be ported.
 
 ## Copyright is a separate obligation
 
