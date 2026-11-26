@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from typing import Any, Literal, NotRequired, TypedDict, cast
+from typing import Any, Literal, NotRequired, TypedDict, cast, get_args
 
 RECORD_PATH = "upstreams.json"
 
@@ -19,10 +19,8 @@ DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 OutcomeState = Literal["ported", "no-change", "diverged", "owed", "unrecorded"]
 Decision = Literal["adopted", "declined", "owed"]
 
-OUTCOME_STATES: frozenset[str] = frozenset(
-    {"ported", "no-change", "diverged", "owed", "unrecorded"}
-)
-DECISIONS: frozenset[str] = frozenset({"adopted", "declined", "owed"})
+OUTCOME_STATES: frozenset[str] = frozenset(get_args(OutcomeState))
+DECISIONS: frozenset[str] = frozenset(get_args(Decision))
 
 
 class ForkPoint(TypedDict):
