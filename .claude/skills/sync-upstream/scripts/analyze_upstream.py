@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 from collections.abc import Callable, Sequence
+from fnmatch import fnmatchcase
 from pathlib import Path
 from typing import NamedTuple
 
@@ -135,17 +136,27 @@ def log(clone: Path, pin: str, specs: Sequence[str]) -> list[Commit]:
     return commits
 
 
-def exists_at(clone: Path, rev: str, spec: str) -> bool:
-    return bool(git(clone, "ls-tree", "-r", "--name-only", rev, "--", spec).strip())
+def files_at(clone: Path, rev: str) -> list[str]:
+    return git(clone, "ls-tree", "-r", "--name-only", rev).splitlines()
 
 
-def skill_dirs(clone: Path, *revs: str) -> list[str]:
-    """Every directory holding a SKILL.md at any of `revs`, longest first."""
-    dirs: set[str] = set()
-    for rev in revs:
-        for line in git(clone, "ls-tree", "-r", "--name-only", rev).splitlines():
-            if line == "SKILL.md" or line.endswith("/SKILL.md"):
-                dirs.add(line.removesuffix("SKILL.md"))
+def present(spec: str, files: list[str]) -> bool:
+    """Whether `spec` names any of `files`, matched as `git log` matches a pathspec.
+
+    `git ls-tree` takes a pathspec as a literal prefix, so a glob row such as
+    `skills/principle-*` would never match there. `*` crosses `/` here, as in git.
+    """
+    return any(fnmatchcase(f, spec) or fnmatchcase(f, f"{spec}/*") for f in files)
+
+
+def skill_dirs(*trees: list[str]) -> list[str]:
+    """Every directory holding a SKILL.md in any of `trees`, longest first."""
+    dirs = {
+        f.removesuffix("SKILL.md")
+        for files in trees
+        for f in files
+        if f == "SKILL.md" or f.endswith("/SKILL.md")
+    }
     return sorted(dirs, key=len, reverse=True)
 
 
@@ -236,6 +247,7 @@ def analyze(root: Path, name: str, clone: Path) -> Report:
     head, head_committed = git(clone, "log", "-1", "--format=%H %cs").split()
     commit_count = int(git(clone, "rev-list", "--count", f"{pin}..HEAD"))
     outcomes = last_outcomes(upstream)
+    at_pin, at_head = files_at(clone, pin), files_at(clone, "HEAD")
 
     tracked: list[TrackedPath] = []
     for row in rows:
@@ -244,9 +256,9 @@ def analyze(root: Path, name: str, clone: Path) -> Report:
         spec = pathspec(row.source)
         commits = log(clone, pin, [spec])
         deleted_from = None
-        if commits and not exists_at(clone, "HEAD", spec):
+        if commits and not present(spec, at_head):
             deleted_from = git(clone, "rev-parse", f"{commits[0].sha}^").strip()
-        elif not exists_at(clone, pin, spec) and not exists_at(clone, "HEAD", spec):
+        elif not present(spec, at_pin) and not present(spec, at_head):
             raise AnalysisError(
                 f"{row.notice}:{row.line}: upstream path {row.source} exists neither at"
                 " the Pin nor at HEAD; fix the NOTICE row"
@@ -257,9 +269,7 @@ def analyze(root: Path, name: str, clone: Path) -> Report:
 
     excludes = sorted({f":(exclude){pathspec(r.source)}" for r in rows})
     untracked = log(clone, pin, [".", *excludes])
-    candidates = group_candidates(
-        untracked, skill_dirs(clone, pin, "HEAD"), prior_decisions(upstream)
-    )
+    candidates = group_candidates(untracked, skill_dirs(at_pin, at_head), prior_decisions(upstream))
     return Report(
         name,
         pin,

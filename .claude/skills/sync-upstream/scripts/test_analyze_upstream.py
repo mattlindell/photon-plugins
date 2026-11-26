@@ -25,6 +25,7 @@ Every example path sits under `pkg/`, shortened to `…/` below.
 | `skills/quiet/` | `…/skills/quiet/` | tracked |
 | `skills/doomed/` | `…/skills/doomed/` | tracked |
 | `skills/principles/principle-*/` | `…/skills/principle-*/` | tracked |
+| `skills/rules/rule-*/` | `…/skills/rule-*/` | tracked |
 | `skills/forked/` | `…/skills/forked/` | **derived**, forked from `aaaaaaa` |
 """
 
@@ -68,6 +69,7 @@ class AnalyzeTest(unittest.TestCase):
                 "pkg/skills/quiet/SKILL.md": "q0",
                 "pkg/skills/doomed/SKILL.md": "d0",
                 "pkg/skills/principle-one/SKILL.md": "p0",
+                "pkg/skills/rule-one/SKILL.md": "r0",
                 "pkg/skills/forked/SKILL.md": "f0",
                 "pkg/skills/old-extra/SKILL.md": "o0",
             },
@@ -149,6 +151,12 @@ class AnalyzeTest(unittest.TestCase):
     def test_glob_row_matches_every_principle(self) -> None:
         principles = self.tracked("skills/principles/principle-*/")
         self.assertEqual([c.sha for c in principles.commits], [self.principle])
+        self.assertIsNone(principles.deleted_from)
+
+    def test_glob_row_without_changes_is_present_and_unchanged(self) -> None:
+        rules = self.tracked("skills/rules/rule-*/")
+        self.assertEqual(rules.commits, [])
+        self.assertIsNone(rules.deleted_from)
 
     def test_derived_rows_are_not_read(self) -> None:
         self.assertNotIn("plugins/demo/skills/forked/", [t.path for t in self.report.tracked])
