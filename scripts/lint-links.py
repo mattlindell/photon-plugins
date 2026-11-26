@@ -5,6 +5,12 @@ A backtick path such as `playbooks/feature.md` is checked only when its first
 segment is a directory beside the file, at its skill root, or at its plugin root.
 Anything else names a file the consumer owns.
 
+Under docs/, a skill or command reference must name one that exists under plugins/:
+`plugin:skill` or `/plugin:skill` anywhere outside a code fence, and a bare `/name`
+when it opens a backtick span. A skill counts only when its plugin is registered in
+marketplace.json. The check skips a prefix that is not a directory under plugins/,
+such as `pstack:tdd`.
+
 Usage:
     python scripts/lint-links.py [path ...]            # defaults to plugins/, docs/, and .claude/
     python scripts/lint-links.py --exclude product-team
@@ -20,9 +26,11 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from functools import cache
 from pathlib import Path
 from typing import NamedTuple
 
+from _manifest import MARKETPLACE_PATH, entries, load_marketplace, source_dir
 from _markdown import unfenced_lines
 
 LINK = re.compile(r"\]\((?!https?:|mailto:)([^)]+)\)")
@@ -32,6 +40,43 @@ PLACEHOLDER = re.compile(r"^(link|url|path|\.\.\.)$|[<>]")
 HEADING = re.compile(r"^#{1,6}\s+(.*)$", re.MULTILINE)
 BACKTICK = re.compile(r"(?<!`)`([^`\s]+/[^`\s]*\.(?:md|json|ya?ml|py|sh))`(?!`)")
 CONSUMER_PREFIXES = ("~", "@", "/", "./")
+QUALIFIED = re.compile(r"(?<![\w./:@-])/?([a-z][a-z0-9-]*):([A-Za-z0-9][A-Za-z0-9-]*)(?![\w-])")
+SLASH = re.compile(r"`/([A-Za-z][A-Za-z0-9-]*)(?:\s[^`]*)?`")
+# Claude Code's own commands, which no plugin defines.
+BUILTIN_COMMANDS = frozenset(
+    [
+        "add-dir",
+        "agents",
+        "clear",
+        "code-review",
+        "compact",
+        "config",
+        "context",
+        "cost",
+        "doctor",
+        "exit",
+        "export",
+        "help",
+        "hooks",
+        "init",
+        "login",
+        "logout",
+        "loop",
+        "mcp",
+        "memory",
+        "model",
+        "permissions",
+        "plugin",
+        "resume",
+        "review",
+        "rewind",
+        "security-review",
+        "simplify",
+        "status",
+        "statusline",
+        "vim",
+    ]
+)
 
 
 class Problem(NamedTuple):
@@ -74,11 +119,54 @@ def check_backtick(path: Path, lineno: int, target: str) -> Problem | None:
     return Problem(path, lineno, target, "backtick path not found")
 
 
+@cache
+def invocable(root: Path) -> dict[str, frozenset[str]]:
+    """Skill directory names and command stems, keyed by plugin.
+
+    A plugin directory missing from the registry maps to nothing, since nobody can
+    install it.
+    """
+    catalog: dict[str, frozenset[str]] = {
+        p.name: frozenset() for p in (root / "plugins").iterdir() if p.is_dir()
+    }
+    for entry in entries(load_marketplace(str(root / MARKETPLACE_PATH))):
+        plugin = root / source_dir(entry)
+        skills = {s.parent.name for s in plugin.rglob("SKILL.md") if "node_modules" not in s.parts}
+        commands = {c.stem for c in plugin.glob("commands/*.md")}
+        catalog[entry.get("name", plugin.name)] = frozenset(skills | commands)
+    return catalog
+
+
+def repo_root_for_docs(path: Path) -> Path | None:
+    docs = next((p for p in path.resolve().parents if p.name == "docs"), None)
+    if docs and (docs.parent / MARKETPLACE_PATH).is_file():
+        return docs.parent
+    return None
+
+
+def check_references(catalog: dict[str, frozenset[str]], line: str) -> list[str]:
+    unknown: list[str] = []
+    for match in QUALIFIED.finditer(line):
+        plugin, name = match.groups()
+        if plugin in catalog and name not in catalog[plugin]:
+            unknown.append(f"{plugin}:{name}")
+    every = frozenset().union(*catalog.values(), BUILTIN_COMMANDS)
+    unknown.extend(f"/{m.group(1)}" for m in SLASH.finditer(line) if m.group(1) not in every)
+    return unknown
+
+
 def check(path: Path) -> list[Problem]:
     problems: list[Problem] = []
     text = path.read_text(encoding="utf-8", errors="replace")
+    root = repo_root_for_docs(path)
+    catalog = invocable(root) if root else None
 
     for lineno, line in unfenced_lines(text):
+        if catalog is not None:
+            problems.extend(
+                Problem(path, lineno, ref, "unknown skill or command")
+                for ref in check_references(catalog, line)
+            )
         for match in BACKTICK.finditer(line):
             if problem := check_backtick(path, lineno, match.group(1)):
                 problems.append(problem)
@@ -142,7 +230,7 @@ def main(argv: list[str] | None = None) -> int:
             )
         return 1
 
-    print("All relative links, anchors, and backtick paths resolve.")
+    print("All relative links, anchors, backtick paths, and skill references resolve.")
     return 0
 
 
