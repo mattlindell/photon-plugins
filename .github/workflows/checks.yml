@@ -23,23 +23,24 @@ jobs:
         run: pipx install ruff==0.16.8 basedpyright==1.39.8
 
       - name: Lint
-        run: ruff check scripts/
+        run: ruff check scripts/ .claude/skills/
 
       - name: Format
-        run: ruff format --check scripts/
+        run: ruff format --check scripts/ .claude/skills/
 
       - name: Type check
-        run: basedpyright scripts/
+        run: basedpyright
 
       - name: Test repo checks
         run: python -m unittest discover -s scripts
 
       # Plugin and skill folders are hyphenated, so they cannot be packages and
       # one discover run from plugins/ would never descend into them. Start a
-      # run in each folder that holds a test instead.
-      - name: Test plugin Python scripts
+      # run in each folder that holds a test instead. .claude/skills holds the
+      # repo-local skills, which ship in no plugin.
+      - name: Test plugin and repo-local skill Python scripts
         run: |
-          find plugins -name 'test_*.py' -exec dirname {} \; | sort -u |
+          find plugins .claude/skills -name 'test_*.py' -exec dirname {} \; | sort -u |
             while read -r dir; do python -m unittest discover -s "$dir" || exit 1; done
 
       - name: Registry matches disk
