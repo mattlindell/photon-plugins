@@ -102,9 +102,8 @@ A Sync review itself runs through `/sync-upstream <name>`, a repo-local skill in
 `.claude/skills/` that ships in no plugin. `scripts/_lineage.py` parses the
 NOTICE lineage tables for both.
 
-`lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
-entry when its skill stops handing off to a human-only one. A stale entry fails
-the check.
+`lint-handoffs.py`'s allowlist is empty. An entry exempts a caller that still
+hands off to a human-only skill, and a stale entry fails the check.
 
 ### Script tests
 

@@ -14,7 +14,7 @@
    7. Do it cheaper.
 
    When an earlier mantra meets the target, stop.
-3. Plan the fix from the trace. If it crosses a function boundary, `architect` first. Delegate implementation to a subagent using the tier the fan-out policy maps `perf-issue` to (see `dispatch`, Tiers); review the diff. Capture a post-fix trace.
+3. Plan the fix from the trace. If it crosses a function boundary, name the shape first with `ph-lib:codebase-design`. At a one-way door the spec left open, stop per `dispatch`'s gate. Delegate implementation to a subagent using the tier the fan-out policy maps `perf-issue` to (see `dispatch`, Tiers); review the diff. Capture a post-fix trace.
    Apply the **sequence-verifiable-units** principle skill, verifying each attempt before trying the next.
 4. Parse and compare the artifacts (JSON to sqlite, diff). "Inconclusive" or wrong-surface is not a pass; flag it.
 5. Cite the measurement in the PR.

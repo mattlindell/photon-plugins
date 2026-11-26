@@ -139,4 +139,4 @@ Required before declaring done:
 
 **Then ask: what would have prevented this bug?** Make this call **after** the fix is in, not before — you have more information now than when you started.
 
-If the answer involves architectural change (no good test seam, tangled callers, hidden coupling), that is a one-way door and it is not yours to walk through alone. Hand off to `ph-plan:improve-codebase-architecture` with the specifics if it is installed. **If it is not installed, stop and flag it for a human** with the specifics written down — do not start reshaping the architecture yourself off the back of a bug fix.
+If the answer involves architectural change (no good test seam, tangled callers, hidden coupling), that is a one-way door and it is not yours to walk through alone. **Stop and flag it for a human** with the specifics written down, and point them at `/ph-plan:improve-codebase-architecture` — do not start reshaping the architecture yourself off the back of a bug fix.
