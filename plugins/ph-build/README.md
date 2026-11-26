@@ -49,9 +49,11 @@ expensive mistake available here.
 
 ## The gate
 
-`architect`, `arena`, `interrogate`, and `swarm` are **off by default**. They
-turn on when the work touches a **one-way door**: a schema change, public API
-surface, irreversible data handling, auth, or billing.
+`architect`, `arena`, `interrogate`, and `swarm` are human-only; the agent never
+fires them. They are for a **one-way door**: a schema change, public API
+surface, irreversible data handling, auth, or billing. When the spec has already
+settled the door, the agent builds. When it hasn't, the agent stops, writes a
+decision ticket, and names the skill for you to run, such as `/architect`.
 
 Vague but reversible work just gets built — you course-correct on review, which
 is cheaper than a panel.
