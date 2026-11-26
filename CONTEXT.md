@@ -12,6 +12,9 @@ boundaries sit. It holds no implementation decisions — those live in
 This repo. A registry of plugins, owned by and built primarily for one person,
 published so it can be pointed at rather than because it is a product. Coherence
 is judged by whether it makes sense to its author, not to a stranger.
+`docs/guide/` is the one deliberate exception. It is written for strangers,
+meaning the teams adopting `ph-plan` and `ph-build`. It holds their canonical
+training.
 
 ## Plugin
 
@@ -297,6 +300,23 @@ per-Harness and written by a setup skill. All four dimensions settled means
 A ticket whose purpose is to close a Dimension for other tickets rather than to
 ship anything. Whoever closes it — human or agent — updates the blocked tickets'
 Rigor signal on close, recording which dimension was decided and with what.
+
+## Issue tracker
+
+The system a repo records its tickets in, together with wherever its specs,
+maps, and research live, as declared in that repo's
+`docs/agents/issue-tracker.md`. Backend-neutral: GitHub, GitLab, Jira, Linear,
+or local markdown are all issue trackers. Prose that holds for every backend
+says "issue tracker" and "where your `issue-tracker.md` says," never a backend
+name.
+
+## Effort
+
+A body of work planned together: the parent its tickets hang under, plus the
+specs, maps, and research written for it. Effort is a role, and each Issue
+tracker fills it differently. It can be a parent ticket with wiki pages beside
+it, or a milestone whose description links the project's documents. The repo's
+`docs/agents/issue-tracker.md` names the concrete form.
 
 ## Verification methodology
 

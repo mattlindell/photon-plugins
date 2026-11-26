@@ -52,7 +52,7 @@ decisions there; those go in `docs/adr/`.
 
 ```bash
 python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, flat companion files, unknown SKILL.md keys
-python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths
+python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths, skill refs in docs/
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/lint-upstreams.py                    # upstreams.json vs UPSTREAMS.md vs NOTICE lineage; --apply regenerates the Pin table
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
@@ -81,6 +81,14 @@ a directory beside the file, at its skill root, or at its plugin root; anything 
 name a file the consumer owns. Bare filenames go uncaught, and so does deleting the whole
 directory a path starts with.
 
+Under `docs/`, it also checks skill and slash-command references against `plugins/`:
+`plugin:skill` or `/plugin:skill` anywhere outside a code fence, and a bare `/name` when it
+starts a backtick span. A skill counts only when `marketplace.json` registers its plugin, so
+`product-team` skills fail. It skips a prefix that isn't a directory under `plugins/`, such as
+`pstack:tdd`, so a renamed plugin goes uncaught. A bare `/name` also passes when it's one of
+Claude Code's built-in commands, listed in `BUILTIN_COMMANDS`. A bare `/name` in prose without
+backticks goes unchecked, so write commands in backticks.
+
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
@@ -94,9 +102,8 @@ A Sync review itself runs through `/sync-upstream <name>`, a repo-local skill in
 `.claude/skills/` that ships in no plugin. `scripts/_lineage.py` parses the
 NOTICE lineage tables for both.
 
-`lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
-entry when its skill stops handing off to a human-only one. A stale entry fails
-the check.
+`lint-handoffs.py`'s allowlist is empty. An entry exempts a caller that still
+hands off to a human-only skill, and a stale entry fails the check.
 
 ### Script tests
 

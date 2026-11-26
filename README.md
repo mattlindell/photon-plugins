@@ -18,6 +18,9 @@ The spec hands this off in a `settled:` block of a few lines of YAML. Each
 dimension closed during planning is one that `ph-build` doesn't pay to
 explore again.
 
+New to the plugins? The [guide](docs/guide/README.md) walks a team through
+installing them, reading a spec, and planning its own work.
+
 ## What's in here
 
 - **Unattended ticket draining.** `ph-build:foreman` claims `ready-for-agent`

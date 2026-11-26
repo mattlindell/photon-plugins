@@ -69,7 +69,7 @@ A bare reference then runs the **Implement a ticket** entry adapter below.
 ### The bounded orientation pass
 
 When nothing is settled, you get **one** pass to orient: a single `how` run, no
-panels, no `arena`, no `architect`. Write what you inferred as a provisional
+panels, no `/arena`, no `/architect`. Write what you inferred as a provisional
 `settled:` block, say that you inferred rather than read it, and proceed.
 
 You do not get a second pass. If one bounded pass is not enough, that is a
@@ -77,9 +77,9 @@ signal the work needed planning, not more agents.
 
 ## 2. The gate: escalate on one-way doors, not on uncertainty
 
-The expensive machinery — `architect`, `arena`, `interrogate`, `swarm` — is
-**off by default**. It turns on for one reason: the work touches a **one-way
-door**, a decision whose cost to undo is real.
+The expensive machinery — `/architect`, `/arena`, `/interrogate`, `/swarm` — is
+human-only. Nothing in this harness fires it. It exists for one reason: the work
+touches a **one-way door**, a decision whose cost to undo is real.
 
 One-way doors:
 
@@ -91,8 +91,19 @@ One-way doors:
 Everything else is a two-way door. **Vague but reversible work just gets built**
 — you course-correct on review, which is cheaper than a panel.
 
-When you escalate, log it: which door, which skill you reached for, why the
-cheap path was not enough. That record is how the gate gets tuned.
+At a one-way door, read the `settled:` block:
+
+- **Settled.** The spec already made the decision. Build it.
+- **Not settled.** Stop. Write a decision ticket for `ph-plan` per
+  `docs/agents/issue-tracker.md`, with `closes: shape` in its body, or
+  `closes: approach` when the open question is a coverage or race exploration.
+  Hand back the ticket and name the Pointer that fits: `/architect` for a shape
+  across a function boundary, `/interrogate` for a contested design, `/swarm`
+  for coverage matrices, races, or exploration partitions, `/arena` for a design
+  or code bakeoff.
+
+Log every stop: which door, which Pointer you named, why the cheap path was not
+enough. That record is how the gate gets tuned.
 
 This is the fix for the failure this plugin exists to prevent: fully specified
 work priced as though nothing were known.
@@ -102,9 +113,8 @@ work priced as though nothing were known.
 Conditional on the gate above. None of these is unconditional.
 
 - **Nontrivial change or "are we sure?"** → the **how** skill, unless `shape` is settled.
-- **Code crossing a function boundary at a one-way door** → the **architect** skill. Two-way door: name the data shape per **principle-model-the-domain** and build.
-- **Contested design at a one-way door** → the **interrogate** skill before shipping.
-- **Coverage matrices, races, exploration partitions** → the **swarm** skill, within its cap. Design or code bakeoffs → **arena**.
+- **Code crossing a function boundary** → name the data shape per **principle-model-the-domain** and build. Use `ph-lib:codebase-design` when the shape is not obvious.
+- **A one-way door the `settled:` block leaves open** → stop and hand back per the gate.
 - **Any code** → name the data shape first (**principle-model-the-domain**).
 - **Any prose surface, including your reply** → `ph-lib:unslop`. Docs, RFCs, PR descriptions, commit messages also take `ph-lib:technical-writing`.
 - **Before commit** → the **deslop** skill. **Before review** → **no-comments**.

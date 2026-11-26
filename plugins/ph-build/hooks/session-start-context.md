@@ -17,10 +17,11 @@ Re-opening a settled question is the most expensive mistake available here.
   is available and the change is reversible, take `dispatch`'s single bounded
   orientation pass and proceed.
 
-**The expensive machinery is off by default.** `architect`, `arena`,
-`interrogate`, and `swarm` turn on for one reason: the work touches a one-way
-door — a schema change, public API surface, data deletion, auth, or billing.
-Vague but reversible work just gets built.
+**The expensive machinery is human-only.** `/architect`, `/arena`,
+`/interrogate`, and `/swarm` exist for one reason: a one-way door — a schema
+change, public API surface, data deletion, auth, or billing — that the spec has
+not settled. Stop there and hand back with a decision ticket; `dispatch` has the
+steps. Vague but reversible work just gets built.
 
 Direct entry when the intent is already specific: `ph-build:how` (how a
 subsystem works), `ph-build:why` (why it is that way), `ph-build:tdd` (a
