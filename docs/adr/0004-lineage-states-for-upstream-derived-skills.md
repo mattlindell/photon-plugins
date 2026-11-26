@@ -1,5 +1,9 @@
 # Lineage states for upstream-derived skills
 
+> Amended by [ADR-0006](0006-upstream-record.md): pins and the sync history
+> now live in `upstreams.json`, a tracked NOTICE row no longer carries a SHA,
+> and a pin means reviewed rather than applied.
+
 Each skill derived from an upstream (Pocock's `skills`, or `pstack-claude`
 including the `cursor-team-kit` skills it carries) records one of three lineage
 states in its plugin's `NOTICE.md`: **tracked**, **derived**, or **own**. Until
