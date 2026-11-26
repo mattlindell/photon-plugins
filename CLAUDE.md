@@ -82,9 +82,11 @@ directory a path starts with.
 
 Under `docs/`, it also checks skill and slash-command references against `plugins/`:
 `plugin:skill` or `/plugin:skill` anywhere outside a code fence, and a bare `/name` when it
-starts a backtick span. It skips a prefix that isn't a plugin here, such as `pstack:tdd`, so
-a renamed plugin goes uncaught. A bare `/name` also passes when it's one of Claude Code's
-built-in commands, listed in `BUILTIN_COMMANDS`.
+starts a backtick span. A skill counts only when `marketplace.json` registers its plugin, so
+`product-team` skills fail. It skips a prefix that isn't a directory under `plugins/`, such as
+`pstack:tdd`, so a renamed plugin goes uncaught. A bare `/name` also passes when it's one of
+Claude Code's built-in commands, listed in `BUILTIN_COMMANDS`. A bare `/name` in prose without
+backticks goes unchecked, so write commands in backticks.
 
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once

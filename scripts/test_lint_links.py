@@ -106,10 +106,18 @@ class SkillReferences(unittest.TestCase):
             "plugins/demo/skills/engineering/tdd/SKILL.md",
             "plugins/demo/commands/scaffold.md",
             "plugins/other/skills/intake/SKILL.md",
+            "plugins/unlisted/skills/teardown/SKILL.md",
         ):
             path = self.root / rel
             path.parent.mkdir(parents=True, exist_ok=True)
             _ = path.write_text("# x\n", encoding="utf-8")
+        registry = self.root / ".claude-plugin" / "marketplace.json"
+        registry.parent.mkdir()
+        _ = registry.write_text(
+            '{"plugins": [{"name": "demo", "source": "./plugins/demo"},'
+            ' {"name": "other", "source": "./plugins/other"}]}',
+            encoding="utf-8",
+        )
 
     def lint(self, body: str, rel: str = "docs/guide/page.md") -> tuple[int, str]:
         path = self.root / rel
@@ -125,7 +133,7 @@ class SkillReferences(unittest.TestCase):
             "Use `demo:tdd`, then `/demo:tdd`, `/tdd`, and `/other:intake`.\n"
             "Scaffold with `/scaffold` or `/demo:scaffold <name>`.\n"
             "Plain prose names demo:tdd and /other:intake too.\n"
-            "Built-ins such as `/plugin install demo@market` and `/clear` pass.\n"
+            "Built-ins such as `/plugin install demo@market`, `/clear`, and `/rewind`.\n"
         )
         code, out = self.lint(body)
         self.assertEqual(code, 0, out)
@@ -138,6 +146,10 @@ class SkillReferences(unittest.TestCase):
             "`/scafold now`": "/scafold",
             "`/other:tdd`": "other:tdd",
             "prose names other:intak here": "other:intak",
+            "`other:Intake`": "other:Intake",
+            "`/Tdd`": "/Tdd",
+            "`/unlisted:teardown`": "unlisted:teardown",
+            "`/teardown`": "/teardown",
         }
         where = (self.root / "docs/guide/page.md").as_posix()
         for text, target in cases.items():
