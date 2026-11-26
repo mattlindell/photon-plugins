@@ -62,3 +62,10 @@ review as one PR:
 4. As the last commit, append a Sync log entry to `upstreams.json` with an
    outcome for every Tracked path and a decision for every candidate, move the
    Pin, and run `python scripts/lint-upstreams.py --apply`.
+
+## Adding an upstream
+
+Run `/add-upstream <name> <repo-url>` from this repository. The repo-local
+`add-upstream` skill gates on the upstream's license and then imports it. It
+writes the `LICENSE-<name>` file, seeds the record so the fork point equals the
+Pin, and adds the NOTICE lineage and the glossary entry, all in one PR.
