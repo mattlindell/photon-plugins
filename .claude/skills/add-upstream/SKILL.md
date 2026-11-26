@@ -10,7 +10,8 @@ argument-hint: <name> <repo-url>
 Register `$ARGUMENTS`: the first word is the upstream's name, the second its
 repository URL. The name is kebab-case and permanent. It becomes the record's
 `name`, the `LICENSE-<name>` suffix, and the heading of every NOTICE lineage
-table, and the lint matches those strings exactly.
+table. The lint checks only that a lineage heading matches the record `name`
+exactly. Nothing checks the license file name, so get it right by hand.
 
 The record is defined in
 [ADR-0006](../../../docs/adr/0006-upstream-record.md), lineage states in
@@ -107,10 +108,10 @@ if the plugin has none), add:
 - **A copyright section.** The upstream copyright line as it appears in its
   license, the license name, and a link to `../../LICENSE-<name>`. Name every
   copyright holder whose work travels with the import.
-- **A lineage table** under `## Upstream sources`, headed `### <name>`, where
-  the heading text is exactly the record's `name`. The first cell is the
-  backticked path relative to the plugin directory, and the last column is
-  `State`:
+- **A lineage table** under the plugin's lineage section (`## Upstream sources`,
+  or `## Lineage` in ph-build), headed `### <name>`, where the heading text is
+  exactly the record's `name`. The first cell is the backticked path relative
+  to the plugin directory, and the last column is `State`:
 
   ```markdown
   | Skill | Upstream | State |
@@ -118,6 +119,10 @@ if the plugin has none), add:
   | `skills/<skill>/` | `<upstream path>/` | tracked |
   | `skills/<other>/` | `<upstream path>/` | **derived**, forked from `<7-char sha>` |
   ```
+
+The lint assigns each table to the nearest heading above it. Put the copyright
+section as plain paragraphs, never under its own heading between `### <name>`
+and the table, or the lint rejects the table as an unknown upstream.
 
 A row is `derived` when the import is edited so heavily that upstream changes
 cannot be applied to it. Add a sentence under the table explaining why, as the
@@ -128,14 +133,16 @@ Update any skill count in the NOTICE's opening paragraph.
 
 ## 6. Glossary
 
-In `CONTEXT.md`, under `## Upstream`, add `### <name> upstream` after the
-existing upstream subsections. Say who maintains it, what it is, which plugins
+In `CONTEXT.md`, under `## Upstream`, add `### <short name> upstream` after the
+existing upstream subsections. Use the short human name, matching
+`### pstack upstream` and `### Pocock upstream`, not the record `name`. Say who maintains it, what it is, which plugins
 and skills it feeds, and which copyright lineages must travel with anything
-taken from it. Update the count in the section's opening sentence.
+taken from it. Update the count in the section's opening sentence, and its
+license wording ("MIT sources") if the new upstream is not MIT.
 
-These hand-written views also count upstreams, so update them too:
+These hand-written views also state the count and the license, so update both:
 
-- `UPSTREAMS.md`: the intro sentence, the "What it is / Feeds" table, and the
+- `UPSTREAMS.md`: the intro sentence ("two MIT-licensed upstreams"), the "What it is / Feeds" table, and the
   list of NOTICE links.
 - `README.md`: the Acknowledgments list.
 
