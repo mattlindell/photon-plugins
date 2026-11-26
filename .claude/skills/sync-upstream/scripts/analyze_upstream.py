@@ -23,7 +23,6 @@ import subprocess
 import sys
 import tempfile
 from collections.abc import Callable, Sequence
-from fnmatch import fnmatchcase
 from pathlib import Path
 from typing import NamedTuple
 
@@ -42,6 +41,8 @@ from _upstreams import (  # noqa: E402
 
 NOTICE_GLOB = "plugins/*/NOTICE.md"
 OUTSIDE = "(outside any upstream skill)"
+EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+WILDCARDS = frozenset("*?[")
 
 
 class AnalysisError(Exception):
@@ -60,13 +61,21 @@ class Commit(NamedTuple):
     changes: list[Change]
 
 
+class Deletion(NamedTuple):
+    """An upstream path present at the Pin and gone at HEAD."""
+
+    source: str
+    forked_from: str
+    """The last upstream commit that carried `source`."""
+
+
 class TrackedPath(NamedTuple):
     path: str
     source: str
     commits: list[Commit]
     last_outcome: OutcomeState | None
-    deleted_from: str | None
-    """When upstream deleted `source` since the Pin: the last commit that carried it."""
+    deletions: list[Deletion]
+    """For a glob row, one per matched skill that upstream deleted."""
 
 
 class Candidate(NamedTuple):
@@ -140,13 +149,32 @@ def files_at(clone: Path, rev: str) -> list[str]:
     return git(clone, "ls-tree", "-r", "--name-only", rev).splitlines()
 
 
-def present(spec: str, files: list[str]) -> bool:
-    """Whether `spec` names any of `files`, matched as `git log` matches a pathspec.
+def matching(clone: Path, rev: str, spec: str) -> list[str]:
+    """Files at `rev` that `spec` names, by git's own pathspec rules.
 
-    `git ls-tree` takes a pathspec as a literal prefix, so a glob row such as
-    `skills/principle-*` would never match there. `*` crosses `/` here, as in git.
+    `git ls-tree` takes a pathspec as a literal prefix and never expands a glob,
+    so this diffs `rev` against the empty tree, which matches as `git log` does.
     """
-    return any(fnmatchcase(f, spec) or fnmatchcase(f, f"{spec}/*") for f in files)
+    out = git(clone, "diff", "-z", "--name-only", "--no-renames", EMPTY_TREE, rev, "--", spec)
+    return [f for f in out.split("\0") if f]
+
+
+def unit(spec: str, path: str) -> str:
+    """The upstream path a lineage row tracks `path` as: one per skill under a glob row."""
+    if not WILDCARDS & set(spec):
+        return spec
+    return "/".join(path.split("/")[: spec.count("/") + 1])
+
+
+def deletions(
+    clone: Path, pin: str, spec: str, at_pin: list[str], at_head: list[str]
+) -> list[Deletion]:
+    gone = {unit(spec, f) for f in at_pin} - {unit(spec, f) for f in at_head}
+    out: list[Deletion] = []
+    for source in sorted(gone):
+        last = git(clone, "log", "-1", "--format=%H", f"{pin}..HEAD", "--", f":(literal){source}")
+        out.append(Deletion(source, git(clone, "rev-parse", f"{last.strip()}^").strip()))
+    return out
 
 
 def skill_dirs(*trees: list[str]) -> list[str]:
@@ -247,29 +275,32 @@ def analyze(root: Path, name: str, clone: Path) -> Report:
     head, head_committed = git(clone, "log", "-1", "--format=%H %cs").split()
     commit_count = int(git(clone, "rev-list", "--count", f"{pin}..HEAD"))
     outcomes = last_outcomes(upstream)
-    at_pin, at_head = files_at(clone, pin), files_at(clone, "HEAD")
+    trees = files_at(clone, pin), files_at(clone, "HEAD")
 
     tracked: list[TrackedPath] = []
     for row in rows:
         if row.state != TRACKED:
             continue
         spec = pathspec(row.source)
-        commits = log(clone, pin, [spec])
-        deleted_from = None
-        if commits and not present(spec, at_head):
-            deleted_from = git(clone, "rev-parse", f"{commits[0].sha}^").strip()
-        elif not present(spec, at_pin) and not present(spec, at_head):
+        at_pin, at_head = matching(clone, pin, spec), matching(clone, "HEAD", spec)
+        if not at_pin and not at_head:
             raise AnalysisError(
                 f"{row.notice}:{row.line}: upstream path {row.source} exists neither at"
                 " the Pin nor at HEAD; fix the NOTICE row"
             )
         tracked.append(
-            TrackedPath(row.path, row.source, commits, outcomes.get(row.path), deleted_from)
+            TrackedPath(
+                row.path,
+                row.source,
+                log(clone, pin, [spec]),
+                outcomes.get(row.path),
+                deletions(clone, pin, spec, at_pin, at_head),
+            )
         )
 
     excludes = sorted({f":(exclude){pathspec(r.source)}" for r in rows})
     untracked = log(clone, pin, [".", *excludes])
-    candidates = group_candidates(untracked, skill_dirs(at_pin, at_head), prior_decisions(upstream))
+    candidates = group_candidates(untracked, skill_dirs(*trees), prior_decisions(upstream))
     return Report(
         name,
         pin,
@@ -316,9 +347,15 @@ def render(report: Report) -> str:
         lines += [f"### `{t.path}`", "", f"Upstream `{t.source}`."]
         if t.last_outcome == "diverged":
             lines.append("Last outcome was `diverged`: another `diverged` demotes it to Derived.")
-        if t.deleted_from:
+        for d in t.deletions:
+            split = (
+                " Split it out of this glob row into its own row, then demote that row"
+                if d.source != pathspec(t.source)
+                else " Demote"
+            )
             lines.append(
-                f"**Deleted upstream.** Demote to Derived, forked from `{t.deleted_from[:7]}`."
+                f"**Deleted upstream:** `{d.source}`.{split} to Derived,"
+                f" forked from `{d.forked_from[:7]}`."
             )
         lines += ["", *render_commits(t.commits), ""]
     lines += ["## Tracked paths without changes", ""]

@@ -26,6 +26,7 @@ Every example path sits under `pkg/`, shortened to `…/` below.
 | `skills/doomed/` | `…/skills/doomed/` | tracked |
 | `skills/principles/principle-*/` | `…/skills/principle-*/` | tracked |
 | `skills/rules/rule-*/` | `…/skills/rule-*/` | tracked |
+| `skills/bracket.md` | `…/skills/prin[c]x.md` | tracked |
 | `skills/forked/` | `…/skills/forked/` | **derived**, forked from `aaaaaaa` |
 """
 
@@ -69,6 +70,8 @@ class AnalyzeTest(unittest.TestCase):
                 "pkg/skills/quiet/SKILL.md": "q0",
                 "pkg/skills/doomed/SKILL.md": "d0",
                 "pkg/skills/principle-one/SKILL.md": "p0",
+                "pkg/skills/principle-two/SKILL.md": "t0",
+                "pkg/skills/prin[c]x.md": "literal brackets",
                 "pkg/skills/rule-one/SKILL.md": "r0",
                 "pkg/skills/forked/SKILL.md": "f0",
                 "pkg/skills/old-extra/SKILL.md": "o0",
@@ -80,7 +83,9 @@ class AnalyzeTest(unittest.TestCase):
         cls.last_doomed = commit(upstream, "doomed tweak", {"pkg/skills/doomed/SKILL.md": "d1"})
         cls.delete = commit(upstream, "drop doomed", {"pkg/skills/doomed": None})
         cls.principle = commit(
-            upstream, "principle change", {"pkg/skills/principle-one/SKILL.md": "p1"}
+            upstream,
+            "principle change",
+            {"pkg/skills/principle-one/SKILL.md": "p1", "pkg/skills/principle-two": None},
         )
         commit(upstream, "derived change", {"pkg/skills/forked/SKILL.md": "f1"})
         cls.mixed = commit(
@@ -151,12 +156,18 @@ class AnalyzeTest(unittest.TestCase):
     def test_glob_row_matches_every_principle(self) -> None:
         principles = self.tracked("skills/principles/principle-*/")
         self.assertEqual([c.sha for c in principles.commits], [self.principle])
-        self.assertIsNone(principles.deleted_from)
+        self.assertEqual(
+            principles.deletions,
+            [analyze_upstream.Deletion("pkg/skills/principle-two", self.delete)],
+        )
 
     def test_glob_row_without_changes_is_present_and_unchanged(self) -> None:
         rules = self.tracked("skills/rules/rule-*/")
         self.assertEqual(rules.commits, [])
-        self.assertIsNone(rules.deleted_from)
+        self.assertEqual(rules.deletions, [])
+
+    def test_brackets_match_as_git_matches_them(self) -> None:
+        self.assertEqual(self.tracked("skills/bracket.md").deletions, [])
 
     def test_derived_rows_are_not_read(self) -> None:
         self.assertNotIn("plugins/demo/skills/forked/", [t.path for t in self.report.tracked])
@@ -164,8 +175,10 @@ class AnalyzeTest(unittest.TestCase):
 
     def test_upstream_deletion_names_the_last_commit_that_carried_it(self) -> None:
         doomed = self.tracked("skills/doomed/")
-        self.assertEqual(doomed.deleted_from, self.last_doomed)
-        self.assertIsNone(self.tracked("skills/alpha/").deleted_from)
+        self.assertEqual(
+            doomed.deletions, [analyze_upstream.Deletion("pkg/skills/doomed", self.last_doomed)]
+        )
+        self.assertEqual(self.tracked("skills/alpha/").deletions, [])
 
     def test_last_outcome_is_carried_for_the_demotion_rule(self) -> None:
         self.assertEqual(self.tracked("skills/alpha/").last_outcome, "diverged")
@@ -197,6 +210,11 @@ class AnalyzeTest(unittest.TestCase):
         text = analyze_upstream.render(self.report)
         self.assertIn("another `diverged` demotes it", text)
         self.assertIn(f"forked from `{self.last_doomed[:7]}`", text)
+        self.assertIn(
+            f"**Deleted upstream:** `pkg/skills/principle-two`. Split it out of this glob row"
+            f" into its own row, then demote that row to Derived, forked from `{self.delete[:7]}`.",
+            text,
+        )
         self.assertIn(
             "### declined-one (`pkg/skills/declined-one/`), previously **declined**", text
         )

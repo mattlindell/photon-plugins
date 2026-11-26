@@ -82,6 +82,10 @@ when:
   `diverged`. It forks from the old Pin.
 - the report says upstream **deleted** it. It forks from the commit the report
   names, the last one that carried the file. Its outcome is `diverged`.
+- the report names one deleted skill under a glob row, such as
+  `principle-*`. Add a row for that skill alone, beside the glob row, and demote
+  the new row. Update any count in the glob row's text. The glob row stays
+  `tracked` and keeps its own outcome.
 
 Add a sentence under the table saying why, as the existing derived rows have.
 Commit the demotions together.
