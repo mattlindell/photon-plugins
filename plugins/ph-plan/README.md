@@ -96,7 +96,8 @@ ph-plan/
 
 Run `/ph-plan:setup-ph-plan` once per repo. It configures the issue tracker, the
 triage label vocabulary, and the domain-doc layout that `to-spec`, `to-tickets`,
-`triage`, and `scout` all read.
+`triage`, and `scout` all read. It has routes for GitHub, GitLab, Jira, Linear, and
+local markdown, and records anything else from your description.
 
 ## Attribution
 
