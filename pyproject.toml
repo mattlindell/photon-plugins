@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-include = ["scripts/**/*.py"]
+include = ["scripts/**/*.py", ".claude/skills/**/*.py"]
 
 [tool.ruff.lint]
 select = [
@@ -25,9 +25,12 @@ select = [
 [tool.ruff.lint.per-file-ignores]
 # Checks are CLI tools: printing is the interface, and main() branches a lot.
 "scripts/*.py" = ["PLR0912", "PLR0915", "PLR0911"]
+".claude/skills/*/scripts/*.py" = ["PLR0912", "PLR0915", "PLR0911"]
 
 [tool.basedpyright]
-include = ["scripts"]
+include = ["scripts", ".claude/skills"]
+# Repo-local skill scripts import the shared record and lineage readers from scripts/.
+extraPaths = ["scripts"]
 pythonVersion = "3.12"
 typeCheckingMode = "standard"
 reportMissingTypeArgument = "error"

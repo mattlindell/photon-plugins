@@ -18,7 +18,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import NamedTuple
 
-from _markdown import unfenced_lines
+from _lineage import TRACKED, Row, lineage_rows
 from _upstreams import Record, RecordError, load_record, outcome_state
 
 NOTICE_GLOB = "plugins/*/NOTICE.md"
@@ -28,11 +28,7 @@ END = "<!-- END GENERATED: pins -->"
 
 FULL_SHA = re.compile(r"(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])")
 REVIEWED_THROUGH = re.compile(r"reviewed\s+through", re.IGNORECASE)
-TRACKED = "tracked"
 DERIVED = re.compile(r"\*\*derived\*\*, forked from `[0-9a-f]{7,39}`")
-HEADING = re.compile(r"^#{1,6}\s+(.+?)\s*$")
-SEPARATOR = re.compile(r"^\|(\s*:?-+:?\s*\|)+\s*$")
-SPAN = re.compile(r"`([^`\n]+)`")
 
 FIX_STATE = f"a lineage state is `{TRACKED}` or `**derived**, forked from `<short sha>``"
 
@@ -41,53 +37,6 @@ class Problem(NamedTuple):
     rule: str
     where: str
     message: str
-
-
-class Row(NamedTuple):
-    """One row of a NOTICE lineage table."""
-
-    notice: str
-    line: int
-    upstream: str
-    path: str
-    state: str
-
-
-def cells(line: str) -> list[str]:
-    return [c.strip() for c in line.strip().strip("|").split("|")]
-
-
-def lineage_rows(root: Path, notice: Path) -> tuple[list[Row], list[Problem]]:
-    """Rows of every table whose last column is State, keyed to the heading above it."""
-    rel = notice.relative_to(root).as_posix()
-    plugin_dir = notice.parent.relative_to(root).as_posix()
-    lines = unfenced_lines(notice.read_text(encoding="utf-8"))
-    rows: list[Row] = []
-    problems: list[Problem] = []
-    heading = ""
-    in_table = False
-    for i, (lineno, line) in enumerate(lines):
-        if match := HEADING.match(line):
-            heading = match.group(1)
-            continue
-        if not line.startswith("|"):
-            in_table = False
-            continue
-        following = lines[i + 1][1] if i + 1 < len(lines) else ""
-        if not in_table and SEPARATOR.match(following):
-            in_table = cells(line)[-1] == "State"
-            continue
-        if not in_table or SEPARATOR.match(line):
-            continue
-        row = cells(line)
-        span = SPAN.search(row[0])
-        if not span:
-            problems.append(
-                Problem("lineage-state", f"{rel}:{lineno}", "row names no path in its first cell")
-            )
-            continue
-        rows.append(Row(rel, lineno, heading, f"{plugin_dir}/{span.group(1)}", row[-1]))
-    return rows, problems
 
 
 def check_notice_text(root: Path, notice: Path) -> list[Problem]:
@@ -296,7 +245,7 @@ def check(root: Path, record: Record) -> list[Problem]:
         problems += check_notice_text(root, notice)
         found, malformed = lineage_rows(root, notice)
         rows += found
-        problems += malformed
+        problems += [Problem("lineage-state", where, msg) for where, msg in malformed]
     problems += check_rows(rows, record)
     problems += check_log_ends_at_pin(record)
     problems += check_block(root, record)

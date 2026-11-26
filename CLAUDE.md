@@ -59,8 +59,9 @@ python scripts/bump-versions.py --worktree          # semver floor for what you 
 ```
 
 All five run in CI on every PR (`.github/workflows/checks.yml`), alongside
-`ruff check`, `ruff format --check`, `basedpyright` over `scripts/`, the
-repo-check tests, and the plugin Python tests (see Script tests).
+`ruff check`, `ruff format --check`, `basedpyright` over `scripts/` and
+`.claude/skills/`, the repo-check tests, and the plugin and repo-local skill
+Python tests (see Script tests).
 
 The scripts are typed and must stay clean at both. `pyproject.toml` holds the
 config so Zed and CI agree; `scripts/_manifest.py` carries the TypedDicts for
@@ -69,7 +70,7 @@ through every caller, and `scripts/_markdown.py` reads frontmatter and skips
 fenced code the same way for every check.
 
 ```bash
-uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
+uvx ruff check scripts/ .claude/skills/ && uvx ruff format scripts/ .claude/skills/ && basedpyright
 ```
 
 Run the five repo checks before any commit that touches plugin structure.
@@ -97,6 +98,9 @@ Sync log ([ADR-0006](docs/adr/0006-upstream-record.md)), against the human view 
 `UPSTREAMS.md` and the lineage tables in each `NOTICE.md`. A NOTICE never restates a
 Pin; each lineage table sits under a heading naming its upstream as the record does.
 After editing the record, run it with `--apply` to regenerate the Pin table.
+A Sync review itself runs through `/sync-upstream <name>`, a repo-local skill in
+`.claude/skills/` that ships in no plugin. `scripts/_lineage.py` parses the
+NOTICE lineage tables for both.
 
 `lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
 entry when its skill stops handing off to a human-only one. A stale entry fails
@@ -126,7 +130,7 @@ run from `plugins/` finds nothing. Run discovery in each folder that holds a
 test, as CI does:
 
 ```bash
-find plugins -name 'test_*.py' -exec dirname {} \; | sort -u |
+find plugins .claude/skills -name 'test_*.py' -exec dirname {} \; | sort -u |
   while read -r dir; do python -m unittest discover -s "$dir" || exit 1; done
 ```
 
@@ -260,7 +264,7 @@ claude --plugin-dir plugins/plugin-name
 
 ### Issue tracker
 
-Issues live in **Linear**. Use the `linearis` CLI first, the Linear MCP as fallback. The team and project identifiers are not committed (this repo is public) — resolve them from `docs/agents/linear-ids.local.md`. See `docs/agents/issue-tracker.md`.
+Issues live in **Linear**. Each effort is a project milestone; its specs, maps, and research are project Documents linked from the milestone description. The team and project identifiers, and this machine's connection preference, are not committed (this repo is public) — resolve them from `docs/agents/linear-ids.local.md`. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
