@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import importlib.util
+import io
 import os
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
 _spec = importlib.util.spec_from_file_location(
@@ -93,6 +95,73 @@ class BacktickPaths(unittest.TestCase):
             "`playbooks/gone.txt` `gone.md` `playbooks/gone two.md`\n"
         )
         self.assertEqual(self.lint("skills/dispatch/SKILL.md", body), [])
+
+
+class SkillReferences(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name)
+        for rel in (
+            "plugins/demo/skills/engineering/tdd/SKILL.md",
+            "plugins/demo/commands/scaffold.md",
+            "plugins/other/skills/intake/SKILL.md",
+        ):
+            path = self.root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            _ = path.write_text("# x\n", encoding="utf-8")
+
+    def lint(self, body: str, rel: str = "docs/guide/page.md") -> tuple[int, str]:
+        path = self.root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        _ = path.write_text(body, encoding="utf-8")
+        out = io.StringIO()
+        with redirect_stdout(out):
+            code = lint_links.main([str(self.root / rel.split("/", 1)[0])])
+        return code, out.getvalue()
+
+    def test_real_skills_and_commands_pass(self) -> None:
+        body = (
+            "Use `demo:tdd`, then `/demo:tdd`, `/tdd`, and `/other:intake`.\n"
+            "Scaffold with `/scaffold` or `/demo:scaffold <name>`.\n"
+            "Plain prose names demo:tdd and /other:intake too.\n"
+            "Built-ins such as `/plugin install demo@market` and `/clear` pass.\n"
+        )
+        code, out = self.lint(body)
+        self.assertEqual(code, 0, out)
+
+    def test_misspelled_reference_fails_with_file_and_line(self) -> None:
+        cases = {
+            "`demo:tddd`": "demo:tddd",
+            "`/demo:tddd`": "demo:tddd",
+            "`/tddd`": "/tddd",
+            "`/scafold now`": "/scafold",
+            "`/other:tdd`": "other:tdd",
+            "prose names other:intak here": "other:intak",
+        }
+        where = (self.root / "docs/guide/page.md").as_posix()
+        for text, target in cases.items():
+            with self.subTest(text=text):
+                code, out = self.lint(f"# Page\n\nSee {text}.\n")
+                self.assertEqual(code, 1, out)
+                self.assertIn(f"{where}:3  {target}  (unknown skill or command)", out)
+
+    def test_fenced_references_are_ignored(self) -> None:
+        body = "```bash\n/demo:tddd\ndemo:gone\n```\n~~~\n`/gone`\n~~~\n"
+        code, out = self.lint(body)
+        self.assertEqual(code, 0, out)
+
+    def test_non_references_are_ignored(self) -> None:
+        body = (
+            "`pstack:tdd` `wayfinder:map` `/usr/bin` `/ph-build/x` `~/.claude/x`\n"
+            "https://example.com/demo:gone and a ratio 3:2 and `C:/demo`\n"
+        )
+        code, out = self.lint(body)
+        self.assertEqual(code, 0, out)
+
+    def test_only_docs_are_checked(self) -> None:
+        code, out = self.lint("`/gone` and `demo:gone`\n", rel="plugins/demo/README.md")
+        self.assertEqual(code, 0, out)
 
 
 if __name__ == "__main__":
