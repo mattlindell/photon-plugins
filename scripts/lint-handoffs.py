@@ -20,14 +20,7 @@ from _markdown import frontmatter_scalars, unfenced_lines
 
 SPAN = re.compile(r"`([^`\n]+)`")
 
-ALLOWLIST: frozenset[str] = frozenset(
-    {
-        "ph-build:babysit",  # PV-136
-        "ph-build:blast-radius",  # PV-136
-        "ph-build:diagnosing-bugs",  # PV-136
-        "ph-build:dispatch",  # PV-136
-    }
-)
+ALLOWLIST: frozenset[str] = frozenset()
 
 
 class Skill(NamedTuple):

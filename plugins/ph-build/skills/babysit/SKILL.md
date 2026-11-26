@@ -52,7 +52,7 @@ Inside a `dispatch` run, the **Babysit** playbook ([`../dispatch/playbooks/babys
 ## Cross-refs
 
 - Opening a PR does not start a babysit; inside a `dispatch` run the Babysit playbook owns the request and starts only when asked.
-- Use `interrogate` before opening if the diff is contested; once open, babysit takes over.
+- A contested diff gets `/interrogate` from the human before the PR opens; once open, babysit takes over.
 - Use `unslop` on any prose you write here (PR comments, commit messages, status reports).
 
 ## Provenance
