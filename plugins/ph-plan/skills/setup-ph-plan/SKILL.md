@@ -57,7 +57,7 @@ Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templ
 
 > Keep the team and project out of the committed file, in a gitignored `docs/agents/linear-ids.local.md`? (recommended: **yes** for a public repo)
 
-On **yes**, keep the `<TEAM>` and `<PROJECT>` placeholders in `issue-tracker.md` and write the local file from [references/linear-ids-local.md](references/linear-ids-local.md) with the values filled in. Its connection-preference section is where a person records which CLI or MCP server their machine uses. Check that `.gitignore` covers the file, and add `*.local.*` if it doesn't. On **no**, replace each placeholder with its value throughout `issue-tracker.md` and delete the paragraph that points at the local file.
+On **yes**, keep the `<TEAM>` and `<PROJECT>` placeholders in `issue-tracker.md` and write the local file from [references/linear-ids-local.md](references/linear-ids-local.md) with the values filled in. Its connection-preference section is where a person records which CLI or MCP server their machine uses. Check that `.gitignore` covers the file, and add `*.local.*` if it doesn't. On **no**, replace each placeholder with its value throughout `issue-tracker.md`, rename the Coordinates table's `Placeholder` column to `Value`, and delete the paragraph that points at the local file.
 
 Neither the Jira nor the Linear template names a connection method. Don't add one. The agent uses whatever tracker access the runner has.
 

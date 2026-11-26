@@ -4,7 +4,7 @@ Coordinates and connection preferences for this repo's Linear workspace. This fi
 
 ## Placeholder resolution
 
-`issue-tracker.md` and `triage-labels.md` name the team and project only by placeholder. This file is the only place they resolve.
+`issue-tracker.md` names the team and project only by placeholder. This file is the only place they resolve.
 
 | Placeholder | Value |
 | --- | --- |

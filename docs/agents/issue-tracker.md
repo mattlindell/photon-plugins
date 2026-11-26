@@ -51,9 +51,11 @@ When a skill says "get onto a working branch", use the first of these that answe
 
 1. A branch pattern the repo states in `CLAUDE.md`, `CONTRIBUTING.md`, or a lint check.
 2. The issue's generated branch name. Linear returns it as `branchName` on the issue.
-3. The ticket key and title, slugified: `<team>-123-short-title`.
+3. The ticket key and title, slugified and lowercased: for example `pv-132-reconcile-dispatch`.
 
-The ticket key must reach Linear through the branch name or the PR body. If the branch can't carry it, name the ticket in the PR description.
+Rename an inherited branch only when it doesn't already carry the ticket key. Orchestrators create worktrees and bind tasks to branch names, so adding a prefix to a branch that already carries the key can break that binding.
+
+The ticket key must reach Linear through the branch name or the PR body. If the branch can't carry it, name the ticket in the PR's `## Why` section.
 
 ## Pull requests as a triage surface
 
