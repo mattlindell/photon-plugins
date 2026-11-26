@@ -51,6 +51,9 @@ jobs:
       - name: Handoffs reach their targets
         run: python scripts/lint-handoffs.py
 
+      - name: Upstream record agrees with UPSTREAMS.md and NOTICEs
+        run: python scripts/lint-upstreams.py
+
   scripts:
     name: Vendored script tests
     runs-on: ubuntu-latest

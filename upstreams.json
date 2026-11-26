@@ -1,0 +1,186 @@
+{
+  "upstreams": [
+    {
+      "name": "pstack-claude",
+      "repository": "https://github.com/michael-denyer/pstack-claude",
+      "fork_point": {
+        "sha": "a0a531f0e341144d12f0a26218b295ad5e8453a1",
+        "version": "v0.9.27"
+      },
+      "pin": {
+        "sha": "903e7385382389806c59d6989b6274e24165082b",
+        "version": "v0.9.101",
+        "committed": "2026-10-21",
+        "reviewed": "2026-10-23"
+      },
+      "log": [
+        {
+          "date": "2026-10-23",
+          "from": "a0a531f0e341144d12f0a26218b295ad5e8453a1",
+          "to": "903e7385382389806c59d6989b6274e24165082b",
+          "pr": "https://github.com/mattlindell/photon-plugins/pull/20",
+          "backfilled": true,
+          "note": "Backfilled from git history. One review, ported across PRs #14, #18, and #19; #20 moved the Pin. A skill is ported where those PRs changed it for this upstream, and unrecorded where they are silent.",
+          "outcomes": {
+            "plugins/ph-build/skills/architect/": "ported",
+            "plugins/ph-build/skills/arena/": "unrecorded",
+            "plugins/ph-build/skills/babysit/": "unrecorded",
+            "plugins/ph-build/skills/benchmark-checklist/": "ported",
+            "plugins/ph-build/skills/blast-radius/": "unrecorded",
+            "plugins/ph-build/skills/correct/": "ported",
+            "plugins/ph-build/skills/create-verification-skill/": "ported",
+            "plugins/ph-build/skills/deslop/": "unrecorded",
+            "plugins/ph-build/skills/explain/": "unrecorded",
+            "plugins/ph-build/skills/figure-it-out/": "unrecorded",
+            "plugins/ph-build/skills/fix-ci/": "unrecorded",
+            "plugins/ph-build/skills/fix-merge-conflicts/": "unrecorded",
+            "plugins/ph-build/skills/get-pr-comments/": "unrecorded",
+            "plugins/ph-build/skills/how/": "unrecorded",
+            "plugins/ph-build/skills/interrogate/": "unrecorded",
+            "plugins/ph-build/skills/maintain-verification-skill/": "ported",
+            "plugins/ph-build/skills/make-pr-easy-to-review/": "unrecorded",
+            "plugins/ph-build/skills/no-comments/": "unrecorded",
+            "plugins/ph-build/skills/setup-ph-build/": "diverged",
+            "plugins/ph-build/skills/show-me-your-work/": "ported",
+            "plugins/ph-build/skills/swarm/": "ported",
+            "plugins/ph-build/skills/tdd/": "unrecorded",
+            "plugins/ph-build/skills/thermo-nuclear-code-quality-review/": "unrecorded",
+            "plugins/ph-build/skills/thermo-nuclear-review/": "ported",
+            "plugins/ph-build/skills/typescript-best-practices/": "unrecorded",
+            "plugins/ph-build/skills/why/": "ported",
+            "plugins/ph-build/skills/principles/principle-*/": "ported",
+            "plugins/ph-build/skills/dispatch/playbooks/": "ported",
+            "plugins/ph-build/skills/dispatch/references/": "ported",
+            "plugins/ph-build/skills/dispatch/scripts/": "ported",
+            "plugins/ph-build/agents/comment-sicko.md": "unrecorded",
+            "plugins/ph-lib/skills/primitives/unslop/": "unrecorded",
+            "plugins/ph-lib/skills/primitives/technical-writing/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/automate-me/": "ported",
+            "plugins/ph-lib/skills/operator-tools/bro/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/recall/": "ported",
+            "plugins/ph-lib/skills/operator-tools/reflect/": "ported",
+            "plugins/ph-lib/skills/operator-tools/what-did-i-get-done/": "unrecorded"
+          },
+          "candidates": [
+            {
+              "name": "benchmark-checklist",
+              "decision": "adopted"
+            },
+            {
+              "name": "principle-explain-the-number",
+              "decision": "adopted"
+            },
+            {
+              "name": "correct",
+              "decision": "adopted"
+            },
+            {
+              "name": "thermo-nuclear-review",
+              "decision": "adopted"
+            },
+            {
+              "name": "ship-pr",
+              "decision": "declined"
+            },
+            {
+              "name": "pause/resume checkpoints",
+              "decision": "declined"
+            },
+            {
+              "name": "project playbooks",
+              "decision": "declined"
+            },
+            {
+              "name": "thermos",
+              "decision": "declined"
+            },
+            {
+              "name": "ketchup",
+              "decision": "declined"
+            },
+            {
+              "name": "formal verification",
+              "decision": "declined"
+            },
+            {
+              "name": "implement-spec",
+              "decision": "declined"
+            },
+            {
+              "name": "pr",
+              "decision": "declined"
+            },
+            {
+              "name": "in-your-own-words",
+              "decision": "declined"
+            },
+            {
+              "name": "sharpen",
+              "decision": "declined"
+            },
+            {
+              "name": "poteto-help",
+              "decision": "declined"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pocock-skills",
+      "repository": "https://github.com/mattpocock/skills",
+      "fork_point": {
+        "sha": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "version": "v1.2.3"
+      },
+      "pin": {
+        "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+        "version": "v1.3.1+47",
+        "committed": "2026-10-19",
+        "reviewed": "2026-10-23"
+      },
+      "log": [
+        {
+          "date": "2026-10-23",
+          "from": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+          "to": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+          "pr": "https://github.com/mattlindell/photon-plugins/pull/20",
+          "backfilled": true,
+          "note": "Backfilled from git history. One review, ported across PRs #14, #18, and #19; #20 moved the Pin. A skill is ported where those PRs changed it for this upstream, and unrecorded where they are silent.",
+          "outcomes": {
+            "plugins/ph-build/skills/code-review/": "ported",
+            "plugins/ph-build/skills/correct/": "ported",
+            "plugins/ph-build/skills/diagnosing-bugs/": "ported",
+            "plugins/ph-build/skills/git-guardrails-claude-code/": "unrecorded",
+            "plugins/ph-build/skills/setup-pre-commit/": "unrecorded",
+            "plugins/ph-build/skills/tdd/": "ported",
+            "plugins/ph-build/skills/wizard/": "ported",
+            "plugins/ph-lib/skills/primitives/codebase-design/": "unrecorded",
+            "plugins/ph-lib/skills/primitives/writing-for-agents/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/caveman/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/handoff/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/teach/": "unrecorded",
+            "plugins/ph-lib/skills/operator-tools/wait-what/": "unrecorded",
+            "plugins/ph-plan/skills/domain-modeling/": "unrecorded",
+            "plugins/ph-plan/skills/grilling/": "ported",
+            "plugins/ph-plan/skills/improve-codebase-architecture/": "ported",
+            "plugins/ph-plan/skills/prototype/": "unrecorded",
+            "plugins/ph-plan/skills/research/": "unrecorded",
+            "plugins/ph-plan/skills/scout/": "diverged",
+            "plugins/ph-plan/skills/setup-ph-plan/": "ported",
+            "plugins/ph-plan/skills/to-questionnaire/": "unrecorded",
+            "plugins/ph-plan/skills/to-spec/": "ported",
+            "plugins/ph-plan/skills/to-tickets/": "ported",
+            "plugins/ph-plan/skills/triage/": "ported"
+          },
+          "candidates": [
+            {
+              "name": "retro",
+              "decision": "adopted"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

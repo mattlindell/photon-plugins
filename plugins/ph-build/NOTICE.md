@@ -4,7 +4,7 @@ Most of `ph-build` derives from MIT-licensed upstream work. All upstream
 copyright notices and license terms are preserved.
 
 Forked from [pstack-claude](https://github.com/michael-denyer/pstack-claude) at
-`a0a531f0e341144d12f0a26218b295ad5e8453a1` (v0.9.27), Michael Denyer's port of
+`a0a531f` (v0.9.27), Michael Denyer's port of
 Lauren Tan's (poteto) Cursor `pstack` plus seven skills from Cursor's
 `cursor-team-kit`. A further six skills derive from
 [Matt Pocock's skills](https://github.com/mattpocock/skills).
@@ -14,13 +14,9 @@ This is a **hard fork**. We carry none of upstream's sync tooling
 we port upstream changes by hand at each sync review. Each upstream-derived file
 carries a lineage state, defined in
 [ADR-0004](../../docs/adr/0004-lineage-states-for-upstream-derived-skills.md):
-**tracked** files are reviewed through the pin, **derived** files keep their
-lineage but are no longer synced. See [Lineage](#lineage).
-
-| Upstream | Reviewed through |
-| --- | --- |
-| pstack-claude | `903e7385382389806c59d6989b6274e24165082b` (v0.9.101, 2026-10-21) |
-| Matt Pocock's skills | `5beb35b040e3de97e54fa9e386d7e42d15c295c2` (v1.3.1+47, 2026-10-19) |
+**tracked** files are synced at each review, **derived** files keep their
+lineage but are no longer synced. See [Lineage](#lineage). Each upstream's
+current Pin is in [UPSTREAMS.md](../../UPSTREAMS.md).
 
 ## Upstream sources
 
@@ -62,44 +58,45 @@ text is identical to `cursor-team-kit`'s.
 
 ## Lineage
 
-Upstream paths are relative to each upstream repository's root. Every
-pstack-claude path sits under `plugins/pstack/`, shortened to `…/` below.
+Each table's heading is the upstream's name in `upstreams.json`. Upstream paths
+are relative to each upstream repository's root. Every pstack-claude path sits
+under `plugins/pstack/`, shortened to `…/` below.
 
 ### pstack-claude
 
 | Here | Upstream | State |
 | --- | --- | --- |
-| `skills/architect/` | `…/skills/architect/` | tracked, reviewed through `903e738` |
-| `skills/arena/` | `…/skills/arena/` | tracked, reviewed through `903e738` |
-| `skills/babysit/` | `…/skills/babysit/` | tracked, reviewed through `903e738` |
-| `skills/benchmark-checklist/` | `…/skills/benchmark-checklist/` | tracked, reviewed through `903e738` |
-| `skills/blast-radius/` | `…/skills/blast-radius/` | tracked, reviewed through `903e738` |
-| `skills/correct/` | `…/skills/correct/` | tracked, reviewed through `903e738` |
-| `skills/create-verification-skill/` | `…/skills/create-verification-skill/` | tracked, reviewed through `903e738` |
-| `skills/deslop/` | `…/skills/deslop/` | tracked, reviewed through `903e738` |
-| `skills/explain/` | `…/skills/teach/` | tracked, reviewed through `903e738` |
-| `skills/figure-it-out/` | `…/skills/figure-it-out/` | tracked, reviewed through `903e738` |
-| `skills/fix-ci/` | `…/skills/fix-ci/` | tracked, reviewed through `903e738` |
-| `skills/fix-merge-conflicts/` | `…/skills/fix-merge-conflicts/` | tracked, reviewed through `903e738` |
-| `skills/get-pr-comments/` | `…/skills/get-pr-comments/` | tracked, reviewed through `903e738` |
-| `skills/how/` | `…/skills/how/` | tracked, reviewed through `903e738` |
-| `skills/interrogate/` | `…/skills/interrogate/` | tracked, reviewed through `903e738` |
-| `skills/maintain-verification-skill/` | `…/skills/maintain-verification-skill/` | tracked, reviewed through `903e738` |
-| `skills/make-pr-easy-to-review/` | `…/skills/make-pr-easy-to-review/` | tracked, reviewed through `903e738` |
-| `skills/no-comments/` | `…/skills/no-comments/` | tracked, reviewed through `903e738` |
+| `skills/architect/` | `…/skills/architect/` | tracked |
+| `skills/arena/` | `…/skills/arena/` | tracked |
+| `skills/babysit/` | `…/skills/babysit/` | tracked |
+| `skills/benchmark-checklist/` | `…/skills/benchmark-checklist/` | tracked |
+| `skills/blast-radius/` | `…/skills/blast-radius/` | tracked |
+| `skills/correct/` | `…/skills/correct/` | tracked |
+| `skills/create-verification-skill/` | `…/skills/create-verification-skill/` | tracked |
+| `skills/deslop/` | `…/skills/deslop/` | tracked |
+| `skills/explain/` | `…/skills/teach/` | tracked |
+| `skills/figure-it-out/` | `…/skills/figure-it-out/` | tracked |
+| `skills/fix-ci/` | `…/skills/fix-ci/` | tracked |
+| `skills/fix-merge-conflicts/` | `…/skills/fix-merge-conflicts/` | tracked |
+| `skills/get-pr-comments/` | `…/skills/get-pr-comments/` | tracked |
+| `skills/how/` | `…/skills/how/` | tracked |
+| `skills/interrogate/` | `…/skills/interrogate/` | tracked |
+| `skills/maintain-verification-skill/` | `…/skills/maintain-verification-skill/` | tracked |
+| `skills/make-pr-easy-to-review/` | `…/skills/make-pr-easy-to-review/` | tracked |
+| `skills/no-comments/` | `…/skills/no-comments/` | tracked |
 | `skills/setup-ph-build/` | `…/skills/setup-pstack/` | **derived**, forked from `a0a531f` |
-| `skills/show-me-your-work/` | `…/skills/show-me-your-work/` | tracked, reviewed through `903e738` |
-| `skills/swarm/` | `…/skills/swarm/` | tracked, reviewed through `903e738` |
+| `skills/show-me-your-work/` | `…/skills/show-me-your-work/` | tracked |
+| `skills/swarm/` | `…/skills/swarm/` | tracked |
 | `skills/tdd/` (escape-hatch conditions only) | `…/skills/tdd/` | **derived**, forked from `a0a531f` |
-| `skills/thermo-nuclear-code-quality-review/` | `…/skills/thermo-nuclear-code-quality-review/` | tracked, reviewed through `903e738` |
-| `skills/thermo-nuclear-review/` | `…/skills/thermo-nuclear-review/` | tracked, reviewed through `903e738` |
-| `skills/typescript-best-practices/` | `…/skills/typescript-best-practices/` | tracked, reviewed through `903e738` |
-| `skills/why/` | `…/skills/why/` | tracked, reviewed through `903e738` |
-| `skills/principles/principle-*/` (all 24) | `…/skills/principle-*/` | tracked, reviewed through `903e738` |
-| `skills/dispatch/playbooks/` (all but `implement-a-ticket.md`) | `…/skills/poteto-mode/playbooks/` | tracked, reviewed through `903e738` |
-| `skills/dispatch/references/` | `…/skills/poteto-mode/references/` | tracked, reviewed through `903e738` |
-| `skills/dispatch/scripts/` | `…/skills/poteto-mode/scripts/` | tracked, reviewed through `903e738` |
-| `agents/comment-sicko.md` | `…/agents/comment-sicko.md` | tracked, reviewed through `903e738` |
+| `skills/thermo-nuclear-code-quality-review/` | `…/skills/thermo-nuclear-code-quality-review/` | tracked |
+| `skills/thermo-nuclear-review/` | `…/skills/thermo-nuclear-review/` | tracked |
+| `skills/typescript-best-practices/` | `…/skills/typescript-best-practices/` | tracked |
+| `skills/why/` | `…/skills/why/` | tracked |
+| `skills/principles/principle-*/` (all 24) | `…/skills/principle-*/` | tracked |
+| `skills/dispatch/playbooks/` (all but `implement-a-ticket.md`) | `…/skills/poteto-mode/playbooks/` | tracked |
+| `skills/dispatch/references/` | `…/skills/poteto-mode/references/` | tracked |
+| `skills/dispatch/scripts/` | `…/skills/poteto-mode/scripts/` | tracked |
+| `agents/comment-sicko.md` | `…/agents/comment-sicko.md` | tracked |
 
 `setup-ph-build` is derived because its tier ladder, caps, and policy file
 replace upstream's `models.json` generator, so upstream's model-policy changes
@@ -107,17 +104,19 @@ cannot apply to it. `dispatch/SKILL.md` is own work: it replaces upstream's
 `poteto-mode/SKILL.md` outright, while the playbooks, references, and scripts
 under it stay tracked against `poteto-mode`'s.
 
-### Matt Pocock's skills
+### pocock-skills
+
+Matt Pocock's skills.
 
 | Here | Upstream | State |
 | --- | --- | --- |
-| `skills/code-review/` | `skills/engineering/code-review/` | tracked, reviewed through `5beb35b` |
-| `skills/correct/` (`retro` categories only) | `skills/engineering/retro/` | tracked, reviewed through `5beb35b` |
-| `skills/diagnosing-bugs/` | `skills/engineering/diagnosing-bugs/` | tracked, reviewed through `5beb35b` |
-| `skills/git-guardrails-claude-code/` | `skills/misc/git-guardrails-claude-code/` | tracked, reviewed through `5beb35b` |
-| `skills/setup-pre-commit/` | `skills/misc/setup-pre-commit/` | tracked, reviewed through `5beb35b` |
-| `skills/tdd/` | `skills/engineering/tdd/` | tracked, reviewed through `5beb35b` |
-| `skills/wizard/` | `skills/engineering/wizard/` | tracked, reviewed through `5beb35b` |
+| `skills/code-review/` | `skills/engineering/code-review/` | tracked |
+| `skills/correct/` (`retro` categories only) | `skills/engineering/retro/` | tracked |
+| `skills/diagnosing-bugs/` | `skills/engineering/diagnosing-bugs/` | tracked |
+| `skills/git-guardrails-claude-code/` | `skills/misc/git-guardrails-claude-code/` | tracked |
+| `skills/setup-pre-commit/` | `skills/misc/setup-pre-commit/` | tracked |
+| `skills/tdd/` | `skills/engineering/tdd/` | tracked |
+| `skills/wizard/` | `skills/engineering/wizard/` | tracked |
 
 `tdd` and `correct` each carry both lineages, so each appears in both tables.
 

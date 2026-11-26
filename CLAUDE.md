@@ -54,10 +54,11 @@ decisions there; those go in `docs/adr/`.
 python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, flat companion files, , unknown SKILL.md keys
 python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
+python scripts/lint-upstreams.py                    # upstreams.json vs UPSTREAMS.md vs NOTICE lineage; --apply regenerates the Pin table
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-All four run in CI on every PR (`.github/workflows/checks.yml`), alongside
+All five run in CI on every PR (`.github/workflows/checks.yml`), alongside
 `ruff check`, `ruff format --check`, `basedpyright` over `scripts/`, the
 repo-check tests, and the plugin Python tests (see Script tests).
 
@@ -71,7 +72,7 @@ fenced code the same way for every check.
 uvx ruff check scripts/ && uvx ruff format scripts/ && basedpyright scripts/
 ```
 
-Run the four repo checks before any commit that touches plugin structure.
+Run the five repo checks before any commit that touches plugin structure.
 `lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization. It also checks
 backtick-quoted paths such as `` `playbooks/feature.md` ``, but only when the first segment is
@@ -82,6 +83,12 @@ directory a path starts with.
 `lint-links.py` reports 5 pre-existing failures in `product-team`, which is
 unregistered and awaiting cleanup — hence the `--exclude`. Drop the flag once
 that plugin is fixed.
+
+`lint-upstreams.py` holds `upstreams.json`, the record of each upstream's Pin and
+Sync log ([ADR-0006](docs/adr/0006-upstream-record.md)), against the human view in
+`UPSTREAMS.md` and the lineage tables in each `NOTICE.md`. A NOTICE never restates a
+Pin; each lineage table sits under a heading naming its upstream as the record does.
+After editing the record, run it with `--apply` to regenerate the Pin table.
 
 `lint-handoffs.py` allowlists the `ph-build` callers that PV-136 fixes. Delete an
 entry when its skill stops handing off to a human-only one. A stale entry fails
