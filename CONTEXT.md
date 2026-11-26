@@ -13,8 +13,8 @@ This repo. A registry of plugins, owned by and built primarily for one person,
 published so it can be pointed at rather than because it is a product. Coherence
 is judged by whether it makes sense to its author, not to a stranger.
 `docs/guide/` is the one deliberate exception. It is written for strangers,
-the teams adopting `ph-plan` and `ph-build`, and holds the canonical training
-for them.
+meaning the teams adopting `ph-plan` and `ph-build`. It holds their canonical
+training.
 
 ## Plugin
 

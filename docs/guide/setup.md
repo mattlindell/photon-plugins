@@ -147,7 +147,10 @@ live.
 
 4. The skill shows you drafts of the files before it writes them. Check the
    `docs/agents/issue-tracker.md` draft. It must name your tracker and contain
-   the values you gave. Then tell the skill to write the files.
+   the values you gave. On Linear with the local file, `issue-tracker.md`
+   keeps the `<TEAM>` and `<PROJECT>` placeholders. Look for your values in
+   the `docs/agents/linear-ids.local.md` draft instead. Then tell the skill to
+   write the files.
 
 5. If the repo has neither `CLAUDE.md` nor `AGENTS.md`, the skill asks which one
    to create. Pick the one your team uses.
@@ -184,8 +187,8 @@ hang under one parent. The effort's specs, maps, and research sit beside them.
 | --- | --- | --- |
 | GitHub | GitHub Issues in the repo, through `gh` | Nothing. |
 | GitLab | GitLab Issues in the repo, through `glab` | Nothing. |
-| Jira | Issues in one Jira project | Where specs, maps, and research live, then your Jira coordinates. |
-| Linear | Issues in one Linear project; each effort is a milestone | Your team key and project name, then whether to keep those two values out of the committed file. |
+| Jira | Issues in one Jira project | See **Jira** below. |
+| Linear | Issues in one Linear project; each effort is a milestone | See **Linear** below. |
 | Local markdown | Files under `.scratch/<feature>/` in the repo | Nothing. |
 | Other | However you describe it | One paragraph that describes your workflow. |
 
