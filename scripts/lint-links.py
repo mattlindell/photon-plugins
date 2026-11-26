@@ -6,7 +6,7 @@ segment is a directory beside the file, at its skill root, or at its plugin root
 Anything else names a file the consumer owns.
 
 Usage:
-    python scripts/lint-links.py [path ...]            # defaults to plugins/ and docs/
+    python scripts/lint-links.py [path ...]            # defaults to plugins/, docs/, and .claude/
     python scripts/lint-links.py --exclude product-team
 
 Skips fenced code blocks and template placeholders, both of which legitimately
@@ -124,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
     excluded: set[str] = {"node_modules"} | {
         e for spec in args.exclude for e in str(spec).split(",") if e
     }
-    roots = [Path(p) for p in (args.paths or ["plugins", "docs"])]
+    roots = [Path(p) for p in (args.paths or ["plugins", "docs", ".claude"])]
 
     problems: list[Problem] = []
     for root in roots:

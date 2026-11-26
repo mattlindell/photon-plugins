@@ -47,15 +47,18 @@ and whether each is Tracked or Derived:
 ## Running a Sync review
 
 Run `/sync-upstream <name>` from this repository once you have decided the
-upstream has changes worth taking. The repo-local `sync-upstream` skill is not
-built yet. Until it is, a review follows the same steps by hand, as one PR:
+upstream has changes worth taking. The repo-local
+[`sync-upstream`](.claude/skills/sync-upstream/SKILL.md) skill runs the whole
+review as one PR:
 
-1. List the upstream's commits since the Pin that touch a Tracked path, and any
-   upstream skills we do not carry.
-2. Port what fits, one commit per change. Defer a large port as `owed` with a
+1. A script clones the upstream and lists its commits since the Pin per Tracked
+   path, plus candidates: upstream changes under no lineage row, marked where an
+   earlier review declined them.
+2. Port what fits, one commit per skill. Defer a large port as `owed` with a
    ticket instead of holding the Pin back.
-3. Demote any skill whose outcome is `diverged` for the second review running.
-   Its NOTICE row becomes `**derived**, forked from <short sha>`.
+3. Demote any skill whose outcome is `diverged` for the second review running,
+   or whose upstream file was deleted. Its NOTICE row becomes
+   `**derived**, forked from <short sha>`.
 4. As the last commit, append a Sync log entry to `upstreams.json` with an
    outcome for every Tracked path and a decision for every candidate, move the
    Pin, and run `python scripts/lint-upstreams.py --apply`.
