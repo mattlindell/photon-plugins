@@ -1,105 +1,82 @@
 # Issue tracker: Linear
 
-Issues, PRDs, and specs for this repo live in **Linear**. There are two ways in:
+Tickets for this repo live in Linear, in team `<TEAM>` and project `<PROJECT>`. Specs, scout maps, and research findings live as Linear Documents attached to that project. `CONTEXT.md` and `docs/adr/` stay in this repo (see `domain.md`).
 
-- **`linearis` CLI (default / fast path)** — a local CLI with JSON output; pipe through `jq`. Faster than the MCP and covers the whole everyday loop: list/search/read, create/update (labels, status, project, `--parent-ticket`, `blocks`/`blocked-by` relations), and discussion threads. **Reach for this first.**
-- **Linear MCP (`mcp__linear__*`, fallback)** — broader surface. Use it only for operations the CLI can't do (see "CLI gaps" below) or when a skill explicitly needs an MCP tool.
+Use whatever access to Linear the runner already has for every operation below. When an operation isn't available through that access, tell the person instead of switching to a different connection.
 
-Both accept **human-readable identifiers** (team key, issue key, project/label names), so no UUIDs are needed on either path.
+Address teams, projects, milestones, labels, and statuses by name. You don't need raw IDs.
 
-> **Prerequisite:** the CLI path needs the `linearis` binary on `PATH` and authenticated — it is
-> **not** installed by this repo, and neither is its command reference. Matt's fleet installs the
-> binary via mise and carries the `linearis-cli` skill as a personal skill at
-> `~/.claude/skills/linearis-cli`. Auth: `linearis auth login`, `--api-token <token>`,
-> `LINEAR_API_TOKEN`, or `~/.linearis/token`. If `linearis` is unavailable (fresh clone, CI, AFK
-> agent without it provisioned), use the **MCP path** for everything instead.
-
-### CLI gaps → use the MCP
-
-- **Creating labels** — `linearis labels` only *lists*; it can't create. New labels → MCP `create_issue_label`. (The triage and Wayfinder label groups already exist, so this is rarely needed.)
-- Anything outside the CLI's domains (`issues`, `comments`, `labels`, `projects`, `cycles`, `milestones`, `documents`, `files`, `attachments`, `teams`, `users`, `initiatives`) — check `linearis usage` / `linearis <domain> usage`, and fall back to the MCP if absent.
-
-## Fixed coordinates
-
-Both tools resolve teams, projects, and labels **by name**. **This repo is public, so the workspace,
-team, and project identifiers are not committed** — they live in `docs/agents/linear-ids.local.md`
-(gitignored), along with the raw UUIDs.
-
-Read that file first and substitute throughout this doc:
+## Coordinates
 
 | Placeholder | Meaning |
 | --- | --- |
-| `<TEAM>` | the team key, used as `--team <TEAM>` and as the issue-key prefix (`<TEAM>-123`) |
-| `<PROJECT>` | the project name — **quote it**, it contains a space (`--project "<PROJECT>"`) |
+| `<TEAM>` | The team key. It's also the issue-key prefix (`<TEAM>-123`). |
+| `<PROJECT>` | The project every ticket and Document for this repo belongs to. |
 
-Always create issues **scoped to that project and team** unless told otherwise.
+This repo is public, so the values aren't committed. They live in `docs/agents/linear-ids.local.md`, which is gitignored. Read it first and substitute throughout this file. It may also record how this machine prefers to reach Linear; follow that when it does. If the file is missing, ask before writing anything to Linear. Don't guess a team or project, and don't create issues outside them.
 
-> If `linear-ids.local.md` is absent (fresh clone, CI, AFK agent), you cannot resolve `<TEAM>` or
-> `<PROJECT>` — **ask before writing anything to Linear.** Don't guess at a team or project name,
-> and don't fall back to creating issues unscoped.
+## Efforts
 
-## Workflow states (Linear statuses)
+An **effort** is a body of work planned together. In Linear, each effort is a **project milestone** in `<PROJECT>`:
 
-Linear models "state" as a status, not a label. The team's statuses, by name: `Backlog`, `Todo`,
-`In Progress`, `In Review`, `Done`, `Duplicate`, `Canceled`. Pass the status by name
-(CLI `--status`, MCP `state`); raw status IDs live in `linear-ids.local.md`.
+- **Tickets** are issues in `<PROJECT>`, assigned to the effort's milestone.
+- **Specs, maps, and research** are Documents attached to `<PROJECT>`. Documents can't attach to a milestone, so link each one from the milestone's description instead.
+- **The milestone description** is the effort's index: a line on what the effort is for, then a link to each Document.
 
-The five **triage roles** are Linear *labels*, not statuses — see `triage-labels.md`.
+A spec or ticket names its effort, usually as `Effort: milestone <name>`. When nothing names it and more than one milestone fits, ask. When a skill publishes the first artifact for new work, create the milestone first.
+
+Title Documents by kind so people and agents can find them: `Spec: <name>`, `Map: <effort>`, `Research: <topic>`.
+
+## Workflow states
+
+Linear records state as a **status**, not a label. The team's statuses, by name: `Backlog`, `Todo`, `In Progress`, `In Review`, `Done`, `Duplicate`, `Canceled`. An issue is **closed** when its status is `Done`, `Duplicate`, or `Canceled`.
+
+The five triage roles are labels, not statuses. See `triage-labels.md`.
 
 ## Conventions
 
-Each operation lists the **CLI (default)** then the **MCP (fallback)**.
-
-- **Create an issue**: `linearis issues create "<title>" --team <TEAM> --project "<PROJECT>" --description "<md>" [--labels a,b] [--status "<name>"]` · MCP `save_issue` with `title`, `description` (real newlines, not `\n`), `team`, and `project`.
-- **Read an issue**: `linearis issues read <TEAM>-<n> --with-comment-threads` · MCP `get_issue` + `list_comments`.
-- **List / search issues**: `linearis issues list --team <TEAM> --project "<PROJECT>" [--label … --status … --assignee …]` or `linearis issues search "<query>"` · MCP `list_issues`.
-- **Comment on an issue**: `linearis issues discuss <TEAM>-<n> --body "<md>"` (start a thread); reply with `linearis issues reply <thread-id> --body "…"` · MCP `save_comment`.
-- **Apply / change labels or status**: `linearis issues update <TEAM>-<n> --labels <names> [--label-mode add] [--status "<name>"]` · MCP `save_issue` with the new `labels`/`state`. (Use `--label-mode add` to append rather than overwrite.)
-- **Close**: `linearis issues update <TEAM>-<n> --status Done` (or `Canceled`) · MCP `save_issue` transitioning `state`.
+- **Create a ticket:** an issue in team `<TEAM>`, project `<PROJECT>`, and the effort's milestone. Write the description in Markdown with real newlines.
+- **Read a ticket:** the issue by key, with its comments. The comments often carry the constraints that matter.
+- **List or search tickets:** filter issues by project, milestone, label, status, or assignee.
+- **Sub-issue of another ticket:** set the issue's parent.
+- **Comment:** add a comment to the issue.
+- **Apply or remove labels:** add the label to the issue's existing set. Don't replace the set unless you mean to drop the other labels.
+- **Close:** move the issue to a completed status (`Done`) or a canceled one.
+- **Blocking:** Linear's native **blocks / blocked by** relation. A ticket is unblocked when every issue blocking it is closed. Where a relation can't be created, put `Blocked by: <TEAM>-<n>, <TEAM>-<n>` at the top of the description.
+- **Create a missing label:** create it at the workspace level, so every team shares one copy.
 
 ## Branch naming
 
-When a skill or playbook says "get onto a working branch", name it by this
-precedence, stopping at the first that answers:
+When a skill says "get onto a working branch", use the first of these that answers:
 
-1. **A pattern the repo states.** A rule in `CLAUDE.md`, `CONTRIBUTING.md`, or a
-   lint check beats everything below it.
-2. **The tracker's generated name.** Linear returns `branchName` on the issue —
-   `linearis issues read <TEAM>-<n> | jq -r .branchName` gives you
-   `feature/pv-132-reconcile-…`. Use it as-is.
-3. **The ticket key and title**, slugified: `pv-132-reconcile-dispatch`.
+1. A branch pattern the repo states in `CLAUDE.md`, `CONTRIBUTING.md`, or a lint check.
+2. The issue's generated branch name. Linear returns it as `branchName` on the issue.
+3. The ticket key and title, slugified: `<team>-123-short-title`.
 
-**Rename an inherited branch only when it does not already carry the ticket
-key.** Orchestrators create worktrees and bind tasks to branch names, so
-renaming a branch that already reads `pv-132-…` to add a `feature/` prefix
-risks breaking that binding and buys nothing.
-
-The key reaches Linear through the branch name **or** the PR body, and one of
-the two must carry it. Where the branch cannot safely be renamed, name the
-ticket in the PR's `## Why` section instead.
-
-## When a skill says "publish to the issue tracker"
-
-Create a Linear issue in the project — `linearis issues create … --team <TEAM> --project "<PROJECT>"` (MCP `save_issue` fallback).
-
-## When a skill says "fetch the relevant ticket"
-
-`linearis issues read <TEAM>-<n> --with-comment-threads` (MCP `get_issue` + `list_comments` fallback).
+The ticket key must reach Linear through the branch name or the PR body. If the branch can't carry it, name the ticket in the PR description.
 
 ## Pull requests as a triage surface
 
-Not applicable — Linear is the request surface, not GitHub PRs. Code review happens on GitHub PRs,
-but incoming requests/bugs/features are triaged as Linear issues.
+Not applicable. Incoming requests, bugs, and features are triaged as Linear issues. Code review happens on PRs, but PRs aren't a request surface.
 
-## Wayfinding operations
+## When a skill says "publish to the issue tracker"
 
-Used by `/wayfinder`. Model the **map** and its **child tickets** as Linear issues:
+- **A ticket** becomes an issue in the effort's milestone, as in **Create a ticket** above.
+- **A spec, PRD, or research finding** becomes a Document attached to `<PROJECT>`, titled `Spec: <name>` or `Research: <topic>`. Link it from the milestone description. Link a research Document from the ticket that asked the question too.
 
-Wayfinder labels are a workspace-level **"Wayfinder" label group** with children named `wayfinder:map`, `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, `wayfinder:task` — apply the full prefixed name. (These already exist workspace-wide; no seeding needed.)
+Triage labels go on issues only. When a skill asks you to label a spec, skip it. The spec's `settled:` block shows whether it's ready.
 
-- **Map**: a single issue labeled `wayfinder:map` holding the Notes / Decisions-so-far / Fog body.
-- **Child ticket**: an issue linked to the map as a Linear **sub-issue** via `linearis issues create "<title>" --team <TEAM> --project "<PROJECT>" --parent-ticket <TEAM>-<map> --labels wayfinder:<type>` (MCP `save_issue` with `parent` as fallback), where `<type>` is `research` / `prototype` / `grilling` / `task`. Once claimed, assign the ticket to the driving dev.
-- **Blocking**: Linear's native **blocks / blocked-by relations** — `linearis issues update <TEAM>-<child> --blocked-by <TEAM>-<blocker>` (MCP fallback). A child is unblocked when every blocker is `Done`/`Canceled`. Query blocked children with `linearis issues list --has-blockers`. Where a relation can't be created, fall back to a `Blocked by: <TEAM>-<n>, <TEAM>-<n>` line at the top of the child body.
-- **Frontier query**: `linearis issues list --team <TEAM> --parent <TEAM>-<map>` for the map's open sub-issues (drop completed/canceled statuses); drop any with an open blocker (`--has-blockers` marks these) or an assignee; first in map order wins.
-- **Claim**: `linearis issues update <TEAM>-<n> --assignee <me>` — the session's first write.
-- **Resolve**: `linearis issues discuss <TEAM>-<n> --body "<answer>"`, `linearis issues update <TEAM>-<n> --status Done`, then append a context pointer to the map's Decisions-so-far.
+## When a skill says "fetch the relevant ticket"
+
+Read the issue by key (for example `<TEAM>-123`) with its comments. For a spec, read the Document the ticket or milestone description links to.
+
+## Scouting operations
+
+Used by `/scout`. The **map** is a Document and its **children** are issues in the effort's milestone.
+
+- **Map:** a Document attached to `<PROJECT>`, titled `Map: <effort>` and linked from the milestone description. It holds the Destination, Notes, Decisions so far, Not yet specified, and Out of scope sections. A Document carries no labels, so its title and the milestone link identify it, not a `scout:map` label.
+- **Child ticket:** an issue in the milestone, labeled `scout:<type>` (`research`, `prototype`, `grilling`, or `task`), with the question in the description. The `scout:` labels already exist in a workspace-level **Scout** label group. Maps charted before this layout are issues labeled `scout:map` or `wayfinder:map` with sub-issues as children; work those in place.
+- **Blocking:** blocks / blocked by relations, as above.
+- **Frontier:** the milestone's issues that carry a `scout:<type>` label, are not closed, and have no assignee. Drop any with an open blocker. The oldest left wins.
+- **Claim:** assign the issue to the current user. This is the session's first write.
+- **Resolve:** post the answer as a comment, or as a `Research:` Document linked from the comment. Close the issue. Then append a one-line pointer (the gist plus the issue link) to the map Document's Decisions so far.

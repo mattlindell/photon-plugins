@@ -252,7 +252,7 @@ claude --plugin-dir plugins/plugin-name
 
 ### Issue tracker
 
-Issues live in **Linear**. Use the `linearis` CLI first, the Linear MCP as fallback. The team and project identifiers are not committed (this repo is public) — resolve them from `docs/agents/linear-ids.local.md`. See `docs/agents/issue-tracker.md`.
+Issues live in **Linear**. Each effort is a project milestone; its specs, maps, and research are project Documents linked from the milestone description. The team and project identifiers, and this machine's connection preference, are not committed (this repo is public) — resolve them from `docs/agents/linear-ids.local.md`. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
