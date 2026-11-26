@@ -28,15 +28,17 @@ explore again.
 - **Rules that look contradictory are one rule applied in two settings.**
   `ph-plan` has a human to ask, so it follows `block-on-the-human`. `ph-build`
   has no one to ask, so it follows `never-block-on-the-human`.
-- **CI validates the marketplace.** Four checks run on every PR. They compare
+- **CI validates the marketplace.** Five checks run on every PR. They compare
   the plugin registry against the files on disk, resolve every link and
-  anchor, enforce handoff rules between plugins, and compute the minimum
-  semver bump from structural changes. The check scripts pass type checking
+  anchor, enforce handoff rules between plugins, hold the upstream record and
+  NOTICE files in agreement, and compute the minimum semver bump from
+  structural changes. The check scripts pass type checking
   with basedpyright, and every GitHub Action is pinned to a commit SHA.
-- **Each adapted skill tracks its upstream.** A NOTICE file records the
-  upstream commit each skill was last reviewed against and whether the skill
-  still syncs with it. See
-  [ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md).
+- **Each adapted skill tracks its upstream.** [UPSTREAMS.md](UPSTREAMS.md)
+  shows the upstream commit each upstream was last reviewed through, and a
+  NOTICE file records whether each skill still syncs with it. See
+  [ADR-0004](docs/adr/0004-lineage-states-for-upstream-derived-skills.md) and
+  [ADR-0006](docs/adr/0006-upstream-record.md).
 
 ## Plugins
 

@@ -70,11 +70,11 @@ mechanically detectable rather than a matter of reading comprehension.
 
 The two MIT sources this marketplace hard-forks from. Nothing syncs them
 automatically: improvements arrive when someone reads their changelogs and ports
-what fits, and a `NOTICE.md` records the upstream commit last reviewed. Every
-upstream-derived skill carries a lineage state: Tracked, Derived, or Own once
-no upstream text remains. Entries
-below that say "Upstream" without qualification mean the pstack upstream; that
-is where those concepts come from.
+what fits at a Sync review, and `upstreams.json` records each upstream's Pin and
+Sync log. Every upstream-derived skill carries a lineage state: Tracked,
+Derived, or Own once no upstream text remains. Entries below that say "Upstream"
+without qualification mean the pstack upstream; that is where those concepts
+come from.
 
 ### pstack upstream
 
@@ -100,6 +100,30 @@ hand, at each sync review. Not the automatic sync tooling ADR-0001 rejected.
 
 A lineage state: a skill that keeps its upstream lineage and its upstream
 copyright, but is no longer synced.
+
+### Pin
+
+The upstream commit a Sync review has read through, one per upstream, held in
+`upstreams.json` and shown in `UPSTREAMS.md`. It means *reviewed*, not
+*applied*: a port deferred out of the review is recorded as owed in the Sync
+log, and the Pin moves past it anyway. Tracked skills inherit it; a NOTICE does
+not restate it. Distinct from a Derived skill's "forked from" SHA, which is
+per-skill and stays in its NOTICE row.
+
+### Sync review
+
+One pass over an upstream's commits since its Pin: triage each change against
+the Tracked paths, port what fits, apply demotions, then move the Pin. Run by the
+repo-local `sync-upstream` skill. Every review appends a Sync log entry, even one
+that ports nothing.
+
+### Sync log
+
+The append-only history of Sync reviews in `upstreams.json`: date, upstream,
+from and to SHA, and an outcome for every Tracked skill (`ported`, `no-change`,
+`diverged`, or `owed`). Entries rebuilt from git history may say `unrecorded`
+where the history is silent. The Derived demotion rule (two consecutive skips)
+is computed from it.
 
 ## Fan-out
 
