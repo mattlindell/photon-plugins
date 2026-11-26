@@ -93,7 +93,7 @@ but incoming requests/bugs/features are triaged as Linear issues.
 
 ## Wayfinding operations
 
-Used by `/wayfinder`. Model the **map** and its **child tickets** as Linear issues:
+Written for Wayfinder, which `/scout` replaced. Scout expects a "Scouting operations" section and `scout:*` labels, so this section is out of date. Model the **map** and its **child tickets** as Linear issues:
 
 Wayfinder labels are a workspace-level **"Wayfinder" label group** with children named `wayfinder:map`, `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, `wayfinder:task` — apply the full prefixed name. (These already exist workspace-wide; no seeding needed.)
 
