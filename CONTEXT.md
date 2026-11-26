@@ -120,9 +120,10 @@ that ports nothing.
 ### Sync log
 
 The append-only history of Sync reviews in `upstreams.json`: date, upstream,
-from and to SHA, and a per-skill outcome (`ported`, `no-change`, `diverged`,
-or `owed`). The Derived demotion rule
-(two consecutive skips) is computed from it.
+from and to SHA, and an outcome for every Tracked skill (`ported`, `no-change`,
+`diverged`, or `owed`). Entries rebuilt from git history may say `unrecorded`
+where the history is silent. The Derived demotion rule (two consecutive skips)
+is computed from it.
 
 ## Fan-out
 

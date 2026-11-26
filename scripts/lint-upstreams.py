@@ -137,10 +137,22 @@ def check_rows(rows: list[Row], record: Record) -> list[Problem]:
 
 
 def check_log_ends_at_pin(record: Record) -> list[Problem]:
-    """Rule 4: the Pin moves only with a recorded review."""
+    """Rule 4: the Pin moves only with a recorded review, and reviews chain end to end."""
     problems: list[Problem] = []
     for upstream in record["upstreams"]:
-        last = upstream["log"][-1]["to"]
+        log = upstream["log"]
+        for i in range(1, len(log)):
+            start, previous = log[i]["from"], log[i - 1]["to"]
+            if start != previous:
+                problems.append(
+                    Problem(
+                        "log-pin",
+                        f"upstreams.json: {upstream['name']}",
+                        f"log[{i}] starts at {(start or 'null')[:7]},"
+                        f" but log[{i - 1}] ended at {previous[:7]}",
+                    )
+                )
+        last = log[-1]["to"]
         pin = upstream["pin"]["sha"]
         if last != pin:
             problems.append(
@@ -154,17 +166,32 @@ def check_log_ends_at_pin(record: Record) -> list[Problem]:
 
 
 def check_demotions(rows: list[Row], record: Record) -> list[Problem]:
-    """Rule 6: two consecutive `diverged` outcomes demote a skill to Derived (ADR-0004)."""
+    """Rule 6: two consecutive `diverged` outcomes demote a skill to Derived (ADR-0004).
+
+    The newest entry must name every tracked row, so a review that skips a skill
+    cannot make two non-consecutive `diverged` outcomes look adjacent, and a key
+    that drifts from its NOTICE row cannot exempt the skill.
+    """
     problems: list[Problem] = []
     for upstream in record["upstreams"]:
         history: dict[str, list[str]] = {}
         for entry in upstream["log"]:
             for path, outcome in entry["outcomes"].items():
                 history.setdefault(path, []).append(outcome_state(outcome))
+        newest = upstream["log"][-1]["outcomes"]
         for row in rows:
             if row.upstream != upstream["name"] or row.state != TRACKED:
                 continue
-            if history.get(row.path, [])[-2:] == ["diverged", "diverged"]:
+            if row.path not in newest:
+                problems.append(
+                    Problem(
+                        "demotion",
+                        f"{row.notice}:{row.line}",
+                        f"newest {upstream['name']} Sync log entry has no outcome for"
+                        f" tracked {row.path}; every review records one per tracked row",
+                    )
+                )
+            elif history[row.path][-2:] == ["diverged", "diverged"]:
                 problems.append(
                     Problem(
                         "demotion",

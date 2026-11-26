@@ -51,7 +51,7 @@ decisions there; those go in `docs/adr/`.
 ## Checks
 
 ```bash
-python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, flat companion files, , unknown SKILL.md keys
+python scripts/validate-marketplace.py              # registry vs disk, pinned arrays, manifest traps, flat companion files, unknown SKILL.md keys
 python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/lint-upstreams.py                    # upstreams.json vs UPSTREAMS.md vs NOTICE lineage; --apply regenerates the Pin table

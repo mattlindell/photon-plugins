@@ -169,6 +169,28 @@ class LintUpstreams(unittest.TestCase):
         self.write_record()
         self.assert_fails("demotion", "plugins/demo/skills/alpha/ is still tracked")
 
+    def test_rule4_broken_log_chain_fails(self) -> None:
+        second = copy.deepcopy(self.upstream["log"][0])
+        second["from"] = "c" * 40
+        self.upstream["log"].append(second)
+        self.write_record()
+        self.assert_fails("log-pin", "log[1] starts at ccccccc, but log[0] ended at bbbbbbb")
+
+    def test_rule6_newest_entry_must_cover_every_tracked_row(self) -> None:
+        del self.upstream["log"][0]["outcomes"]["plugins/demo/skills/alpha/"]
+        self.upstream["log"][0]["outcomes"]["plugins/demo/skills/*/"] = "ported"
+        self.write_record()
+        self.assert_fails("demotion", "no outcome for tracked plugins/demo/skills/alpha/")
+
+    def test_rule6_skipped_review_cannot_hide_a_tracked_skill(self) -> None:
+        gap = copy.deepcopy(self.upstream["log"][0])
+        gap["from"] = PIN
+        gap["outcomes"] = {"plugins/demo/skills/beta/": "no-change"}
+        self.upstream["log"][0]["outcomes"]["plugins/demo/skills/alpha/"] = "diverged"
+        self.upstream["log"].append(gap)
+        self.write_record()
+        self.assert_fails("demotion", "no outcome for tracked plugins/demo/skills/alpha/")
+
     def test_rule6_one_diverged_passes(self) -> None:
         self.upstream["log"][0]["outcomes"]["plugins/demo/skills/alpha/"] = "diverged"
         self.write_record()

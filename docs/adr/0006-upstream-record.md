@@ -23,6 +23,12 @@ additions with the decision taken on each.
   A skill with two lineages appears under each upstream's entry separately.
 - An outcome is `ported`, `no-change`, `diverged`, or `owed`. `owed` carries a
   ticket reference.
+- A fifth outcome, `unrecorded`, is allowed only in an entry marked
+  `backfilled`, where git history does not say what a review decided. The
+  demotion rule treats it as not diverged.
+- Every entry records an outcome for every path that is tracked when it is
+  written. A review that leaves a skill out would make the demotion rule count
+  two non-adjacent `diverged` outcomes as consecutive.
 
 **A Pin means reviewed, not applied.** ADR-0004 moved the pin only after every
 port it covered had landed, so one large deferred port would stall the pin for
@@ -40,8 +46,10 @@ that value is genuinely per-skill.
 **A check enforces it.** `scripts/lint-upstreams.py` fails when a NOTICE carries
 a full SHA or a "reviewed through" phrase; a lineage state is malformed; a NOTICE
 names an upstream absent from the JSON; the newest log entry does not end at the
-Pin; the generated block is stale; a skill is still `tracked` after two
-consecutive `diverged` outcomes; or an `outcomes` path does not exist on disk.
+Pin, or an entry does not start where the one before it ended; the generated
+block is stale; the newest entry omits a tracked row, or a skill is still
+`tracked` after two consecutive `diverged` outcomes; or an `outcomes` path does
+not exist on disk.
 `--apply` rewrites the generated block.
 
 **A repo-local skill runs the review.** `.claude/skills/sync-upstream/` performs
