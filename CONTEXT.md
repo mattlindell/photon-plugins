@@ -301,6 +301,30 @@ A ticket whose purpose is to close a Dimension for other tickets rather than to
 ship anything. Whoever closes it — human or agent — updates the blocked tickets'
 Rigor signal on close, recording which dimension was decided and with what.
 
+## Scout map
+
+The record of an Effort too big for one planning session, kept on the Issue
+tracker by `ph-plan`'s `scout` skill. It names a destination, usually a spec,
+and lists the Decision tickets closed on the way there. It is an index: each
+decision lives in its ticket, and the map holds a one-line gist and a link. A
+map closes when its Frontier is empty and nothing is left unspecified.
+
+## Frontier
+
+The Decision tickets on a Scout map that someone can work now: open, not
+blocked by another open ticket, and not assigned to anyone. Questions that
+can't yet be stated precisely enough to ticket are not on the Frontier. They
+wait in the map's "Not yet specified" section until an answer makes them sharp.
+
+## One-way door
+
+A decision whose cost to undo is real: a schema change or data migration, a
+public API or anything external consumers depend on, anything that deletes or
+irreversibly rewrites data, and auth, billing, or security boundaries. Every
+other decision is a two-way door, cheaper to correct on review than to plan
+for. At a one-way door the Rigor signal leaves open, `ph-build` stops instead
+of building.
+
 ## Issue tracker
 
 The system a repo records its tickets in, together with wherever its specs,

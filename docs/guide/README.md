@@ -21,7 +21,7 @@ Terms link to [CONTEXT.md](../../CONTEXT.md), the repo's one glossary.
 Read the pages in this order. Pages without a link aren't written yet.
 
 1. [Setup](setup.md). Install the three plugins and set up one repo.
-2. Reading the plan. Read a spec's `settled:` block and predict what `ph-build`
+2. [Reading the plan](reading-the-plan.md). Read a spec's `settled:` block and predict what `ph-build`
    does with it.
 3. Writing the plan. Go from `/ph-plan:intake` to a spec or a set of tickets.
 4. House standard. Agree on one way to track work across every repo and person
