@@ -275,8 +275,11 @@ yourself.
 Either way, answer the triage-label question the way the standard says. If your
 standard has its own `triage-labels.md`, check the skill's draft against it the
 same way. Keep the "Claim roles" section that the skill fills in. It maps each
-[claim role](../../CONTEXT.md#claim-role) to a label. Then commit the files. Northwind set up `wholesale` from the built-in route. Its
-`issue-tracker.md` matches the one in `storefront` except for the project key.
+[claim role](../../CONTEXT.md#claim-role) to the label or field that records
+it. Then commit the files.
+
+Northwind set up `wholesale` from the built-in route. Its `issue-tracker.md`
+matches the one in `storefront` except for the project key.
 
 For a repo that you set up before the standard existed, compare its
 `issue-tracker.md` with the template. Edit the file to match, or run the setup
