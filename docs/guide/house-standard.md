@@ -26,9 +26,14 @@ choices, make your own.
 `ph-plan` writes four kinds of artifact. Decide where each one lives, once, for
 the whole team.
 
+On this page, "the tracker" means the system that holds your tickets. Your
+[issue tracker](../../CONTEXT.md#issue-tracker) is that system plus wherever
+specs, maps, and research live, so this step decides what your issue tracker
+is.
+
 | Artifact | What it is | The decision |
 | --- | --- | --- |
-| Ticket | One piece of work, or one [decision ticket](../../CONTEXT.md#decision-ticket). | Always in your [issue tracker](../../CONTEXT.md#issue-tracker). Decide which project or team holds each repo's tickets. |
+| Ticket | One piece of work, or one [decision ticket](../../CONTEXT.md#decision-ticket). | Always in the tracker. Decide which project or team holds each repo's tickets. |
 | Spec | The plan for an effort, with its `settled:` block. | In the tracker beside the tickets, or in a wiki. |
 | Map | A [scout map](../../CONTEXT.md#scout-map) for an effort too big for one session. | Put it wherever specs go. |
 | Research | A finding that answers one research ticket, with its sources. | Put it wherever specs go. |
@@ -114,12 +119,15 @@ question, such as "Payment entry points for guest shoppers".
 
 The prefixes let people and agents find artifacts by name. A search for
 `Map: Checkout redesign` finds one result. Where specs sit beside tickets, the
-prefix is the only thing that tells them apart. Where specs live in a wiki or as
-documents, the prefix works where labels don't exist.
+prefix tells them apart from work tickets. Where specs live in a wiki or as
+documents, which carry no labels, the prefix is how a reader finds the map.
 
 Write the prefixes exactly like this in your standard: a capital letter, a
-colon, and a space. The built-in templates use the same three, so a standard
-built on one of them already has them.
+colon, and a space. Not every built-in template has them. The templates for
+trackers that can keep specs in a wiki or as documents use the same three. The
+others find a map by a label or by a file path, with no title prefix. If your
+base template has no prefixes, add them wherever it creates a spec, a map, or a
+research finding.
 
 ## Step 4. Separate house-wide values from per-repo values
 
@@ -178,7 +186,9 @@ yours and make these changes:
    change the standard instead.
 
 Don't add a connection method, such as a CLI or an MCP server, to the template.
-The built-in templates leave it out on purpose. Claude Code uses whatever access
+Most built-in templates leave it out on purpose. A template whose commands all
+use one CLI, because that CLI is the only way in, keeps it. Don't add a second
+one. Claude Code uses whatever access
 to the tracker each person already has, and each person records their own
 preference in a local file (step 6).
 
@@ -245,8 +255,9 @@ built-in template, which is the usual case.
    template, with this repo's values filled in. Check the new draft, then tell
    the skill to write it.
 
-The route still does its other work, such as creating triage labels and, on the
-route that offers it, writing the local file.
+The route still does its other work, such as creating triage labels on routes
+that create them and, on the route that offers it, writing the local file. See
+[Tracker routes](setup.md#tracker-routes) for which routes create labels.
 
 **"Other".** Use this when no built-in route fits your tracker.
 
@@ -263,8 +274,8 @@ yourself.
 
 Either way, answer the triage-label question the way the standard says. If your
 standard has its own `triage-labels.md`, check the skill's draft against it the
-same way. Keep the "Claim roles" section that the skill fills in. Then commit
-the files. Northwind set up `wholesale` from the built-in route. Its
+same way. Keep the "Claim roles" section that the skill fills in. It maps each
+[claim role](../../CONTEXT.md#claim-role) to a label. Then commit the files. Northwind set up `wholesale` from the built-in route. Its
 `issue-tracker.md` matches the one in `storefront` except for the project key.
 
 For a repo that you set up before the standard existed, compare its
@@ -284,7 +295,7 @@ which repos follow the standard, so you know which files to update.
 - [ ] The template says what an effort is and how work names its effort.
 - [ ] The template uses `Spec:`, `Map:`, and `Research:` titles.
 - [ ] House-wide values are literal text, and per-repo values are placeholders.
-- [ ] The template names no connection method.
+- [ ] The template adds no connection method that its base template left out.
 - [ ] The template lives in one place, with notes on how to fill each
       placeholder.
 - [ ] Private values and connection preferences go in a gitignored
