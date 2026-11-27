@@ -38,17 +38,17 @@ If a candidate fails to produce output, proceed with N-1 and note the dropout in
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, choose one model from the `arena cross-judge pool` in `~/.claude/ph-build-policy.md` when present. Otherwise choose from the runner defaults in [Fan-out](#fan-out). Prefer a different model family from the parent's. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
+After all Phase B candidates complete, choose one model from the `arena cross-judge pool` in `~/.claude/ph-build-policy.md` when present. Otherwise choose from the runner defaults in [Fan-out](#fan-out). Use a different model family from the parent's, and if none is available, skip the judge and say so. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
 
 ## Phase D: Pick a base
 
 Read every candidate end to end before picking.
 
-Score each candidate against the rubric criterion by criterion, not on holistic feel. Compare against the cross-judge. Agreement on the base confirms the pick. Disagreement means one of you is biased or the rubric was ambiguous. Read both rationales before deciding.
+Score each candidate against the rubric criterion by criterion, not on holistic feel. Compare against the cross-judge when Phase C ran one. Agreement on the base confirms the pick. Disagreement means one of you is biased or the rubric was ambiguous. Read both rationales before deciding.
 
 Pick the base on which candidate a future maintainer can extend most easily without breaking invariants. Prefer the cleaner boundary or smaller surface area when two feel tied, per the Laziness Protocol.
 
-Record the pick and the reason in a short synthesis note alongside the base artifact, including the cross-judge's verdict.
+Record the pick and the reason in a short synthesis note alongside the base artifact, including the cross-judge's verdict or that Phase C skipped the judge.
 
 ## Phase E: Graft
 
@@ -68,7 +68,7 @@ If verification surfaces a problem the arena did not catch, either Phase A was w
 
 ## Outputs
 
-One synthesized artifact. One short synthesis note alongside, naming the base, the grafts (with source candidate), the rejections, the dropouts if any, and the verification result.
+One synthesized artifact. One short synthesis note alongside, naming the base, the cross-judge's verdict or that Phase C skipped it, the grafts (with source candidate), the rejections, the dropouts if any, and the verification result.
 
 ## Fan-out
 
