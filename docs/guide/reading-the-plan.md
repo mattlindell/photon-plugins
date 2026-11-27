@@ -75,6 +75,13 @@ one-off fix would be built three times.
 A one-page checkout that guest and signed-in shoppers share, with one
 analytics event for each step.
 
+## User Stories
+
+1. As a guest shopper, I want to pay on one page, so that I can finish without
+   making an account.
+2. As the shop owner, I want to see at which step shoppers leave, so that I
+   know what to fix next.
+
 ## Implementation Decisions
 
 ### Checkout page (SF-37, SF-43)
@@ -284,13 +291,12 @@ At a one-way door, `ph-build` reads the settled block:
 
 - **The block settles it.** The spec already made the decision, so `ph-build`
   builds it. The change still doesn't count as ready to merge until a reviewer
-  that didn't write it passes it. If the design is contested, `ph-build`
-  recommends `/ph-build:interrogate` in the pull request description, as your
-  step before merge.
+  that didn't write it passes it. The pull request description also
+  recommends `/ph-build:interrogate` as your step before merge.
 - **The block leaves it open.** `ph-build` stops. It writes a decision ticket
   with `closes: shape`, or `closes: approach` when the open question needs an
-  exploration of test coverage or race conditions. It hands the ticket back to you and names the
-  skill that fits.
+  exploration of test coverage or race conditions. It hands the ticket back to
+  you and names the skill that fits.
 
 The skills it names are ones that only you can start:
 

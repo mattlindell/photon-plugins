@@ -322,8 +322,8 @@ A decision whose cost to undo is real: a schema change or data migration, a
 public API or anything external consumers depend on, anything that deletes or
 irreversibly rewrites data, and auth, billing, or security boundaries. Every
 other decision is a two-way door, cheaper to correct on review than to plan
-for. A one-way door the Rigor signal leaves open is the one case where
-`ph-build` stops instead of building.
+for. At a one-way door the Rigor signal leaves open, `ph-build` stops instead
+of building.
 
 ## Issue tracker
 
