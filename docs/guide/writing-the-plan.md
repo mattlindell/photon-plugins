@@ -31,8 +31,9 @@ writes.
    `issue-tracker.md` says.
 5. You hand the result to `ph-build`.
 
-Every route ends in a written spec or ticket with a `settled:` block. No route
-writes code. Building is `ph-build`'s job.
+Every route ends in something written down that carries a `settled:` block: a
+spec, tickets, or both. A scout map reaches a spec after several sessions. No
+route writes code. Building is `ph-build`'s job.
 
 ## Step 1. Start with intake
 
@@ -64,8 +65,8 @@ The gift message fits in one session, and the questions are easy to list, so
 
 `intake` sends three kinds of work somewhere else:
 
-- **Work that already exists as a ticket** goes to `/ph-plan:triage`. Triage
-  checks the ticket and grills it into shape if it needs that. When a ticket
+- **Work that already exists as a ticket or a pull request** goes to
+  `/ph-plan:triage`. Triage checks the ticket and grills it into shape if it needs that. When a ticket
   reaches `ready-for-agent` through triage, its `problem` dimension is settled.
 - **Work that already has a spec with a settled block** goes to `ph-build`
   through `/ph-build:dispatch`.
@@ -194,12 +195,12 @@ you say yes.
 
 ## Step 3. Decide how the work is proven done
 
-When `problem`, `shape`, and `approach` are settled, grilling runs
-`define-done`. It closes `verification` by choosing one way to prove that the
+When `problem`, `shape`, and `approach` are settled, the next step is
+`define-done`. Do it in the same session, before you confirm the shared
+understanding. If the agent doesn't start it, run `/ph-plan:define-done`. It closes `verification` by choosing one way to prove that the
 work is done. This is the [verification
-methodology](../../CONTEXT.md#verification-methodology). It usually runs in the
-same session, before anything is written. You can also run
-`/ph-plan:define-done` later on a spec or a set of tickets that left
+methodology](../../CONTEXT.md#verification-methodology). It usually runs before
+anything is written. You can also run `/ph-plan:define-done` later on a spec or a set of tickets that left
 `verification` open.
 
 It proposes four things and asks you to confirm them, the same way grilling puts
@@ -241,7 +242,7 @@ You can also run `/ph-plan:to-spec` or `/ph-plan:to-tickets` yourself.
 | What it writes | One spec: a settled block, then Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions, Out of Scope, and Further Notes. | A set of tracer-bullet tickets. Each is a narrow slice that works end to end and that you can verify on its own. Each names the tickets that block it. |
 | What it asks you | No new questions about the plan. It writes up what the session decided. It asks only whether the places it plans to test the work are the ones you expect. | Whether the breakdown is right: too coarse or too fine, whether the blocking links are correct, and whether to merge or split any tickets. It asks again until you approve. |
 | Settled block | One block at the top, listing only what the session closed. | One block on each ticket, because an agent picks up one ticket, not the whole plan. When `verification` is settled, the method goes on every ticket, below the acceptance criteria. |
-| Where it goes | Where your `issue-tracker.md` says specs live. It's marked `ready-for-agent` unless that file says specs carry no labels. | Where your `issue-tracker.md` says tickets live, created blockers first and connected with your tracker's blocking links. Each ticket is marked `ready-for-agent`. |
+| Where it goes | Where your `issue-tracker.md` says specs live. That file also says whether a spec gets the `ready-for-agent` label. | Where your `issue-tracker.md` says tickets live, created blockers first and connected with your tracker's blocking links. Each ticket is marked `ready-for-agent`. |
 
 Both skills read `docs/agents/issue-tracker.md` to find where things go and how
 your tracker records them. Setup wrote that file from the template for your
@@ -288,7 +289,9 @@ two modes.
 4. It creates a decision ticket for each question it can already state
    precisely, and links the blocking edges between them. A question it can't
    state precisely yet goes under Not yet specified on the map.
-5. It starts subagents on the research tickets that nothing blocks. Then it
+5. It claims the research tickets that nothing blocks and starts a subagent on
+   each one. Each subagent saves its findings on a `research/<name>` branch and
+   pushes it without a pull request. That branch is never merged. Then scout
    stops.
 
 If step 2 finds no unknowns, the work is small enough for one session and
