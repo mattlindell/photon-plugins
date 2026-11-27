@@ -49,7 +49,9 @@ uses the standard default: write the test first.
 ## Reading a spec
 
 This is the Checkout redesign spec. It's shorter than a real spec, but it has
-the same sections that `/ph-plan:to-spec` writes.
+the same sections that `/ph-plan:to-spec` writes. The ADRs it cites are
+architecture decision records in Northwind's `storefront` repo. They're part of
+the example, so you can't open them.
 
 ````markdown
 # Spec: Checkout redesign
@@ -206,6 +208,10 @@ closes: approach
 ```
 ````
 
+The `Type:` and `Blocks:` lines show what the ticket records, not how it
+records it. Most trackers keep the type as a label and blocking as a native
+link between tickets. Your `docs/agents/issue-tracker.md` says how yours does.
+
 The type says how the decision gets made. There are four types:
 
 - **research.** An agent reads documentation and records what it says.
@@ -213,9 +219,6 @@ The type says how the decision gets made. There are four types:
 - **grilling.** A person answers questions in a session with an agent.
 - **task.** Someone does a piece of work, such as getting access to a service,
   so that a decision can be made.
-
-Your tracker might record the type as a label such as `scout:research`. Your
-`docs/agents/issue-tracker.md` says how.
 
 The `closes:` line names the dimension that the ticket closes for the tickets
 it blocks. When SF-37 closed, its comment gave the answer: guests can use an
@@ -246,13 +249,14 @@ The settled block decides what `dispatch` does next:
 | Settled block | What `ph-build` does |
 | --- | --- |
 | All four settled | Builds it at the `scoped` [tier](../../CONTEXT.md#tier). It runs no exploration phase and no panels of agents. |
-| Some settled | Skips the phases that own the settled dimensions and works only on the open ones. If `shape` is open, it runs `ph-build:how` to learn the code before it designs. If `verification` is open, it writes tests first. |
-| None settled, or no block | Runs one orientation pass with `ph-build:how`. It then writes its own settled block and says that it inferred the block instead of reading it. It doesn't get a second pass. |
-| No spec at all | Sends you to `/ph-plan:intake`, because nobody planned the work. If nobody is there to plan it and the work is easy to undo, it takes the orientation pass and continues. |
+| Some settled | Skips the phases that own the settled dimensions and works only on the open ones. If `shape` is open on a nontrivial change, it runs `ph-build:how`, which reads the code and explains how it works, before it designs. If `verification` is open, it writes tests first. |
+| None settled, or no block | Runs one orientation pass with `ph-build:how`. It then writes its own provisional settled block and says that it inferred the block instead of reading it. It doesn't get a second pass. |
+| No spec at all | Routes the work to `/ph-plan:intake`, because nobody planned it. If nobody is there to plan it and the work is easy to undo, it takes the orientation pass and continues. |
 
 The Checkout redesign spec has all four dimensions settled, so `ph-build` builds
 each ticket at the `scoped` tier. A ticket with only `problem` settled costs
-more, because `ph-build` must work out the shape and the approach itself. This
+more, because `ph-build` must work out the shape and the approach itself
+before it builds. This
 is the reason to settle what you can before you hand work off. See
 [proportional rigor](../../CONTEXT.md#proportional-rigor).
 
@@ -280,10 +284,12 @@ At a one-way door, `ph-build` reads the settled block:
 
 - **The block settles it.** The spec already made the decision, so `ph-build`
   builds it. The change still doesn't count as ready to merge until a reviewer
-  that didn't write it passes it.
+  that didn't write it passes it. If the design is contested, `ph-build`
+  recommends `/ph-build:interrogate` in the pull request description, as your
+  step before merge.
 - **The block leaves it open.** `ph-build` stops. It writes a decision ticket
-  with `closes: shape`, or `closes: approach` when the question is about test
-  coverage or race conditions. It hands the ticket back to you and names the
+  with `closes: shape`, or `closes: approach` when the open question needs an
+  exploration of test coverage or race conditions. It hands the ticket back to you and names the
   skill that fits.
 
 The skills it names are ones that only you can start:
@@ -310,7 +316,9 @@ Don't decide again yourself. Escalate:
    it can continue.
 2. Comment on the spec or the ticket. Quote the decision, say what you found,
    and link the evidence.
-3. Tag the person who settled it. For a spec, that's usually its author.
+3. Tag the person who settled it. For a spec, that's usually its author. For a
+   ticket, it's whoever closed the decision ticket named in the ticket or in its
+   comments.
 4. Let them decide. If the decision stands, build on it. If it changes, they
    move the dimension from `settled` to `open` and settle it again, in a
    grilling session or with a new decision ticket. Then they update the settled
