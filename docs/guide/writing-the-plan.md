@@ -253,34 +253,38 @@ thinking is left. If you overstate it, they skip a question that nobody
 answered. Every dimension left open should have a decision ticket that will
 close it. On tickets, that decision ticket blocks the tickets that wait for it.
 
-The gift message session ends in tickets. The schema change comes first, and
-the packing-slip ticket waits for the warehouse decision ticket:
+The gift message session ends in three tickets. SF-52 adds the `giftMessage`
+field to `Order`, so it comes first. SF-53 is the warehouse decision ticket.
+SF-54 prints the message on the packing slip, and SF-53 blocks it. SF-54
+carries this block:
 
 ```yaml
 settled: [problem, shape, verification]
 open: [approach]
 ```
 
-That block sits on the packing-slip ticket until the warehouse question closes.
-Then whoever closes it moves `approach` to `settled`.
+The block stays that way until SF-53 closes. Then whoever closes SF-53 moves
+`approach` to `settled` on SF-54.
 
 ## Step 5. Hand it to ph-build
 
-Hand the spec or a ticket to `/ph-build:dispatch`, for example
-`/ph-build:dispatch SF-52`. It reads the settled block you wrote and sizes the
-build to what's still open. [Handing a spec to
+Hand the spec or a ticket to `/ph-build:dispatch`. For the schema change, run
+`/ph-build:dispatch SF-52`. `dispatch` reads the settled block you wrote and
+sizes the build to what's still open. [Handing a spec to
 ph-build](reading-the-plan.md#handing-a-spec-to-ph-build) covers what it does
 with each kind of block.
 
 ## If intake routes to scout
 
-`/ph-plan:scout` charts an effort that's too big for one session. It works in
+`/ph-plan:scout` charts an [effort](../../CONTEXT.md#effort) that's too big for
+one session. It works in
 two modes.
 
 **Chart the map.** This takes one session:
 
 1. Scout grills you to name the destination, meaning what done looks like for
-   the effort. Usually that's a spec.
+   the effort. It can be a spec, a decision to lock before planning starts, or
+   a change made in place, such as a data migration.
 2. It grills you again, wide instead of deep, across the whole effort. It looks
    for the open decisions and the first steps you can take now.
 3. It writes the map where your `issue-tracker.md` says. The map has the
@@ -297,16 +301,18 @@ two modes.
 If step 2 finds no unknowns, the work is small enough for one session and
 doesn't need a map. Scout stops and asks you how to continue.
 
-**Work through the map.** Run `/ph-plan:scout` with the map. Each session takes
-one ticket from the frontier, claims it by assigning it, and resolves it the way
-its type says. Each ticket has one of four types: research, prototype, grilling,
+**Work through the map.** Run `/ph-plan:scout` with the map, and name a ticket
+if you want a specific one. Without a name, scout takes the first ticket on the
+frontier. It claims the ticket by assigning it, then resolves it the way its
+type says. A session resolves one ticket, except that research tickets can run
+several at once. Each ticket has one of four types: research, prototype, grilling,
 or task. [Decision tickets](reading-the-plan.md#decision-tickets) explains what
 each type does. Scout posts the answer on the ticket, closes it, and adds a
 one-line summary to the map's Decisions so far. When an answer makes a question
 in Not yet specified clear enough to state, scout turns it into a new ticket.
 
 When the frontier is empty and nothing is left under Not yet specified, the way
-to the destination is clear. The next step is usually a spec. Run
-`/ph-plan:to-spec`, and the spec cites the tickets that made each decision.
+to the destination is clear. When the destination is a spec, run
+`/ph-plan:to-spec` and ask it to cite the ticket that made each decision.
 [Scout maps](reading-the-plan.md#scout-maps) shows a map that reached that
 point.
