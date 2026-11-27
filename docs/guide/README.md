@@ -18,10 +18,10 @@ Terms link to [CONTEXT.md](../../CONTEXT.md), the repo's one glossary.
 
 ## Reading order
 
-Read the pages in this order. Pages without a link aren't written yet.
+Read the pages in this order.
 
 1. [Setup](setup.md). Install the three plugins and set up one repo.
 2. [Reading the plan](reading-the-plan.md). Read a spec's `settled:` block and predict what `ph-build` does with it.
 3. [Writing the plan](writing-the-plan.md). Go from `/ph-plan:intake` to a spec or a set of tickets.
 4. [House standard](house-standard.md). Agree on one way to track work across every repo and person on the team.
-5. Quick reference. The short version of every other page.
+5. [Quick reference](quick-reference.md). The short version of every other page.
