@@ -13,7 +13,7 @@ Address teams, projects, milestones, labels, and statuses by name. You don't nee
 | `<TEAM>` | The team key. It's also the issue-key prefix (`<TEAM>-123`). |
 | `<PROJECT>` | The project every ticket and Document for this repo belongs to. |
 
-This repo is public, so the values aren't committed. They live in `docs/agents/linear-ids.local.md`, which is gitignored. Read it first and substitute throughout this file. It may also record how this machine prefers to reach Linear; follow that when it does. If the file is missing, ask before writing anything to Linear. Don't guess a team or project, and don't create issues outside them.
+This repo is public, so the team and project values aren't committed. They live in `docs/agents/linear-ids.local.md`, which is gitignored. Ticket keys such as `<TEAM>-123` are fine in commits, PR bodies, and tracked files; workspace, team, and project identifiers (names, slugs, URLs, UUIDs) are not. Read it first and substitute throughout this file. It may also record how this machine prefers to reach Linear; follow that when it does. If the file is missing, ask before writing anything to Linear. Don't guess a team or project, and don't create issues outside them.
 
 ## Efforts
 
