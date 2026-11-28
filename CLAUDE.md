@@ -55,10 +55,11 @@ python scripts/validate-marketplace.py              # registry vs disk, pinned a
 python scripts/lint-links.py --exclude product-team # relative links, heading anchors, backtick paths, skill refs in docs/
 python scripts/lint-handoffs.py                     # no Handoff into a human-only skill
 python scripts/lint-upstreams.py                    # upstreams.json vs UPSTREAMS.md vs NOTICE lineage; --apply regenerates the Pin table
+python scripts/lint-lifecycle.py                    # Work item lifecycle tables: this repo's tracker doc and setup-ph-plan seeds
 python scripts/bump-versions.py --worktree          # semver floor for what you changed
 ```
 
-All five run in CI on every PR (`.github/workflows/checks.yml`), alongside
+All six run in CI on every PR (`.github/workflows/checks.yml`), alongside
 `ruff check`, `ruff format --check`, `basedpyright` over `scripts/` and
 `.claude/skills/`, the repo-check tests, and the plugin and repo-local skill
 Python tests (see Script tests).
@@ -73,7 +74,7 @@ fenced code the same way for every check.
 uvx ruff check scripts/ .claude/skills/ && uvx ruff format scripts/ .claude/skills/ && basedpyright
 ```
 
-Run the five repo checks before any commit that touches plugin structure.
+Run the six repo checks before any commit that touches plugin structure.
 `lint-links.py` matters most after a rename — a renamed heading silently orphans every anchor
 pointing at it, which is how two bugs shipped during the reorganization. It also checks
 backtick-quoted paths such as `` `playbooks/feature.md` ``, but only when the first segment is
@@ -104,6 +105,13 @@ NOTICE lineage tables for both.
 
 `lint-handoffs.py`'s allowlist is empty. An entry exempts a caller that still
 hands off to a human-only skill, and a stale entry fails the check.
+
+`lint-lifecycle.py` holds every `## Work item lifecycle` table to the contract in
+[ADR-0007](docs/adr/0007-the-work-item-lifecycle-is-declared-per-repo.md): columns
+Event, Actor, and Action; exactly one row each for `start`, `review requested`,
+`PR merged`, and `halt`; and an actor of `agent`, `automation`, or `none`. This
+repo's `docs/agents/issue-tracker.md` must carry the table. A `setup-ph-plan`
+`issue-tracker-*.md` seed is checked only when it carries one.
 
 ### Script tests
 
