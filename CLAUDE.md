@@ -128,8 +128,10 @@ bun test --timeout 30000 plugins/   # every suite; CI runs the same command
 ```
 
 `watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
-first. `transport.test.ts` fails on Windows because its fake `gh` is a shebang
-script; CI runs on Linux.
+first. `transport.test.ts`, `cloud-reader.test.ts`, and the fork-identity case
+in `github.test.ts` fail on Windows because their fake `gh` is a shebang script;
+CI runs on Linux. On Windows the slower `worktree-audit.test.mjs` cases also
+exceed the 30-second timeout, because each spawns dozens of `git` processes.
 
 A Python script's test sits beside it as `test_<script>.py`. Plugin and skill
 folders are hyphenated, so they cannot be packages, and a single `unittest`
