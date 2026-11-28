@@ -133,11 +133,11 @@ Open a todolist whose first items are the matched playbook's steps, copied in
 verbatim, before any task-specific todos. A step you skip stays in the list with
 a one-line `skip: <reason>`.
 
-Keep the todolist in the session's task tools. When none is available, keep an
-uncommitted `todo.md` checklist in the work dir, beside the decision trail, with
-the same verbatim steps and `skip:` lines. When several sessions share the
-checkout, name it `.audit/<task-slug>.todo.md`, next to that session's
-`.audit/<task-slug>.tsv` trail, so no two sessions write one file.
+Keep the todolist in the session's task tools. When none is available, keep a
+`.audit/<task-slug>.todo.md` checklist beside that session's
+`.audit/<task-slug>.tsv` trail, with the same verbatim steps and `skip:` lines.
+It is scratch: never commit it. **show-me-your-work** owns `.audit/`, including
+the ignore file to create if the todolist is the folder's first write.
 
 Each playbook has a **total agent budget** in the fan-out policy. That budget
 covers the whole composition including nested fan-out, and it is a ceiling.
