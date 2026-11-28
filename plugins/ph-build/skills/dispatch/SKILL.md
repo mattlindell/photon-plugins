@@ -75,7 +75,7 @@ panels, no `/arena`, no `/architect`. Write what you inferred as a provisional
 You do not get a second pass. If one bounded pass is not enough, that is a
 signal the work needed planning, not more agents.
 
-## 2. The gate: escalate on one-way doors, not on uncertainty
+## 2. The gate: halt on one-way doors, not on uncertainty
 
 The expensive machinery — `/architect`, `/arena`, `/interrogate`, `/swarm` — is
 human-only. Nothing in this harness fires it. It exists for one reason: the work
@@ -94,13 +94,14 @@ Everything else is a two-way door. **Vague but reversible work just gets built**
 At a one-way door, read the `settled:` block:
 
 - **Settled.** The spec already made the decision. Build it.
-- **Not settled.** Stop. Write a decision ticket for `ph-plan` per
+- **Not settled.** Halt. Write a decision ticket for `ph-plan` per
   `docs/agents/issue-tracker.md`, with `closes: shape` in its body, or
   `closes: approach` when the open question is a coverage or race exploration.
   Hand back the ticket and name the Pointer that fits: `/architect` for a shape
   across a function boundary, `/interrogate` for a contested design, `/swarm`
   for coverage matrices, races, or exploration partitions, `/arena` for a design
-  or code bakeoff.
+  or code bakeoff. In a ticket run, the decision ticket is the blocker the halt
+  comment names.
 
 Log every stop: which door, which Pointer you named, why the cheap path was not
 enough. That record is how the gate gets tuned.
@@ -206,8 +207,8 @@ the caps; it is not a licence for unbounded fan-out.
 ## 6. Autonomy
 
 **Just do it.** Reversible work and external actions proceed without asking.
-This is an unattended harness — there is usually nobody to ask, and stopping is
-a stall with no payoff. That is the deliberate inverse of
+This is an unattended harness — there is usually nobody to ask, and stopping to ask
+idles the run for nothing. That is the deliberate inverse of
 `ph-plan:principle-block-on-the-human`, which governs interactive planning. Both
 are correct in their own harness.
 
@@ -217,15 +218,21 @@ deploys, data deletion, customer messages.
 **Session overrides:** "don't stop", "run until done", "be fully autonomous" →
 keep going.
 
-**Escalate rather than improvise at a one-way door you were not told about.** If
-the work turns out to need an architectural rebuild nobody planned for, stop and
-flag it. An unattended agent walking through an unplanned one-way door is the
+**Halt rather than improvise at a one-way door you were not told about.** If
+the work turns out to need an architectural rebuild nobody planned for, halt and
+name it. An unattended agent walking through an unplanned one-way door is the
 one case where stopping beats proceeding.
 
-**Escalate rather than pick a side when the ticket contradicts a live ADR.**
-Halt and name both the ADR and the line of the ticket that collides with it. You
-cannot tell from here whether the ticket is wrong or the ADR is stale, and
-building on either answer bakes the wrong one into the codebase.
+**Halt rather than pick a side when the ticket contradicts a live ADR.** Name
+both the ADR and the line of the ticket that collides with it. You cannot tell
+from here whether the ticket is wrong or the ADR is stale, and building on
+either answer bakes the wrong one into the codebase.
+
+**A Halt means the task is wrong; a Stall means the process broke.** Lapsed
+auth, a missing tool, or a harness failure is a Stall: rerunning the same ticket
+in a fixed environment would succeed. Anything else is a Halt, and so is any
+stop you cannot place. A ticket run writes each back to the tracker per
+[Halt or Stall](playbooks/implement-a-ticket.md#halt-or-stall).
 
 **No is an acceptable answer.** Reply with your real judgment. Decline or push
 back when true. Candor over sycophancy.

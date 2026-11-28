@@ -13,3 +13,6 @@ __pycache__/
 
 # Node / bun
 node_modules/
+
+# Agent decision trails, todo lists, and scratch from implementation runs
+.audit/
