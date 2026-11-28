@@ -42,7 +42,7 @@ Arena returns one synthesized design package. The synthesis decision populates t
 
 ## Phase C: Agree (opt-in)
 
-Default: proceed directly to implementation with the synthesized design. No human checkpoint — this is an unattended harness, and waiting for one is a stall.
+Default: proceed directly to implementation with the synthesized design. No human checkpoint — this is an unattended harness, and waiting for one idles the run for nothing.
 
 **Exception: a one-way door.** If the synthesized design commits to a schema change, public API surface, irreversible data handling, or an auth or billing boundary that the spec did not already settle, stop and surface it. Record it as a decision for `ph-plan` rather than walking through it alone. Proceeding through an unplanned one-way door is the one case where stopping beats proceeding.
 

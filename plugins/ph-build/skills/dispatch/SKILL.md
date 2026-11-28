@@ -75,7 +75,7 @@ panels, no `/arena`, no `/architect`. Write what you inferred as a provisional
 You do not get a second pass. If one bounded pass is not enough, that is a
 signal the work needed planning, not more agents.
 
-## 2. The gate: escalate on one-way doors, not on uncertainty
+## 2. The gate: halt on one-way doors, not on uncertainty
 
 The expensive machinery — `/architect`, `/arena`, `/interrogate`, `/swarm` — is
 human-only. Nothing in this harness fires it. It exists for one reason: the work
