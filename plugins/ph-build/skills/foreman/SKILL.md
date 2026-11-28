@@ -19,8 +19,10 @@ writes code, and it never creates labels or custom fields on a tracker.
 
 The tracker is the only record of a Claim
 ([ADR-0005](../../../../docs/adr/0005-the-tracker-holds-the-claim.md)). A Claim
-is the ticket's assignee, the time it entered In Progress, and one Claim role:
-`agent-claimed`, `agent-working`, or `agent-stalled`. The hand-off directory is
+is the ticket's assignee, the time it entered the repo's start status, and one
+Claim role: `agent-claimed`, `agent-working`, or `agent-stalled`. The start
+status comes from the repo's Work item lifecycle
+([ADR-0007](../../../../docs/adr/0007-the-work-item-lifecycle-is-declared-per-repo.md)). The hand-off directory is
 the only local state, and losing it costs one reconcile.
 
 ## Inputs
@@ -56,13 +58,23 @@ When a required key is missing, claim nothing, notify, and stop.
    - A role change replaces the previous role in one update, so a ticket never
      carries two Claim roles. Where the tracker does not enforce that (Jira
      labels), remove the old role and add the new one in the same call.
-   - Completion: for each repo you know the tracker, the current user, and the
-     encoding of `ready-for-agent` and the three Claim roles.
+   - **Start status.** The `## Work item lifecycle` table in `issue-tracker.md`
+     has a `start` row. Its Action names the start status, and on Jira often a
+     transition id, as in `→ In Progress (transition 21)`. Use that row whatever
+     its actor is: a Claim needs its clock before any branch or PR exists, so
+     the Foreman makes the `start` move itself even when the actor is
+     `automation`. With no lifecycle section, the start status is In Progress.
+     When the `start` row names no status, claim nothing in that repo and
+     notify, because a Claim with no clock can never be reconciled.
+   - Completion: for each repo you know the tracker, the current user, the
+     encoding of `ready-for-agent` and the three Claim roles, and the start
+     status with its transition id, if any.
 
 2. **Reconcile.** Find every live Claim, meaning a ticket carrying
    `agent-claimed` or `agent-working`, assigned to the current user, across all
-   repos. Measure each Claim's age from its move to In Progress. On Jira, use
-   `status CHANGED TO "In Progress"`. On Linear, use `startedAt`. A label has no
+   repos. Measure each Claim's age from its move into its repo's start status.
+   On Jira, use `status CHANGED TO "<start status>"`. On Linear, use
+   `startedAt`. A label has no
    age you can query.
    - `agent-claimed` and older than `orphan_minutes`: the Claim was orphaned
      before a Worker started. Rewrite its hand-off file (step 5). It stays live.
@@ -82,8 +94,11 @@ When a required key is missing, claim nothing, notify, and stop.
    all repos until the free slots are used. For each one, make the Claim the
    first write:
    1. Assign the ticket to the current user, unless it already is.
-   2. Move it to In Progress. On Jira, fetch the transitions and pick one. Never
-      guess a transition id.
+   2. Move it to the repo's start status. On Jira, use the `start` row's
+      transition id first. When the row has none or the tracker rejects it,
+      fetch the available transitions and use the one whose target is the start
+      status. Never guess a transition id. When no transition reaches the start
+      status, this step has failed.
    3. Apply `agent-claimed`.
 
    If any step fails, undo what you wrote to that ticket and skip it. If the
