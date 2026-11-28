@@ -8,10 +8,10 @@
         "version": "v0.9.27"
       },
       "pin": {
-        "sha": "903e7385382389806c59d6989b6274e24165082b",
-        "version": "v0.9.101",
-        "committed": "2026-10-21",
-        "reviewed": "2026-10-23"
+        "sha": "9246a685b290543a61c676e9c10e28672ff51694",
+        "version": "v0.9.158+3",
+        "committed": "2026-11-27",
+        "reviewed": "2026-11-27"
       },
       "log": [
         {
@@ -120,6 +120,115 @@
             },
             {
               "name": "poteto-help",
+              "decision": "declined"
+            }
+          ]
+        },
+        {
+          "date": "2026-11-27",
+          "from": "903e7385382389806c59d6989b6274e24165082b",
+          "to": "9246a685b290543a61c676e9c10e28672ff51694",
+          "pr": "https://github.com/mattlindell/photon-plugins/pull/42",
+          "note": "Owed ticket refs are opaque because this repo is public; each names a Linear ticket by the review date and scope.",
+          "outcomes": {
+            "plugins/ph-build/skills/architect/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, fan-out rewrites"
+            },
+            "plugins/ph-build/skills/arena/": "ported",
+            "plugins/ph-build/skills/babysit/": "no-change",
+            "plugins/ph-build/skills/benchmark-checklist/": "ported",
+            "plugins/ph-build/skills/blast-radius/": "ported",
+            "plugins/ph-build/skills/correct/": "no-change",
+            "plugins/ph-build/skills/create-verification-skill/": "no-change",
+            "plugins/ph-build/skills/deslop/": "ported",
+            "plugins/ph-build/skills/explain/": "ported",
+            "plugins/ph-build/skills/figure-it-out/": "no-change",
+            "plugins/ph-build/skills/fix-ci/": "ported",
+            "plugins/ph-build/skills/fix-merge-conflicts/": "no-change",
+            "plugins/ph-build/skills/get-pr-comments/": "no-change",
+            "plugins/ph-build/skills/how/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, fan-out rewrites"
+            },
+            "plugins/ph-build/skills/interrogate/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, fan-out rewrites"
+            },
+            "plugins/ph-build/skills/maintain-verification-skill/": "no-change",
+            "plugins/ph-build/skills/make-pr-easy-to-review/": "no-change",
+            "plugins/ph-build/skills/no-comments/": "ported",
+            "plugins/ph-build/skills/show-me-your-work/": "no-change",
+            "plugins/ph-build/skills/swarm/": "ported",
+            "plugins/ph-build/skills/thermo-nuclear-code-quality-review/": "no-change",
+            "plugins/ph-build/skills/thermo-nuclear-review/": "no-change",
+            "plugins/ph-build/skills/typescript-best-practices/": "no-change",
+            "plugins/ph-build/skills/why/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, fan-out rewrites"
+            },
+            "plugins/ph-build/skills/principles/principle-*/": "ported",
+            "plugins/ph-build/skills/dispatch/playbooks/": "ported",
+            "plugins/ph-build/skills/dispatch/references/": "ported",
+            "plugins/ph-build/skills/dispatch/scripts/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, watch-pr and worktree-audit"
+            },
+            "plugins/ph-build/agents/comment-sicko.md": "ported",
+            "plugins/ph-lib/skills/primitives/unslop/": "ported",
+            "plugins/ph-lib/skills/primitives/technical-writing/": "ported",
+            "plugins/ph-lib/skills/operator-tools/automate-me/": "no-change",
+            "plugins/ph-lib/skills/operator-tools/bro/": "no-change",
+            "plugins/ph-lib/skills/operator-tools/recall/": "ported",
+            "plugins/ph-lib/skills/operator-tools/reflect/": {
+              "state": "owed",
+              "ticket": "linear: pstack-claude sync 2026-11-27, fan-out rewrites"
+            },
+            "plugins/ph-lib/skills/operator-tools/what-did-i-get-done/": "no-change"
+          },
+          "candidates": [
+            {
+              "name": "pstack-routing",
+              "decision": "declined"
+            },
+            {
+              "name": "create-formal-verification-skill",
+              "decision": "declined"
+            },
+            {
+              "name": "ketchup-video",
+              "decision": "declined"
+            },
+            {
+              "name": "maintain-formal-verification-skill",
+              "decision": "declined"
+            },
+            {
+              "name": "poteto-help",
+              "decision": "declined"
+            },
+            {
+              "name": "poteto-mode",
+              "decision": "declined"
+            },
+            {
+              "name": "reframe",
+              "decision": "declined"
+            },
+            {
+              "name": "sharpen",
+              "decision": "declined"
+            },
+            {
+              "name": "statechart",
+              "decision": "declined"
+            },
+            {
+              "name": "thermos",
+              "decision": "declined"
+            },
+            {
+              "name": "(outside any upstream skill)",
               "decision": "declined"
             }
           ]

@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins that split agent work into interactive planning and unattended building, joined by a written spec that sets how much rigor the build still needs.",
-    "version": "2.0.11"
+    "version": "2.0.12"
   },
   "plugins": [
     {
@@ -26,7 +26,7 @@
       "name": "ph-build",
       "source": "./plugins/ph-build",
       "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-six skills, twenty-four principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
-      "version": "2.3.3",
+      "version": "2.3.4",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
@@ -38,7 +38,7 @@
       "name": "ph-lib",
       "source": "./plugins/ph-lib",
       "description": "Shared library for the photon plugins: four primitives that ph-plan and ph-build reference and require (codebase-design, technical-writing, unslop, writing-for-agents), plus nine operator tools you invoke directly (automate-me, bro, caveman, handoff, recall, reflect, teach, wait-what, what-did-i-get-done). Not a hat — nobody installs this because of the work they are doing.",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"

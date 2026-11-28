@@ -20,7 +20,7 @@ gh pr merge "$pr" --repo "$owner/$repo" --disable-auto
 
 Then, if `mergeQueueEntry` is non-null, remove the PR with the GraphQL `dequeuePullRequest` mutation. Reread the PR and confirm both mechanisms are absent on the same open head and base. Only that readback permits the planned topology operation. If the PR is no longer open, the head or base moved, or either mechanism is still present, stop and reconcile before rewriting. Do not replace the saved record to bypass a mismatch. Cancellation neither merges nor grants landing authority.
 
-Establish the affected dependency chain and coordinate its topology writer first. Inspect and cancel each affected PR, including descendants whose context will change, and leave unrelated PRs alone. Cancellation is an observed condition, not a lock against another actor rearming afterward. If state changes, stop and reconcile. Origin needs its own equivalent validated operation through its installed service. These commands are GitHub-specific and must not be presented as Origin support.
+Establish the affected dependency chain and coordinate with the owner of each branch the operation rewrites first. Inspect and cancel each affected PR, including descendants whose context will change, and leave unrelated PRs alone. Cancellation is an observed condition, not a lock against another actor rearming afterward. If state changes, stop and reconcile. Origin needs its own equivalent validated operation through its installed service. These commands are GitHub-specific and must not be presented as Origin support.
 
 ## Preserve concurrent writes and child changes
 

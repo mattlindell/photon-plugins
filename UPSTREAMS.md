@@ -19,7 +19,7 @@ upstream's recent commits to decide whether a sync is worth running.
 <!-- BEGIN GENERATED: pins. Edit upstreams.json, then run lint-upstreams.py --apply -->
 | Upstream | Pin | Version | Committed | Reviewed | Forked from |
 | --- | --- | --- | --- | --- | --- |
-| [pstack-claude](https://github.com/michael-denyer/pstack-claude) | [`903e738`](https://github.com/michael-denyer/pstack-claude/commit/903e7385382389806c59d6989b6274e24165082b) | v0.9.101 | 2026-10-21 | 2026-10-23 | `a0a531f` (v0.9.27) |
+| [pstack-claude](https://github.com/michael-denyer/pstack-claude) | [`9246a68`](https://github.com/michael-denyer/pstack-claude/commit/9246a685b290543a61c676e9c10e28672ff51694) | v0.9.158+3 | 2026-11-27 | 2026-11-27 | `a0a531f` (v0.9.27) |
 | [pocock-skills](https://github.com/mattpocock/skills) | [`5beb35b`](https://github.com/mattpocock/skills/commit/5beb35b040e3de97e54fa9e386d7e42d15c295c2) | v1.3.1+47 | 2026-10-19 | 2026-10-23 | `84fdeff` (v1.2.3) |
 <!-- END GENERATED: pins -->
 
