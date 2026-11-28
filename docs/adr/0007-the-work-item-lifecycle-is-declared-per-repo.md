@@ -64,9 +64,11 @@ Linear, `startedAt`.
 
 ## Consequences
 
-- **A repo without the section keeps today's behavior.** Ticket runs make no
-  status moves beyond the Claim role, and the Foreman falls back to In
-  Progress and To Do. The run's reply suggests rerunning
+- **A repo without the section falls back to In Progress and To Do.** The
+  Foreman claims into In Progress. A ticket run makes no status moves except
+  on a Halt of a claimed ticket, which it moves to To Do. Without that move,
+  the halted ticket would stay in In Progress, where the Foreman never claims.
+  An unclaimed run moves nothing. The run's reply suggests rerunning
   `/ph-plan:setup-ph-plan`.
 - **The assignee belongs to the human by default.** An agent may be acting as
   the user, who assigns tickets to themselves so the tickets show up in their

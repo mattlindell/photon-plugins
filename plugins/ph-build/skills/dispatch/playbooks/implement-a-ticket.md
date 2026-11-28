@@ -65,9 +65,12 @@ still applies.
 - **Leave the assignee alone** unless the action names an assignee change. The
   agent may be acting as the human the ticket is assigned to.
 - **No lifecycle section.** When `issue-tracker.md` has no
-  `## Work item lifecycle` section, make no status or assignee moves at all;
-  only the role writes below apply. End the reply by suggesting
-  `/ph-plan:setup-ph-plan` to record the table.
+  `## Work item lifecycle` section, make no status or assignee moves, with one
+  exception: a Halt on a ticket that carried a Claim role at `start` moves it
+  to To Do. The Foreman's fallback moved that ticket to In Progress, and it
+  claims only from a To Do status, so without the move the ticket could never
+  be claimed again. End the reply by suggesting `/ph-plan:setup-ph-plan` to
+  record the table.
 
 ### Events
 
@@ -100,7 +103,9 @@ succeed, it is a Stall. Otherwise it is a Halt. When you cannot tell, halt.**
 
 1. Remove any Claim role.
 2. Replace `ready-for-agent` with `needs-triage`.
-3. Apply the `halt` row.
+3. Apply the `halt` row. With no lifecycle section, move a claimed ticket to
+   To Do instead, as [Applying a lifecycle row](#applying-a-lifecycle-row)
+   says.
 4. Post one comment that names the blocker.
 5. Notify.
 

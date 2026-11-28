@@ -279,8 +279,9 @@ each event of an Unattended ticket run: `start`, `review requested`,
 `setup-ph-plan`. Every ticket run reads it, claimed or not, and so does the
 Foreman. Each event's actor is `agent`, `automation`, or `none`. An agent never
 performs or checks a transition whose actor is `automation`, because the
-tracker already does it. A repo without the section gets no status moves beyond
-the Claim role.
+tracker already does it. A repo without the section falls back to In Progress
+for a Claim and To Do for a claimed ticket's Halt, and gets no other status
+moves.
 
 ## Middle-up planning
 
