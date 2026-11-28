@@ -46,7 +46,12 @@ Give every Tracked path one outcome, including the unchanged ones:
 | `ported` | You applied the upstream change, in full or the parts that fit. |
 | `no-change` | Upstream did not touch the path, or touched it in ways that need nothing here. |
 | `diverged` | The change matters upstream but cannot apply here because this skill no longer shares upstream's shape. |
-| `owed` | The change fits but is too large for this PR. File a ticket per [`docs/agents/issue-tracker.md`](../../../docs/agents/issue-tracker.md) and record `{"state": "owed", "ticket": "<key>"}`. The Pin still moves past it. |
+| `owed` | The change fits but is too large for this PR. File a ticket per [`docs/agents/issue-tracker.md`](../../../docs/agents/issue-tracker.md) and record `{"state": "owed", "ticket": "<ref>"}`. The Pin still moves past it. |
+
+This repository is public, so `<ref>` is never the tracker's key, which exposes
+the team prefix. Write an opaque ref that names the ticket by review date and
+scope, such as `"linear: <name> sync <YYYY-MM-DD>, <scope>"`, and title the
+ticket so that ref finds it. The same rule holds for the PR description.
 
 Read each change with `git -C "$clone" show <sha> -- <upstream path>`, then the
 file it lands in here. The NOTICE row maps the upstream path to ours. Several
