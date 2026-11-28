@@ -8,6 +8,9 @@ import { pathToFileURL } from "node:url";
 import { audit, classify, defaultTranscriptRoots, duSize, lastChats, pathSpellings, symlinkTargets } from "./worktree-audit.mjs";
 import { removeDuring } from "./remove-during.test-helper.mjs";
 
+// Every runtime directory at its default under home, whatever this shell has set.
+const noEnv = { claudeConfigDir: "", codexHome: "", piAgentDir: "", copilotHome: "" };
+
 const script = join(import.meta.dir, "./worktree-audit.mjs");
 // node's ESM loader takes a file URL, not a drive-lettered path.
 const scriptUrl = pathToFileURL(script).href;
@@ -314,6 +317,35 @@ test("a commit only the worktree's HEAD reflog reaches holds it, a rebased branc
   expect([row(rebased)[2], row(rebased)[3], row(rebased)[7]]).toEqual(["YES", "clean", "safe"]);
 });
 
+test("REMOTE follows external pushes and deletions even when the local tracking ref stays put", () => {
+  const fixture = createFixture();
+  const topic = addWorktree(fixture, "topic");
+  git("-C", topic, "push", "origin", "topic");
+  const second = join(fixture.root, "second");
+  git("clone", "--branch", "topic", fixture.remote, second);
+  commit(second, "from another clone");
+  git("-C", second, "push", "origin", "topic");
+  expect(rowFor(runAudit(fixture).rows, topic)[4]).toBe("behind1");
+  git("-C", second, "push", "origin", "--delete", "topic");
+  expect(rowFor(runAudit(fixture).rows, topic)[4]).toBe("no-remote");
+});
+
+test("the REMOTE column counts commits on each side of the pushed branch", () => {
+  const fixture = createFixture();
+  const behind = addWorktree(fixture, "behind");
+  commit(behind, "pushed by someone else");
+  git("-C", behind, "push", "origin", "behind");
+  git("-C", behind, "reset", "--hard", "HEAD~1");
+  const diverged = addWorktree(fixture, "diverged");
+  commit(diverged, "theirs");
+  git("-C", diverged, "push", "origin", "diverged");
+  git("-C", diverged, "reset", "--hard", "HEAD~1");
+  commit(diverged, "mine");
+  const { rows } = runAudit(fixture);
+  expect(rowFor(rows, behind)[4]).toBe("behind1");
+  expect(rowFor(rows, diverged)[4]).toBe("ahead1,behind1");
+});
+
 // Windows caps a path near 260 bytes, so a mebibyte of status output would take thousands of files there.
 test.skipIf(process.platform === "win32")("untracked files are counted when git status prints more than a mebibyte", () => {
   const fixture = createFixture();
@@ -342,6 +374,12 @@ test("a diff.ignoreSubmodules=all config does not hide submodule work from the a
     submodule(worktree, "update", "--init");
     return worktree;
   };
+  const ignored = checkout("sub-ignored");
+  const moduleGitDir = git("-C", join(ignored, "sub"), "rev-parse", "--absolute-git-dir");
+  writeFileSync(join(moduleGitDir, "info/exclude"), ".env\nnode_modules/\n");
+  writeFileSync(join(ignored, "sub/.env"), "only copy\n");
+  mkdirSync(join(ignored, "sub/node_modules"));
+  writeFileSync(join(ignored, "sub/node_modules/generated"), "rebuildable\n");
   const edited = checkout("sub-edited");
   writeFileSync(join(edited, "sub/lib.txt"), "edited\n");
   const added = checkout("sub-added");
@@ -351,6 +389,8 @@ test("a diff.ignoreSubmodules=all config does not hide submodule work from the a
   git("-C", fixture.repo, "config", "diff.ignoreSubmodules", "all");
 
   const { rows } = runAudit(fixture);
+  const held = rowFor(rows, ignored);
+  expect([held[3], held[7]]).toEqual(["ignored:1", "hold-ignored"]);
   for (const worktree of [edited, added, committed]) {
     expect(git("-C", worktree, "status", "--porcelain")).toBe("");
     const row = rowFor(rows, worktree);
@@ -387,7 +427,7 @@ for (const dir of ["sessions", "archived_sessions"]) {
     const session = join(fixture.root, ".codex", dir, "2026/10/05/rollout.jsonl");
     mkdirSync(dirname(session), { recursive: true });
     writeFileSync(session, `${JSON.stringify({ type: "session_meta", payload: { cwd: chatted } })}\n`);
-    const transcripts = defaultTranscriptRoots({ env: {}, home: fixture.root });
+    const transcripts = defaultTranscriptRoots({ ...noEnv, home: fixture.root });
     expect(transcripts).toEqual([join(fixture.root, ".codex", dir)]);
     const { rows, warnings } = runAudit(fixture, { transcripts });
     expect(warnings).toEqual([]);
@@ -406,7 +446,7 @@ test.skipIf(noChmod)("an inaccessible default transcript root keeps a recently u
   chmodSync(codex, 0o000);
   locked.push(codex);
 
-  const transcripts = defaultTranscriptRoots({ env: {}, home: fixture.root });
+  const transcripts = defaultTranscriptRoots({ ...noEnv, home: fixture.root });
   const { rows, warnings } = runAudit(fixture, { transcripts });
   expect(rowFor(rows, chatted).slice(6, 8)).toEqual(["-", "review"]);
   expect(warnings).toHaveLength(1);
@@ -628,46 +668,46 @@ describe("default transcripts roots", () => {
   const claude = "/home/u/.claude/projects";
   // These paths are POSIX literals, which path.join spells with backslashes on Windows.
   const roots = ({ exists, ...options }) =>
-    defaultTranscriptRoots({ ...options, home, stat: (path) => exists(gitPath(path)) ? {} : undefined }).map(gitPath);
+    defaultTranscriptRoots({ ...noEnv, ...options, home, stat: (path) => exists(gitPath(path)) ? {} : undefined }).map(gitPath);
 
   test("every runtime directory that exists, Pi's under PI_CODING_AGENT_DIR when set", () => {
     const present = new Set([claude, "/home/u/.codex/sessions", "/pi/sessions", "/pi/pstack", "/home/u/.pi/agent/sessions"]);
     const exists = (path) => present.has(path);
-    expect(roots({ env: { PI_CODING_AGENT_DIR: "/pi" }, exists })).toEqual([
+    expect(roots({ piAgentDir: "/pi", exists })).toEqual([
       claude,
       "/home/u/.codex/sessions",
       "/pi/sessions",
       "/pi/pstack",
     ]);
-    expect(roots({ env: {}, exists })).toEqual([claude, "/home/u/.codex/sessions", "/home/u/.pi/agent/sessions"]);
+    expect(roots({ exists })).toEqual([claude, "/home/u/.codex/sessions", "/home/u/.pi/agent/sessions"]);
   });
 
   test("Codex's sessions and archived_sessions, under CODEX_HOME when set", () => {
     const present = new Set(["/home/u/.codex/sessions", "/home/u/.codex/archived_sessions", "/cx/sessions", "/cx/archived_sessions"]);
     const exists = (path) => present.has(path);
-    expect(roots({ env: {}, exists })).toEqual(["/home/u/.codex/sessions", "/home/u/.codex/archived_sessions"]);
-    expect(roots({ env: { CODEX_HOME: "/cx" }, exists })).toEqual(["/cx/sessions", "/cx/archived_sessions"]);
+    expect(roots({ exists })).toEqual(["/home/u/.codex/sessions", "/home/u/.codex/archived_sessions"]);
+    expect(roots({ codexHome: "/cx", exists })).toEqual(["/cx/sessions", "/cx/archived_sessions"]);
   });
 
   test("Claude Code's projects under CLAUDE_CONFIG_DIR when set", () => {
     const exists = (path) => path === claude || path === "/cc/projects";
-    expect(roots({ env: { CLAUDE_CONFIG_DIR: "/cc" }, exists })).toEqual(["/cc/projects"]);
+    expect(roots({ claudeConfigDir: "/cc", exists })).toEqual(["/cc/projects"]);
   });
 
   test("Copilot's session-state, under COPILOT_HOME when set", () => {
     const present = new Set([claude, "/cp/session-state", "/home/u/.copilot/session-state"]);
     const exists = (path) => present.has(path);
-    expect(roots({ env: { COPILOT_HOME: "/cp" }, exists })).toEqual([claude, "/cp/session-state"]);
-    expect(roots({ env: {}, exists })).toEqual([claude, "/home/u/.copilot/session-state"]);
+    expect(roots({ copilotHome: "/cp", exists })).toEqual([claude, "/cp/session-state"]);
+    expect(roots({ exists })).toEqual([claude, "/home/u/.copilot/session-state"]);
   });
 
   test("Claude Code's directory when no runtime directory exists, so the audit warns about it", () => {
-    expect(roots({ env: {}, exists: () => false })).toEqual([claude]);
+    expect(roots({ exists: () => false })).toEqual([claude]);
   });
 
   test.each(["EACCES", "EPERM", "EIO", "ELOOP"])("a %s while discovering a root retains it for the audit", (code) => {
     const inaccessible = join(home, ".codex", "sessions");
-    const found = defaultTranscriptRoots({ env: {}, home, stat: (path) => {
+    const found = defaultTranscriptRoots({ ...noEnv, home, stat: (path) => {
       if (path === inaccessible) throw Object.assign(new Error("cannot inspect root"), { code });
       return gitPath(path) === claude ? {} : undefined;
     } });
@@ -675,7 +715,7 @@ describe("default transcripts roots", () => {
   });
 
   test.each(["ENOENT", "ENOTDIR"])("a %s while discovering a root omits it", (code) => {
-    expect(defaultTranscriptRoots({ env: {}, home, stat: (path) => {
+    expect(defaultTranscriptRoots({ ...noEnv, home, stat: (path) => {
       if (gitPath(path) === claude) return {};
       throw Object.assign(new Error("root is absent"), { code });
     } }).map(gitPath)).toEqual([claude]);
@@ -821,6 +861,75 @@ describe("the trunk comes from the remote", () => {
     git("--git-dir", fixture.remote, "symbolic-ref", "HEAD", "refs/heads/missing");
     git("-C", fixture.repo, "symbolic-ref", "--delete", "refs/remotes/origin/HEAD");
     assertAncestorSafe(fixture);
+  });
+});
+
+// git resolves the shorthand origin/<name> to a tag or local branch of that name before the remote-tracking ref.
+describe("a local ref named origin/<name> does not stand in for the remote", () => {
+  const tagger = ["-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid"];
+  for (const [label, ...create] of [["a tag", "tag"], ["an annotated tag", ...tagger, "tag", "-a", "-m", "not the trunk"], ["a branch", "branch"]]) {
+    test(`${label} named origin/<trunk> at unmerged work leaves it in review`, () => {
+      const fixture = createFixture({ trunk: "release" });
+      const topic = addWorktree(fixture, "topic");
+      commit(topic, "unmerged work");
+      git("-C", fixture.repo, ...create, "origin/release", "topic");
+      const { rows, warnings } = runAudit(fixture);
+      expect(warnings).toEqual([]);
+      const row = rowFor(rows, topic);
+      expect([row[2], row[7]]).toEqual(["no", "review"]);
+    });
+  }
+
+  test("a stale tag named origin/<trunk> does not hide work that landed", () => {
+    const fixture = createFixture();
+    git("-C", fixture.repo, "tag", "origin/main");
+    const landed = addWorktree(fixture, "landed");
+    commit(landed, "landed on trunk");
+    git("-C", landed, "push", "origin", "HEAD:main");
+    const row = rowFor(runAudit(fixture).rows, landed);
+    expect([row[2], row[7]]).toEqual(["YES", "safe"]);
+  });
+
+  test("a tag named origin/<branch> does not change the REMOTE ahead count", () => {
+    const fixture = createFixture();
+    const topic = addWorktree(fixture, "topic");
+    commit(topic, "pushed");
+    git("-C", topic, "push", "origin", "topic");
+    commit(topic, "local only");
+    git("-C", fixture.repo, "tag", "origin/topic", "topic");
+    expect(rowFor(runAudit(fixture).rows, topic)[4]).toBe("ahead1");
+  });
+});
+
+// gh lists a branch's PRs newest first, and a branch can have several, one per base.
+describe("a branch with several PR records", () => {
+  for (const state of ["CLOSED", "MERGED"]) {
+    test(`an older open PR holds the worktree when a newer ${state} one is listed first`, () => {
+      const fixture = createFixture();
+      const topic = addWorktree(fixture, "topic");
+      const headRefOid = head(topic);
+      const { rows } = runAudit(fixture, {
+        prs: [
+          { number: 12, state, headRefName: "topic", headRefOid },
+          { number: 11, state: "OPEN", headRefName: "topic", headRefOid },
+        ],
+      });
+      expect(rowFor(rows, topic).slice(5, 8)).toEqual(["#11/OPEN", "-", "hold-open-pr"]);
+    });
+  }
+
+  test("without an open PR, the first record listed stands", () => {
+    const fixture = createFixture();
+    const topic = addWorktree(fixture, "topic");
+    commit(topic, "not on trunk");
+    const headRefOid = head(topic);
+    const { rows } = runAudit(fixture, {
+      prs: [
+        { number: 12, state: "CLOSED", headRefName: "topic", headRefOid },
+        { number: 11, state: "MERGED", headRefName: "topic", headRefOid },
+      ],
+    });
+    expect(rowFor(rows, topic).slice(5, 8)).toEqual(["#12/CLOSED", "-", "review"]);
   });
 });
 

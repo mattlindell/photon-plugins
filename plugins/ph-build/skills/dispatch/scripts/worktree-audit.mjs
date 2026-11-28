@@ -112,11 +112,18 @@ export function parseWorktrees(output) {
   return worktrees;
 }
 
-export function defaultTranscriptRoots({ env = process.env, home = homedir(), stat = statSync } = {}) {
-  const claude = join(env.CLAUDE_CONFIG_DIR || join(home, ".claude"), "projects");
-  const codex = env.CODEX_HOME || join(home, ".codex");
-  const piAgent = env.PI_CODING_AGENT_DIR || join(home, ".pi", "agent");
-  const copilot = join(env.COPILOT_HOME || join(home, ".copilot"), "session-state");
+export function defaultTranscriptRoots({
+  claudeConfigDir = process.env.CLAUDE_CONFIG_DIR,
+  codexHome = process.env.CODEX_HOME,
+  piAgentDir = process.env.PI_CODING_AGENT_DIR,
+  copilotHome = process.env.COPILOT_HOME,
+  home = homedir(),
+  stat = statSync,
+} = {}) {
+  const claude = join(claudeConfigDir || join(home, ".claude"), "projects");
+  const codex = codexHome || join(home, ".codex");
+  const piAgent = piAgentDir || join(home, ".pi", "agent");
+  const copilot = join(copilotHome || join(home, ".copilot"), "session-state");
   const found = [claude, join(codex, "sessions"), join(codex, "archived_sessions"),
     join(piAgent, "sessions"), join(piAgent, "pstack"), copilot].filter((root) => {
       try {
@@ -138,7 +145,7 @@ const fileId = (path, stat) => {
 // the name realpathSync gives it when it gives one. The name alone misses
 // links: node resolves `..` in a target before the links in it and keeps a
 // firmlink route as written, and bun opens the target to name it, which macOS
-// refuses for its autofs /home. A dangling or looping link (ENOENT, ELOOP)
+// refuses for its autofs /home or can hang there. A dangling or looping link (ENOENT, ELOOP)
 // spells nothing. When stat fails any other way the route is closed to this
 // process and the link could land anywhere, so the error propagates and the
 // caller leaves the worktree's chat fact unknown.
@@ -146,7 +153,7 @@ export function symlinkTargets(dir, stat = statSync) {
   return readdirSync(dir, { withFileTypes: true }).filter((entry) => entry.isSymbolicLink()).flatMap((entry) => {
     const link = join(dir, entry.name);
     try {
-      return [[link, { id: fileId(link, stat), name: probe(() => realpathSync(link)).value }]];
+      return [[link, { id: fileId(link, stat), name: process.platform === "darwin" && process.versions.bun ? undefined : probe(() => realpathSync(link)).value }]];
     } catch (error) {
       if (["ENOENT", "ELOOP"].includes(error.code)) return [];
       throw error;
@@ -242,16 +249,18 @@ export function lastChats(roots, spellings) {
   return latest;
 }
 
-// The trunk is whatever the remote says it is; main only when it publishes no
-// usable HEAD.
-function trunkName(repo) {
-  const advertised = probe(() => git(repo, "ls-remote", "--symref", "origin", "HEAD"));
-  return (advertised.known && /^ref: refs\/heads\/(.+)\tHEAD$/m.exec(advertised.value)?.[1]) || "main";
+// Take one advertisement for all rows, including deletions that a cached ref misses.
+function advertisedBranches(repo) {
+  const refs = git(repo, "ls-remote", "--symref", "origin", "HEAD", "refs/heads/*");
+  const trunk = /^ref: refs\/heads\/(.+)\tHEAD$/m.exec(refs)?.[1] ?? "main";
+  const tips = new Map();
+  for (const match of refs.matchAll(/^([0-9a-f]+)\trefs\/heads\/(.+)$/gm)) tips.set(match[2], match[1]);
+  return { trunk, tips };
 }
 
 function isAncestor(repo, head, trunk) {
   try {
-    git(repo, "merge-base", "--is-ancestor", head, `origin/${trunk}`);
+    git(repo, "merge-base", "--is-ancestor", head, `refs/remotes/origin/${trunk}`);
     return true;
   } catch (error) {
     if (error.status === 1) return false;
@@ -266,10 +275,14 @@ function dirtyState(path) {
     .split("\n").filter(Boolean);
   const untracked = lines.filter((line) => line.startsWith("??")).length;
   const ignoredLines = lines.filter((line) => line.startsWith("!!"));
-  const ignored = ignoredLines.filter((line) => {
-    const parts = line.slice(3).replace(/^"|"$/g, "").split("/");
-    return !parts.some((part) => DISPOSABLE.has(part));
-  }).length;
+  const keepIgnored = (name) => !name.split("/").some((part) => DISPOSABLE.has(part));
+  let ignored = ignoredLines.filter((line) => keepIgnored(line.slice(3).replace(/^"|"$/g, ""))).length;
+  // Superproject status omits ignored files in initialized submodules, even with --ignore-submodules=none.
+  if (statSync(join(path, ".gitmodules"), { throwIfNoEntry: false })) {
+    const nested = git(path, "submodule", "foreach", "--quiet", "--recursive",
+      "git ls-files --others --ignored --exclude-standard --directory --no-empty-directory -z");
+    ignored += nested.split("\0").filter((name) => name && keepIgnored(name)).length;
+  }
   return { wip: lines.length - untracked - ignoredLines.length, untracked, ignored };
 }
 
@@ -285,11 +298,17 @@ function reflogOnly(path, branchLogged) {
   }).trim());
 }
 
-function remoteState(path, branch, head) {
-  const sha = git(path, "for-each-ref", "--format=%(objectname)", `refs/remotes/origin/${branch}`);
+function remoteState(path, branch, head, tips) {
+  const sha = tips.get(branch);
   if (!sha) return "no-remote";
   if (sha === head) return "pushed";
-  return `ahead${git(path, "rev-list", "--count", `origin/${branch}..HEAD`)}`;
+  // Only download history when this checkout lacks the advertised commit. Leave local tracking refs alone.
+  if (!probe(() => git(path, "cat-file", "-e", sha)).known) {
+    git(path, "fetch", "--no-tags", "--no-write-fetch-head", "--recurse-submodules=no", "--refmap=", "origin", `refs/heads/${branch}`);
+  }
+  // `--left-right` prints the remote-only count, then the HEAD-only count.
+  const [behind, ahead] = git(path, "rev-list", "--left-right", "--count", `${sha}...${head}`).split(/\s+/).map(Number);
+  return [ahead > 0 && `ahead${ahead}`, behind > 0 && `behind${behind}`].filter(Boolean).join(",");
 }
 
 export function duSize(output) {
@@ -326,7 +345,7 @@ function lockedLabel(locked) {
   return locked.replace(/\s+/g, " ").trim() || "locked";
 }
 
-function auditWorktree({ path, locked }, { repo, trunk, fetched, prs, chats, branchLogs, now }) {
+function auditWorktree({ path, locked }, { repo, trunk, fetched, advertised, prs, chats, branchLogs, now }) {
   const head = probe(() => git(path, "rev-parse", "HEAD"));
   const age = bind(head, () => probe(() => Math.trunc((now - Number(git(path, "log", "-1", "--format=%ct", "HEAD"))) / DAY)));
   const ancestry = bind(head, (sha) => probe(() => isAncestor(repo, sha, trunk)));
@@ -336,8 +355,16 @@ function auditWorktree({ path, locked }, { repo, trunk, fetched, prs, chats, bra
     const name = git(path, "rev-parse", "--abbrev-ref", "HEAD");
     return name === "HEAD" ? null : name;
   });
-  const remote = bind(branch, (name) => (name === null ? known("detached") : probe(() => remoteState(path, name, head.value))));
-  const pr = bind(prs, (list) => bind(branch, (name) => known(list.find((entry) => name !== null && entry.headRefName === name) ?? null)));
+  const remote = bind(branch, (name) => {
+    if (name === null) return known("detached");
+    if (!head.known || !advertised.known) return UNKNOWN;
+    return probe(() => remoteState(path, name, head.value, advertised.value.tips));
+  });
+  const pr = bind(prs, (list) => bind(branch, (name) => {
+    const matching = list.filter((entry) => name !== null && entry.headRefName === name);
+    // A branch can target several bases; a newer closed PR does not end an older open one.
+    return known(matching.find((entry) => entry.state === "OPEN") ?? matching[0] ?? null);
+  }));
   const lastChat = chats.get(path);
   const recent = bind(lastChat, (ts) => known(ts !== null && Math.trunc((now - ts) / DAY) <= RECENT_DAYS));
   const bucket = classify({ trunk: fetched, head, age, ancestry, dirty, orphans, remote, pr, recent, locked: known(locked) });
@@ -372,7 +399,8 @@ export function audit({
       return UNKNOWN;
     }
   };
-  const trunk = trunkName(repo);
+  const advertised = probe(() => advertisedBranches(repo));
+  const trunk = advertised.known ? advertised.value.trunk : "main";
   // An explicit refspec updates the ref even where a single-branch clone does not track it.
   const fetched = discover(
     () => git(repo, "fetch", "origin", `+refs/heads/${trunk}:refs/remotes/origin/${trunk}`),
@@ -414,7 +442,7 @@ export function audit({
     () => new Set(git(repo, "rev-list", "--walk-reflogs", "--branches").split("\n").filter(Boolean)),
     "could not read branch reflogs; no worktree can reach safe",
   );
-  const context = { repo, trunk, fetched, prs, chats, branchLogs, now };
+  const context = { repo, trunk, fetched, advertised, prs, chats, branchLogs, now };
   const rows = worktrees.map((worktree) =>
     worktree.prunable
       ? ["-", "?", "-", "-", "-", "-", "-", "prunable", "-", worktree.path]
