@@ -16,12 +16,12 @@ Edit the "Label in our tracker" column to match whatever vocabulary you actually
 
 ## Claim roles
 
-`/ph-build:foreman` records a Claim on a ticket with one of three Claim roles. They sit alongside the triage roles and are not part of the triage state machine. A ticket carries at most one Claim role at a time.
+A Claim role records where an agent is with a ticket. `/ph-build:foreman` applies `agent-claimed` when it claims a ticket, and unattended ticket runs move it on from there. A ticket run that stalls applies `agent-stalled` even to a ticket nobody claimed. A Claim role is a sub-state of `ready-for-agent`: a ticket carries one only while it is `ready-for-agent`, and loses it when triage moves the ticket on. A ticket carries at most one Claim role at a time.
 
 | Claim role      | Written as            | Meaning                                       |
 | --------------- | --------------------- | --------------------------------------------- |
 | `agent-claimed` | label `agent-claimed` | The Foreman has the ticket; no Worker started |
 | `agent-working` | label `agent-working` | A Worker is building it                       |
-| `agent-stalled` | label `agent-stalled` | The Worker ran too long; a human should look  |
+| `agent-stalled` | label `agent-stalled` | The run stalled; a human should look          |
 
 Each role defaults to a plain label named after it. To use a custom field instead, write the field and its value in the "Written as" column, for example `field "Agent Status" = Working`. The Foreman never creates labels or fields, so whatever this table names must already exist on the tracker.

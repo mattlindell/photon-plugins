@@ -63,8 +63,9 @@ When a required key is missing, claim nothing, notify, and stop.
      transition id, as in `→ In Progress (transition 21)`. Use that row whatever
      its actor is: a Claim needs its clock before any branch or PR exists, so
      the Foreman makes the `start` move itself even when the actor is
-     `automation`. With no lifecycle section, the start status is In Progress,
-     and your reply suggests rerunning `/ph-plan:setup-ph-plan` for that repo.
+     `automation`. With no lifecycle section, the start status is In Progress
+     (a Worker that halts moves the ticket back to To Do), and your reply
+     suggests rerunning `/ph-plan:setup-ph-plan` for that repo.
      When the `start` row names no status, claim nothing in that repo and
      notify, because a Claim with no clock can never be reconciled.
    - Completion: for each repo you know the tracker, the current user, the
