@@ -17,5 +17,5 @@ This file holds no process of its own, by [ADR-0003](../../../docs/adr/0003-agen
 
 - **A task thread opens carrying only a tracker reference.** No prose, no plan, just `PROJ-412` or a PR-less issue link.
 - **A ticket is named in passing as the thing to build.** "Go do TEAM-88" or "implement the login spec" — the ticket is the whole brief.
-- **A ticket from `/ph-plan:to-tickets` comes up ready.** Its blocking edges are resolved and it is tagged agent-ready, so it is self-contained by construction.
-- **Not for exploratory or foggy work.** A ticket you cannot restate as concrete behavior belongs in `/ph-plan:grilling` or `/ph-plan:scout` first. Say so and stop rather than guessing at scope.
+- **A ticket from `ph-plan:to-tickets` comes up ready.** Its blocking edges are resolved and it is tagged agent-ready, so it is self-contained by construction.
+- **Not for exploratory or foggy work.** A ticket you cannot restate as concrete behavior belongs in planning first: call the Skill tool with `ph-plan:grilling` or `ph-plan:scout`. Say so and stop rather than guessing at scope.
