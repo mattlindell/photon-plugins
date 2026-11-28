@@ -11,6 +11,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Issue tracker** — where issues live (GitHub by default; GitLab, Jira, Linear, and local markdown also have routes)
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Work item lifecycle** — what happens to a ticket's status, and who does it, as an unattended ticket run starts, opens a PR, merges, or halts
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -75,12 +76,34 @@ Either way, seed the "Claim roles" section from the template with its defaults. 
 
 Offer **multi-context** — a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files — only when exploration found monorepo signals. Then confirm which layout they want.
 
+**Section D — Work item lifecycle.** This builds on the Section A answer. The `## Work item lifecycle` table in `issue-tracker.md` has one row for each event of an unattended ticket run: `start`, `review requested`, `PR merged`, and `halt`. Each row's actor is `agent` (the run makes the move), `automation` (the tracker makes it), or `none` (nothing moves). Ticket runs and `/ph-build:foreman` read the table. Keep its columns, its four events, and its three actors exactly as named.
+
+1. **Read the statuses.** Through the runner's tracker access, read the names the table needs. On Linear, read the team's statuses. On Jira, read the project workflow's transitions with their ids and target statuses; listing the transitions on a ticket in each status shows them. GitHub, GitLab, and local markdown have no statuses to read.
+2. **Draft from the route's defaults.** Start from the table in the route's seed and replace each status name with the one discovery returned:
+
+   | Route | `start` | `review requested` | `PR merged` | `halt` |
+   | --- | --- | --- | --- | --- |
+   | Linear | agent → In Progress | agent → In Review | automation → Done | agent → Todo |
+   | Jira | agent → In Progress (transition id) | agent → the review status (transition id) | none | agent → To Do (transition id) |
+   | GitHub, GitLab | none | none | automation (the closing keyword) | none |
+   | Local markdown | none | none | none | none |
+
+   For "other", draft the table from the user's description.
+3. **Ask one question**, listing the draft's `agent` rows:
+
+   > Which of these does your tracker already do on its own?
+
+   Flip each row the user names to `automation`. Skip the question when the draft has no `agent` row, as on GitHub, GitLab, and local markdown.
+4. **Jira: every `agent` row requires a transition id.** Write it into the action, as in `→ Review (transition 31)`. When discovery can't reach Jira, or a status has no transition into it, ask the user for the id. Never write an `agent` row without one, and never guess one.
+
+Leave every row's assignee as is unless the user asks for a change; the assignee belongs to the human. Write the finished table into the seed's `## Work item lifecycle` section, keeping the prose after it.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
+- The contents of `docs/agents/issue-tracker.md` (with its Work item lifecycle table from Section D), `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
 - On the Linear route with the local split, `docs/agents/linear-ids.local.md`
 
 Let them edit before writing.
@@ -130,7 +153,7 @@ Then write the docs files using the seed templates in this skill folder as a sta
 - [references/triage-labels.md](references/triage-labels.md) — label mapping (only if `triage` is installed)
 - [references/domain.md](references/domain.md) — domain doc consumer rules + layout
 
-For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
+For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description, and give it the `## Work item lifecycle` section from Section D.
 
 ### 5. Done
 

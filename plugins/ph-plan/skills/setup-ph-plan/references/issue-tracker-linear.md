@@ -33,6 +33,19 @@ Linear records state as a **status**, not a label. Read the team's statuses by n
 
 The five triage roles are labels, not statuses. See `triage-labels.md`.
 
+## Work item lifecycle
+
+What happens to a ticket's status, and who does it, at each event of an unattended ticket run. Perform a row only when its actor is `agent`. Leave `automation` rows alone: the tracker makes those moves, so don't perform or check them. A `none` row has nothing to do. A row changes the assignee only when its action says so.
+
+| Event | Actor | Action |
+| --- | --- | --- |
+| `start` | agent | → In Progress |
+| `review requested` | agent | → In Review |
+| `PR merged` | automation | → Done |
+| `halt` | agent | → Todo |
+
+Linear's GitHub integration moves the ticket to `Done` when a PR that names the ticket key merges. When the integration also moves it to `In Review` as the PR opens, the `review requested` row is `automation`. A Stall has no row because it changes no status.
+
 ## Conventions
 
 - **Create a ticket:** an issue in team `<TEAM>`, project `<PROJECT>`, and the effort's milestone. Write the description in Markdown with real newlines.
