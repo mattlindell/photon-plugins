@@ -80,7 +80,7 @@ can start them:
 | Skill | Use it for |
 | --- | --- |
 | `/ph-build:architect` | A shape that crosses a function boundary |
-| `/ph-build:interrogate` | A design that people disagree about |
+| `/ph-build:interrogate` | An adversarial review of a design or diff by several models |
 | `/ph-build:swarm` | Coverage matrices, race conditions, or exploring a large space in parts |
 | `/ph-build:arena` | Comparing competing designs or implementations |
 

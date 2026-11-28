@@ -292,7 +292,9 @@ At a one-way door, `ph-build` reads the settled block:
 - **The block settles it.** The spec already made the decision, so `ph-build`
   builds it. The change still doesn't count as ready to merge until a reviewer
   that didn't write it passes it. The pull request description also
-  recommends `/ph-build:interrogate` as your step before merge.
+  recommends `/ph-build:interrogate` as your step before merge. Every
+  one-way-door pull request carries that line. It doesn't mean anyone
+  disputed the design.
 - **The block leaves it open.** `ph-build` stops. It writes a decision ticket
   with `closes: shape`, or `closes: approach` when the open question needs an
   exploration of test coverage or race conditions. It hands the ticket back to
@@ -303,7 +305,7 @@ The skills it names are ones that only you can start:
 | Skill | Use it for |
 | --- | --- |
 | `/ph-build:architect` | A shape that crosses a function boundary |
-| `/ph-build:interrogate` | A design that people disagree about |
+| `/ph-build:interrogate` | An adversarial review of a design or diff by several models |
 | `/ph-build:swarm` | Coverage matrices, race conditions, or exploring a large space in parts |
 | `/ph-build:arena` | Comparing competing designs or implementations |
 
