@@ -16,6 +16,10 @@ if [ -n "$logdir" ] && [ "$logdir" != "." ] && [ ! -d "$logdir" ]; then
 	mkdir -p "$logdir"
 fi
 
+if [ "$(basename "$logdir")" = .audit ] && [ ! -e "$logdir/.gitignore" ]; then
+	printf '*\n' > "$logdir/.gitignore"
+fi
+
 # Use `>>` here, never `>`. A network mount can fail this test for a log
 # that exists. Then the cost is one stray header line, not the rows.
 if [ ! -s "$logfile" ]; then

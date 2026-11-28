@@ -1,6 +1,6 @@
 ---
 name: show-me-your-work
-description: "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to trust the result. Use for /show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
+description: "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Scratch in .audit/ by default; promote it to docs/decision-trails/ when a reviewer needs the trail to trust the result. Use for /show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
 ---
 
 # Show me your work
@@ -42,9 +42,11 @@ A run is one agent conversation, including its later turns and any summary of it
 
 ## Where it lives
 
-By default the log is a working artifact, not committed. Keep it at `decisions.tsv` in the work dir, or `.audit/<task-slug>.tsv` when several efforts run at once, and leave it out of git.
+**Scratch.** The working log is always `.audit/<task-slug>.tsv` and is never committed. The first write into `.audit/` creates `.audit/.gitignore` containing `*` when none exists, so the folder stays out of git in any repo. `scripts/log.sh` does this; if you write the log another way, create the file yourself. Never edit the repo's root `.gitignore`.
 
-Commit it only when the work is ambitious enough that a reviewer needs the trail to trust the result.
+**Record.** Promote the trail when the run touched a one-way door or a reviewer needs the trail to trust the result. Promote at hand-back, after the transcript audit and the cross-model review below, so the record carries their rows. Copy the scratch file to `docs/decision-trails/<ticket-key>-<slug>.tsv`, or to `docs/decision-trails/<yyyy-mm-dd>-<slug>.tsv` when there is no ticket, and commit the copy normally. Never `git add -f` a scratch file. If the run logs more rows after promotion, copy it again before the next commit. A repo's `CLAUDE.md` may name a different record folder; use it when it does.
+
+Only the TSV trail is promoted. Todolists and anything else in `.audit/` stay scratch.
 
 ## Rules
 
@@ -75,7 +77,7 @@ Every reply for a run that produced a trail ends with an "Attention" section. Le
 
 ## Reviewing the trail
 
-Read top to bottom, follow the evidence pointers, spot-check. GitHub renders a committed TSV as a table; `column -s$'\t' -t decisions.tsv` renders it in a terminal.
+Read top to bottom, follow the evidence pointers, spot-check. GitHub renders a committed TSV as a table; `column -s$'\t' -t .audit/<task-slug>.tsv` renders it in a terminal.
 
 ## Composing this skill
 
