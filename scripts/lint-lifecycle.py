@@ -4,8 +4,8 @@
 Usage:
     python scripts/lint-lifecycle.py [--root PATH]
 
-This repo's docs/agents/issue-tracker.md must carry the section. A
-setup-ph-plan issue-tracker-*.md seed is checked only when it carries one.
+This repo's docs/agents/issue-tracker.md and every setup-ph-plan
+issue-tracker-*.md seed must carry the section.
 Exits 1 on any problem, so it works as a pre-commit or CI gate.
 """
 
@@ -78,12 +78,10 @@ def table(body: list[tuple[int, str]]) -> tuple[int, list[str], list[Row]] | Non
     return header_line, cells(header), rows
 
 
-def check_text(where: str, text: str, *, required: bool) -> list[Problem]:
+def check_text(where: str, text: str) -> list[Problem]:
     body = section(text)
     if body is None:
-        if required:
-            return [Problem(where, "missing-section", f"no `{HEADING}` section")]
-        return []
+        return [Problem(where, "missing-section", f"no `{HEADING}` section")]
 
     found = table(body)
     if found is None:
@@ -125,17 +123,16 @@ def check_text(where: str, text: str, *, required: bool) -> list[Problem]:
 
 
 def check(root: Path) -> list[Problem]:
-    targets = [(root / TRACKER_DOC, True)]
-    targets += [(seed, False) for seed in sorted(root.glob(SEED_GLOB))]
+    targets = [root / TRACKER_DOC, *sorted(root.glob(SEED_GLOB))]
 
     problems: list[Problem] = []
-    for path, required in targets:
+    for path in targets:
         where = path.relative_to(root).as_posix()
         if not path.is_file():
             problems.append(Problem(where, "missing-file", "file not found"))
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
-        problems += check_text(where, text, required=required)
+        problems += check_text(where, text)
     return problems
 
 

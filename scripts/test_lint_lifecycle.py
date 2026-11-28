@@ -82,10 +82,9 @@ class LintLifecycle(unittest.TestCase):
         code, out = self.run_lint()
         self.assertEqual(code, 0, out)
 
-    def test_seed_without_section_passes(self) -> None:
+    def test_seed_without_section_fails(self) -> None:
         self.write(SEED, NO_SECTION)
-        code, out = self.run_lint()
-        self.assertEqual(code, 0, out)
+        self.assert_fails("missing-section", SEED)
 
     def test_tracker_without_section_fails(self) -> None:
         self.write(TRACKER, NO_SECTION)
