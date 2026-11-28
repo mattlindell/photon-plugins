@@ -16,8 +16,6 @@ if [ -n "$logdir" ] && [ "$logdir" != "." ] && [ ! -d "$logdir" ]; then
 	mkdir -p "$logdir"
 fi
 
-# Scratch under .audit/ keeps itself out of git without touching the repo's
-# own .gitignore. An existing file is the repo's choice; leave it alone.
 if [ "$(basename "$logdir")" = .audit ] && [ ! -e "$logdir/.gitignore" ]; then
 	printf '*\n' > "$logdir/.gitignore"
 fi
