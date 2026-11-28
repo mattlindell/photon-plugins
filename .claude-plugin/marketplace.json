@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins that split agent work into interactive planning and unattended building, joined by a written spec that sets how much rigor the build still needs.",
-    "version": "2.0.12"
+    "version": "2.0.13"
   },
   "plugins": [
     {
@@ -26,7 +26,7 @@
       "name": "ph-build",
       "source": "./plugins/ph-build",
       "description": "Unattended implementation: build what was decided, at a cost that tracks what is still unknown. Thirty-six skills, twenty-four principles, nineteen playbooks and three agents, forked from pstack. Reads the rigor signal a spec carries, gates expensive multi-agent work behind one-way doors, and caps every fan-out. Requires ph-lib.",
-      "version": "2.3.4",
+      "version": "2.3.5",
       "author": {
         "name": "Matt Lindell",
         "email": "misterphoton@gmail.com"
