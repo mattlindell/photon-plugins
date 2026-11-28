@@ -1,6 +1,6 @@
 # Reading a PR from a Claude Code cloud session
 
-A Claude Code cloud session's GitHub proxy refuses GraphQL with HTTP 403. `gh pr view`, `gh pr list`, `gh pr checks`, and `gh pr merge` fail with the same refusal, and so does the `watch-pr` watcher, which reads over GraphQL. The proxy serves REST for the repositories attached to the session. Use the reads below there, and nowhere else.
+A Claude Code cloud session's GitHub proxy refuses GraphQL with HTTP 403. `gh pr view`, `gh pr list`, `gh pr checks`, and `gh pr merge` fail with the same refusal. `watch-pr` switches to the REST reads below at the first refusal and stays the source of PR status. The proxy serves REST for the repositories attached to the session. Use the reads below there for what the watcher does not report, and nowhere else.
 
 ## REST reads
 
@@ -33,6 +33,6 @@ Read `head.sha`, `draft`, `mergeable`, and `mergeable_state` from the first comm
 
 ## Limits
 
-- These reads are single snapshots. Nothing here replaces the watcher's rereads, its merge gates, or its check for a head that moved between reads. Reread the PR's head after the other reads, and start again when it changed. The watcher has no REST fallback in this plugin, so a cloud session has no `watch-pr` verdict; judge merge-readiness from these reads.
+- These reads are single snapshots. Nothing here replaces the watcher's rereads, its merge gates, or its check for a head that moved between reads. Reread the PR's head after the other reads, and start again when it changed.
 - Shipping and the merge-safety operations cannot run in a cloud session, because `gh pr merge` needs GraphQL.
 - A repository the session has not attached answers every REST read with HTTP 403.
