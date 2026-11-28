@@ -223,9 +223,44 @@ The state a Claim is in. There are three: `agent-claimed` (the Foreman has the
 ticket and no Worker has started), `agent-working` (a Worker has started), and
 `agent-stalled` (the reaper gave up waiting). Each repo maps the roles in
 `docs/agents/triage-labels.md`, the same way it maps the triage roles. A Claim
-role sits alongside the triage state machine and does not belong to it: a
-ticket enters the machine at `ready-for-agent` and leaves it, or returns to it,
-only through triage.
+role is a sub-state of the `ready-for-agent` Agentic state and exists only
+while a ticket carries it. A ticket leaves `ready-for-agent`, or returns to it,
+only through triage, and loses its Claim role when it leaves.
+
+## Ticket status
+
+The tracker's own workflow status for a ticket, such as `Todo`, `In Progress`,
+or `In Review`. Its names and transitions depend on the platform and the
+team's workflow. The Work item lifecycle governs when an agent changes it.
+Ticket status is one of three independent layers on a ticket, alongside the
+Agentic state and the Claim role.
+
+## Agentic state
+
+The triage role a ticket carries: `needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human`, or `wontfix`. It records who can act on
+the ticket next, not how far the work has progressed. Each repo maps the roles
+in `docs/agents/triage-labels.md`.
+
+## Halt
+
+An Unattended ticket run stopping because something is wrong with the
+*task*: a one-way door it was not told about, a collision with a live ADR, or
+a ticket too big for one session. The run removes the Claim role, replaces
+`ready-for-agent` with `needs-triage`, applies the Work item lifecycle's
+`halt` action, comments once naming the blocker, and notifies. When the run
+cannot tell a Halt from a Stall, it halts.
+
+## Stall
+
+An Unattended ticket run stopping because something is wrong with the *agent
+process*: lapsed auth, a missing tool, or a harness failure. Rerunning the
+same ticket in a fixed environment would succeed. The ticket keeps
+`ready-for-agent`, its Ticket status, and its assignee, and takes the
+`agent-stalled` Claim role, whether or not it was claimed. A run that reports
+its own Stall also comments once and notifies. A reaped Claim reaches the same
+state. A human clears it by removing `agent-stalled` and rerunning the ticket,
+or by moving it back to To Do for the Foreman to claim again.
 
 ## Reconcile
 
@@ -234,6 +269,17 @@ and repairs it before any new Claim is made. An orphaned Claim is requeued. A
 stalled Claim is flagged and its Worker slot is freed. A Claim whose ticket
 already has a PR, or has halted, is confirmed as released. Reconcile is what
 lets a Foreman run after any crash and still reach the correct state.
+
+## Work item lifecycle
+
+The per-repo record of what happens to a ticket's status, and who does it, at
+each event of an Unattended ticket run: `start`, `PR opened`, `PR merged`, and
+`halt`. It is a section of `docs/agents/issue-tracker.md` written by
+`setup-ph-plan`. Every ticket run reads it, claimed or not, and so does the
+Foreman. Each event's actor is `agent`, `automation`, or `none`. An agent never
+performs or checks a transition whose actor is `automation`, because the
+tracker already does it. A repo without the section gets no status moves beyond
+the Claim role.
 
 ## Middle-up planning
 
