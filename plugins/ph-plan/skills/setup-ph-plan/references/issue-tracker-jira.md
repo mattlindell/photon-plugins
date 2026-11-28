@@ -32,6 +32,19 @@ Title artifacts by kind so people and agents can find them: `Spec: <name>`, `Map
 - **Transition:** list the ticket's available transitions, then use the one whose target status is in the Done category. Never guess transition ids.
 - **Blocking:** link type **Blocks**. The blocker "blocks" the blocked ticket. A ticket is unblocked when every "is blocked by" issue is in the Done category.
 
+## Work item lifecycle
+
+What happens to a ticket's status, and who does it, at each event of an unattended ticket run. Perform a row only when its actor is `agent`. Leave `automation` rows alone: the tracker makes those moves, so don't perform or check them. A `none` row has nothing to do. A row changes the assignee only when its action says so.
+
+| Event | Actor | Action |
+| --- | --- | --- |
+| `start` | agent | → In Progress (transition `<START_TRANSITION>`) |
+| `review requested` | agent | → `<REVIEW_STATUS>` (transition `<REVIEW_TRANSITION>`) |
+| `PR merged` | none | no status change |
+| `halt` | agent | → To Do (transition `<HALT_TRANSITION>`) |
+
+Every `agent` row names its transition id. Use that id first. If Jira rejects it, list the ticket's transitions and use the one whose target is the named status. If none matches, notify and skip the move: a status move never stops a build. A Stall has no row because it changes no status.
+
 ## Specs, maps, and research
 
 ### In the wiki

@@ -110,8 +110,8 @@ hands off to a human-only skill, and a stale entry fails the check.
 [ADR-0007](docs/adr/0007-the-work-item-lifecycle-is-declared-per-repo.md): columns
 Event, Actor, and Action; exactly one row each for `start`, `review requested`,
 `PR merged`, and `halt`; and an actor of `agent`, `automation`, or `none`. This
-repo's `docs/agents/issue-tracker.md` must carry the table. A `setup-ph-plan`
-`issue-tracker-*.md` seed is checked only when it carries one.
+repo's `docs/agents/issue-tracker.md` and every `setup-ph-plan`
+`issue-tracker-*.md` seed must carry the table.
 
 ### Script tests
 

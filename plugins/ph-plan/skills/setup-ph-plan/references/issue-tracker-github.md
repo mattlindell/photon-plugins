@@ -14,6 +14,19 @@ Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all o
 
 Infer the repo from `git remote -v` — `gh` does this automatically when run inside a clone.
 
+## Work item lifecycle
+
+What happens to a ticket's status, and who does it, at each event of an unattended ticket run. Perform a row only when its actor is `agent`. Leave `automation` rows alone: the tracker makes those moves, so don't perform or check them. A `none` row has nothing to do. A row changes the assignee only when its action says so.
+
+| Event | Actor | Action |
+| --- | --- | --- |
+| `start` | none | no status change |
+| `review requested` | none | no status change |
+| `PR merged` | automation | closes the issue |
+| `halt` | none | no status change |
+
+An issue is only open or closed; triage state lives in labels (see `triage-labels.md`). GitHub closes the issue when a PR whose body carries a closing keyword (`Closes #<number>`) merges into the default branch, so every PR for an issue carries one. A Stall has no row because it changes no status.
+
 ## Pull requests as a triage surface
 
 **PRs as a request surface: no.** _(Set to `yes` if this repo treats external PRs as feature requests; `/triage` reads this flag.)_
