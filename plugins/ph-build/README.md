@@ -131,7 +131,7 @@ holds the method.
 ## Autonomy
 
 This plugin assumes **nobody is watching**. Reversible work proceeds without
-asking; blocking to ask is a stall with no payoff. That is the deliberate
+asking; blocking to ask idles the run for nothing. That is the deliberate
 inverse of `ph-plan:principle-block-on-the-human`, and both are correct in their
 own harness.
 
