@@ -2,7 +2,7 @@
 
 **You own the design. Plan, review, verify.** Delegate implementation; stay in the lead.
 
-1. Trace the affected subsystem.
+1. `how` over the affected subsystem.
 2. Name the shape with `ph-lib:codebase-design` before any code. At a one-way door the spec left open, stop per `dispatch`'s gate instead. Skipping stays as `design skipped: <reason>`; do not fold the design decision silently into implementation.
 3. Write the throughput checkpoint as four todo items. A dimension that genuinely does not apply (single file, no fan-out) keeps its item with `n/a: <reason>` rather than being dropped:
    - **Blocking first steps.** Gates run before fan-out.
