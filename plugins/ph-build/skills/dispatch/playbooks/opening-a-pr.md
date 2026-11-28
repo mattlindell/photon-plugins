@@ -21,6 +21,6 @@ Use `##` headings, not bold lead-ins, in this order. Drop a section with nothing
 
 After these sections, attach videos or screenshots when they prove a claim. Full SHAs, swarm or arena lane recitals, lever-correction essays, file-by-file checklists, and "CLEAN" verdicts go in a linked artifact, not the body. Do not use `## Summary` or `## Test plan` boilerplate. A commit body does not restate its subject.
 
-Stack follow-ups by base branch. Open PRs ready, through the run's PR tool with `draft: false`. Without one, use `gh pr create` without `--draft`, or `origin pr create --status open` when Origin's CLI resolves the repository. Opening a PR does not start a babysit; post the URL and keep building, and run a babysit pass only when the user asks, per `babysit.md`.
+Stack follow-ups by base branch. Open PRs ready: `gh pr create` without `--draft`, or `origin pr create --status open` when Origin's CLI resolves the repository. Opening a PR does not start a babysit; post the URL and keep building, and run a babysit pass only when the user asks, per `babysit.md`.
 
 A subagent that opens a PR always calls the Skill tool twice, for `deslop` and `no-comments` — both are single-pass and cheap. When the change touches a one-way door (schema, public API, irreversible data handling, auth, billing), it recommends `/interrogate` in the PR description as the human's step before merge. That three-model panel must not ride along on every PR. It returns the URL and does not babysit. Return to the parent.
