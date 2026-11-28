@@ -55,6 +55,9 @@ jobs:
       - name: Upstream record agrees with UPSTREAMS.md and NOTICEs
         run: python scripts/lint-upstreams.py
 
+      - name: Work item lifecycle tables match the contract
+        run: python scripts/lint-lifecycle.py
+
   scripts:
     name: Vendored script tests
     runs-on: ubuntu-latest
