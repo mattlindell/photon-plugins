@@ -1,9 +1,13 @@
 # The tracker holds the claim
 
+> Amended by [ADR-0007](0007-the-work-item-lifecycle-is-declared-per-repo.md):
+> the Claim clock starts when the ticket enters the `start` status of the
+> repo's Work item lifecycle, not In Progress.
+
 A Foreman's record that it has taken a ticket is stored on the ticket itself:
-the assignee, the time the ticket entered In Progress, and one claim role from
-`agent-claimed`, `agent-working`, or `agent-stalled`. Local files are never the
-record. The only local state is a hand-off directory, which tells the harness
+the assignee, the time the ticket entered the `start` status, and one claim
+role from `agent-claimed`, `agent-working`, or `agent-stalled`. Local files are
+never the record. The only local state is a hand-off directory, which tells the harness
 driver which Workers to start. Each Foreman run first reconciles every live
 claim from the tracker. Only after that does it count free slots or claim
 anything new.
@@ -24,8 +28,9 @@ better synchronization.
 
 We record claims in fields because fields can be queried and comments can't. A
 claim role is a filter (`labels = agent-working`). Neither tracker can query
-the age of a label, so the clock is the In Progress transition: in Jira,
-`CHANGED TO "In Progress"`, and in Linear, `startedAt`. Comments are kept for
+the age of a label, so the clock is the transition into the `start` status
+of the repo's Work item lifecycle: in Jira, `status CHANGED TO "<start
+status>"`, and in Linear, `startedAt`. Comments are kept for
 text a human has to read, and only a halt produces one.
 
 ## Consequences

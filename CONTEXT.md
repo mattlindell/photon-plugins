@@ -212,10 +212,11 @@ because nesting is not reliable across Harnesses.
 ## Claim
 
 The record on a tracker ticket that a Foreman has taken it. A Claim is made of
-three things: the assignee, the time the ticket entered In Progress, and one
-Claim role. It lives only on the tracker, never in local files (see
-[ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md)). Taking the role off
-the ticket releases the Claim.
+three things: the assignee, the time the ticket entered the Work item
+lifecycle's `start` status, and one Claim role. It lives only on the tracker,
+never in local files (see [ADR-0005](docs/adr/0005-the-tracker-holds-the-claim.md)
+and [ADR-0007](docs/adr/0007-the-work-item-lifecycle-is-declared-per-repo.md)).
+Taking the role off the ticket releases the Claim.
 
 ## Claim role
 
@@ -273,8 +274,8 @@ lets a Foreman run after any crash and still reach the correct state.
 ## Work item lifecycle
 
 The per-repo record of what happens to a ticket's status, and who does it, at
-each event of an Unattended ticket run: `start`, `PR opened`, `PR merged`, and
-`halt`. It is a section of `docs/agents/issue-tracker.md` written by
+each event of an Unattended ticket run: `start`, `review requested`,
+`PR merged`, and `halt`. It is a section of `docs/agents/issue-tracker.md` written by
 `setup-ph-plan`. Every ticket run reads it, claimed or not, and so does the
 Foreman. Each event's actor is `agent`, `automation`, or `none`. An agent never
 performs or checks a transition whose actor is `automation`, because the
