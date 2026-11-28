@@ -12,7 +12,7 @@ Work from a git worktree off trunk, and keep unrelated work out of it. Rebase in
 
 Use `##` headings, not bold lead-ins, in this order. Drop a section with nothing to say.
 
-- `## Why`. The problem and the approach, in one to three short sentences. Name the ticket by key when the work came from one — the tracker links the PR through the branch name or through this section, and a branch that does not carry the key leaves this as the only channel. No SHAs, rebase genealogy, or "based on main" preamble.
+- `## Why`. The problem and the approach, in one to three short sentences. Name the ticket by key when the work came from one — the tracker links the PR through the branch name or through this section, and a branch that does not carry the key leaves this as the only channel. When the ticket is a GitHub or GitLab issue, add `Closes #N` on its own line here; the tracker closes the issue on merge through it. No SHAs, rebase genealogy, or "based on main" preamble.
 - `## What changed`. One to three short bullets. Name a real symbol or path only when it carries the change. Name both sides of a rename or retarget.
 - `## Scope`. Always present. One to three short items on what the change covers and what it deliberately leaves out, such as a follow-up or a known gap. No symbols, paths, or file-by-file essay.
 - `## Tradeoffs`. Only rejected alternatives that a reviewer would otherwise ask about. Skip this section when there was no real choice.
