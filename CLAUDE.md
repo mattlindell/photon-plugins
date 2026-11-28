@@ -127,11 +127,27 @@ separately and cannot import across each other.
 bun test --timeout 30000 plugins/   # every suite; CI runs the same command
 ```
 
-`watch-pr`'s suites need `bun install` in `plugins/ph-build/skills/dispatch/scripts/`
-first. `transport.test.ts`, `cloud-reader.test.ts`, and the fork-identity case
-in `github.test.ts` fail on Windows because their fake `gh` is a shebang script;
-CI runs on Linux. On Windows the slower `worktree-audit.test.mjs` cases also
-exceed the 30-second timeout, because each spawns dozens of `git` processes.
+`watch-pr`'s suites need `node_modules` in `plugins/ph-build/skills/dispatch/scripts/`.
+Without it, `cli.test.ts` and `cli.port.test.ts` fail to load with
+`Cannot find package 'commander'`. On the maintainer's machine, Kepler copies the
+folder from the primary worktree whenever it creates a worktree. Anywhere else, or
+when your branch changes that folder's `bun.lock`, run `bun install --frozen-lockfile`
+there, as CI does.
+
+**Known Windows failures — expected, do not report them.** CI runs on Linux,
+where every suite passes. On Windows, about 32 tests fail in these four files and
+nowhere else:
+
+| File | Why it fails on Windows |
+| --- | --- |
+| `watch-pr/transport.test.ts` | The fake `gh` is an extensionless `#!` script, which Windows cannot execute |
+| `watch-pr/cloud-reader.test.ts` | Same fake-`gh` shebang |
+| `watch-pr/github.test.ts` | Same, in the cases that write a fake `gh` (fork identity, stack discovery) |
+| `worktree-audit.test.mjs` | Cases exceed the 30-second timeout because each spawns dozens of `git` processes; cleanup can also hit `EBUSY` |
+
+The full run takes about ten minutes on Windows, so run it in the background.
+Ignore failures in those files when the change does not touch them. A failure in
+any other file, a load error, or any failure in CI is real.
 
 A Python script's test sits beside it as `test_<script>.py`. Plugin and skill
 folders are hyphenated, so they cannot be packages, and a single `unittest`
